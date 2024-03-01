@@ -1,0 +1,1191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSGMSS">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=SQLDB-DR\TEST;Initial Catalog=SSGMSS</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>b185c8ca-49a8-4137-ab43-7ab57d797f93</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Dengi">
+      <Query>
+        <DataSourceName>SSGMSS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FROM">
+            <Value>=Parameters!FROM.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TO">
+            <Value>=Parameters!TO.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TYPE">
+            <Value>=Parameters!TYPE.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DENGI">
+            <Value>=Parameters!DENGI.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Serial">
+            <Value>=Parameters!Serial.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT   DEN_DENGI_RECEIPT_MST_T.DR_DATE, DEN_DENGI_RECEIPT_MST_T.LOC_ID, DEN_DENGI_RECEIPT_MST_T.SERIAL_NO, DEN_DENGI_RECEIPT_MST_T.DENGI_MST_ID, DEN_DENGI_MASTER_T.TYPE, DEN_DENGI_RECEIPT_MST_T.AMOUNT, DEN_DENGI_RECEIPT_MST_T.PAYMENT_TYPE_ID, 
+             DEN_DENGI_RECEIPT_MST_T.NAME, DEN_DENGI_RECEIPT_MST_T.ADDRESS, DEN_DENGI_RECEIPT_MST_T.DISTRICT, DEN_DENGI_RECEIPT_MST_T.CHQ_BANK_NAME, DEN_DENGI_RECEIPT_MST_T.CHQ_NO, DEN_DENGI_RECEIPT_MST_T.CHQ_DATE, DEN_DENGI_RECEIPT_MST_T.DD_BANK_NAME, 
+             DEN_DENGI_RECEIPT_MST_T.DD_NO, DEN_DENGI_RECEIPT_MST_T.DD_DATE, DEN_DENGI_RECEIPT_MST_T.INVOICE_NO, DEN_DENGI_RECEIPT_MST_T.PANNumber, COM_LOCATION_MST_T.Location_Name, COM_FINANCIAL_YEAR_MST_T.Display_Value, DEN_DENGI_RECEIPT_MST_T.DENGI_RECEIPT_ID, 
+             DEN_DENGI_RECEIPT_MST_T.TALUKA, DEN_DENGI_RECEIPT_MST_T.NET_BANK_NAME, DEN_DENGI_RECEIPT_MST_T.NET_BANK_REF_NO, DEN_DENGI_RECEIPT_MST_T.ENTERED_ON, DEN_DENGI_RECEIPT_MST_T.STATE, DEN_DENGI_RECEIPT_MST_T.ENTERED_BY, 
+             COM_COUNTER_MACHINE_MST_T.COUNTER_MACHINE_TITLE, COM_TID_MST_T.tidNo
+FROM     DEN_DENGI_RECEIPT_MST_T INNER JOIN
+             DEN_DENGI_MASTER_T ON DEN_DENGI_RECEIPT_MST_T.DENGI_MST_ID = DEN_DENGI_MASTER_T.DENGI_MST_ID INNER JOIN
+             COM_LOCATION_MST_T ON DEN_DENGI_RECEIPT_MST_T.LOC_ID = COM_LOCATION_MST_T.Location_Id INNER JOIN
+             COM_FINANCIAL_YEAR_MST_T ON DEN_DENGI_RECEIPT_MST_T.FY_ID = COM_FINANCIAL_YEAR_MST_T.Financial_Year_Id INNER JOIN
+             COM_COUNTER_MACHINE_MST_T ON DEN_DENGI_RECEIPT_MST_T.CTR_MACH_ID = COM_COUNTER_MACHINE_MST_T.CTR_MACH_ID LEFT OUTER JOIN
+             COM_TID_MST_T ON DEN_DENGI_RECEIPT_MST_T.TID_ID = COM_TID_MST_T.Tid
+WHERE   (DEN_DENGI_RECEIPT_MST_T.DR_DATE BETWEEN @FROM AND @TO) AND (DEN_DENGI_RECEIPT_MST_T.PAYMENT_TYPE_ID IN (@TYPE)) AND (DEN_DENGI_RECEIPT_MST_T.DENGI_MST_ID IN (@DENGI)) AND (DEN_DENGI_RECEIPT_MST_T.SERIAL_NO IN (@Serial))
+ORDER BY DEN_DENGI_RECEIPT_MST_T.SERIAL_NO</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DR_DATE">
+          <DataField>DR_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="LOC_ID">
+          <DataField>LOC_ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SERIAL_NO">
+          <DataField>SERIAL_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DENGI_MST_ID">
+          <DataField>DENGI_MST_ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AMOUNT">
+          <DataField>AMOUNT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PAYMENT_TYPE_ID">
+          <DataField>PAYMENT_TYPE_ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NAME">
+          <DataField>NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ADDRESS">
+          <DataField>ADDRESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DISTRICT">
+          <DataField>DISTRICT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CHQ_BANK_NAME">
+          <DataField>CHQ_BANK_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CHQ_NO">
+          <DataField>CHQ_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CHQ_DATE">
+          <DataField>CHQ_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DD_BANK_NAME">
+          <DataField>DD_BANK_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DD_NO">
+          <DataField>DD_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DD_DATE">
+          <DataField>DD_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="INVOICE_NO">
+          <DataField>INVOICE_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PANNumber">
+          <DataField>PANNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Location_Name">
+          <DataField>Location_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Display_Value">
+          <DataField>Display_Value</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DENGI_RECEIPT_ID">
+          <DataField>DENGI_RECEIPT_ID</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TALUKA">
+          <DataField>TALUKA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NET_BANK_NAME">
+          <DataField>NET_BANK_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NET_BANK_REF_NO">
+          <DataField>NET_BANK_REF_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ENTERED_ON">
+          <DataField>ENTERED_ON</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="STATE">
+          <DataField>STATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ENTERED_BY">
+          <DataField>ENTERED_BY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COUNTER_MACHINE_TITLE">
+          <DataField>COUNTER_MACHINE_TITLE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tidNo">
+          <DataField>tidNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Type">
+      <Query>
+        <DataSourceName>SSGMSS</DataSourceName>
+        <CommandText>SELECT       Token_Detail_Id, Token_Detail_Name, Token_Mst_Id
+FROM            com_token_det_t
+WHERE        (Token_Mst_Id = 6)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Token_Detail_Id">
+          <DataField>Token_Detail_Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Token_Detail_Name">
+          <DataField>Token_Detail_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Token_Mst_Id">
+          <DataField>Token_Mst_Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DengiType">
+      <Query>
+        <DataSourceName>SSGMSS</DataSourceName>
+        <CommandText>SELECT       DENGI_MST_ID, TYPE
+FROM            DEN_DENGI_MASTER_T</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DENGI_MST_ID">
+          <DataField>DENGI_MST_ID</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.81135in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.31296in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.40857in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.81944in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>श्री.रा.रा </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>Name</Label>
+                                  <Value>=First(Fields!NAME.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>City</Label>
+                                  <Value>=First(Fields!ADDRESS.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>dist</Label>
+                                  <Value>=First(Fields!DISTRICT.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>State</Label>
+                                  <Value>=First(Fields!STATE.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve">  </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>chqno</Label>
+                                  <Value>=Switch(
+    Fields!PAYMENT_TYPE_ID.Value = "7",Fields!CHQ_BANK_NAME.Value &amp; " Cheque No: " &amp; Fields!CHQ_NO.Value &amp; " CHQ Date: " &amp; Format(Fields!CHQ_DATE.Value, "dd/MM/yyyy"),
+    Fields!PAYMENT_TYPE_ID.Value = "9", Fields!DD_BANK_NAME.Value &amp; " DD No :"&amp; Fields!DD_NO.Value &amp; " DD Date " &amp; Format(Fields!DD_DATE.Value, "dd/MM/yyyy"),
+    Fields!PAYMENT_TYPE_ID.Value = "181", "RTGS   UTR Ref No :"&amp; Fields!NET_BANK_REF_NO.Value,
+    Fields!PAYMENT_TYPE_ID.Value = "202", "TID:" &amp; Fields!tidNo.Value &amp;" Swipe No:"&amp; Fields!INVOICE_NO.Value
+)</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>dd/MM/yyyy</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox30">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox30</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>No</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value> : </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>Counter</Label>
+                                  <Value>=Fields!COUNTER_MACHINE_TITLE.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>/ </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>Serial</Label>
+                                  <Value>=First(Fields!SERIAL_NO.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Date</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>: </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>Date</Label>
+                                  <Value>=First(Fields!DR_DATE.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>dd/MM/yyyy</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Time</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>dd/MM/yyyy</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value> : </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>dd/MM/yyyy</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Label>Time</Label>
+                                  <Value>=First(Fields!ENTERED_ON.Value, "Dengi")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>h:mm tt</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Duplicate</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>h:mm tt</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PANNumber.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Dengi</DataSetName>
+            <Left>0.16194in</Left>
+            <Height>0.81944in</Height>
+            <Width>4.53288in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>enter</Label>
+                    <Value>=First(Fields!ENTERED_BY.Value, "Dengi")</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>3.63889in</Top>
+            <Left>3.27528in</Left>
+            <Height>0.25in</Height>
+            <Width>1in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix3">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1.21528in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="TYPE">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Abhishek</Label>
+                                  <Value>=iif(Fields!TYPE.Value="ABHISHEK",Fields!AMOUNT.Value,"")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>TYPE</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox21">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Annadan</Label>
+                                  <Value>=iif(Fields!TYPE.Value="ANNADAN NIDHI",Fields!AMOUNT.Value,"")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox22">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Imarat</Label>
+                                  <Value>=iif(Fields!TYPE.Value="IMARAT NIDHI",Fields!AMOUNT.Value,"")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox23">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Shikshan</Label>
+                                  <Value>=iif(Fields!TYPE.Value="SHIKSHAN NIDHI",Fields!AMOUNT.Value,"")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox24">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Dengi</Label>
+                                  <Value>=iif(Fields!TYPE.Value="DENGI",Fields!AMOUNT.Value,"")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox24</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details1" />
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Dengi</DataSetName>
+            <Top>1.47222in</Top>
+            <Left>2.655in</Left>
+            <Height>1.25in</Height>
+            <Width>1.21528in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Textbox25">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Rs: </Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Label>Amount</Label>
+                    <Value>=Code.changeToWords(Sum(Fields!AMOUNT.Value, "Dengi"))</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> Only</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox25</rd:DefaultName>
+            <Top>3.4375in</Top>
+            <Left>0.33555in</Left>
+            <Height>0.1875in</Height>
+            <Width>4.14806in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>DONATION IS EXEMPT U/S. 80G OF THE INCOME TAX ACT 1961, BY AN ORDER FOR APPROVAL OF  PCIT DATED 06.10.2021 FOR THE A.Y. 2022-2023 TO A.Y. 2026-2027. URN : AACTS4423PF20219 - PAN : AACTS4423P</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.92361in</Top>
+            <Left>0.33555in</Left>
+            <Height>0.47222in</Height>
+            <Width>4.14806in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>9.87778cm</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>11.94245cm</Width>
+      <Page>
+        <PageHeader>
+          <Height>3.91583cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageHeight>14.5cm</PageHeight>
+        <PageWidth>12.5cm</PageWidth>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="FROM">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>FROM</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="TO">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>TO</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="TYPE">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>TYPE</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Type</DataSetName>
+          <ValueField>Token_Detail_Id</ValueField>
+          <LabelField>Token_Detail_Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="DENGI">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>DENGI</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DengiType</DataSetName>
+          <ValueField>DENGI_MST_ID</ValueField>
+          <LabelField>TYPE</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Serial">
+      <DataType>String</DataType>
+      <Prompt>Serial</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>5</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>FROM</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TO</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TYPE</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>DENGI</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>4</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Serial</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>Public Shared Function changeToWords(ByVal numb As [String]) As [String]
+    Dim val As [String] = "", wholeNo As [String] = numb, points As [String] = "", andStr As [String] = "", pointStr As [String] = ""
+    Dim endStr As [String] = ""
+    Try
+        Dim decimalPlace As Integer = numb.IndexOf(".")
+        If decimalPlace &gt; 0 Then
+            wholeNo = numb.Substring(0, decimalPlace)
+            points = numb.Substring(decimalPlace + 1)
+            If Convert.ToInt32(points) &gt; 0 Then
+                andStr = "point"
+                ' just to separate whole numbers from points
+                pointStr = translateCents(points)
+            End If
+        End If
+        val = [String].Format("{0} {1}{2} {3}", translateWholeNumber(wholeNo).Trim(), andStr, pointStr, endStr)
+    Catch
+        
+
+    End Try
+    Return val
+End Function
+Private Shared Function translateWholeNumber(ByVal number As [String]) As [String]
+    Dim word As String = ""
+    Try
+        Dim beginsZero As Boolean = False
+        'tests for 0XX
+        Dim isDone As Boolean = False
+        'test if already translated
+        Dim dblAmt As Double = (Convert.ToDouble(number))
+        'if ((dblAmt &gt; 0) &amp;&amp; number.StartsWith("0"))
+        If dblAmt &gt; 0 Then
+            'test for zero or digit zero in a nuemric
+            beginsZero = number.StartsWith("0")
+            
+            Dim numDigits As Integer = number.Length
+            Dim pos As Integer = 0
+            'store digit grouping
+            Dim place As [String] = ""
+            'digit grouping name:hundres,thousand,etc...
+            Select Case numDigits
+                Case 1
+                    'ones' range
+                    word = ones(number)
+                    isDone = True
+                    Exit Select
+                Case 2
+                    'tens' range
+                    word = tens(number)
+                    isDone = True
+                    Exit Select
+                Case 3
+                    'hundreds' range
+                    pos = (numDigits Mod 3) + 1
+                    place = " Hundred "
+                    Exit Select
+                'thousands' range
+                Case 4,5
+                    pos = (numDigits Mod 4) + 1
+                    place = " Thousand "
+                    Exit Select
+                'millions' range
+                Case 6, 7,8,9
+                    pos = (numDigits Mod 6) + 1
+                    place = " Lac "
+                    Exit Select
+                Case Else
+                    'add extra case options for anything above Billion...
+                    isDone = True
+                    Exit Select
+            End Select
+            If Not isDone Then
+                'if transalation is not done, continue...(Recursion comes in now!!)
+                word = translateWholeNumber(number.Substring(0, pos)) + place + translateWholeNumber(number.Substring(pos))
+                'check for trailing zeros
+                If beginsZero Then
+                    word = " and " &amp; word.Trim()
+                End If
+            End If
+            'ignore digit grouping names
+            If word.Trim().Equals(place.Trim()) Then
+                word = ""
+            End If
+        End If
+    Catch
+        
+
+    End Try
+    Return word.Trim()
+End Function
+Private Shared Function tens(ByVal digit As [String]) As [String]
+    Dim digt As Integer = Convert.ToInt32(digit)
+    Dim name As [String] = Nothing
+    Select Case digt
+        Case 10
+            name = "Ten"
+            Exit Select
+        Case 11
+            name = "Eleven"
+            Exit Select
+        Case 12
+            name = "Twelve"
+            Exit Select
+        Case 13
+            name = "Thirteen"
+            Exit Select
+        Case 14
+            name = "Fourteen"
+            Exit Select
+        Case 15
+            name = "Fifteen"
+            Exit Select
+        Case 16
+            name = "Sixteen"
+            Exit Select
+        Case 17
+            name = "Seventeen"
+            Exit Select
+        Case 18
+            name = "Eighteen"
+            Exit Select
+        Case 19
+            name = "Nineteen"
+            Exit Select
+        Case 20
+            name = "Twenty"
+            Exit Select
+        Case 30
+            name = "Thirty"
+            Exit Select
+        Case 40
+            name = "Fourty"
+            Exit Select
+        Case 50
+            name = "Fifty"
+            Exit Select
+        Case 60
+            name = "Sixty"
+            Exit Select
+        Case 70
+            name = "Seventy"
+            Exit Select
+        Case 80
+            name = "Eighty"
+            Exit Select
+        Case 90
+            name = "Ninety"
+            Exit Select
+        Case Else
+            If digt &gt; 0 Then
+                name = (tens(digit.Substring(0, 1) &amp; "0") &amp; " ") + ones(digit.Substring(1))
+            End If
+            Exit Select
+    End Select
+    Return name
+End Function
+Private Shared Function ones(ByVal digit As [String]) As [String]
+    Dim digt As Integer = Convert.ToInt32(digit)
+    Dim name As [String] = ""
+    Select Case digt
+        Case 1
+            name = "One"
+            Exit Select
+        Case 2
+            name = "Two"
+            Exit Select
+        Case 3
+            name = "Three"
+            Exit Select
+        Case 4
+            name = "Four"
+            Exit Select
+        Case 5
+            name = "Five"
+            Exit Select
+        Case 6
+            name = "Six"
+            Exit Select
+        Case 7
+            name = "Seven"
+            Exit Select
+        Case 8
+            name = "Eight"
+            Exit Select
+        Case 9
+            name = "Nine"
+            Exit Select
+    End Select
+    Return name
+End Function
+Private Shared Function translateCents(ByVal cents As [String]) As [String]
+    Dim cts As [String] = "", digit As [String] = "", engOne As [String] = ""
+    For i As Integer = 0 To cents.Length - 1
+        digit = cents(i).ToString()
+        If digit.Equals("0") Then
+            engOne = "Zero"
+        Else
+            engOne = ones(digit)
+        End If
+        cts += " " &amp; engOne
+    Next
+    Return cts
+End Function
+
+
+</Code>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>2d8db60b-b867-4874-82d7-abe301422b82</rd:ReportID>
+</Report>

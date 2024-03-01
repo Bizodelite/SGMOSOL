@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGMOSOL", "SGMOSOL.csproj", "{913354B9-DA9B-4528-9804-8E2C180E6E45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{913354B9-DA9B-4528-9804-8E2C180E6E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{913354B9-DA9B-4528-9804-8E2C180E6E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{913354B9-DA9B-4528-9804-8E2C180E6E45}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{913354B9-DA9B-4528-9804-8E2C180E6E45}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3FBD265-8229-44AF-9974-6AF429922AC3}
+	EndGlobalSection
+EndGlobal

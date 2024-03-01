@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MessItemDS" targetNamespace="http://tempuri.org/MessItemDS.xsd" xmlns:mstns="http://tempuri.org/MessItemDS.xsd" xmlns="http://tempuri.org/MessItemDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="OSOL23ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="OSOL23ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SGMOSOL.Properties.Settings.GlobalReference.Default.OSOL23ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MESS_ITEM_RECEIPT_DATA_VTableAdapter" GeneratorDataComponentClassName="MESS_ITEM_RECEIPT_DATA_VTableAdapter" Name="MESS_ITEM_RECEIPT_DATA_V" UserDataComponentName="MESS_ITEM_RECEIPT_DATA_VTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="OSOL23ConnectionString (Settings)" DbObjectName="OSOL23.dbo.MESS_ITEM_RECEIPT_DATA_V" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from [MESS_ITEM_RECEIPT_DATA_V] </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="User_Login_Name" DataSetColumn="User_Login_Name" />
+              <Mapping SourceColumn="User_Id" DataSetColumn="User_Id" />
+              <Mapping SourceColumn="PR_DATE" DataSetColumn="PR_DATE" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="TALUKA" DataSetColumn="TALUKA" />
+              <Mapping SourceColumn="TOTAL_AMOUNT" DataSetColumn="TOTAL_AMOUNT" />
+              <Mapping SourceColumn="CTR_MACH_ID" DataSetColumn="CTR_MACH_ID" />
+              <Mapping SourceColumn="DOC_TYPE" DataSetColumn="DOC_TYPE" />
+              <Mapping SourceColumn="DOC_DETAIL" DataSetColumn="DOC_DETAIL" />
+              <Mapping SourceColumn="MOBILE" DataSetColumn="MOBILE" />
+              <Mapping SourceColumn="ITEM_ID" DataSetColumn="ITEM_ID" />
+              <Mapping SourceColumn="ITEM_TITLE" DataSetColumn="ITEM_TITLE" />
+              <Mapping SourceColumn="PRINT_RECEIPT_MST_ID" DataSetColumn="PRINT_RECEIPT_MST_ID" />
+              <Mapping SourceColumn="PRICE" DataSetColumn="PRICE" />
+              <Mapping SourceColumn="QTY" DataSetColumn="QTY" />
+              <Mapping SourceColumn="AMOUNT" DataSetColumn="AMOUNT" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MessItemDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="MessItemDS" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MessItemDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MESS_ITEM_RECEIPT_DATA_V" msprop:Generator_RowClassName="MESS_ITEM_RECEIPT_DATA_VRow" msprop:Generator_RowEvHandlerName="MESS_ITEM_RECEIPT_DATA_VRowChangeEventHandler" msprop:Generator_RowDeletedName="MESS_ITEM_RECEIPT_DATA_VRowDeleted" msprop:Generator_RowDeletingName="MESS_ITEM_RECEIPT_DATA_VRowDeleting" msprop:Generator_RowEvArgName="MESS_ITEM_RECEIPT_DATA_VRowChangeEvent" msprop:Generator_TablePropName="MESS_ITEM_RECEIPT_DATA_V" msprop:Generator_RowChangedName="MESS_ITEM_RECEIPT_DATA_VRowChanged" msprop:Generator_UserTableName="MESS_ITEM_RECEIPT_DATA_V" msprop:Generator_RowChangingName="MESS_ITEM_RECEIPT_DATA_VRowChanging" msprop:Generator_TableClassName="MESS_ITEM_RECEIPT_DATA_VDataTable" msprop:Generator_TableVarName="tableMESS_ITEM_RECEIPT_DATA_V">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="User_Login_Name" msprop:Generator_UserColumnName="User_Login_Name" msprop:Generator_ColumnPropNameInTable="User_Login_NameColumn" msprop:Generator_ColumnPropNameInRow="User_Login_Name" msprop:Generator_ColumnVarNameInTable="columnUser_Login_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="User_Id" msprop:Generator_UserColumnName="User_Id" msprop:Generator_ColumnPropNameInTable="User_IdColumn" msprop:Generator_ColumnPropNameInRow="User_Id" msprop:Generator_ColumnVarNameInTable="columnUser_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="PR_DATE" msprop:Generator_UserColumnName="PR_DATE" msprop:Generator_ColumnPropNameInTable="PR_DATEColumn" msprop:Generator_ColumnPropNameInRow="PR_DATE" msprop:Generator_ColumnVarNameInTable="columnPR_DATE" type="xs:dateTime" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_UserColumnName="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TALUKA" msprop:Generator_UserColumnName="TALUKA" msprop:Generator_ColumnPropNameInTable="TALUKAColumn" msprop:Generator_ColumnPropNameInRow="TALUKA" msprop:Generator_ColumnVarNameInTable="columnTALUKA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL_AMOUNT" msprop:Generator_UserColumnName="TOTAL_AMOUNT" msprop:Generator_ColumnPropNameInTable="TOTAL_AMOUNTColumn" msprop:Generator_ColumnPropNameInRow="TOTAL_AMOUNT" msprop:Generator_ColumnVarNameInTable="columnTOTAL_AMOUNT" type="xs:decimal" />
+              <xs:element name="CTR_MACH_ID" msprop:Generator_UserColumnName="CTR_MACH_ID" msprop:Generator_ColumnPropNameInTable="CTR_MACH_IDColumn" msprop:Generator_ColumnPropNameInRow="CTR_MACH_ID" msprop:Generator_ColumnVarNameInTable="columnCTR_MACH_ID" type="xs:decimal" />
+              <xs:element name="DOC_TYPE" msprop:Generator_UserColumnName="DOC_TYPE" msprop:Generator_ColumnPropNameInTable="DOC_TYPEColumn" msprop:Generator_ColumnPropNameInRow="DOC_TYPE" msprop:Generator_ColumnVarNameInTable="columnDOC_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DOC_DETAIL" msprop:Generator_UserColumnName="DOC_DETAIL" msprop:Generator_ColumnPropNameInTable="DOC_DETAILColumn" msprop:Generator_ColumnPropNameInRow="DOC_DETAIL" msprop:Generator_ColumnVarNameInTable="columnDOC_DETAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MOBILE" msprop:Generator_UserColumnName="MOBILE" msprop:Generator_ColumnPropNameInTable="MOBILEColumn" msprop:Generator_ColumnPropNameInRow="MOBILE" msprop:Generator_ColumnVarNameInTable="columnMOBILE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ITEM_ID" msprop:Generator_UserColumnName="ITEM_ID" msprop:Generator_ColumnPropNameInTable="ITEM_IDColumn" msprop:Generator_ColumnPropNameInRow="ITEM_ID" msprop:Generator_ColumnVarNameInTable="columnITEM_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ITEM_TITLE" msprop:Generator_UserColumnName="ITEM_TITLE" msprop:Generator_ColumnPropNameInTable="ITEM_TITLEColumn" msprop:Generator_ColumnPropNameInRow="ITEM_TITLE" msprop:Generator_ColumnVarNameInTable="columnITEM_TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PRINT_RECEIPT_MST_ID" msprop:Generator_UserColumnName="PRINT_RECEIPT_MST_ID" msprop:Generator_ColumnPropNameInTable="PRINT_RECEIPT_MST_IDColumn" msprop:Generator_ColumnPropNameInRow="PRINT_RECEIPT_MST_ID" msprop:Generator_ColumnVarNameInTable="columnPRINT_RECEIPT_MST_ID" type="xs:decimal" />
+              <xs:element name="PRICE" msprop:Generator_UserColumnName="PRICE" msprop:Generator_ColumnPropNameInTable="PRICEColumn" msprop:Generator_ColumnPropNameInRow="PRICE" msprop:Generator_ColumnVarNameInTable="columnPRICE" type="xs:decimal" />
+              <xs:element name="QTY" msprop:Generator_UserColumnName="QTY" msprop:Generator_ColumnPropNameInTable="QTYColumn" msprop:Generator_ColumnPropNameInRow="QTY" msprop:Generator_ColumnVarNameInTable="columnQTY" type="xs:decimal" />
+              <xs:element name="AMOUNT" msprop:Generator_UserColumnName="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" type="xs:decimal" />
+              <xs:element name="AMOUNT-IN_WORDS" msprop:Generator_UserColumnName="AMOUNT-IN_WORDS" msprop:Generator_ColumnPropNameInTable="_AMOUNT_IN_WORDSColumn" msprop:Generator_ColumnPropNameInRow="_AMOUNT_IN_WORDS" msprop:Generator_ColumnVarNameInTable="_columnAMOUNT_IN_WORDS" type="xs:string" minOccurs="0" />
+              <xs:element name="REPORT_TYPE" msprop:Generator_UserColumnName="REPORT_TYPE" msprop:Generator_ColumnPropNameInTable="REPORT_TYPEColumn" msprop:Generator_ColumnPropNameInRow="REPORT_TYPE" msprop:Generator_ColumnVarNameInTable="columnREPORT_TYPE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -41,7 +41,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@FDATE", fdate);
                             command.Parameters.AddWithValue("@LDATE", ldate);
                             command.Parameters.AddWithValue("@MOBILE_NUMBER", string.IsNullOrEmpty(obj.contact) ? DBNull.Value : (object)obj.contact);
-                            command.Parameters.AddWithValue("@DENGI_TYPE", obj.DengiId);
+                            //command.Parameters.AddWithValue("@DENGI_TYPE", obj.DengiId);
                             command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
@@ -105,31 +105,31 @@ namespace SGMOSOL.DAL
         }
         public int DupPrintInsert(object DengiReceiptId)
         {
-                int status = 0;
-                try
+            int status = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO [dbo].[DEN_REPRINT_DENGI_RCPT_T] ([DENGI_RECEIPT_ID],[ENTERED_BY],[ENTERED_ON],[MACHINE_NAME],[USER_ID])" +
+                        " VALUES (@DENGI_RECEIPT_ID,@ENTERED_BY,(GETDATE()),@MACHINE_NAME,@USER_ID)", connection))
                     {
-                        connection.Open();
-                        using (SqlCommand command = new SqlCommand("INSERT INTO [dbo].[DEN_REPRINT_DENGI_RCPT_T] ([DENGI_RECEIPT_ID],[ENTERED_BY],[ENTERED_ON],[MACHINE_NAME],[USER_ID])" +
-                            " VALUES (@DENGI_RECEIPT_ID,@ENTERED_BY,(GETDATE()),@MACHINE_NAME,@USER_ID)", connection))
-                        {
-                            command.CommandType = CommandType.Text;
-                            
-                                command.Parameters.AddWithValue("@DENGI_RECEIPT_ID", DengiReceiptId);
-                                command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
-                                command.Parameters.AddWithValue("@MACHINE_NAME", UserInfo.Counter_Name);
-                                command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
-                                command.ExecuteNonQuery();
-                        }
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@DENGI_RECEIPT_ID", DengiReceiptId);
+                        command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
+                        command.Parameters.AddWithValue("@MACHINE_NAME", UserInfo.Counter_Name);
+                        command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
+                        command.ExecuteNonQuery();
                     }
                 }
-                catch (Exception ex)
-                {
-                    commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
 
-                return status;
+            return status;
         }
         public int DupPrintDeclaration(object DengiReceiptId)
         {
@@ -184,6 +184,10 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@payment_type_Id", obj.paymentTypeId);
                             command.Parameters.AddWithValue("@Name", obj.Name);
                             command.Parameters.AddWithValue("@Gotra_Id", obj.gotraId);
+                            if (obj.gotra != "Select")
+                                command.Parameters.AddWithValue("@Gotra_name", obj.gotra);
+                            else
+                                command.Parameters.AddWithValue("@Gotra_name", null);
                             command.Parameters.AddWithValue("@Contact", obj.contact);
                             command.Parameters.AddWithValue("@Address", obj.Address);
                             command.Parameters.AddWithValue("@DistrictId", obj.DistId);
@@ -229,10 +233,6 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@Pincode", obj.PinCode);
                             command.Parameters.AddWithValue("@Doc_Type", obj.Doc_type);
                             command.Parameters.AddWithValue("@Doc_Detail", obj.Doc_Detail);
-                            if (obj.gotra != "Select")
-                            command.Parameters.AddWithValue("@Gotra_name", obj.gotra);
-                            else
-                                command.Parameters.AddWithValue("@Gotra_name", null);
                             command.Parameters.AddWithValue("@IsDuplicate", obj.IsDuplicate);
                             SqlParameter idParam = new SqlParameter("@Receipt_ID", SqlDbType.Decimal);
                             idParam.Direction = ParameterDirection.Output;
@@ -361,43 +361,63 @@ namespace SGMOSOL.DAL
             }
             return dt;
         }
-
-
-
-        //Code to insert duplicate print receipt 
-       /* public long DupPrintInsert(object DengiReceiptId, string UserName, string MacineName, int userid)
+        public DataTable GetLastEnterdNameAmountSerial(int intCtrId)//int intCtrId, int COM_ID, int LOC_ID, int FY_ID
         {
-            SqlClient.SqlDataReader Dr;
-            SqlClient.SqlCommand CMDMESS = new SqlClient.SqlCommand(strSQL.ToString, mCnn);
-            System.Text.StringBuilder strSQLWhere = new System.Text.StringBuilder();
+            DataTable dt = new DataTable();
             try
             {
-                strDML.Length = 0;
-
-                strDML.Append("INSERT INTO DEN_REPRINT_DENGI_RCPT_T");
-                strDML.Append(" (");
-
-                strDML.Append(" DENGI_RECEIPT_ID");
-                strDML.Append(",ENTERED_BY ");
-                strDML.Append(",USER_ID");
-                strDML.Append(",MACHINE_NAME) ");
-                strDML.Append(" values (");
-
-                strDML.Append(FormatNumberData(DengiReceiptId));
-                strDML.Append(FormatCharData(UserName));
-                strDML.Append(FormatNumberData(userid));
-                strDML.Append(FormatCharData(MacineName));
-                strDML.Length = strDML.Length - 1;
-                strDML.Append(")");
-                lngErrNum = -88;
-                lngErrNum = OSOL_CONNECTION.clsConnection.DML(strDML.ToString);
-                strDML.Length = 0;
-                Insert = lngErrNum;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT top 1 cast(CAST(AMOUNT as decimal(12,2)) as float)as AMOUNT,NAME as LastEnteredName, ISNULL(SERIAL_NO,0) as SERIAL_NO FROM DEN_DENGI_RECEIPT_MST_T where CTR_MACH_ID  = " + intCtrId + " and COM_ID = 9 and LOC_ID = " + UserInfo.Loc_id + " and FY_ID= " + UserInfo.fy_id + " order by DENGI_RECEIPT_ID desc";
+                    SqlDataAdapter da = new SqlDataAdapter(query, connection);
+                    da.Fill(dt);
+                }
             }
             catch (Exception ex)
             {
-                Insert = -10;
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
-        }*/
+            return dt;
+        }
+        public int InsertError(DengiErrorLog DengiError)
+        {
+            int status = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("InsertDengiReceipt", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (DengiError is DengiErrorLog obj)
+                        {
+                            command.Parameters.AddWithValue("@UserName", obj.Name);
+                            command.Parameters.AddWithValue("@Amount", obj.Amount);
+                            command.Parameters.AddWithValue("@Serial_no", obj.ReceiptNo);
+                            command.Parameters.AddWithValue("@LastUserName", obj.LastName);
+                            command.Parameters.AddWithValue("@LastAmount", obj.LastAmount);
+                            command.Parameters.AddWithValue("@LastSerial_no", obj.LastReceiptNo);
+                            command.Parameters.AddWithValue("@CreatedBy", UserInfo.UserName);
+                            command.Parameters.AddWithValue("@MACId", obj.Mach_Id);
+
+                            SqlParameter idParam = new SqlParameter("@ID", SqlDbType.Decimal);
+                            idParam.Direction = ParameterDirection.Output;
+                            command.Parameters.Add(idParam);
+                            command.ExecuteNonQuery();
+                            status = Convert.ToInt32(command.Parameters["@ID"].Value);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+
+            return status;
+        }
+
     }
 }

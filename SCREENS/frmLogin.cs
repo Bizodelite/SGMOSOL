@@ -68,7 +68,7 @@ namespace SGMOSOL.SCREENS
                             dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
                             if (dtuser.Rows.Count > 0)
                             {
-                                UserInfo.serverName = CommonFunctions.Encrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
+                                UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
                                 foreach (DataRow row in dtuser.Rows)
                                 {
                                     UserInfo.Counter_Name = row["COUNTER_MACHINE_SHORT_NAME"].ToString();

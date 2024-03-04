@@ -541,14 +541,14 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
-            if (cboDoctype.Text != "" && txtdocDetail.Text == "")
-            {
-                lbldocdetailerr.Text = "Please enter Document details";
-            }
-            else
-            {
-                lbldocdetailerr.Text = "";
-            }
+            //if (cboDoctype.Text != "" && txtdocDetail.Text == "")
+            //{
+            //    lbldocdetailerr.Text = "Please enter Document details";
+            //}
+            //else 
+            //{
+            //    lbldocdetailerr.Text = "";
+            //}
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";
@@ -756,6 +756,17 @@ namespace SGMOSOL.SCREENS
                 if (result == DialogResult.Yes)
                 {
                     int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
+                    
+                    //if (status >= 0)
+                    //{
+                    //    long chkMissingEntry;
+                    //    chkMissingEntry = fcheckInsert();
+                    //    if (chkMissingEntry < 0)
+                    //    {
+                    //        return;
+                    //    }
+                    //}
+
                     if (status != 0)
                     {
                         resetAllFields();
@@ -787,6 +798,66 @@ namespace SGMOSOL.SCREENS
                 txtAmount.Focus();
             }
 
+        }
+        private int fcheckInsert()
+        {
+            int fcheckInsert = 0;
+            try
+            {
+                string strLastName = "";
+                string strLastReceiptNo = "";
+                string strLastAmount = "";
+                int lngErrorNew;
+
+                DataTable drachk;
+                drachk = dengiReceiptDAL.GetLastEnterdNameAmountSerial(UserInfo.ctrMachID);
+                if (drachk.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in drachk.Rows)
+                    {
+                        strLastAmount = dr["AMOUNT"].ToString();
+                        strLastName = dr["LastEnteredName"].ToString();
+                        strLastReceiptNo = dr["SERIAL_NO"].ToString();
+                        break;
+                    }
+                }
+
+                if (txtAmount.Text == strLastAmount & txtname.Text == strLastName)
+                {
+                    MessageBox.Show("Record saved successfully.");
+                }
+                else
+                {
+                    DengiErrorLog DengiError = new DengiErrorLog();
+                    DengiError.Name = txtname.Text;
+                    DengiError.Amount = Convert.ToDouble(txtAmount.Text);
+                    DengiError.ReceiptNo = txtdengireceiptNo.Text;
+                    DengiError.LastName = strLastName;
+                    DengiError.LastAmount = Convert.ToDouble(strLastAmount);
+                    DengiError.LastReceiptNo = strLastReceiptNo;
+                    DengiError.Mach_Id = txtCounter.Tag.ToString();
+                    DengiError.Username = UserInfo.UserName;
+                    DengiError.ErrorDate = DateTime.Now;
+
+                    lngErrorNew = dengiReceiptDAL.InsertError(DengiError);
+                    MessageBox.Show("Error Occured. Contact System Admin. Name:" + strLastName + " Amount:" + strLastAmount + " No:" + strLastReceiptNo);
+                    fcheckInsert = -1;
+                    //blnformChange = false;
+                    // btnNew_Click(Nothing, Nothing)
+                    btnSave.Enabled = true;
+                    txtAmount.Focus();
+                    //setCursor(this, true);
+                    return fcheckInsert;
+                }
+                fcheckInsert = 1;
+                return fcheckInsert;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("(Error Occured in Insert Validation - 2022");
+                fcheckInsert = 1;
+                return fcheckInsert;
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -1075,6 +1146,10 @@ namespace SGMOSOL.SCREENS
         {
 
         }
+        public void Scan_Document()
+        {
+            string tempfile = "";
+        }
 
         private void pnlBtn_Paint(object sender, PaintEventArgs e)
         {
@@ -1177,6 +1252,11 @@ namespace SGMOSOL.SCREENS
         private void txtdengireceiptNo_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboDoctype_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            lbldoctype_err.Text = "";
         }
     }
 }

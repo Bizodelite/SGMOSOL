@@ -473,6 +473,7 @@
     <Content Include="Images\view.png" />
     <Content Include="Images\Zoom.png" />
     <Content Include="logo.ico" />
+    <Content Include="Scripte.sql" />
     <None Include="Resources\Zoom.png" />
     <None Include="Resources\view.png" />
     <None Include="Resources\Undo.png" />

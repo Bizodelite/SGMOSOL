@@ -43,7 +43,7 @@ namespace SGMOSOL.SCREENS
                 model.receiptFDate = Convert.ToDateTime(dtFromDate.Text);
                 model.ReceiptLDate = Convert.ToDateTime(dtToDate.Text);
                 model.contact = txtMobile.Text;
-                model.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
+                //model.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
                 DataTable dataTable = new DataTable();
                 dataTable = frmData.getDengiReceipt(model);
                 if (dataTable.Rows.Count > 0)

@@ -1,6 +1,5 @@
 -- Scripts by Sujata STARTS
 
-USE [OSOL23]
 GO
 PRINT N'Altering Procedure [dbo].[SP_GET_DEN_DENGI_RECEIPT_DATA]...';
 /****** Object:  StoredProcedure [dbo].[DML_SEC_LOGIN_DETAILS]    Script Date: 02-03-2024 14:37:30 ******/
@@ -15,7 +14,25 @@ ALTER PROCEDURE [dbo].[DML_SEC_LOGIN_DETAILS]
 	@LOGGED_OUT_TIME DATETIME=NULL,
 	@LOGIN_TYPE varchar(100)=NULL,
 	@ENTERED_BY varchar(50)=null
-	
+AS
+BEGIN
+    IF @FLAG='I'
+    INSERT INTO SEC_LOGIN_DETAILS
+	(USER_ID,LOGIN_TYPE,ENTERED_BY)
+   VALUES (@USER_ID,@LOGIN_TYPE,@ENTERED_BY);
+    IF @FLAG='U'
+   BEGIN
+   UPDATE SEC_LOGIN_DETAILS SET LOGGED_OUT_TIME=CONVERT(datetime, @LOGGED_OUT_TIME,103) WHERE 
+   USER_ID=(SELECT TOP 1 USER_ID
+FROM SEC_LOGIN_DETAILS
+WHERE user_id = @USER_ID
+ORDER BY LOGGED_IN_TIME DESC)
+   END
+   IF @FLAG='D'
+   BEGIN
+   DELETE FROM SEC_ACTIVE_LOGIN_DETAILS WHERE USER_ID=@USER_ID
+   END
+	END
 	
 GO
 	
@@ -33,7 +50,7 @@ GO
     @CTR_MACH_ID INT
 )
 AS
-as
+
 BEGIN
     SELECT   
 	R.DENGI_RECEIPT_ID,
@@ -47,11 +64,6 @@ BEGIN
         R.GOTRA_NAME AS GOTRA, 
         R.ADDRESS,
 		T.Token_Detail_Name AS [PAYMENT TYPE]
-IF @FLAG='I'
-BEGIN
-    INSERT INTO SEC_LOGIN_DETAILS
-	(USER_ID,LOGIN_TYPE,ENTERED_BY)
-   VALUES (@USER_ID,@LOGIN_TYPE,@ENTERED_BY);
 
     FROM 
         DEN_DENGI_RECEIPT_MST_T R
@@ -76,29 +88,13 @@ BEGIN
    VALUES (@USER_ID,@LOGIN_TYPE,@ENTERED_BY);
    END
 --exec SP_GET_DEN_DENGI_RECEIPT_DATA  322340, 326041, NULL, '2023-01-01', '2024-02-05',NULL,3,7,39,78;
-   IF @FLAG='U'
-   BEGIN
-   UPDATE SEC_LOGIN_DETAILS SET LOGGED_OUT_TIME=CONVERT(datetime, @LOGGED_OUT_TIME,103) WHERE 
-   USER_ID=(SELECT TOP 1 USER_ID
-FROM SEC_LOGIN_DETAILS
-WHERE user_id = @USER_ID
-ORDER BY LOGGED_IN_TIME DESC)
-   END
-   IF @FLAG='D'
-   BEGIN
-   DELETE FROM SEC_ACTIVE_LOGIN_DETAILS WHERE USER_ID=@USER_ID
-   END
-END 
+  
+ 
 
 --***************************************************************--
 
-GO
 
 /****** Object:  Table [dbo].[SEC_LOGIN_DETAILS]    Script Date: 02-03-2024 15:22:11 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 
 --SELECT * FROM tbl_gotra_master
@@ -121,12 +117,12 @@ ALTER TABLE [dbo].[SEC_LOGIN_DETAILS] ADD  CONSTRAINT [DF_SEC_LOGIN_DETAILS_LOGG
 GO
 
 ALTER TABLE [dbo].[SEC_LOGIN_DETAILS] ADD  CONSTRAINT [DF_SEC_LOGIN_DETAILS_ENTERED_ON]  DEFAULT (getdate()) FOR [ENTERED_ON]
-GO
-PRINT N'Creating Procedure [dbo].[InsertDengiReceipt_LOG]...';
+
 
 --***********************************************
 
-USE [OSOL23]
+GO
+PRINT N'Creating Procedure [dbo].[InsertDengiReceipt_LOG]...';
 GO
 CREATE PROCEDURE [dbo].[InsertDengiReceipt_LOG]
 	@UserName varchar(300),
@@ -142,14 +138,15 @@ CREATE PROCEDURE [dbo].[InsertDengiReceipt_LOG]
 as
 BEGIN
 /****** Object:  Table [dbo].[SEC_ACTIVE_LOGIN_DETAILS]    Script Date: 02-03-2024 15:23:02 ******/
-SET ANSI_NULLS ON
-GO
+
 
     INSERT INTO [dbo].[DEN_DENGI_RECEIPT_MST__Log] ([UserName],[Amount],[Serial_no],[LastUserName],[LastAmount],[LastSerial_no],[CreatedBy],[MACId])
      VALUES(@UserName,@Amount,@Serial_no,@LastUserName,@LastAmount,@LastSerial_no,@CreatedBy,@MACId);
     set @ID = SCOPE_IDENTITY();
 
 END
+GO
+
 CREATE TABLE [dbo].[SEC_ACTIVE_LOGIN_DETAILS](
 	[LOGIN_MASTER_ID] [int] IDENTITY(1,1) NOT NULL,
 	[USER_ID] [int] NULL,

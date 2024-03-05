@@ -171,6 +171,7 @@
             this.btnClose.TabIndex = 43;
             this.btnClose.Text = "&Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnPrint
             // 

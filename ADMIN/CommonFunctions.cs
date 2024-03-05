@@ -35,7 +35,7 @@ namespace SGMOSOL.ADMIN
             Dollars
         }
 
-        string connectionString = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
+        string connectionString = Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
 
         DataTable dt = null;
         public DataTable getCountry()

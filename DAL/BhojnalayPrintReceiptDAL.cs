@@ -17,7 +17,7 @@ namespace SGMOSOL.DAL
 
     public class BhojnalayPrintReceiptDAL
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
+        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
         CommonFunctions commonFunctions = new CommonFunctions();
         DataTable dt = null;
         public DataTable getItemCode()

@@ -14,7 +14,7 @@ namespace SGMOSOL.DAL
 {
     public class loginDAL
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
+        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString,true);
         CommonFunctions commonFunctions = new CommonFunctions();
 
         public string GetPwdDetails(string uid)

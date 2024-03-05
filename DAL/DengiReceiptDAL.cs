@@ -17,7 +17,7 @@ namespace SGMOSOL.DAL
 {
     public class DengiReceiptDAL
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
+        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString,true);
         CommonFunctions commonFunctions = new CommonFunctions();
 
         public DataTable getDengiReceipt(object data)

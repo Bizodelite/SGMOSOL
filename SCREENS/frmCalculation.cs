@@ -320,5 +320,10 @@ namespace SGMOSOL.SCREENS
                 lblAmountInWords.Text = cm.words(Convert.ToDouble(txtTotalAmount.Text));
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

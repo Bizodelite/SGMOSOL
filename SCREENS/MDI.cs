@@ -1,4 +1,5 @@
 ﻿using SGMOSOL.ADMIN;
+using SGMOSOL.BAL;
 using SGMOSOL.SCREENS;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,24 @@ namespace SGMOSOL
             frmbhojnalayaPrintReceipt.MdiParent = this;
             frmbhojnalayaPrintReceipt.WindowState = FormWindowState.Maximized;
             frmbhojnalayaPrintReceipt.Show();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginBAL loginBAL = new LoginBAL();
+            loginBAL.updateUser_Login_Details();
+            loginBAL.DeleteUser_Login_details();
+            Application.Exit();
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+        }
+
+        private void calculationFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCalculation frm = new frmCalculation();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
     }
 }

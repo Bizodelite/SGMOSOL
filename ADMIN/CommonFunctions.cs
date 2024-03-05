@@ -94,7 +94,7 @@ namespace SGMOSOL.ADMIN
             }
             catch (Exception ex)
             {
-                InsertErrorLog(ex.Message,UserInfo.module,UserInfo.version);
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
             return dt;
         }
@@ -375,7 +375,7 @@ namespace SGMOSOL.ADMIN
                 {
                     foreach (DataRow row in dt.Rows)
                     {
-                        formTitle = row["LOC_FNAME"].ToString() + " / " + row["Loc_Name"].ToString() + " / " + row["Department_Name"].ToString() + " / " + row["COUNTER_MACHINE_TITLE"]+"";
+                        formTitle = row["LOC_FNAME"].ToString() + " / " + row["Loc_Name"].ToString() + " / " + row["Department_Name"].ToString() + " / " + row["COUNTER_MACHINE_TITLE"] + "";
                     }
                 }
             }
@@ -387,7 +387,7 @@ namespace SGMOSOL.ADMIN
             return formTitle;
         }
         public int getFYID()
-        { 
+        {
             int fyId = 0;
             try
             {
@@ -436,7 +436,7 @@ namespace SGMOSOL.ADMIN
             string pattern = @"^[A-Z]{3}\d{7}$";
             return Regex.IsMatch(voterIdNumber, pattern);
         }
-        public void InsertErrorLog(string errorMsg, string module,string version)
+        public void InsertErrorLog(string errorMsg, string module, string version)
         {
             try
             {
@@ -459,7 +459,7 @@ namespace SGMOSOL.ADMIN
             }
             catch (Exception ex)
             {
-                InsertErrorLog(ex.Message,UserInfo.module,UserInfo.version);
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
         public void GetMacId()
@@ -614,6 +614,29 @@ namespace SGMOSOL.ADMIN
                 @string = cipherString;
             }
             return @string;
+        }
+
+        public DataTable getCurrency()
+        {
+            dt = new DataTable();
+            try
+            {
+                string query;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    query = "SELECT Lookup_Value_Name,Lookup_Value_Order FROM COM_LOOKUP_VALUES_MST_V WHERE Lookup_Id=8";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    connection.Close();
+                    adapter.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return dt;
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using SGMOSOL.ADMIN;
+using SGMOSOL.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,6 +130,110 @@ namespace SGMOSOL.DAL
                 }
             }
             return status;
+        }
+        public int InsertUser_Login_details()
+        {
+            int status = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("DML_SEC_LOGIN_DETAILS", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@FLAG", "I");
+                        command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
+                        command.Parameters.AddWithValue("@LOGGED_OUT_TIME", null);
+                        command.Parameters.AddWithValue("@LOGIN_TYPE", null);
+                        command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return status;
+        }
+
+        public int UpdateUser_Login_details()
+        {
+            int status = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("DML_SEC_LOGIN_DETAILS", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@FLAG", "U");
+                        command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
+                        command.Parameters.AddWithValue("@LOGGED_OUT_TIME", DateTime.Now);
+                        command.Parameters.AddWithValue("@LOGIN_TYPE", null);
+                        command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return status;
+        }
+        public int DeleteUser_Login_details()
+        {
+            int status = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("DML_SEC_LOGIN_DETAILS", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@FLAG", "D");
+                        command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
+                        command.Parameters.AddWithValue("@LOGGED_OUT_TIME", null);
+                        command.Parameters.AddWithValue("@LOGIN_TYPE", null);
+                        command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return status;
+        }
+
+        public int GetLoggedInUser(int uid)
+        {
+            int Id = 0;
+            string query = "select USER_ID from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        Id = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return Id;
         }
     }
 }

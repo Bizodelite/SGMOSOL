@@ -35,5 +35,21 @@ namespace SGMOSOL.BAL
         {
             return login.CheckDateTime();
         }
+        public int InsertUser_Login_details()
+        {
+            return login.InsertUser_Login_details();
+        }
+        public int updateUser_Login_Details()
+        {
+            return login.UpdateUser_Login_details();
+        }
+        public int DeleteUser_Login_details()
+        {
+            return login.DeleteUser_Login_details();
+        }
+        public int GetLoggedInUser(int uid)
+        {
+            return login.GetLoggedInUser(uid);
+        }
     }
 }

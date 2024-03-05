@@ -63,7 +63,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo.ico</ApplicationIcon>
@@ -229,6 +229,11 @@
     <Compile Include="DAL\loginDAL.cs" />
     <Compile Include="DataModel\bhojnalayPrintReceiptModel.cs" />
     <Compile Include="DataModel\dengiReceiptModel.cs" />
+    <Compile Include="DataSet\Calculation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Calculation.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet\DengiReceiptDataSet.cs">
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
     </Compile>
@@ -255,11 +260,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceMain.resx</DependentUpon>
     </Compile>
-    <Compile Include="SCREENS\Form1.cs">
+    <Compile Include="SCREENS\frmCalculation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SCREENS\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="SCREENS\frmCalculation.Designer.cs">
+      <DependentUpon>frmCalculation.cs</DependentUpon>
     </Compile>
     <Compile Include="SCREENS\frmBhojnalayaPrintReceipt.cs">
       <SubType>Form</SubType>
@@ -325,13 +330,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Reports\DengiDeclaration.rdlc" />
     <EmbeddedResource Include="Reports\DengiReceipt1.rdlc" />
+    <EmbeddedResource Include="Reports\Fund_Calculation_Print.rdlc" />
     <EmbeddedResource Include="Reports\mess_item_receipt.rdlc" />
     <EmbeddedResource Include="ResourceMain.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceMain.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SCREENS\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="SCREENS\frmCalculation.resx">
+      <DependentUpon>frmCalculation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmBhojnalayaPrintReceipt.resx">
       <DependentUpon>frmBhojnalayaPrintReceipt.cs</DependentUpon>
@@ -376,6 +382,17 @@
     <EmbeddedResource Include="Reports\DengiReceipt.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="DataSet\Calculation.xsc">
+      <DependentUpon>Calculation.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\Calculation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Calculation.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet\Calculation.xss">
+      <DependentUpon>Calculation.xsd</DependentUpon>
+    </None>
     <None Include="DataSet\DengiReceiptDataSet.xsc">
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
     </None>
@@ -473,6 +490,7 @@
     <Content Include="Images\view.png" />
     <Content Include="Images\Zoom.png" />
     <Content Include="logo.ico" />
+    <Content Include="Sctips.sql" />
     <None Include="Resources\Zoom.png" />
     <None Include="Resources\view.png" />
     <None Include="Resources\Undo.png" />

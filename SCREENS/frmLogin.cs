@@ -49,6 +49,7 @@ namespace SGMOSOL.SCREENS
             string isUser = null;
             string isPwd = null;
             string Status = null;
+            int activeUser = 0;
             int uID = 0;
             DataTable dt = new DataTable();
             DataTable dtuser = new DataTable();
@@ -64,27 +65,37 @@ namespace SGMOSOL.SCREENS
                         if (Status == "Y")
                         {
                             uID = login.getUserId(isUser);
-                            UserInfo.UserId = uID;
-                            dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
-                            if (dtuser.Rows.Count > 0)
+                            activeUser = login.GetLoggedInUser(uID);
+                            if (activeUser == 0)
                             {
-                                UserInfo.serverName = CommonFunctions.Encrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
-                                foreach (DataRow row in dtuser.Rows)
+                                UserInfo.UserId = uID;
+                                dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
+                                if (dtuser.Rows.Count > 0)
                                 {
-                                    UserInfo.Counter_Name = row["COUNTER_MACHINE_SHORT_NAME"].ToString();
-                                    UserInfo.Loc_id = Convert.ToInt32(row["LOC_ID"]);
-                                    UserInfo.Dept_id = Convert.ToInt32(row["DEPT_ID"]);
-                                    UserInfo.ctrMachID = Convert.ToInt32(row["CTR_MACH_ID"]);
+                                    UserInfo.serverName = CommonFunctions.Encrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
+                                    foreach (DataRow row in dtuser.Rows)
+                                    {
+                                        UserInfo.Counter_Name = row["COUNTER_MACHINE_SHORT_NAME"].ToString();
+                                        UserInfo.Loc_id = Convert.ToInt32(row["LOC_ID"]);
+                                        UserInfo.Dept_id = Convert.ToInt32(row["DEPT_ID"]);
+                                        UserInfo.ctrMachID = Convert.ToInt32(row["CTR_MACH_ID"]);
+                                    }
+                                }
+                                else
+                                {
+                                    lblmessage.Text = "You not have right for Counter and Location";
+                                    return;
                                 }
                             }
                             else
                             {
-                                lblmessage.Text = "You not have right for Counter and Location";
+                                lblmessage.Text = "User already loggedIn, Please logout first !!!";
                                 return;
                             }
                             UserInfo.UserName = isUser;
                             UserInfo.fy_id = cm.getFYID();
                             lblmessage.Text = "Login Successfull";
+                            login.InsertUser_Login_details();
                             LoginStatusMessage(true);
 
                         }

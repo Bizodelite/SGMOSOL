@@ -128,7 +128,6 @@ namespace SGMOSOL.DAL
                 {
                     commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
                 }
-
                 return status;
         }
         public int DupPrintDeclaration(object DengiReceiptId)

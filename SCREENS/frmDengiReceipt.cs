@@ -765,16 +765,20 @@ namespace SGMOSOL.SCREENS
                 if (result == DialogResult.Yes)
                 {
                     int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
-                    
-                    //if (status >= 0)
-                    //{
-                    //    long chkMissingEntry;
-                    //    chkMissingEntry = fcheckInsert();
-                    //    if (chkMissingEntry < 0)
-                    //    {
-                    //        return;
-                    //    }
-                    //}
+
+                    if (status >= 0)
+                    {
+                        long chkMissingEntry;
+                        chkMissingEntry = fcheckInsert();
+                        if (chkMissingEntry < 0)
+                        {
+                            return;
+                        }
+                        txtdengireceiptNo.Text = status.ToString();
+
+                        //Refrence_Amount.Text = txtAmount.Text;
+                        //Refrence_Name.Text = txtname.Text;
+                    }
 
                     if (status != 0)
                     {
@@ -818,8 +822,19 @@ namespace SGMOSOL.SCREENS
                 string strLastAmount = "";
                 int lngErrorNew;
 
+        }
+        private int fcheckInsert()
+        {
+            int fcheckInsert = 0;
+            try
+            {
+                string strLastName = "";
+                string strLastReceiptNo = "";
+                string strLastAmount = "";
+                int lngErrorNew;
+
                 DataTable drachk;
-                drachk = dengiReceiptDAL.GetLastEnterdNameAmountSerial(UserInfo.ctrMachID);
+                drachk = dengiReceiptDAL.GetLastEnterdNameAmountSerial();
                 if (drachk.Rows.Count > 0)
                 {
                     foreach (DataRow dr in drachk.Rows)
@@ -844,7 +859,7 @@ namespace SGMOSOL.SCREENS
                     DengiError.LastName = strLastName;
                     DengiError.LastAmount = Convert.ToDouble(strLastAmount);
                     DengiError.LastReceiptNo = strLastReceiptNo;
-                    DengiError.Mach_Id = txtCounter.Tag.ToString();
+                    DengiError.Mach_Id = UserInfo.ctrMachID.ToString();
                     DengiError.Username = UserInfo.UserName;
                     DengiError.ErrorDate = DateTime.Now;
 
@@ -852,7 +867,7 @@ namespace SGMOSOL.SCREENS
                     MessageBox.Show("Error Occured. Contact System Admin. Name:" + strLastName + " Amount:" + strLastAmount + " No:" + strLastReceiptNo);
                     fcheckInsert = -1;
                     //blnformChange = false;
-                    // btnNew_Click(Nothing, Nothing)
+                    btnNew_Click(null, null); 
                     btnSave.Enabled = true;
                     txtAmount.Focus();
                     //setCursor(this, true);
@@ -868,7 +883,6 @@ namespace SGMOSOL.SCREENS
                 return fcheckInsert;
             }
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             frmSearch = new frmSearchDengi();
@@ -1080,7 +1094,7 @@ namespace SGMOSOL.SCREENS
         }
         private void cboDoctype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDoctype.SelectedIndex != -1)
+            if (cboDoctype.SelectedIndex > 0)
             {
                 lbldoctype_err.Text = "";
                 txtdocDetail.Text = "";
@@ -1251,6 +1265,11 @@ namespace SGMOSOL.SCREENS
                 //    e.SuppressKeyPress = true;
                 //    this.SelectNextControl(this.ActiveControl, true, true, true, true);
                 //}
+
+                if (e.KeyCode == Keys.End)
+                {
+                        btnSave.PerformClick();
+                }
             }
             catch (Exception ex)
             {

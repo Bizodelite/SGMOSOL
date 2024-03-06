@@ -231,7 +231,10 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@COUNTRY_NAME", obj.COUNTRY_NAME);
                             command.Parameters.AddWithValue("@PanCard", obj.PanNo);
                             command.Parameters.AddWithValue("@Pincode", obj.PinCode);
-                            command.Parameters.AddWithValue("@Doc_Type", obj.Doc_type);
+                            if (obj.gotra != "Select")
+                                command.Parameters.AddWithValue("@Doc_Type", obj.Doc_type);
+                            else
+                                command.Parameters.AddWithValue("@Doc_Type", null);
                             command.Parameters.AddWithValue("@Doc_Detail", obj.Doc_Detail);
                             command.Parameters.AddWithValue("@IsDuplicate", obj.IsDuplicate);
                             SqlParameter idParam = new SqlParameter("@Receipt_ID", SqlDbType.Decimal);
@@ -361,7 +364,8 @@ namespace SGMOSOL.DAL
             }
             return dt;
         }
-        public DataTable GetLastEnterdNameAmountSerial(int intCtrId)//int intCtrId, int COM_ID, int LOC_ID, int FY_ID
+
+        public DataTable GetLastEnterdNameAmountSerial()//int intCtrId, int COM_ID, int LOC_ID, int FY_ID
         {
             DataTable dt = new DataTable();
             try
@@ -369,7 +373,7 @@ namespace SGMOSOL.DAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT top 1 cast(CAST(AMOUNT as decimal(12,2)) as float)as AMOUNT,NAME as LastEnteredName, ISNULL(SERIAL_NO,0) as SERIAL_NO FROM DEN_DENGI_RECEIPT_MST_T where CTR_MACH_ID  = " + intCtrId + " and COM_ID = 9 and LOC_ID = " + UserInfo.Loc_id + " and FY_ID= " + UserInfo.fy_id + " order by DENGI_RECEIPT_ID desc";
+                    string query = "SELECT top 1 cast(CAST(AMOUNT as decimal(12,2)) as float)as AMOUNT,NAME as LastEnteredName, ISNULL(SERIAL_NO,0) as SERIAL_NO FROM DEN_DENGI_RECEIPT_MST_T where CTR_MACH_ID  = " + UserInfo.ctrMachID + " and COM_ID = 9 and LOC_ID = " + UserInfo.Loc_id + " and FY_ID= " + UserInfo.fy_id + " order by DENGI_RECEIPT_ID desc";
                     SqlDataAdapter da = new SqlDataAdapter(query, connection);
                     da.Fill(dt);
                 }
@@ -380,6 +384,9 @@ namespace SGMOSOL.DAL
             }
             return dt;
         }
+
+
+
         public int InsertError(DengiErrorLog DengiError)
         {
             int status = 0;
@@ -388,7 +395,7 @@ namespace SGMOSOL.DAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("InsertDengiReceipt", connection))
+                    using (SqlCommand command = new SqlCommand("InsertDengiReceipt_LOG", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         if (DengiError is DengiErrorLog obj)
@@ -418,6 +425,5 @@ namespace SGMOSOL.DAL
 
             return status;
         }
-
     }
 }

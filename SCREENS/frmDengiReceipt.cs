@@ -119,6 +119,7 @@ namespace SGMOSOL.SCREENS
             txtUser.Text = UserInfo.UserName;
             if (isPrint == false)
             {
+                FillDocumentType();
                 fillCountry();
                 fillStateByCountryId();
                 fillDistrictbyStateId(Convert.ToInt32(cboState.SelectedValue));
@@ -134,6 +135,13 @@ namespace SGMOSOL.SCREENS
             dengiReceiptDAL = new DengiReceiptDAL();
             int dengiID = dengiReceiptDAL.getDenigNumber();
             txtdengireceiptNo.Text = dengiID.ToString();
+        }
+        private void FillDocumentType()
+        {
+            dt = commonFunctions.GetDocumentType();
+            cboDoctype.DataSource = dt;
+            cboDoctype.DisplayMember = "DocumentName";
+            cboDoctype.ValueMember = "DocumentID";
         }
         private void fillCountry()
         {
@@ -529,7 +537,7 @@ namespace SGMOSOL.SCREENS
                     }
                     else
                     {
-                        if (cboDoctype.Text == "")
+                        if (cboDoctype.Text == "Select")
                         {
                             lbldoctype_err.Text = "Please select Document Type";
                         }
@@ -686,13 +694,13 @@ namespace SGMOSOL.SCREENS
 
             dengiReceiptModel.stateId = (int)cboState.SelectedValue;
             dengiReceiptModel.STATE = cboState.Text;
-            if (dtChqDt.Text != "")
+            if (txtChqNo.Text != "")
                 dengiReceiptModel.chqdate = DateTime.Parse(dtChqDt.Text);
             dengiReceiptModel.Address = txtaddr.Text;
             dengiReceiptModel.ddbankname = txtDDBankName.Text;
             dengiReceiptModel.ddbankname = txtDDBankName.Text;
             dengiReceiptModel.ddno = txtDDNo.Text;
-            if (dtDDdate.Text != "")
+            if (txtDDNo.Text != "")
             {
                 dengiReceiptModel.dd_date = DateTime.Parse(dtDDdate.Text);
             }
@@ -1047,7 +1055,7 @@ namespace SGMOSOL.SCREENS
                     lbldocdetailerr.Text = "";
                 }
             }
-            if (cboDoctype.Text == "Driivng License")
+            if (cboDoctype.Text == "Driving License")
             {
                 if (!commonFunctions.IsValidLicenseNumber(txtdocDetail.Text))
                 {
@@ -1157,96 +1165,97 @@ namespace SGMOSOL.SCREENS
             string tempfile = "";
         }
 
-        private void pnlBtn_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void frmDengiReceipt_KeyDown(object sender, KeyEventArgs e)
         {
-            dengiReceiptDAL = new DengiReceiptDAL();
-            DataTable dt = new DataTable();
-            if (e.Control && e.KeyCode == Keys.P)
+            try
             {
-                btnPrint.PerformClick();
-                e.Handled = true;
-            }
-            if (e.KeyCode == Keys.F10)
-            {
-                dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
-                if (dt.Rows.Count > 0)
+                dengiReceiptDAL = new DengiReceiptDAL();
+                DataTable dt = new DataTable();
+                if (e.Control && e.KeyCode == Keys.P)
                 {
-                    foreach (DataRow row in dt.Rows)
+                    btnPrint.PerformClick();
+                    e.Handled = true;
+                }
+                if (e.KeyCode == Keys.F10)
+                {
+                    dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
+                    if (dt.Rows.Count > 0)
                     {
-                        txtname.Text = row["Name"].ToString();
-                        if (row["Address"] != null)
-                            txtaddr.Text = row["Address"].ToString();
-                        if (row["DOC_TYPE"] != null)
-                            cboDoctype.Text = row["DOC_TYPE"].ToString();
-                        if (row["DOC_DETAIL"] != null)
-                            txtdocDetail.Text = row["DOC_DETAIL"].ToString();
-                        if (row["TALUKA"] != null)
-                            txttal.Text = row["TALUKA"].ToString();
-                        if (row["PINCODE"] != null)
-                            txtPincode.Text = row["PINCODE"].ToString();
-                        if (row["CONTACT"] != null)
-                            txtmob.Text = row["CONTACT"].ToString();
-                        if (row["COUNTRY_ID"] != null)
-                            cboCountry.SelectedValue = Convert.ToInt32(row["COUNTRY_ID"]);
-                        if (row["STATE_ID"] != null)
-                            cboState.SelectedValue = Convert.ToInt32(row["STATE_ID"]);
-                        if (row["DISTRICT_ID"] != null)
-                            cboDistrict.SelectedValue = Convert.ToInt32(row["DISTRICT_ID"]);
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            txtname.Text = row["Name"].ToString();
+                            if (row["Address"] != null)
+                                txtaddr.Text = row["Address"].ToString();
+                            if (row["DOC_TYPE"] != null)
+                                cboDoctype.Text = row["DOC_TYPE"].ToString();
+                            if (row["DOC_DETAIL"] != null)
+                                txtdocDetail.Text = row["DOC_DETAIL"].ToString();
+                            if (row["TALUKA"] != null)
+                                txttal.Text = row["TALUKA"].ToString();
+                            if (row["PINCODE"] != null)
+                                txtPincode.Text = row["PINCODE"].ToString();
+                            if (row["CONTACT"] != null)
+                                txtmob.Text = row["CONTACT"].ToString();
+                            if (row["COUNTRY_ID"] != null)
+                                cboCountry.SelectedValue = Convert.ToInt32(row["COUNTRY_ID"]);
+                            if (row["STATE_ID"] != null)
+                                cboState.SelectedValue = Convert.ToInt32(row["STATE_ID"]);
+                            if (row["DISTRICT_ID"] != null)
+                                cboDistrict.SelectedValue = Convert.ToInt32(row["DISTRICT_ID"]);
 
+                        }
                     }
-
+                    txtAmount.Focus();
                 }
+                if (txtAmount.Text != "")
+                {
+                    if (e.KeyCode == Keys.F1 && Convert.ToInt32(txtAmount.Text) >= 500 && Convert.ToInt32(txtAmount.Text) <= 999)
+                    {
+                        lblamount.Text = "";
+                        txtAmount.Focus();
+                        SavedData();
+                    }
+                    if (e.KeyCode == Keys.F2 && Convert.ToInt32(txtAmount.Text) >= 1000 && Convert.ToInt32(txtAmount.Text) <= 4999)
+                    {
+                        lblamount.Text = "";
+                        txtAmount.Focus();
+                        SavedData();
+                    }
+                    if (e.KeyCode == Keys.F3 && Convert.ToInt32(txtAmount.Text) >= 5000 && Convert.ToInt32(txtAmount.Text) <= 9999)
+                    {
+                        lblamount.Text = "";
+                        txtAmount.Focus();
+                        SavedData();
+                    }
+                    if (e.KeyCode == Keys.F4 && Convert.ToInt32(txtAmount.Text) >= 10000 && Convert.ToInt32(txtAmount.Text) <= 49999)
+                    {
+                        lblamount.Text = "";
+                        txtAmount.Focus();
+                        SavedData();
+                    }
+                    if (e.KeyCode == Keys.F5 && Convert.ToInt32(txtAmount.Text) >= 50000 && Convert.ToInt32(txtAmount.Text) <= 99999)
+                    {
+                        lblamount.Text = "";
+                        txtAmount.Focus();
+                        SavedData();
+                    }
+                    if (e.KeyCode == Keys.F6 && Convert.ToInt32(txtAmount.Text) >= 100000)
+                    {
+                        lblamount.Text = "";
+                        txtAmount.Focus();
+                        SavedData();
+                    }
+                }
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    e.SuppressKeyPress = true;
+                //    this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                //}
             }
-            if (txtAmount.Text != "")
+            catch (Exception ex)
             {
-                if (e.KeyCode == Keys.F1 && Convert.ToInt32(txtAmount.Text) >= 500 && Convert.ToInt32(txtAmount.Text) <= 999)
-                {
-                    lblamount.Text = "";
-                    txtAmount.Focus();
-                    SavedData();
-                }
-                if (e.KeyCode == Keys.F2 && Convert.ToInt32(txtAmount.Text) >= 1000 && Convert.ToInt32(txtAmount.Text) <= 4999)
-                {
-                    lblamount.Text = "";
-                    txtAmount.Focus();
-                    SavedData();
-                }
-                if (e.KeyCode == Keys.F3 && Convert.ToInt32(txtAmount.Text) >= 5000 && Convert.ToInt32(txtAmount.Text) <= 9999)
-                {
-                    lblamount.Text = "";
-                    txtAmount.Focus();
-                    SavedData();
-                }
-                if (e.KeyCode == Keys.F4 && Convert.ToInt32(txtAmount.Text) >= 10000 && Convert.ToInt32(txtAmount.Text) <= 49999)
-                {
-                    lblamount.Text = "";
-                    txtAmount.Focus();
-                    SavedData();
-                }
-                if (e.KeyCode == Keys.F5 && Convert.ToInt32(txtAmount.Text) >= 50000 && Convert.ToInt32(txtAmount.Text) <= 99999)
-                {
-                    lblamount.Text = "";
-                    txtAmount.Focus();
-                    SavedData();
-                }
-                if (e.KeyCode == Keys.F6 && Convert.ToInt32(txtAmount.Text) >= 100000)
-                {
-                    lblamount.Text = "";
-                    txtAmount.Focus();
-                    SavedData();
-                }
+                
             }
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    e.SuppressKeyPress = true;
-            //    this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            //}
-
         }
 
         private void txtdocDetail_KeyPress(object sender, KeyPressEventArgs e)

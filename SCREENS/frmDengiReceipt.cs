@@ -757,6 +757,21 @@ namespace SGMOSOL.SCREENS
                 if (result == DialogResult.Yes)
                 {
                     int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
+
+                    if (status >= 0)
+                    {
+                        long chkMissingEntry;
+                        chkMissingEntry = fcheckInsert();
+                        if (chkMissingEntry < 0)
+                        {
+                            return;
+                        }
+                        txtdengireceiptNo.Text = status.ToString();
+
+                        //Refrence_Amount.Text = txtAmount.Text;
+                        //Refrence_Name.Text = txtname.Text;
+                    }
+
                     if (status != 0)
                     {
                         resetAllFields();
@@ -789,7 +804,66 @@ namespace SGMOSOL.SCREENS
             }
 
         }
+        private int fcheckInsert()
+        {
+            int fcheckInsert = 0;
+            try
+            {
+                string strLastName = "";
+                string strLastReceiptNo = "";
+                string strLastAmount = "";
+                int lngErrorNew;
 
+                DataTable drachk;
+                drachk = dengiReceiptDAL.GetLastEnterdNameAmountSerial();
+                if (drachk.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in drachk.Rows)
+                    {
+                        strLastAmount = dr["AMOUNT"].ToString();
+                        strLastName = dr["LastEnteredName"].ToString();
+                        strLastReceiptNo = dr["SERIAL_NO"].ToString();
+                        break;
+                    }
+                }
+
+                if (txtAmount.Text == strLastAmount & txtname.Text == strLastName)
+                {
+                    MessageBox.Show("Record saved successfully.");
+                }
+                else
+                {
+                    DengiErrorLog DengiError = new DengiErrorLog();
+                    DengiError.Name = txtname.Text;
+                    DengiError.Amount = Convert.ToDouble(txtAmount.Text);
+                    DengiError.ReceiptNo = txtdengireceiptNo.Text;
+                    DengiError.LastName = strLastName;
+                    DengiError.LastAmount = Convert.ToDouble(strLastAmount);
+                    DengiError.LastReceiptNo = strLastReceiptNo;
+                    DengiError.Mach_Id = UserInfo.ctrMachID.ToString();
+                    DengiError.Username = UserInfo.UserName;
+                    DengiError.ErrorDate = DateTime.Now;
+
+                    lngErrorNew = dengiReceiptDAL.InsertError(DengiError);
+                    MessageBox.Show("Error Occured. Contact System Admin. Name:" + strLastName + " Amount:" + strLastAmount + " No:" + strLastReceiptNo);
+                    fcheckInsert = -1;
+                    //blnformChange = false;
+                    btnNew_Click(null, null); 
+                    btnSave.Enabled = true;
+                    txtAmount.Focus();
+                    //setCursor(this, true);
+                    return fcheckInsert;
+                }
+                fcheckInsert = 1;
+                return fcheckInsert;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("(Error Occured in Insert Validation - 2022");
+                fcheckInsert = 1;
+                return fcheckInsert;
+            }
+        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             frmSearch = new frmSearchDengi();
@@ -996,7 +1070,7 @@ namespace SGMOSOL.SCREENS
         }
         private void cboDoctype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDoctype.SelectedIndex != -1)
+            if (cboDoctype.SelectedIndex > 0)
             {
                 lbldoctype_err.Text = "";
                 txtdocDetail.Text = "";
@@ -1163,6 +1237,11 @@ namespace SGMOSOL.SCREENS
                 //    e.SuppressKeyPress = true;
                 //    this.SelectNextControl(this.ActiveControl, true, true, true, true);
                 //}
+
+                if (e.KeyCode == Keys.End)
+                {
+                        btnSave.PerformClick();
+                }
             }
             catch (Exception ex)
             {

@@ -32,6 +32,7 @@ namespace SGMOSOL.SCREENS
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMaster = new System.Windows.Forms.Panel();
+            this.cboDoctype = new System.Windows.Forms.ComboBox();
             this.lblPaymentMode = new System.Windows.Forms.Label();
             this.lblAmtWords = new System.Windows.Forms.Label();
             this.lbldoctype_err = new System.Windows.Forms.Label();
@@ -122,7 +123,6 @@ namespace SGMOSOL.SCREENS
             this.btnNew = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAcknowledge = new System.Windows.Forms.Button();
-            this.cboDoctype = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlMaster.SuspendLayout();
             this.pnlDDDtl.SuspendLayout();
@@ -186,6 +186,18 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Size = new System.Drawing.Size(1082, 200);
             this.pnlMaster.TabIndex = 2;
             // 
+            // cboDoctype
+            // 
+            this.cboDoctype.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.cboDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDoctype.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboDoctype.FormattingEnabled = true;
+            this.cboDoctype.Location = new System.Drawing.Point(354, 51);
+            this.cboDoctype.Name = "cboDoctype";
+            this.cboDoctype.Size = new System.Drawing.Size(147, 28);
+            this.cboDoctype.TabIndex = 168;
+            this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged);
+            // 
             // lblPaymentMode
             // 
             this.lblPaymentMode.AutoSize = true;
@@ -211,11 +223,12 @@ namespace SGMOSOL.SCREENS
             // lbldoctype_err
             // 
             this.lbldoctype_err.AutoSize = true;
+            this.lbldoctype_err.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lbldoctype_err.ForeColor = System.Drawing.Color.Red;
-            this.lbldoctype_err.Location = new System.Drawing.Point(330, 96);
+            this.lbldoctype_err.Location = new System.Drawing.Point(354, 37);
             this.lbldoctype_err.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbldoctype_err.Name = "lbldoctype_err";
-            this.lbldoctype_err.Size = new System.Drawing.Size(0, 18);
+            this.lbldoctype_err.Size = new System.Drawing.Size(0, 13);
             this.lbldoctype_err.TabIndex = 113;
             // 
             // txtPANNo
@@ -242,7 +255,7 @@ namespace SGMOSOL.SCREENS
             this.pnlDDDtl.Controls.Add(this.Label12);
             this.pnlDDDtl.Location = new System.Drawing.Point(16, 146);
             this.pnlDDDtl.Name = "pnlDDDtl";
-            this.pnlDDDtl.Size = new System.Drawing.Size(936, 37);
+            this.pnlDDDtl.Size = new System.Drawing.Size(977, 37);
             this.pnlDDDtl.TabIndex = 108;
             this.pnlDDDtl.TabStop = true;
             this.pnlDDDtl.Visible = false;
@@ -266,7 +279,7 @@ namespace SGMOSOL.SCREENS
             this.dtDDdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDDdate.Location = new System.Drawing.Point(838, 8);
             this.dtDDdate.Name = "dtDDdate";
-            this.dtDDdate.Size = new System.Drawing.Size(107, 26);
+            this.dtDDdate.Size = new System.Drawing.Size(116, 26);
             this.dtDDdate.TabIndex = 11;
             this.dtDDdate.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
@@ -328,11 +341,12 @@ namespace SGMOSOL.SCREENS
             // lbldocdetailerr
             // 
             this.lbldocdetailerr.AutoSize = true;
+            this.lbldocdetailerr.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lbldocdetailerr.ForeColor = System.Drawing.Color.Red;
-            this.lbldocdetailerr.Location = new System.Drawing.Point(497, 86);
+            this.lbldocdetailerr.Location = new System.Drawing.Point(644, 39);
             this.lbldocdetailerr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbldocdetailerr.Name = "lbldocdetailerr";
-            this.lbldocdetailerr.Size = new System.Drawing.Size(0, 18);
+            this.lbldocdetailerr.Size = new System.Drawing.Size(0, 13);
             this.lbldocdetailerr.TabIndex = 79;
             // 
             // txtdocDetail
@@ -423,11 +437,12 @@ namespace SGMOSOL.SCREENS
             // lblamount
             // 
             this.lblamount.AutoSize = true;
+            this.lblamount.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lblamount.ForeColor = System.Drawing.Color.Red;
-            this.lblamount.Location = new System.Drawing.Point(633, 83);
+            this.lblamount.Location = new System.Drawing.Point(93, 38);
             this.lblamount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblamount.Name = "lblamount";
-            this.lblamount.Size = new System.Drawing.Size(0, 18);
+            this.lblamount.Size = new System.Drawing.Size(0, 13);
             this.lblamount.TabIndex = 106;
             // 
             // lblpan
@@ -508,9 +523,9 @@ namespace SGMOSOL.SCREENS
             this.dtpPrnRcptDt.CustomFormat = "dd/MM/yyyy";
             this.dtpPrnRcptDt.Enabled = false;
             this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrnRcptDt.Location = new System.Drawing.Point(844, 17);
+            this.dtpPrnRcptDt.Location = new System.Drawing.Point(844, 12);
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
-            this.dtpPrnRcptDt.Size = new System.Drawing.Size(100, 26);
+            this.dtpPrnRcptDt.Size = new System.Drawing.Size(117, 26);
             this.dtpPrnRcptDt.TabIndex = 7;
             this.dtpPrnRcptDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
@@ -519,7 +534,7 @@ namespace SGMOSOL.SCREENS
             this.Label9.AutoSize = true;
             this.Label9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label9.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label9.Location = new System.Drawing.Point(788, 19);
+            this.Label9.Location = new System.Drawing.Point(788, 14);
             this.Label9.Name = "Label9";
             this.Label9.Size = new System.Drawing.Size(43, 18);
             this.Label9.TabIndex = 6;
@@ -555,7 +570,7 @@ namespace SGMOSOL.SCREENS
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label5.Location = new System.Drawing.Point(226, 19);
+            this.Label5.Location = new System.Drawing.Point(226, 14);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(43, 18);
             this.Label5.TabIndex = 2;
@@ -566,7 +581,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtUser.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(320, 16);
+            this.txtUser.Location = new System.Drawing.Point(320, 11);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
             this.txtUser.Size = new System.Drawing.Size(181, 26);
@@ -577,7 +592,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtdengireceiptNo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtdengireceiptNo.Enabled = false;
-            this.txtdengireceiptNo.Location = new System.Drawing.Point(643, 17);
+            this.txtdengireceiptNo.Location = new System.Drawing.Point(643, 12);
             this.txtdengireceiptNo.Name = "txtdengireceiptNo";
             this.txtdengireceiptNo.ReadOnly = true;
             this.txtdengireceiptNo.Size = new System.Drawing.Size(117, 26);
@@ -591,7 +606,7 @@ namespace SGMOSOL.SCREENS
             this.Label11.AutoSize = true;
             this.Label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label11.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label11.Location = new System.Drawing.Point(547, 19);
+            this.Label11.Location = new System.Drawing.Point(547, 14);
             this.Label11.Name = "Label11";
             this.Label11.Size = new System.Drawing.Size(85, 18);
             this.Label11.TabIndex = 4;
@@ -602,7 +617,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtCounter.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCounter.Enabled = false;
-            this.txtCounter.Location = new System.Drawing.Point(92, 17);
+            this.txtCounter.Location = new System.Drawing.Point(92, 12);
             this.txtCounter.Name = "txtCounter";
             this.txtCounter.ReadOnly = true;
             this.txtCounter.Size = new System.Drawing.Size(119, 26);
@@ -613,7 +628,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label2.Location = new System.Drawing.Point(9, 13);
+            this.Label2.Location = new System.Drawing.Point(9, 8);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(82, 30);
             this.Label2.TabIndex = 0;
@@ -845,7 +860,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblMobile.AutoSize = true;
             this.lblMobile.ForeColor = System.Drawing.Color.Red;
-            this.lblMobile.Location = new System.Drawing.Point(9, 72);
+            this.lblMobile.Location = new System.Drawing.Point(83, 79);
             this.lblMobile.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMobile.Name = "lblMobile";
             this.lblMobile.Size = new System.Drawing.Size(0, 13);
@@ -920,6 +935,7 @@ namespace SGMOSOL.SCREENS
             this.chkScanDoc.TabIndex = 23;
             this.chkScanDoc.Text = "Scan Document";
             this.chkScanDoc.UseVisualStyleBackColor = true;
+            this.chkScanDoc.Visible = false;
             // 
             // chkDeclaration
             // 
@@ -932,6 +948,7 @@ namespace SGMOSOL.SCREENS
             this.chkDeclaration.TabIndex = 24;
             this.chkDeclaration.Text = "Print Declaration";
             this.chkDeclaration.UseVisualStyleBackColor = true;
+            this.chkDeclaration.Visible = false;
             // 
             // txtPincode
             // 
@@ -1255,17 +1272,6 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge.Text = "&Declaration";
             this.btnAcknowledge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAcknowledge.Click += new System.EventHandler(this.btnAcknowledge_Click);
-            // 
-            // cboDoctype
-            // 
-            this.cboDoctype.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.cboDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDoctype.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.cboDoctype.FormattingEnabled = true;
-            this.cboDoctype.Location = new System.Drawing.Point(354, 51);
-            this.cboDoctype.Name = "cboDoctype";
-            this.cboDoctype.Size = new System.Drawing.Size(147, 28);
-            this.cboDoctype.TabIndex = 168;
             // 
             // frmDengiReceipt
             // 

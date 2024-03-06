@@ -66,4 +66,16 @@ namespace SGMOSOL.DataModel
         public int IsDuplicate { get; set; }
 
     }
+    public struct DengiErrorLog
+    {
+        public string Name { get; set; }
+        public double Amount { get; set; }
+        public string ReceiptNo { get; set; }
+        public string LastName { get; set; }
+        public double LastAmount { get; set; }
+        public string LastReceiptNo { get; set; }
+        public DateTime ErrorDate { get; set; }
+        public string Mach_Id { get; set; }
+        public string Username { get; set; }
+    }
 };

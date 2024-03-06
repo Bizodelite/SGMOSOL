@@ -822,17 +822,6 @@ namespace SGMOSOL.SCREENS
                 string strLastAmount = "";
                 int lngErrorNew;
 
-        }
-        private int fcheckInsert()
-        {
-            int fcheckInsert = 0;
-            try
-            {
-                string strLastName = "";
-                string strLastReceiptNo = "";
-                string strLastAmount = "";
-                int lngErrorNew;
-
                 DataTable drachk;
                 drachk = dengiReceiptDAL.GetLastEnterdNameAmountSerial();
                 if (drachk.Rows.Count > 0)

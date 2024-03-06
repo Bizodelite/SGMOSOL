@@ -66,7 +66,7 @@ namespace SGMOSOL.ADMIN
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "select Lookup_Value_Order as DocumentID,Lookup_Value_Name as DocumentName from COM_LOOKUP_VALUES_MST_V where Lookup_Name = 'Document Type'";
+                    string query = "select 0 as DocumentID,'Select'as DocumentName union all select Lookup_Value_Order as DocumentID,Lookup_Value_Name as DocumentName from COM_LOOKUP_VALUES_MST_V where Lookup_Name = 'Document Type'";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     connection.Close();
                     adapter.Fill(dt);

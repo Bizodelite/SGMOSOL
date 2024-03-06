@@ -536,7 +536,7 @@ namespace SGMOSOL.SCREENS
                     }
                     else
                     {
-                        if (cboDoctype.Text == "")
+                        if (cboDoctype.Text == "Select")
                         {
                             lbldoctype_err.Text = "Please select Document Type";
                         }
@@ -549,14 +549,7 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
-            if (cboDoctype.Text != "" && txtdocDetail.Text == "")
-            {
-                lbldocdetailerr.Text = "Please enter Document details";
-            }
-            else
-            {
-                lbldocdetailerr.Text = "";
-            }
+            
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";

@@ -52,7 +52,6 @@ namespace SGMOSOL.SCREENS
             this.Label15 = new System.Windows.Forms.Label();
             this.txtInvoice = new System.Windows.Forms.TextBox();
             this.Label16 = new System.Windows.Forms.Label();
-            this.cboDoctype = new System.Windows.Forms.ComboBox();
             this.lblamount = new System.Windows.Forms.Label();
             this.lblpan = new System.Windows.Forms.Label();
             this.lblPANNo = new System.Windows.Forms.Label();
@@ -123,6 +122,7 @@ namespace SGMOSOL.SCREENS
             this.btnNew = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAcknowledge = new System.Windows.Forms.Button();
+            this.cboDoctype = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlMaster.SuspendLayout();
             this.pnlDDDtl.SuspendLayout();
@@ -151,6 +151,7 @@ namespace SGMOSOL.SCREENS
             // pnlMaster
             // 
             this.pnlMaster.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlMaster.Controls.Add(this.cboDoctype);
             this.pnlMaster.Controls.Add(this.lblPaymentMode);
             this.pnlMaster.Controls.Add(this.lblAmtWords);
             this.pnlMaster.Controls.Add(this.lbldoctype_err);
@@ -160,7 +161,6 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Controls.Add(this.txtdocDetail);
             this.pnlMaster.Controls.Add(this.label17);
             this.pnlMaster.Controls.Add(this.pnlswap);
-            this.pnlMaster.Controls.Add(this.cboDoctype);
             this.pnlMaster.Controls.Add(this.lblamount);
             this.pnlMaster.Controls.Add(this.lblpan);
             this.pnlMaster.Controls.Add(this.lblPANNo);
@@ -222,10 +222,10 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtPANNo.BackColor = System.Drawing.Color.Azure;
             this.txtPANNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPANNo.Location = new System.Drawing.Point(773, 49);
+            this.txtPANNo.Location = new System.Drawing.Point(791, 49);
             this.txtPANNo.Name = "txtPANNo";
             this.txtPANNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPANNo.Size = new System.Drawing.Size(181, 26);
+            this.txtPANNo.Size = new System.Drawing.Size(163, 26);
             this.txtPANNo.TabIndex = 0;
             this.txtPANNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPANNo.Visible = false;
@@ -340,10 +340,10 @@ namespace SGMOSOL.SCREENS
             this.txtdocDetail.BackColor = System.Drawing.Color.Azure;
             this.txtdocDetail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtdocDetail.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdocDetail.Location = new System.Drawing.Point(629, 51);
+            this.txtdocDetail.Location = new System.Drawing.Point(643, 51);
             this.txtdocDetail.Name = "txtdocDetail";
             this.txtdocDetail.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtdocDetail.Size = new System.Drawing.Size(119, 26);
+            this.txtdocDetail.Size = new System.Drawing.Size(117, 26);
             this.txtdocDetail.TabIndex = 11;
             this.txtdocDetail.TextChanged += new System.EventHandler(this.txtdocDetail_TextChanged);
             this.txtdocDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocDetail_KeyPress);
@@ -353,7 +353,7 @@ namespace SGMOSOL.SCREENS
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label17.Location = new System.Drawing.Point(488, 50);
+            this.label17.Location = new System.Drawing.Point(504, 50);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(131, 18);
             this.label17.TabIndex = 111;
@@ -420,23 +420,6 @@ namespace SGMOSOL.SCREENS
             this.Label16.Text = "Tran No";
             this.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cboDoctype
-            // 
-            this.cboDoctype.BackColor = System.Drawing.Color.Azure;
-            this.cboDoctype.FormattingEnabled = true;
-            this.cboDoctype.Items.AddRange(new object[] {
-            "Pan Card",
-            "Adhar Card",
-            "Voter ID",
-            "Driivng License",
-            "Passport"});
-            this.cboDoctype.Location = new System.Drawing.Point(373, 50);
-            this.cboDoctype.Margin = new System.Windows.Forms.Padding(2);
-            this.cboDoctype.Name = "cboDoctype";
-            this.cboDoctype.Size = new System.Drawing.Size(92, 26);
-            this.cboDoctype.TabIndex = 10;
-            this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged);
-            // 
             // lblamount
             // 
             this.lblamount.AutoSize = true;
@@ -463,7 +446,7 @@ namespace SGMOSOL.SCREENS
             this.lblPANNo.AutoSize = true;
             this.lblPANNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPANNo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblPANNo.Location = new System.Drawing.Point(242, 54);
+            this.lblPANNo.Location = new System.Drawing.Point(226, 54);
             this.lblPANNo.Name = "lblPANNo";
             this.lblPANNo.Size = new System.Drawing.Size(122, 18);
             this.lblPANNo.TabIndex = 10;
@@ -572,7 +555,7 @@ namespace SGMOSOL.SCREENS
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label5.Location = new System.Drawing.Point(242, 19);
+            this.Label5.Location = new System.Drawing.Point(226, 19);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(43, 18);
             this.Label5.TabIndex = 2;
@@ -608,7 +591,7 @@ namespace SGMOSOL.SCREENS
             this.Label11.AutoSize = true;
             this.Label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label11.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label11.Location = new System.Drawing.Point(543, 19);
+            this.Label11.Location = new System.Drawing.Point(547, 19);
             this.Label11.Name = "Label11";
             this.Label11.Size = new System.Drawing.Size(85, 18);
             this.Label11.TabIndex = 4;
@@ -1197,7 +1180,6 @@ namespace SGMOSOL.SCREENS
             this.pnlBtn.Name = "pnlBtn";
             this.pnlBtn.Size = new System.Drawing.Size(1082, 66);
             this.pnlBtn.TabIndex = 113;
-            this.pnlBtn.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBtn_Paint);
             // 
             // btnClose
             // 
@@ -1273,6 +1255,17 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge.Text = "&Declaration";
             this.btnAcknowledge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAcknowledge.Click += new System.EventHandler(this.btnAcknowledge_Click);
+            // 
+            // cboDoctype
+            // 
+            this.cboDoctype.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.cboDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDoctype.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboDoctype.FormattingEnabled = true;
+            this.cboDoctype.Location = new System.Drawing.Point(354, 51);
+            this.cboDoctype.Name = "cboDoctype";
+            this.cboDoctype.Size = new System.Drawing.Size(147, 28);
+            this.cboDoctype.TabIndex = 168;
             // 
             // frmDengiReceipt
             // 
@@ -1384,7 +1377,6 @@ namespace SGMOSOL.SCREENS
         internal System.Windows.Forms.Label label3;
         internal System.Windows.Forms.Panel pnlNetDtl;
         internal System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cboDoctype;
         internal System.Windows.Forms.TextBox txtdocDetail;
         private System.Windows.Forms.Label lbldocdetailerr;
         private System.Windows.Forms.Label lbldoctype_err;
@@ -1401,5 +1393,6 @@ namespace SGMOSOL.SCREENS
         private System.Windows.Forms.Label lblTaluka;
         private System.Windows.Forms.Label lblDistrict;
         private System.Windows.Forms.Label lblPaymentMode;
+        internal System.Windows.Forms.ComboBox cboDoctype;
     }
 }

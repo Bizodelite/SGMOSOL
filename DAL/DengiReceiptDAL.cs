@@ -41,7 +41,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@FDATE", fdate);
                             command.Parameters.AddWithValue("@LDATE", ldate);
                             command.Parameters.AddWithValue("@MOBILE_NUMBER", string.IsNullOrEmpty(obj.contact) ? DBNull.Value : (object)obj.contact);
-                            command.Parameters.AddWithValue("@DENGI_TYPE", obj.DengiId);
+                            //command.Parameters.AddWithValue("@DENGI_TYPE", obj.DengiId);
                             command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);

@@ -79,5 +79,14 @@ namespace SGMOSOL
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void MDI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LoginBAL loginBAL = new LoginBAL();
+            loginBAL.updateUser_Login_Details();
+            loginBAL.DeleteUser_Login_details();
+           // Application.Exit();
+           //s System.Diagnostics.Process.Start(Application.ExecutablePath);
+        }
     }
 }

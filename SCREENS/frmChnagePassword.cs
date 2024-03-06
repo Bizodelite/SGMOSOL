@@ -87,5 +87,10 @@ namespace SGMOSOL.SCREENS
                 lbloldpwderror.Text = "";
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

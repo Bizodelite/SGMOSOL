@@ -32,6 +32,7 @@ namespace SGMOSOL.SCREENS
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMaster = new System.Windows.Forms.Panel();
+            this.cboDoctype = new System.Windows.Forms.ComboBox();
             this.lblPaymentMode = new System.Windows.Forms.Label();
             this.lblAmtWords = new System.Windows.Forms.Label();
             this.lbldoctype_err = new System.Windows.Forms.Label();
@@ -75,6 +76,7 @@ namespace SGMOSOL.SCREENS
             this.txtNetBankName = new System.Windows.Forms.TextBox();
             this.Label18 = new System.Windows.Forms.Label();
             this.pnlChqDtl = new System.Windows.Forms.Panel();
+            this.dtChqDt = new System.Windows.Forms.DateTimePicker();
             this.Label10 = new System.Windows.Forms.Label();
             this.txtChqNo = new System.Windows.Forms.TextBox();
             this.Label8 = new System.Windows.Forms.Label();
@@ -121,8 +123,6 @@ namespace SGMOSOL.SCREENS
             this.btnNew = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAcknowledge = new System.Windows.Forms.Button();
-            this.cboDoctype = new System.Windows.Forms.ComboBox();
-            this.dtChqDt = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlMaster.SuspendLayout();
             this.pnlDDDtl.SuspendLayout();
@@ -185,6 +185,24 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Name = "pnlMaster";
             this.pnlMaster.Size = new System.Drawing.Size(1082, 200);
             this.pnlMaster.TabIndex = 2;
+            // 
+            // cboDoctype
+            // 
+            this.cboDoctype.BackColor = System.Drawing.Color.LightCyan;
+            this.cboDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDoctype.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboDoctype.FormattingEnabled = true;
+            this.cboDoctype.Items.AddRange(new object[] {
+            "Pan Card",
+            "Adhar Card",
+            "Voter ID",
+            "Driivng License",
+            "Passport"});
+            this.cboDoctype.Location = new System.Drawing.Point(373, 54);
+            this.cboDoctype.Name = "cboDoctype";
+            this.cboDoctype.Size = new System.Drawing.Size(112, 26);
+            this.cboDoctype.TabIndex = 116;
+            this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged_1);
             // 
             // lblPaymentMode
             // 
@@ -424,7 +442,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblamount.AutoSize = true;
             this.lblamount.ForeColor = System.Drawing.Color.Red;
-            this.lblamount.Location = new System.Drawing.Point(633, 83);
+            this.lblamount.Location = new System.Drawing.Point(151, 89);
             this.lblamount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblamount.Name = "lblamount";
             this.lblamount.Size = new System.Drawing.Size(0, 18);
@@ -692,6 +710,18 @@ namespace SGMOSOL.SCREENS
             this.pnlChqDtl.TabIndex = 105;
             this.pnlChqDtl.TabStop = true;
             this.pnlChqDtl.Visible = false;
+            // 
+            // dtChqDt
+            // 
+            this.dtChqDt.Checked = false;
+            this.dtChqDt.CustomFormat = "dd/MM/yyyy";
+            this.dtChqDt.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtChqDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtChqDt.Location = new System.Drawing.Point(813, 6);
+            this.dtChqDt.Name = "dtChqDt";
+            this.dtChqDt.Size = new System.Drawing.Size(120, 26);
+            this.dtChqDt.TabIndex = 12;
+            this.dtChqDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
             // Label10
             // 
@@ -1244,36 +1274,6 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge.Text = "&Declaration";
             this.btnAcknowledge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAcknowledge.Click += new System.EventHandler(this.btnAcknowledge_Click);
-            // 
-            // cboDoctype
-            // 
-            this.cboDoctype.BackColor = System.Drawing.Color.LightCyan;
-            this.cboDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDoctype.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboDoctype.FormattingEnabled = true;
-            this.cboDoctype.Items.AddRange(new object[] {
-            "Pan Card",
-            "Adhar Card",
-            "Voter ID",
-            "Driivng License",
-            "Passport"});
-            this.cboDoctype.Location = new System.Drawing.Point(370, 51);
-            this.cboDoctype.Name = "cboDoctype";
-            this.cboDoctype.Size = new System.Drawing.Size(112, 26);
-            this.cboDoctype.TabIndex = 116;
-            this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged_1);
-            // 
-            // dtChqDt
-            // 
-            this.dtChqDt.Checked = false;
-            this.dtChqDt.CustomFormat = "dd/MM/yyyy";
-            this.dtChqDt.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtChqDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtChqDt.Location = new System.Drawing.Point(813, 6);
-            this.dtChqDt.Name = "dtChqDt";
-            this.dtChqDt.Size = new System.Drawing.Size(120, 26);
-            this.dtChqDt.TabIndex = 12;
-            this.dtChqDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
             // frmDengiReceipt
             // 

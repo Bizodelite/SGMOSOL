@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.ModelBinding;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -992,6 +993,11 @@ namespace SGMOSOL.SCREENS
         }
         private void txtdocDetail_TextChanged(object sender, EventArgs e)
         {
+            if (cboDoctype.Text == "Adhar Card")
+            {
+                txtdocDetail.MaxLength = 12;
+            }
+
             if (cboDoctype.Text != "")
             {
                 if (txtdocDetail.Text != "")

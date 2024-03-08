@@ -40,6 +40,7 @@ namespace SGMOSOL.SCREENS
         private void frmReportViewer_Load(object sender, EventArgs e)
         {
             //frmReportViewer frmReport = new frmReportViewer();
+           // this.reportViewer3.RefreshReport();
         }
 
         public void printReport(string docName)
@@ -116,7 +117,7 @@ namespace SGMOSOL.SCREENS
                     printReport(DocumentName);
                 }
             }
-            if (form == "Bhojnalay")
+            if (form == "Bhojnalaya")
             {
                 createBhojnalayRepoort();
             }
@@ -173,8 +174,8 @@ namespace SGMOSOL.SCREENS
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
                     printReport(DocumentName);
-
                 }
+              
             }
             if (flag == "DECLARATION")
             {

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.pnlMaster = new System.Windows.Forms.Panel();
+            this.lblAdd = new System.Windows.Forms.Label();
+            this.lblTaluka = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtReceiptno = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -84,6 +87,9 @@
             // pnlMaster
             // 
             this.pnlMaster.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlMaster.Controls.Add(this.lblAdd);
+            this.pnlMaster.Controls.Add(this.lblTaluka);
+            this.pnlMaster.Controls.Add(this.label15);
             this.pnlMaster.Controls.Add(this.panel1);
             this.pnlMaster.Controls.Add(this.lblamouwords);
             this.pnlMaster.Controls.Add(this.lblAddress);
@@ -129,6 +135,33 @@
             this.pnlMaster.Size = new System.Drawing.Size(1275, 685);
             this.pnlMaster.TabIndex = 0;
             this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // lblAdd
+            // 
+            this.lblAdd.AutoSize = true;
+            this.lblAdd.ForeColor = System.Drawing.Color.Red;
+            this.lblAdd.Location = new System.Drawing.Point(123, 261);
+            this.lblAdd.Name = "lblAdd";
+            this.lblAdd.Size = new System.Drawing.Size(0, 18);
+            this.lblAdd.TabIndex = 45;
+            // 
+            // lblTaluka
+            // 
+            this.lblTaluka.AutoSize = true;
+            this.lblTaluka.ForeColor = System.Drawing.Color.Red;
+            this.lblTaluka.Location = new System.Drawing.Point(839, 121);
+            this.lblTaluka.Name = "lblTaluka";
+            this.lblTaluka.Size = new System.Drawing.Size(0, 18);
+            this.lblTaluka.TabIndex = 44;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(82, 129);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(0, 18);
+            this.label15.TabIndex = 43;
             // 
             // panel1
             // 
@@ -212,7 +245,7 @@
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(422, 21);
+            this.txtUser.Location = new System.Drawing.Point(410, 18);
             this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
@@ -235,7 +268,7 @@
             // Label2
             // 
             this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(4, 10);
+            this.Label2.Location = new System.Drawing.Point(2, 10);
             this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(109, 37);
@@ -262,6 +295,7 @@
             // lblDocDetail
             // 
             this.lblDocDetail.AutoSize = true;
+            this.lblDocDetail.ForeColor = System.Drawing.Color.Red;
             this.lblDocDetail.Location = new System.Drawing.Point(467, 171);
             this.lblDocDetail.Name = "lblDocDetail";
             this.lblDocDetail.Size = new System.Drawing.Size(0, 18);
@@ -270,7 +304,8 @@
             // lblMobile
             // 
             this.lblMobile.AutoSize = true;
-            this.lblMobile.Location = new System.Drawing.Point(455, 55);
+            this.lblMobile.ForeColor = System.Drawing.Color.Red;
+            this.lblMobile.Location = new System.Drawing.Point(467, 121);
             this.lblMobile.Name = "lblMobile";
             this.lblMobile.Size = new System.Drawing.Size(0, 18);
             this.lblMobile.TabIndex = 2;
@@ -279,17 +314,18 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.ForeColor = System.Drawing.Color.Red;
-            this.lblName.Location = new System.Drawing.Point(76, 63);
+            this.lblName.Location = new System.Drawing.Point(82, 124);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(0, 18);
             this.lblName.TabIndex = 39;
             // 
             // txtDocumentName
             // 
+            this.txtDocumentName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDocumentName.Location = new System.Drawing.Point(464, 144);
             this.txtDocumentName.Name = "txtDocumentName";
             this.txtDocumentName.Size = new System.Drawing.Size(157, 24);
-            this.txtDocumentName.TabIndex = 4;
+            this.txtDocumentName.TabIndex = 5;
             this.txtDocumentName.TextChanged += new System.EventHandler(this.txtDocumentName_TextChanged);
             // 
             // label18
@@ -312,7 +348,7 @@
             this.cboDocName.Location = new System.Drawing.Point(179, 141);
             this.cboDocName.Name = "cboDocName";
             this.cboDocName.Size = new System.Drawing.Size(121, 26);
-            this.cboDocName.TabIndex = 3;
+            this.cboDocName.TabIndex = 4;
             this.cboDocName.SelectedIndexChanged += new System.EventHandler(this.cboDocName_SelectedIndexChanged);
             // 
             // label17
@@ -328,10 +364,11 @@
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(909, 546);
+            this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
+            this.btnClose.Location = new System.Drawing.Point(771, 558);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(133, 57);
+            this.btnClose.Size = new System.Drawing.Size(108, 57);
             this.btnClose.TabIndex = 17;
             this.btnClose.Text = "&Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -341,10 +378,11 @@
             // 
             this.btnPrint.Enabled = false;
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(768, 546);
+            this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
+            this.btnPrint.Location = new System.Drawing.Point(653, 558);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(133, 57);
+            this.btnPrint.Size = new System.Drawing.Size(110, 57);
             this.btnPrint.TabIndex = 16;
             this.btnPrint.Text = "&Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -353,10 +391,11 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(124, 546);
+            this.btnSearch.Image = global::SGMOSOL.ResourceMain.Search;
+            this.btnSearch.Location = new System.Drawing.Point(124, 558);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(213, 57);
+            this.btnSearch.Size = new System.Drawing.Size(123, 57);
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "&Find /\r\nSearch";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -365,10 +404,11 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(625, 546);
+            this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
+            this.btnSave.Location = new System.Drawing.Point(525, 558);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(133, 57);
+            this.btnSave.Size = new System.Drawing.Size(126, 57);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "&Save\r\n / Print";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -378,10 +418,11 @@
             // 
             this.btnNew.CausesValidation = false;
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.Location = new System.Drawing.Point(345, 546);
+            this.btnNew.Image = global::SGMOSOL.ResourceMain._new;
+            this.btnNew.Location = new System.Drawing.Point(255, 558);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(133, 57);
+            this.btnNew.Size = new System.Drawing.Size(118, 57);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "&New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -391,7 +432,7 @@
             // 
             this.btnAcknowledge.Enabled = false;
             this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcknowledge.Location = new System.Drawing.Point(483, 546);
+            this.btnAcknowledge.Location = new System.Drawing.Point(381, 558);
             this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(4);
             this.btnAcknowledge.Name = "btnAcknowledge";
             this.btnAcknowledge.Size = new System.Drawing.Size(133, 57);
@@ -450,7 +491,7 @@
             this.btnAdd.Location = new System.Drawing.Point(1047, 269);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(112, 42);
-            this.btnAdd.TabIndex = 11;
+            this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -485,7 +526,6 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(79, 24);
             this.txtQuantity.TabIndex = 9;
-            this.txtQuantity.TabStop = false;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
@@ -527,7 +567,7 @@
             this.cboItemName.Location = new System.Drawing.Point(340, 287);
             this.cboItemName.Name = "cboItemName";
             this.cboItemName.Size = new System.Drawing.Size(121, 26);
-            this.cboItemName.TabIndex = 7;
+            this.cboItemName.TabIndex = 8;
             this.cboItemName.SelectedIndexChanged += new System.EventHandler(this.cboItemName_SelectedIndexChanged);
             // 
             // label8
@@ -546,7 +586,7 @@
             this.cboItemCode.Location = new System.Drawing.Point(126, 289);
             this.cboItemCode.Name = "cboItemCode";
             this.cboItemCode.Size = new System.Drawing.Size(121, 26);
-            this.cboItemCode.TabIndex = 6;
+            this.cboItemCode.TabIndex = 7;
             this.cboItemCode.SelectedIndexChanged += new System.EventHandler(this.cboItemCode_SelectedIndexChanged);
             // 
             // label7
@@ -562,12 +602,13 @@
             // txtTaluka
             // 
             this.txtTaluka.BackColor = System.Drawing.Color.MistyRose;
+            this.txtTaluka.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTaluka.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtTaluka.Location = new System.Drawing.Point(839, 93);
             this.txtTaluka.Margin = new System.Windows.Forms.Padding(4);
             this.txtTaluka.Name = "txtTaluka";
             this.txtTaluka.Size = new System.Drawing.Size(285, 24);
-            this.txtTaluka.TabIndex = 2;
-            this.txtTaluka.TabStop = false;
+            this.txtTaluka.TabIndex = 3;
             this.txtTaluka.TextChanged += new System.EventHandler(this.txtTaluka_TextChanged);
             // 
             // label6
@@ -583,13 +624,13 @@
             // txtAddress
             // 
             this.txtAddress.BackColor = System.Drawing.Color.MistyRose;
+            this.txtAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress.Location = new System.Drawing.Point(124, 193);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(1025, 64);
-            this.txtAddress.TabIndex = 7;
-            this.txtAddress.TabStop = false;
+            this.txtAddress.TabIndex = 6;
             this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
             // label4
@@ -607,10 +648,10 @@
             this.txtMobile.BackColor = System.Drawing.Color.MistyRose;
             this.txtMobile.Location = new System.Drawing.Point(464, 93);
             this.txtMobile.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMobile.MaxLength = 10;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Size = new System.Drawing.Size(299, 24);
-            this.txtMobile.TabIndex = 1;
-            this.txtMobile.TabStop = false;
+            this.txtMobile.TabIndex = 2;
             this.txtMobile.TextChanged += new System.EventHandler(this.txtMobile_TextChanged);
             this.txtMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMobile_KeyPress);
             // 
@@ -627,12 +668,12 @@
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.MistyRose;
+            this.txtName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtName.Location = new System.Drawing.Point(82, 96);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(306, 24);
-            this.txtName.TabIndex = 0;
-            this.txtName.TabStop = false;
+            this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // label1
@@ -698,7 +739,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox cboDocName;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblMobile;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblDocDetail;
@@ -712,5 +752,9 @@
         internal System.Windows.Forms.TextBox txtUser;
         internal System.Windows.Forms.TextBox txtCounter;
         internal System.Windows.Forms.Label Label2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblTaluka;
+        private System.Windows.Forms.Label lblAdd;
     }
 }

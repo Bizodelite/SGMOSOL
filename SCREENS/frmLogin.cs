@@ -94,6 +94,7 @@ namespace SGMOSOL.SCREENS
                             }
                             UserInfo.UserName = isUser;
                             UserInfo.fy_id = cm.getFYID();
+                            UserInfo.Machine_Name = System.Environment.MachineName;
                             lblmessage.Text = "Login Successfull";
                             login.InsertUser_Login_details();
                             LoginStatusMessage(true);

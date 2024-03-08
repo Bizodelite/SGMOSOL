@@ -57,8 +57,7 @@ namespace SGMOSOL.BAL
         }
         public DataTable getMessItemDataForReport(string Receipt_ID)
         {
-            return da.getMessItemDataForReport
-                (Receipt_ID);
+            return da.getMessItemDataForReport(Receipt_ID);
         }
     }
 }

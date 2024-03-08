@@ -113,7 +113,8 @@ namespace SGMOSOL.SCREENS
             int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
             int centerY = (ClientSize.Height - flowLayoutPanel1.Height) / 2;
             flowLayoutPanel1.Location = new System.Drawing.Point(centerX, centerY);
-            userDengi.Show();
+           
+                userDengi.Show();
             txtAmount.Focus();
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
@@ -422,7 +423,10 @@ namespace SGMOSOL.SCREENS
                 lblName.Text = "";
             }
             userDengi.SetText(txtname.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
 
         private void txtmob_TextChanged(object sender, EventArgs e)
@@ -476,8 +480,12 @@ namespace SGMOSOL.SCREENS
             }
             userDengi.SetAmount(txtAmount.Text);
             userDengi.SetAmtInWord(lblAmtWords.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
+
         private void txtPANNo_TextChanged(object sender, EventArgs e)
         {
             int value;
@@ -490,7 +498,10 @@ namespace SGMOSOL.SCREENS
                 lblpan.Text = "";
             }
             //userDengi.SetPan(txtPANNo.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -630,7 +641,10 @@ namespace SGMOSOL.SCREENS
                 txtAddGotra.Visible = false;
             }
             userDengi.SetGotra(cboGotra.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
         private void txtaddr_TextChanged(object sender, EventArgs e)
         {
@@ -856,7 +870,7 @@ namespace SGMOSOL.SCREENS
                     MessageBox.Show("Error Occured. Contact System Admin. Name:" + strLastName + " Amount:" + strLastAmount + " No:" + strLastReceiptNo);
                     fcheckInsert = -1;
                     //blnformChange = false;
-                    btnNew_Click(null, null); 
+                    btnNew_Click(null, null);
                     btnSave.Enabled = true;
                     txtAmount.Focus();
                     //setCursor(this, true);
@@ -951,7 +965,10 @@ namespace SGMOSOL.SCREENS
                 lblPincode.Text = "Please enter a valid 6-digit pincode.";
             }
             userDengi.SetPincode(txtPincode.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
 
         private void txttal_TextChanged(object sender, EventArgs e)
@@ -961,7 +978,10 @@ namespace SGMOSOL.SCREENS
                 lblTaluka.Text = "";
             }
             userDengi.SetTaluka(txttal.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -1257,12 +1277,12 @@ namespace SGMOSOL.SCREENS
 
                 if (e.KeyCode == Keys.End)
                 {
-                        btnSave.PerformClick();
+                    btnSave.PerformClick();
                 }
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 

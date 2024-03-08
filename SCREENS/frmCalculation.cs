@@ -81,6 +81,7 @@ namespace SGMOSOL.SCREENS
         }
         private void createItemTable()
         {
+            dgvItemDetails.Columns.Clear();
             tempItemTable = new DataTable("ItemTable");
             tempItemTable.Columns.Add("ID", typeof(int));
             tempItemTable.Columns.Add("Currency", typeof(string));

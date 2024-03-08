@@ -261,7 +261,7 @@ namespace SGMOSOL.DAL
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE CTR_MACH_ID=" + UserInfo.ctrMachID + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + "";
+                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + "";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         connection.Open();

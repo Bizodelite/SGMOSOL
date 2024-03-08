@@ -36,89 +36,111 @@ namespace SGMOSOL.SCREENS
                 }
                 this.Location = Screen.AllScreens[1].WorkingArea.Location;
             }
-           // dengiReceipt = frmdengiReceipt;
+            // dengiReceipt = frmdengiReceipt;
         }
 
-       
+
         public void SetText(string name)
         {
+            lblValue.Text = name;
             lblName.Text = name;
         }
         public void Setmobile(string mobile)
         {
+            lblValue.Text = mobile;
             lblMobile.Text = mobile;
         }
         public void SetGotra(string gotra)
         {
             if (gotra != "Select")
+            {
                 lblGotra.Text = gotra;
-            else lblGotra.Text = "";
+                lblValue.Text = gotra;
+            }
+            else
+            {
+                lblGotra.Text = "";
+                lblValue.Text = "";
+            }
         }
         public void SetAddress(string add)
         {
+            lblValue.Text = add;
             lblAddress.Text = add;
         }
         public void SetAmount(string strAmount)
         {
+            lblValue.Text = strAmount;
             lblAmount.Text = strAmount;
         }
         public void SetDocDetail(string strDocDetail)
         {
+            lblValue.Text = strDocDetail;
             lblDocDetail.Text = strDocDetail;
         }
 
         public void SetDocType(string strDocType)
         {
+            lblValue.Text = strDocType;
             lblDocType.Text = strDocType;
         }
 
         public void SetTaluka(string strTaluka)
         {
+            lblValue.Text = strTaluka;
             lblTaluka.Text = strTaluka;
         }
         public void SetPincode(string strPincode)
         {
+            lblValue.Text = strPincode;
             lblPincode.Text = strPincode;
         }
         public void SetState(string strState)
         {
+            lblValue.Text = strState;
             lblState.Text = strState;
         }
 
         public void SetDistrict(string strDistrict)
         {
+            lblValue.Text = strDistrict;
             lblDistrict.Text = strDistrict;
         }
 
         public void SetAmtInWord(string strAmtInWord)
         {
+           // lblValue.Text = lblAmount.Text + " : " + strAmtInWord;
             lblAmtWords.Text = strAmtInWord;
         }
 
         public void SetDengiType(string strDengiType)
         {
+            lblValue.Text = strDengiType;
             lblDengiHead.Text = strDengiType;
         }
         private void btnconvert_Click(object sender, EventArgs e)
         {
             if (btnconvert.Text.ToUpper() == "CONVERT TO ENGLISH")
-             {
+            {
                 btnconvert.Text = "मराठी रूपांतर";
 
-             }
+            }
             else
             {
                 btnconvert.Text = "Convert to English";
             }
-                
+
         }
 
         private void frmUserDengi_Load(object sender, EventArgs e)
         {
-            Font LabelFont = new Font("Microsoft Sans Serif", 16);
+            //08/03/24 
+            lblValue.Text = "";
+            lblValue.Font = new Font("Microsoft Sans Serif", 50);
+            Font LabelFont = new Font("Microsoft Sans Serif", 20);
             //String strLabel = "";
             lblAmount.Font = LabelFont;
-            lblAddress.Font= LabelFont;
+            lblAddress.Font = LabelFont;
             lblAmtWords.Font = LabelFont;
             lblDengiHead.Font = LabelFont;
             lblDistrict.Font = LabelFont;
@@ -141,7 +163,7 @@ namespace SGMOSOL.SCREENS
             lblState1.Font = LabelFont;
             lblTaluka1.Font = LabelFont;
 
-            lblAddress1.Text  = lblAddress1.Text + ": ";
+            lblAddress1.Text = lblAddress1.Text + ": ";
             lblAmount1.Text = lblAmount1.Text + ": ";
             lblDistrict1.Text = lblDistrict1.Text + ": ";
             lblDocType.Text = lblDocType.Text + ": ";

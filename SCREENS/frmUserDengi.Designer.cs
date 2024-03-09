@@ -224,7 +224,7 @@ namespace SGMOSOL.SCREENS
             this.pnlAmount.Controls.Add(this.lblAmount1);
             this.pnlAmount.Controls.Add(this.lblAmount);
             this.pnlAmount.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlAmount.Location = new System.Drawing.Point(29, 228);
+            this.pnlAmount.Location = new System.Drawing.Point(29, 221);
             this.pnlAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlAmount.Name = "pnlAmount";
             this.pnlAmount.Size = new System.Drawing.Size(1312, 49);

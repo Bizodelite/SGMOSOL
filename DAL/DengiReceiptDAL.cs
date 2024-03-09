@@ -56,7 +56,6 @@ namespace SGMOSOL.DAL
             catch (Exception ex)
             {
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-
             }
             return dt;
         }
@@ -176,7 +175,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@Com_Id", 9);
                             command.Parameters.AddWithValue("@Loc_Id", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);
-                            command.Parameters.AddWithValue("@Fy_Id", 11);
+                            command.Parameters.AddWithValue("@Fy_Id", UserInfo.fy_id);
                             command.Parameters.AddWithValue("@Ctr_mac_Id", UserInfo.ctrMachID);
                             command.Parameters.AddWithValue("@SERIAL_NO", obj.serailId);
                             command.Parameters.AddWithValue("@Dengi_Id", obj.DengiId);
@@ -261,7 +260,7 @@ namespace SGMOSOL.DAL
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE CTR_MACH_ID=" + UserInfo.ctrMachID + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + "";
+                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + "";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         connection.Open();

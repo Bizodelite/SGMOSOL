@@ -62,7 +62,7 @@ namespace SGMOSOL.ADMIN
         public static string Machine_Name
         {
             get { return MachineName; }
-            set { MachineName = System.Environment.MachineName; }
+            set { MachineName =value; }
         }
         public static int fy_id
         {

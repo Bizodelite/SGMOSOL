@@ -28,7 +28,7 @@ namespace SGMOSOL.DataModel
         public string Remark { get; set; }
         public string DocType { get; set; }
         public string DocTypeDetail{ get; set; }
-
+        public string SerialNo { get; set; }
         public string receiptFno { get;set; }
         public string receiptLNo { get; set; }
         public DateTime receiptFDate { get; set; }

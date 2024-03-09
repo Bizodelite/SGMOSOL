@@ -51,8 +51,8 @@ namespace SGMOSOL.SCREENS
 
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
-            user = new frmUserDengi();
-            user.Show();
+            //user = new frmUserDengi();
+            //user.Show();
         }
         private void fillItemCode()
         {

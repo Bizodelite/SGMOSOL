@@ -56,7 +56,6 @@ namespace SGMOSOL.DAL
             catch (Exception ex)
             {
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-
             }
             return dt;
         }
@@ -176,7 +175,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@Com_Id", 9);
                             command.Parameters.AddWithValue("@Loc_Id", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);
-                            command.Parameters.AddWithValue("@Fy_Id", 11);
+                            command.Parameters.AddWithValue("@Fy_Id", UserInfo.fy_id);
                             command.Parameters.AddWithValue("@Ctr_mac_Id", UserInfo.ctrMachID);
                             command.Parameters.AddWithValue("@SERIAL_NO", obj.serailId);
                             command.Parameters.AddWithValue("@Dengi_Id", obj.DengiId);

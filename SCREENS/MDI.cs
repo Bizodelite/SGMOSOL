@@ -19,13 +19,14 @@ namespace SGMOSOL
         frmDengiReceipt frmDengiReceip;
         frmChnagePassword frmChnagePassword;
         frmBhojnalayaPrintReceipt frmbhojnalayaPrintReceipt;
+        frmCalculation frmCalculation;
         CommonFunctions cm;
         public MDI()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cm = new CommonFunctions();
-            this.Text = cm.getFormTitle()+" / "+Application.ProductVersion;
+            this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
         }
 
         private void MDI_Load(object sender, EventArgs e)
@@ -35,31 +36,61 @@ namespace SGMOSOL
 
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDengiReceip = new frmDengiReceipt();
-            frmuserDengi = new frmUserDengi();
-            frmDengiReceip.StartPosition = FormStartPosition.CenterParent;
-            frmDengiReceip.MdiParent = this;
-            frmDengiReceip.WindowState = FormWindowState.Maximized;
-            frmDengiReceip.Show();
-            //frmDengiReceip.Show();
+
+            frmDengiReceip = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
+            if (frmDengiReceip == null)
+            {
+                frmDengiReceip = new frmDengiReceipt();
+                frmDengiReceip.StartPosition = FormStartPosition.CenterParent;
+                frmDengiReceip.MdiParent = this;
+                frmDengiReceip.WindowState = FormWindowState.Maximized;
+                frmDengiReceip.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi == null)
+            {
+                frmuserDengi = new frmUserDengi();
+                frmuserDengi.WindowState = FormWindowState.Minimized;
+                frmuserDengi.Show();
+            }
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChnagePassword = new frmChnagePassword();
-            frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
-            frmChnagePassword.MdiParent = this;
-            frmChnagePassword.WindowState = FormWindowState.Maximized;
-            frmChnagePassword.Show();
+            frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
+            if (frmChnagePassword == null)
+            {
+                frmChnagePassword = new frmChnagePassword();
+                frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
+                frmChnagePassword.MdiParent = this;
+                frmChnagePassword.WindowState = FormWindowState.Maximized;
+                frmChnagePassword.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi != null)
+            {
+                frmuserDengi.Close();
+            }
         }
 
         private void printReceiptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmbhojnalayaPrintReceipt = new frmBhojnalayaPrintReceipt();
-            frmbhojnalayaPrintReceipt.StartPosition = FormStartPosition.CenterParent;
-            frmbhojnalayaPrintReceipt.MdiParent = this;
-            frmbhojnalayaPrintReceipt.WindowState = FormWindowState.Maximized;
-            frmbhojnalayaPrintReceipt.Show();
+            frmbhojnalayaPrintReceipt = Application.OpenForms.OfType<frmBhojnalayaPrintReceipt>().FirstOrDefault();
+            if (frmbhojnalayaPrintReceipt == null)
+            {
+                frmbhojnalayaPrintReceipt = new frmBhojnalayaPrintReceipt();
+                frmbhojnalayaPrintReceipt.StartPosition = FormStartPosition.CenterParent;
+                frmbhojnalayaPrintReceipt.MdiParent = this;
+                frmbhojnalayaPrintReceipt.WindowState = FormWindowState.Maximized;
+                frmbhojnalayaPrintReceipt.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi == null)
+            {
+                frmuserDengi = new frmUserDengi();
+               frmuserDengi.WindowState = FormWindowState.Minimized;
+                frmuserDengi.Show();
+            }
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,11 +104,20 @@ namespace SGMOSOL
 
         private void calculationFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCalculation frm = new frmCalculation();
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
+            frmCalculation = Application.OpenForms.OfType<frmCalculation>().FirstOrDefault();
+            if (frmCalculation == null)
+            {
+                frmCalculation = new frmCalculation();
+                frmCalculation.StartPosition = FormStartPosition.CenterParent;
+                frmCalculation.MdiParent = this;
+                frmCalculation.WindowState = FormWindowState.Maximized;
+                frmCalculation.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi != null)
+            { 
+                frmuserDengi.Close();
+            }
         }
 
         private void MDI_FormClosing(object sender, FormClosingEventArgs e)
@@ -85,8 +125,8 @@ namespace SGMOSOL
             LoginBAL loginBAL = new LoginBAL();
             loginBAL.updateUser_Login_Details();
             loginBAL.DeleteUser_Login_details();
-           // Application.Exit();
-           //s System.Diagnostics.Process.Start(Application.ExecutablePath);
+            // Application.Exit();
+            //s System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
     }
 }

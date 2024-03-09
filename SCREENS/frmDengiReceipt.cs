@@ -1,5 +1,6 @@
 ﻿using Microsoft.Reporting.WebForms;
 using SGMOSOL.ADMIN;
+using SGMOSOL.Custom_User_Contols;
 using SGMOSOL.DAL;
 using SGMOSOL.DataModel;
 using System;
@@ -52,174 +53,252 @@ namespace SGMOSOL.SCREENS
         }
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            if (keyData == Keys.Enter)
+            try
             {
-                if (ActiveControl is System.Windows.Forms.Button btnSave)
+                if (keyData == Keys.Enter)
                 {
-                    if (btnSave.Name == "btnSave")
+                    if (ActiveControl is System.Windows.Forms.Button btnSave)
                     {
-                        btnSave.PerformClick();
-                        return true;
+                        if (btnSave.Name == "btnSave")
+                        {
+                            btnSave.PerformClick();
+                            return true;
+                        }
                     }
-                }
-                if (ActiveControl is System.Windows.Forms.Button btnNew)
-                {
-                    if (btnNew.Name == "btnNew")
+                    if (ActiveControl is System.Windows.Forms.Button btnNew)
                     {
-                        btnNew.PerformClick();
-                        return true;
+                        if (btnNew.Name == "btnNew")
+                        {
+                            btnNew.PerformClick();
+                            return true;
+                        }
                     }
-                }
-                if (ActiveControl is System.Windows.Forms.Button btnClose)
-                {
-                    if (btnClose.Name == "btnClose")
+                    if (ActiveControl is System.Windows.Forms.Button btnClose)
                     {
-                        btnClose.PerformClick();
-                        return true;
+                        if (btnClose.Name == "btnClose")
+                        {
+                            btnClose.PerformClick();
+                            return true;
+                        }
                     }
-                }
-                if (ActiveControl is System.Windows.Forms.Button btnSearch)
-                {
-                    if (btnSearch.Name == "btnSearch")
+                    if (ActiveControl is System.Windows.Forms.Button btnSearch)
                     {
-                        btnSearch.PerformClick();
-                        return true;
+                        if (btnSearch.Name == "btnSearch")
+                        {
+                            btnSearch.PerformClick();
+                            return true;
+                        }
                     }
-                }
-                if (ActiveControl is System.Windows.Forms.Button btnPrint)
-                {
-                    if (btnPrint.Name == "btnPrint")
+                    if (ActiveControl is System.Windows.Forms.Button btnPrint)
                     {
-                        btnPrint.PerformClick();
-                        return true;
+                        if (btnPrint.Name == "btnPrint")
+                        {
+                            btnPrint.PerformClick();
+                            return true;
+                        }
                     }
-                }
-                if (ActiveControl is System.Windows.Forms.Button btnAcknowledge)
-                {
-                    if (btnAcknowledge.Name == "btnAcknowledge")
+                    if (ActiveControl is System.Windows.Forms.Button btnAcknowledge)
                     {
-                        btnAcknowledge.PerformClick();
-                        return true;
+                        if (btnAcknowledge.Name == "btnAcknowledge")
+                        {
+                            btnAcknowledge.PerformClick();
+                            return true;
+                        }
                     }
+                    SendKeys.Send("{TAB}");
+                    return true;
                 }
-                SendKeys.Send("{TAB}");
-                return true;
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return false;
             }
             return base.ProcessDialogKey(keyData);
         }
 
         private void frmDengiReceipt_Load(object sender, EventArgs e)
         {
-            int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
-            int centerY = (ClientSize.Height - flowLayoutPanel1.Height) / 2;
-            flowLayoutPanel1.Location = new System.Drawing.Point(centerX, centerY);
-           
-                userDengi.Show();
-            txtAmount.Focus();
-            txtCounter.Text = UserInfo.Counter_Name;
-            txtUser.Text = UserInfo.UserName;
-            if (isPrint == false)
+            try
             {
-                FillDocumentType();
-                fillCountry();
-                fillStateByCountryId();
-                fillDistrictbyStateId(Convert.ToInt32(cboState.SelectedValue));
-                fillPaymentMode();
-                fillDengiType();
-                fillGotra();
-                showPanel();
-                getDengiNo();
+                int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
+                int centerY = (ClientSize.Height - flowLayoutPanel1.Height) / 2;
+                flowLayoutPanel1.Location = new System.Drawing.Point(centerX, centerY);
+                userDengi.Show();
+                txtAmount.Focus();
+                txtCounter.Text = UserInfo.Counter_Name;
+                txtUser.Text = UserInfo.UserName;
+                if (isPrint == false)
+                {
+                    FillDocumentType();
+                    fillCountry();
+                    fillStateByCountryId();
+                    fillDistrictbyStateId(Convert.ToInt32(cboState.SelectedValue));
+                    fillPaymentMode();
+                    fillDengiType();
+                    fillGotra();
+                    showPanel();
+                    getDengiNo();
+                }
             }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+
         }
         private void getDengiNo()
         {
-            dengiReceiptDAL = new DengiReceiptDAL();
-            int dengiID = dengiReceiptDAL.getDenigNumber();
-            txtdengireceiptNo.Text = dengiID.ToString();
+            try
+            {
+                dengiReceiptDAL = new DengiReceiptDAL();
+                int dengiID = dengiReceiptDAL.getDenigNumber();
+                txtdengireceiptNo.Text = dengiID.ToString();
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void FillDocumentType()
         {
-            dt = commonFunctions.GetDocumentType();
-            cboDoctype.DataSource = dt;
-            cboDoctype.DisplayMember = "DocumentName";
-            cboDoctype.ValueMember = "DocumentID";
+            try
+            {
+                dt = commonFunctions.GetDocumentType();
+                cboDoctype.DataSource = dt;
+                cboDoctype.DisplayMember = "DocumentName";
+                cboDoctype.ValueMember = "DocumentID";
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void fillCountry()
         {
-            dt = commonFunctions.getCountry();
-            cboCountry.DataSource = dt;
-            cboCountry.DisplayMember = "CountryName";
-            cboCountry.ValueMember = "CountryID";
+            try
+            {
+                dt = commonFunctions.getCountry();
+                cboCountry.DataSource = dt;
+                cboCountry.DisplayMember = "CountryName";
+                cboCountry.ValueMember = "CountryID";
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void fillTId()
         {
-            dt = commonFunctions.fillTID();
-            cobTid.DataSource = dt;
-            cobTid.DisplayMember = "tidNo";
-            cobTid.ValueMember = "Tid";
+            try
+            {
+                dt = commonFunctions.fillTID();
+                cobTid.DataSource = dt;
+                cobTid.DisplayMember = "tidNo";
+                cobTid.ValueMember = "Tid";
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void fillStateByCountryId()
         {
-            dt = commonFunctions.getStateById(102);
-            cboState.DataSource = dt;
-            cboState.DisplayMember = "StateName";
-            cboState.ValueMember = "StateId";
-            object selectedValue = cboCountry.SelectedValue;
-            if (selectedValue != null)
+            try
             {
-                string selectedValueAsString = selectedValue.ToString();
-                if (selectedValueAsString == "102")
+                dt = commonFunctions.getStateById(102);
+                cboState.DataSource = dt;
+                cboState.DisplayMember = "StateName";
+                cboState.ValueMember = "StateId";
+                object selectedValue = cboCountry.SelectedValue;
+                if (selectedValue != null)
                 {
-                    cboState.SelectedValue = 21;
+                    string selectedValueAsString = selectedValue.ToString();
+                    if (selectedValueAsString == "102")
+                    {
+                        cboState.SelectedValue = 21;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
         private void fillDistrictbyStateId(int stateId)
         {
-            object selectedValue = cboState.SelectedValue;
-            if (stateId != 0)
+            try
             {
-                dt = commonFunctions.getDisctrictbyStateId(stateId);
-                DataRow newRow = dt.NewRow();
-                newRow["DistrictName"] = "Select";
-                newRow["DistrictId"] = 0;
-                dt.Rows.InsertAt(newRow, 0);
-                cboDistrict.DataSource = dt;
-                cboDistrict.DisplayMember = "DistrictName";
-                cboDistrict.ValueMember = "DistrictId";
+                object selectedValue = cboState.SelectedValue;
+                if (stateId != 0)
+                {
+                    dt = commonFunctions.getDisctrictbyStateId(stateId);
+                    DataRow newRow = dt.NewRow();
+                    newRow["DistrictName"] = "Select";
+                    newRow["DistrictId"] = 0;
+                    dt.Rows.InsertAt(newRow, 0);
+                    cboDistrict.DataSource = dt;
+                    cboDistrict.DisplayMember = "DistrictName";
+                    cboDistrict.ValueMember = "DistrictId";
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
         private void fillPaymentMode()
         {
-            dt = commonFunctions.getPaymentMode();
-            cboPaymentType.DataSource = dt;
-            cboPaymentType.DisplayMember = "Token_Detail_Name";
-            cboPaymentType.ValueMember = "Token_Detail_Id";
-            cboPaymentType.SelectedValue = 8;
+            try
+            {
+                dt = commonFunctions.getPaymentMode();
+                cboPaymentType.DataSource = dt;
+                cboPaymentType.DisplayMember = "Token_Detail_Name";
+                cboPaymentType.ValueMember = "Token_Detail_Id";
+                cboPaymentType.SelectedValue = 8;
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void fillDengiType()
         {
-            dt = commonFunctions.getDengiType();
-            cboDengiType.DataSource = dt;
-            cboDengiType.DisplayMember = "TYPE";
-            cboDengiType.ValueMember = "DENGI_MST_ID";
-            cboDengiType.SelectedValue = 4;
+            try
+            {
+                dt = commonFunctions.getDengiType();
+                cboDengiType.DataSource = dt;
+                cboDengiType.DisplayMember = "TYPE";
+                cboDengiType.ValueMember = "DENGI_MST_ID";
+                cboDengiType.SelectedValue = 4;
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void fillGotra()
         {
-            dt = commonFunctions.getGotra();
-            DataRow newRow = dt.NewRow();
-            DataRow row = dt.NewRow();
-            newRow["gotra_name"] = "Select";
-            newRow["gotra_id"] = 0;
-            row["gotra_name"] = "OTHER";
-            row["gotra_id"] = 9999;
-            dt.Rows.InsertAt(newRow, 0);
-            dt.Rows.InsertAt(row, 9999);
-            cboGotra.DataSource = dt;
-            cboGotra.DisplayMember = "gotra_name";
-            cboGotra.ValueMember = "gotra_id";
-            cboGotra.SelectedValue = 0;
+            try
+            {
+                dt = commonFunctions.getGotra();
+                DataRow newRow = dt.NewRow();
+                DataRow row = dt.NewRow();
+                newRow["gotra_name"] = "Select";
+                newRow["gotra_id"] = 0;
+                row["gotra_name"] = "OTHER";
+                row["gotra_id"] = 9999;
+                dt.Rows.InsertAt(newRow, 0);
+                dt.Rows.InsertAt(row, 9999);
+                cboGotra.DataSource = dt;
+                cboGotra.DisplayMember = "gotra_name";
+                cboGotra.ValueMember = "gotra_id";
+                cboGotra.SelectedValue = 0;
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void cboPaymentType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -418,74 +497,87 @@ namespace SGMOSOL.SCREENS
         }
         private void txtname_TextChanged(object sender, EventArgs e)
         {
-            if (txtname.Text != "")
+            try
             {
-                lblName.Text = "";
-            }
-            userDengi.SetText(txtname.Text);
-            if (userDengi.Visible)
-            {
+                if (txtname.Text != "")
+                {
+                    lblName.Text = "";
+                }
+                userDengi.SetText(txtname.Text);
                 userDengi.Show();
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
 
         private void txtmob_TextChanged(object sender, EventArgs e)
         {
-            string mobileNumber = txtmob.Text.Trim();
-            string pattern = @"^\d{10}$";
-            if (Regex.IsMatch(mobileNumber, pattern))
+            try
             {
-                lblMobile.Text = "";
+                string mobileNumber = txtmob.Text.Trim();
+                string pattern = @"^\d{10}$";
+                if (Regex.IsMatch(mobileNumber, pattern))
+                {
+                    lblMobile.Text = "";
+                }
+                else
+                {
+                    lblMobile.Text = "Please enter a valid 10-digit mobile number.";
+                }
+                userDengi.Setmobile(txtmob.Text);
             }
-            else
+            catch (Exception ex)
             {
-                lblMobile.Text = "Please enter a valid 10-digit mobile number.";
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
-            userDengi.Setmobile(txtmob.Text);
         }
 
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
             int value;
-
-            if (txtAmount.Text != "")
+            try
             {
-                txtAmount.Text = Convert.ToString(Convert.ToDouble(txtAmount.Text));
-                lblamount.Text = "";
-            }
-            if (txtAmount.Text != "")
-            {
-                lblAmtWords.Text = commonFunctions.words(Convert.ToInt32(txtAmount.Text));
-            }
-            else
-            {
-                lblAmtWords.Text = "Amount in Words : ";
-            }
-            if (int.TryParse(txtAmount.Text, out value) && value >= 500)
-            {
-                lbldoctype_err.Text = "Please select document type";
-            }
-            if (cboDoctype.Text != "")
-            {
-                lbldoctype_err.Text = "";
-            }
-            else
-            {
-                lblpan.Text = "";
-                lbldoctype_err.Text = "";
-            }
-            if (txtAmount.Text == "0")
-            {
-                lblamount.Text = "Amount can not be 0!";
-            }
-            userDengi.SetAmount(txtAmount.Text);
-            userDengi.SetAmtInWord(lblAmtWords.Text);
-            if (userDengi.Visible)
-            {
+                if (txtAmount.Text != "")
+                {
+                    txtAmount.Text = Convert.ToString(Convert.ToDouble(txtAmount.Text));
+                    lblamount.Text = "";
+                }
+                if (txtAmount.Text != "")
+                {
+                    lblAmtWords.Text = commonFunctions.words(Convert.ToInt32(txtAmount.Text));
+                }
+                else
+                {
+                    lblAmtWords.Text = "Amount in Words : ";
+                }
+                if (int.TryParse(txtAmount.Text, out value) && value >= 500)
+                {
+                    lbldoctype_err.Text = "Please select document type";
+                }
+                if (cboDoctype.Text != "")
+                {
+                    lbldoctype_err.Text = "";
+                }
+                else
+                {
+                    lblpan.Text = "";
+                    lbldoctype_err.Text = "";
+                }
+                if (txtAmount.Text == "0")
+                {
+                    lblamount.Text = "Amount can not be 0!";
+                }
+                userDengi.SetAmount(txtAmount.Text);
+                userDengi.SetAmtInWord(lblAmtWords.Text);
                 userDengi.Show();
             }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
-
         private void txtPANNo_TextChanged(object sender, EventArgs e)
         {
             int value;
@@ -561,20 +653,10 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
-            //if (cboDoctype.Text != "" && txtdocDetail.Text == "")
-            //{
-            //    lbldocdetailerr.Text = "Please enter Document details";
-            //}
-            //else 
-            //{
-            //    lbldocdetailerr.Text = "";
-            //}
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";
             }
-
-
             if (lblAdd.Text == "" && lblMobile.Text == "" && lbldoctype_err.Text == "" && lbldocdetailerr.Text == "" && lblName.Text == "" && lblTaluka.Text == "" && lblDistrict.Text == "")
             {
                 if (txtAmount.Text != "")
@@ -674,155 +756,169 @@ namespace SGMOSOL.SCREENS
         }
         private void SavedData()
         {
-            int AmountAboove = 0;
-            int AmountBelow = 0;
-            int Amount = 0;
-            string lstEnteredName = null;
-            string lstEnteredAmount = null;
-            DialogResult result;
-            dengiReceiptModel = new dengiReceiptModel();
-            loginDAL login = new loginDAL();
-            dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
-            dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;
-            dengiReceiptModel.COUNTRY_NAME = cboCountry.Text;
-            // dengiReceiptModel.counter = int.Parse(txtCounter.Text);
-            dengiReceiptModel.contact = txtmob.Text;
-            dengiReceiptModel.Name = txtname.Text;
-            dengiReceiptModel.amount = decimal.Parse(txtAmount.Text);
-            Amount = Convert.ToInt32(txtAmount.Text);
-            dengiReceiptModel.chno = txtChqNo.Text;
-            dengiReceiptModel.chqbankname = txtChqBankname.Text;
-            dengiReceiptModel.PinCode = txtPincode.Text;
-            dengiReceiptModel.userId = login.getUserId(txtUser.Text);
-            dengiReceiptModel.PanNo = txtPANNo.Text;
-            dengiReceiptModel.Taluka = txttal.Text;
-            dengiReceiptModel.gotraId = (int)cboGotra.SelectedValue;
-            if (cboGotra.Text == "OTHER")
+            try
             {
-                dengiReceiptModel.gotra = txtAddGotra.Text;
-            }
-            else
-            {
-                dengiReceiptModel.gotra = cboGotra.Text.Trim();
-            }
-
-            dengiReceiptModel.stateId = (int)cboState.SelectedValue;
-            dengiReceiptModel.STATE = cboState.Text;
-            if (txtChqNo.Text != "")
-                dengiReceiptModel.chqdate = DateTime.Parse(dtChqDt.Text);
-            dengiReceiptModel.Address = txtaddr.Text;
-            dengiReceiptModel.ddbankname = txtDDBankName.Text;
-            dengiReceiptModel.ddbankname = txtDDBankName.Text;
-            dengiReceiptModel.ddno = txtDDNo.Text;
-            if (txtDDNo.Text != "")
-            {
-                dengiReceiptModel.dd_date = DateTime.Parse(dtDDdate.Text);
-            }
-            dengiReceiptModel.paymentTypeId = (int)cboPaymentType.SelectedValue;
-            dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
-            dengiReceiptModel.DistId = (int)cboDistrict.SelectedValue;
-            dengiReceiptModel.DISTRICT = cboDistrict.Text;
-            dengiReceiptModel.Doc_type = cboDoctype.Text;
-            dengiReceiptModel.Doc_Detail = txtdocDetail.Text;
-            dengiReceiptModel.netbankname = txtNetBankName.Text;
-            dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
-            dengiReceiptModel.Invoiceno = txtInvoice.Text;
-            if (cboPaymentType.Text == "Swipe")
-            {
-                dengiReceiptModel.tidId = (int)cobTid.SelectedValue;
-            }
-            else
-            {
-                dengiReceiptModel.tidId = 0;
-            }
-            dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt.Rows)
+                int AmountAboove = 0;
+                int AmountBelow = 0;
+                int Amount = 0;
+                string lstEnteredName = null;
+                int lstEnteredAmount = 0;
+                DialogResult result;
+                dengiReceiptModel = new dengiReceiptModel();
+                loginDAL login = new loginDAL();
+                dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
+                dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;
+                dengiReceiptModel.COUNTRY_NAME = cboCountry.Text;
+                // dengiReceiptModel.counter = int.Parse(txtCounter.Text);
+                dengiReceiptModel.contact = txtmob.Text;
+                dengiReceiptModel.Name = txtname.Text;
+                dengiReceiptModel.amount = decimal.Parse(txtAmount.Text);
+                Amount = Convert.ToInt32(txtAmount.Text);
+                dengiReceiptModel.chno = txtChqNo.Text;
+                dengiReceiptModel.chqbankname = txtChqBankname.Text;
+                dengiReceiptModel.PinCode = txtPincode.Text;
+                dengiReceiptModel.userId = login.getUserId(txtUser.Text);
+                dengiReceiptModel.PanNo = txtPANNo.Text;
+                dengiReceiptModel.Taluka = txttal.Text;
+                dengiReceiptModel.gotraId = (int)cboGotra.SelectedValue;
+                if (cboGotra.Text == "OTHER")
                 {
-                    lstEnteredName = row["Name"].ToString();
-                    lstEnteredAmount = row["AMOUNT"].ToString();
-                }
-            }
-            if (lstEnteredAmount == txtAmount.Text && lstEnteredName == txtname.Text.Trim())
-            {
-                result = MessageBox.Show("Do you want to save duplicate record?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
-                {
-                    dengiReceiptModel.IsDuplicate = 159;
+                    dengiReceiptModel.gotra = txtAddGotra.Text;
                 }
                 else
                 {
-                    btnNew.PerformClick();
+                    dengiReceiptModel.gotra = cboGotra.Text.Trim();
                 }
-            }
-            else
-            {
-                dengiReceiptModel.IsDuplicate = 0;
-            }
 
-            dengiReceiptDAL = new DengiReceiptDAL();
-
-            DataTable dtAmlountltd = new DataTable();
-            dtAmlountltd = dengiReceiptDAL.getAmountLimits(cboDengiType.Text.Trim());
-            if (dtAmlountltd.Rows.Count > 0)
-            {
-                foreach (DataRow row in dtAmlountltd.Rows)
+                dengiReceiptModel.stateId = (int)cboState.SelectedValue;
+                dengiReceiptModel.STATE = cboState.Text;
+                if (txtChqNo.Text != "")
+                    dengiReceiptModel.chqdate = DateTime.Parse(dtChqDt.Text);
+                dengiReceiptModel.Address = txtaddr.Text;
+                dengiReceiptModel.ddbankname = txtDDBankName.Text;
+                dengiReceiptModel.ddbankname = txtDDBankName.Text;
+                dengiReceiptModel.ddno = txtDDNo.Text;
+                if (txtDDNo.Text != "")
                 {
-                    AmountAboove = Convert.ToInt32(row["AMOUNT_ABOVE"]);
-                    AmountBelow = Convert.ToInt32(row["AMOUNT_BELOW"]);
+                    dengiReceiptModel.dd_date = DateTime.Parse(dtDDdate.Text);
                 }
-            }
-            if (Amount <= AmountBelow && Amount >= AmountAboove)
-            {
-                result = MessageBox.Show("Are you sure to save this record", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
+                dengiReceiptModel.paymentTypeId = (int)cboPaymentType.SelectedValue;
+                dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
+                dengiReceiptModel.DistId = (int)cboDistrict.SelectedValue;
+                dengiReceiptModel.DISTRICT = cboDistrict.Text;
+                dengiReceiptModel.Doc_type = cboDoctype.Text;
+                dengiReceiptModel.Doc_Detail = txtdocDetail.Text;
+                dengiReceiptModel.netbankname = txtNetBankName.Text;
+                dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
+                dengiReceiptModel.Invoiceno = txtInvoice.Text;
+                if (cboPaymentType.Text == "Swipe")
                 {
-                    int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
-
-                    if (status >= 0)
+                    dengiReceiptModel.tidId = (int)cobTid.SelectedValue;
+                }
+                else
+                {
+                    dengiReceiptModel.tidId = 0;
+                }
+                dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
                     {
-                        long chkMissingEntry;
-                        chkMissingEntry = fcheckInsert();
-                        if (chkMissingEntry < 0)
-                        {
-                            return;
-                        }
-                        txtdengireceiptNo.Text = status.ToString();
-
-                        //Refrence_Amount.Text = txtAmount.Text;
-                        //Refrence_Name.Text = txtname.Text;
+                        lstEnteredName = row["Name"].ToString();
+                        lstEnteredAmount = Convert.ToInt32(row["AMOUNT"]);
                     }
+                }
+                if (Convert.ToString(lstEnteredAmount) == txtAmount.Text && lstEnteredName == txtname.Text.Trim())
+                {
+                    //result = MessageBox.Show("Do you want to save duplicate record?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    //if (result == DialogResult.Yes)
+                    //{
+                    //    dengiReceiptModel.IsDuplicate = 159;
+                    //}
+                    InputBox inputbox = new InputBox();
+                    inputbox.MessageText = "Do you want to save Duplicate Record? Please insert Key";
+                    DialogResult result1 = inputbox.ShowDialog();
+                    if (result1 == DialogResult.OK)
+                    {
+                        dengiReceiptModel.IsDuplicate = Convert.ToInt32(inputbox.keyValue);
+                    }
+                    else
+                    {
+                        dengiReceiptModel.IsDuplicate = 0;
+                    }
+                }
+                else
+                {
+                    dengiReceiptModel.IsDuplicate = 0;
+                }
 
-                    if (status != 0)
+                dengiReceiptDAL = new DengiReceiptDAL();
+
+                DataTable dtAmlountltd = new DataTable();
+                dtAmlountltd = dengiReceiptDAL.getAmountLimits(cboDengiType.Text.Trim());
+                if (dtAmlountltd.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dtAmlountltd.Rows)
+                    {
+                        AmountAboove = Convert.ToInt32(row["AMOUNT_ABOVE"]);
+                        AmountBelow = Convert.ToInt32(row["AMOUNT_BELOW"]);
+                    }
+                }
+                if (Amount <= AmountBelow && Amount >= AmountAboove)
+                {
+                    result = MessageBox.Show("Are you sure to save this record", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
+
+                        if (status >= 0)
+                        {
+                            long chkMissingEntry;
+                            chkMissingEntry = fcheckInsert();
+                            if (chkMissingEntry < 0)
+                            {
+                                return;
+                            }
+                            txtdengireceiptNo.Text = status.ToString();
+
+                            //Refrence_Amount.Text = txtAmount.Text;
+                            //Refrence_Name.Text = txtname.Text;
+                        }
+
+                        if (status != 0)
+                        {
+                            resetAllFields();
+                            getDengiNo();
+                            unLockControls();
+                            string receptID = status.ToString();
+                            frmReportViewer report = new frmReportViewer("PRINT", receptID);
+                            report.createReport("Dengi");
+                            //  report.Show();
+                        }
+                        if (chkDeclaration.Checked == true)
+                        {
+                            string receptID = status.ToString();
+                            frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
+                            report.createReport("Dengi");
+                            // report.Show();
+                        }
+                    }
+                    else
                     {
                         resetAllFields();
                         getDengiNo();
                         unLockControls();
-                        string receptID = status.ToString();
-                        frmReportViewer report = new frmReportViewer("PRINT", receptID);
-                        report.createReport("Dengi");
-                        //  report.Show();
-                    }
-                    if (chkDeclaration.Checked == true)
-                    {
-                        string receptID = status.ToString();
-                        frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
-                        report.createReport("Dengi");
-                        // report.Show();
                     }
                 }
                 else
                 {
-                    resetAllFields();
-                    getDengiNo();
-                    unLockControls();
+                    MessageBox.Show("Amount is not acceptable, It should be greater than '" + AmountAboove + " and less than " + AmountBelow + "");
+                    txtAmount.Focus();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Amount is not acceptable, It should be greater than '" + AmountAboove + " and less than " + AmountBelow + "");
-                txtAmount.Focus();
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
 
         }
@@ -894,54 +990,61 @@ namespace SGMOSOL.SCREENS
 
         public void getAllData(object data)
         {
-            if (data is dengiReceiptModel obj)
+            try
             {
-                fillPaymentMode();
-                fillGotra();
-                fillDengiType();
-                fillCountry();
-                fillStateByCountryId();
-                fillDistrictbyStateId(Convert.ToInt32(cboState.SelectedValue));
-                txtdengireceiptNo.Text = obj.serailId.ToString();
-                txtdengireceiptNo.Tag = obj.Receipt_Id.ToString();
-                txtAmount.Text = obj.amount.ToString();
-                txtaddr.Text = obj.Address.ToString();
-                txtChqBankname.Text = obj.chqbankname.ToString();
-                txtChqNo.Text = obj.chno.ToString();
-                txtDDBankName.Text = obj.ddbankname.ToString();
-                txtDDNo.Text = obj.ddno.ToString();
-                //txtdengireceiptNo.Text = obj.Receipt_Id.ToString();
-                txtInvoice.Text = obj.Invoiceno.ToString();
-                txtmob.Text = obj.contact.ToString();
-                txtname.Text = obj.Name.ToString();
-                txtNetBankName.Text = obj.netbankname.ToString();
-                txtNetRefNo.Text = obj.netbankrefnumber.ToString();
-                txtPANNo.Text = obj.PanNo.ToString();
-                txtPincode.Text = obj.PinCode.ToString();
-                txttal.Text = obj.Taluka.ToString();
-                cboCountry.SelectedValue = obj.countryId;
-                cboDengiType.SelectedValue = Convert.ToInt32(obj.DengiId);
-                cboDistrict.SelectedValue = obj.DistId;
-                cboState.SelectedValue = obj.stateId;
-                cboPaymentType.SelectedValue = obj.paymentTypeId;
-                cboGotra.SelectedValue = obj.gotraId;
-                dtpPrnRcptDt.Text = obj.dr_Date.ToString();
-                if (obj.Doc_type != null)
-                    cboDoctype.Text = obj.Doc_type.ToString();
-                if (obj.Doc_Detail != null)
-                    txtdocDetail.Text = obj.Doc_Detail.ToString();
-                if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)
+                if (data is dengiReceiptModel obj)
                 {
-                    txtAddGotra.Visible = true;
-                    txtAddGotra.Text = obj.gotra.ToString();
+                    fillPaymentMode();
+                    fillGotra();
+                    fillDengiType();
+                    fillCountry();
+                    fillStateByCountryId();
+                    fillDistrictbyStateId(Convert.ToInt32(cboState.SelectedValue));
+                    txtdengireceiptNo.Text = obj.serailId.ToString();
+                    txtdengireceiptNo.Tag = obj.Receipt_Id.ToString();
+                    txtAmount.Text = obj.amount.ToString();
+                    txtaddr.Text = obj.Address.ToString();
+                    txtChqBankname.Text = obj.chqbankname.ToString();
+                    txtChqNo.Text = obj.chno.ToString();
+                    txtDDBankName.Text = obj.ddbankname.ToString();
+                    txtDDNo.Text = obj.ddno.ToString();
+                    //txtdengireceiptNo.Text = obj.Receipt_Id.ToString();
+                    txtInvoice.Text = obj.Invoiceno.ToString();
+                    txtmob.Text = obj.contact.ToString();
+                    txtname.Text = obj.Name.ToString();
+                    txtNetBankName.Text = obj.netbankname.ToString();
+                    txtNetRefNo.Text = obj.netbankrefnumber.ToString();
+                    txtPANNo.Text = obj.PanNo.ToString();
+                    txtPincode.Text = obj.PinCode.ToString();
+                    txttal.Text = obj.Taluka.ToString();
+                    cboCountry.SelectedValue = obj.countryId;
+                    cboDengiType.SelectedValue = Convert.ToInt32(obj.DengiId);
+                    cboDistrict.SelectedValue = obj.DistId;
+                    cboState.SelectedValue = obj.stateId;
+                    cboPaymentType.SelectedValue = obj.paymentTypeId;
+                    cboGotra.SelectedValue = obj.gotraId;
+                    dtpPrnRcptDt.Text = obj.dr_Date.ToString();
+                    if (obj.Doc_type != null)
+                        cboDoctype.Text = obj.Doc_type.ToString();
+                    if (obj.Doc_Detail != null)
+                        txtdocDetail.Text = obj.Doc_Detail.ToString();
+                    if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)
+                    {
+                        txtAddGotra.Visible = true;
+                        txtAddGotra.Text = obj.gotra.ToString();
+                    }
+                    dataOnPaymentMode();
+                    btnSave.Enabled = false;
+                    lockControls();
+                    btnAcknowledge.Enabled = true;
+                    btnPrint.Enabled = true;
+                    // this.IsMdiContainer = true;
+                    // this.Show();
                 }
-                dataOnPaymentMode();
-                btnSave.Enabled = false;
-                lockControls();
-                btnAcknowledge.Enabled = true;
-                btnPrint.Enabled = true;
-                // this.IsMdiContainer = true;
-                // this.Show();
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
         public void ShowAsMdiChild()
@@ -1201,12 +1304,17 @@ namespace SGMOSOL.SCREENS
                 }
                 if (e.KeyCode == Keys.F10)
                 {
+                    string lastName = "";
+                    string lastAmount = "";
                     dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
                     if (dt.Rows.Count > 0)
                     {
                         foreach (DataRow row in dt.Rows)
                         {
                             txtname.Text = row["Name"].ToString();
+                            lastName = row["Name"].ToString();
+                            txtAmount.Text = row["AMOUNT"].ToString();
+                            lastAmount = row["AMOUNT"].ToString();
                             if (row["Address"] != null)
                                 txtaddr.Text = row["Address"].ToString();
                             if (row["DOC_TYPE"] != null)
@@ -1282,7 +1390,7 @@ namespace SGMOSOL.SCREENS
             }
             catch (Exception ex)
             {
-
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
 

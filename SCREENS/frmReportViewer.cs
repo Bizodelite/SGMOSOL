@@ -156,7 +156,7 @@ namespace SGMOSOL.SCREENS
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             ReportDataSource reportDataSource = null;
             string DocumentName = null;
-            reportViewer2.LocalReport.DataSources.Clear();
+           
             if (flag == "PRINT")
             {
                 dt = bhojnalayDAL.getMessItemDataForReport(receiptID);
@@ -165,6 +165,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.LocalReport.ReportPath = reportPath;
                 foreach (DataRow row in dt.Rows)
                 {
+                    reportViewer2.LocalReport.DataSources.Clear();
                     DataTable datatable = dt.Clone();
                     datatable.ImportRow(row);
                     reportDataSource = new ReportDataSource("DataSet1", datatable);

@@ -195,7 +195,7 @@ namespace SGMOSOL.SCREENS
             this.cboDoctype.Location = new System.Drawing.Point(354, 51);
             this.cboDoctype.Name = "cboDoctype";
             this.cboDoctype.Size = new System.Drawing.Size(147, 28);
-            this.cboDoctype.TabIndex = 168;
+            this.cboDoctype.TabIndex = 2;
             this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged);
             // 
             // lblPaymentMode
@@ -358,7 +358,7 @@ namespace SGMOSOL.SCREENS
             this.txtdocDetail.Name = "txtdocDetail";
             this.txtdocDetail.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtdocDetail.Size = new System.Drawing.Size(117, 26);
-            this.txtdocDetail.TabIndex = 11;
+            this.txtdocDetail.TabIndex = 3;
             this.txtdocDetail.TextChanged += new System.EventHandler(this.txtdocDetail_TextChanged);
             this.txtdocDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocDetail_KeyPress);
             // 
@@ -477,7 +477,7 @@ namespace SGMOSOL.SCREENS
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtAmount.Size = new System.Drawing.Size(119, 26);
-            this.txtAmount.TabIndex = 9;
+            this.txtAmount.TabIndex = 1;
             this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             // 

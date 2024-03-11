@@ -47,7 +47,7 @@ namespace SGMOSOL.SCREENS
             txtAmount.TextChanged += txtAmount_TextChanged;
             txtPANNo.TextChanged += txtPANNo_TextChanged;
             txtaddr.TextChanged += txtaddr_TextChanged;
-            btnSave.Click += btnSave_Click;
+           // btnSave.Click += btnSave_Click;
             cboState.SelectedIndexChanged += cboState_SelectedIndexChanged;
             UserInfo.module = "Dengi";
         }
@@ -653,6 +653,13 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
+            if (txtdocDetail.Text != "" && cboDoctype.Text == "Select")
+            {
+                lbldoctype_err.Text = "Please select Document";
+            }
+            else {
+                lbldoctype_err.Text = "";
+            }
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";
@@ -845,7 +852,7 @@ namespace SGMOSOL.SCREENS
                     else
                     {
                         dengiReceiptModel.IsDuplicate = 0;
-                    }
+                    }      
                 }
                 else
                 {

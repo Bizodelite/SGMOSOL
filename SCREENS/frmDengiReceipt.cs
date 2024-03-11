@@ -47,7 +47,7 @@ namespace SGMOSOL.SCREENS
             txtAmount.TextChanged += txtAmount_TextChanged;
             txtPANNo.TextChanged += txtPANNo_TextChanged;
             txtaddr.TextChanged += txtaddr_TextChanged;
-           // btnSave.Click += btnSave_Click;
+            // btnSave.Click += btnSave_Click;
             cboState.SelectedIndexChanged += cboState_SelectedIndexChanged;
             UserInfo.module = "Dengi";
         }
@@ -403,6 +403,7 @@ namespace SGMOSOL.SCREENS
             chkScanDoc.Enabled = false;
             btnScan.Enabled = false;
             btnClear.Enabled = false;
+            cobTid.Enabled = false;
 
         }
 
@@ -499,7 +500,7 @@ namespace SGMOSOL.SCREENS
         private void txtname_TextChanged(object sender, EventArgs e)
         {
             try
-           {
+            {
                 if (txtname.Text != "")
                 {
                     lblName.Text = "";
@@ -845,7 +846,7 @@ namespace SGMOSOL.SCREENS
                     }
                     if (result1 == DialogResult.Cancel)
                     {
-                       // inputbox.Close();
+                        // inputbox.Close();
                         return;
                     }
                 }

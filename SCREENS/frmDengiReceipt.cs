@@ -655,6 +655,13 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
+            if (txtdocDetail.Text != "" && cboDoctype.Text == "Select")
+            {
+                lbldoctype_err.Text = "Please select Document";
+            }
+            else {
+                lbldoctype_err.Text = "";
+            }
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";

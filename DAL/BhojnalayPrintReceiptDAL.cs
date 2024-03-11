@@ -89,7 +89,7 @@ namespace SGMOSOL.DAL
             int ReceiptNumber = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT MAX(PRINT_RECEIPT_MST_ID) FROM MESS_PRINT_RECEIPT_MST_T";
+                string query = "SELECT MAX(SERIAL_NO) FROM MESS_PRINT_RECEIPT_MST_T WHERE LOC_ID=" + UserInfo.Loc_id + " AND DEPT_ID=" + UserInfo.Dept_id + " AND FY_ID=" + UserInfo.fy_id + "";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();
@@ -122,7 +122,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@COM_ID", 9);
                             command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
-                            command.Parameters.AddWithValue("@FY_ID", 11);
+                            command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
                             command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
                             command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
                             command.Parameters.AddWithValue("@GUEST", 0);
@@ -132,8 +132,8 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@REMARKS", null);
                             command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
                             command.Parameters.AddWithValue("@MODIFIED_BY", "");
-                            command.Parameters.AddWithValue("@MACHINE_NAME", "");
-                            command.Parameters.AddWithValue("@SERVER_NAME", "");
+                            command.Parameters.AddWithValue("@MACHINE_NAME", UserInfo.Machine_Name);
+                            command.Parameters.AddWithValue("@SERVER_NAME", UserInfo.serverName);
                             command.Parameters.AddWithValue("@ITEM_NAME", obj.ItemName);
                             command.Parameters.AddWithValue("@NAME", obj.Name);
                             command.Parameters.AddWithValue("@ADDRESS", obj.Address);

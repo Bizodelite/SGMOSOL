@@ -494,11 +494,12 @@ namespace SGMOSOL.SCREENS
             lblTaluka.Text = "";
             lblPincode.Text = "";
             dtpPrnRcptDt.Enabled = false;
+            cboDoctype.SelectedValue = 0;
         }
         private void txtname_TextChanged(object sender, EventArgs e)
         {
             try
-            {
+           {
                 if (txtname.Text != "")
                 {
                     lblName.Text = "";
@@ -849,10 +850,11 @@ namespace SGMOSOL.SCREENS
                     {
                         dengiReceiptModel.IsDuplicate = Convert.ToInt32(inputbox.keyValue);
                     }
-                    else
+                    if (result1 == DialogResult.Cancel)
                     {
-                        dengiReceiptModel.IsDuplicate = 0;
-                    }      
+                       // inputbox.Close();
+                        return;
+                    }
                 }
                 else
                 {

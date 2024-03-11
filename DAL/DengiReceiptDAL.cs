@@ -230,7 +230,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@COUNTRY_NAME", obj.COUNTRY_NAME);
                             command.Parameters.AddWithValue("@PanCard", obj.PanNo);
                             command.Parameters.AddWithValue("@Pincode", obj.PinCode);
-                            if (obj.gotra != "Select")
+                            if (obj.Doc_type != "Select")
                                 command.Parameters.AddWithValue("@Doc_Type", obj.Doc_type);
                             else
                                 command.Parameters.AddWithValue("@Doc_Type", null);
@@ -242,7 +242,7 @@ namespace SGMOSOL.DAL
                             command.ExecuteNonQuery();
                             status = Convert.ToInt32(command.Parameters["@Receipt_ID"].Value);
                         }
-                        MessageBox.Show("Dengi Receipt saved Successfully");
+                      //  MessageBox.Show("Dengi Receipt saved Successfully");
                     }
                 }
             }

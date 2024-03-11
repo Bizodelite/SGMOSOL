@@ -279,6 +279,14 @@ namespace SGMOSOL.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class MESS_ITEM_RECEIPT_DATA_VDataTable : global::System.Data.TypedTableBase<MESS_ITEM_RECEIPT_DATA_VRow> {
             
+            private global::System.Data.DataColumn columnDEPT_ID;
+            
+            private global::System.Data.DataColumn columnLocation_Id;
+            
+            private global::System.Data.DataColumn columnCOUNTER;
+            
+            private global::System.Data.DataColumn columnLocation_Name;
+            
             private global::System.Data.DataColumn columnUser_Login_Name;
             
             private global::System.Data.DataColumn columnUser_Id;
@@ -313,9 +321,15 @@ namespace SGMOSOL.DataSet {
             
             private global::System.Data.DataColumn columnAMOUNT;
             
-            private global::System.Data.DataColumn _columnAMOUNT_IN_WORDS;
+            private global::System.Data.DataColumn columnDATE;
+            
+            private global::System.Data.DataColumn columnAMOUNT_IN_WORDS;
             
             private global::System.Data.DataColumn columnREPORT_TYPE;
+            
+            private global::System.Data.DataColumn columnSERIAL_NO;
+            
+            private global::System.Data.DataColumn columnITEM_PRINT_RECEIPT_ID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -348,6 +362,38 @@ namespace SGMOSOL.DataSet {
             protected MESS_ITEM_RECEIPT_DATA_VDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DEPT_IDColumn {
+                get {
+                    return this.columnDEPT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Location_IdColumn {
+                get {
+                    return this.columnLocation_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn COUNTERColumn {
+                get {
+                    return this.columnCOUNTER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Location_NameColumn {
+                get {
+                    return this.columnLocation_Name;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -488,9 +534,17 @@ namespace SGMOSOL.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _AMOUNT_IN_WORDSColumn {
+            public global::System.Data.DataColumn DATEColumn {
                 get {
-                    return this._columnAMOUNT_IN_WORDS;
+                    return this.columnDATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AMOUNT_IN_WORDSColumn {
+                get {
+                    return this.columnAMOUNT_IN_WORDS;
                 }
             }
             
@@ -499,6 +553,22 @@ namespace SGMOSOL.DataSet {
             public global::System.Data.DataColumn REPORT_TYPEColumn {
                 get {
                     return this.columnREPORT_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SERIAL_NOColumn {
+                get {
+                    return this.columnSERIAL_NO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ITEM_PRINT_RECEIPT_IDColumn {
+                get {
+                    return this.columnITEM_PRINT_RECEIPT_ID;
                 }
             }
             
@@ -540,6 +610,10 @@ namespace SGMOSOL.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public MESS_ITEM_RECEIPT_DATA_VRow AddMESS_ITEM_RECEIPT_DATA_VRow(
+                        int DEPT_ID, 
+                        int Location_Id, 
+                        string COUNTER, 
+                        string Location_Name, 
                         string User_Login_Name, 
                         int User_Id, 
                         System.DateTime PR_DATE, 
@@ -557,10 +631,17 @@ namespace SGMOSOL.DataSet {
                         decimal PRICE, 
                         decimal QTY, 
                         decimal AMOUNT, 
-                        string _AMOUNT_IN_WORDS, 
-                        string REPORT_TYPE) {
+                        string DATE, 
+                        string AMOUNT_IN_WORDS, 
+                        string REPORT_TYPE, 
+                        decimal SERIAL_NO, 
+                        decimal ITEM_PRINT_RECEIPT_ID) {
                 MESS_ITEM_RECEIPT_DATA_VRow rowMESS_ITEM_RECEIPT_DATA_VRow = ((MESS_ITEM_RECEIPT_DATA_VRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        DEPT_ID,
+                        Location_Id,
+                        COUNTER,
+                        Location_Name,
                         User_Login_Name,
                         User_Id,
                         PR_DATE,
@@ -578,8 +659,11 @@ namespace SGMOSOL.DataSet {
                         PRICE,
                         QTY,
                         AMOUNT,
-                        _AMOUNT_IN_WORDS,
-                        REPORT_TYPE};
+                        DATE,
+                        AMOUNT_IN_WORDS,
+                        REPORT_TYPE,
+                        SERIAL_NO,
+                        ITEM_PRINT_RECEIPT_ID};
                 rowMESS_ITEM_RECEIPT_DATA_VRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMESS_ITEM_RECEIPT_DATA_VRow);
                 return rowMESS_ITEM_RECEIPT_DATA_VRow;
@@ -602,6 +686,10 @@ namespace SGMOSOL.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
+                this.columnDEPT_ID = base.Columns["DEPT_ID"];
+                this.columnLocation_Id = base.Columns["Location_Id"];
+                this.columnCOUNTER = base.Columns["COUNTER"];
+                this.columnLocation_Name = base.Columns["Location_Name"];
                 this.columnUser_Login_Name = base.Columns["User_Login_Name"];
                 this.columnUser_Id = base.Columns["User_Id"];
                 this.columnPR_DATE = base.Columns["PR_DATE"];
@@ -619,13 +707,24 @@ namespace SGMOSOL.DataSet {
                 this.columnPRICE = base.Columns["PRICE"];
                 this.columnQTY = base.Columns["QTY"];
                 this.columnAMOUNT = base.Columns["AMOUNT"];
-                this._columnAMOUNT_IN_WORDS = base.Columns["AMOUNT-IN_WORDS"];
+                this.columnDATE = base.Columns["DATE"];
+                this.columnAMOUNT_IN_WORDS = base.Columns["AMOUNT_IN_WORDS"];
                 this.columnREPORT_TYPE = base.Columns["REPORT_TYPE"];
+                this.columnSERIAL_NO = base.Columns["SERIAL_NO"];
+                this.columnITEM_PRINT_RECEIPT_ID = base.Columns["ITEM_PRINT_RECEIPT_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
+                this.columnDEPT_ID = new global::System.Data.DataColumn("DEPT_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDEPT_ID);
+                this.columnLocation_Id = new global::System.Data.DataColumn("Location_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocation_Id);
+                this.columnCOUNTER = new global::System.Data.DataColumn("COUNTER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOUNTER);
+                this.columnLocation_Name = new global::System.Data.DataColumn("Location_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocation_Name);
                 this.columnUser_Login_Name = new global::System.Data.DataColumn("User_Login_Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUser_Login_Name);
                 this.columnUser_Id = new global::System.Data.DataColumn("User_Id", typeof(int), null, global::System.Data.MappingType.Element);
@@ -660,12 +759,22 @@ namespace SGMOSOL.DataSet {
                 base.Columns.Add(this.columnQTY);
                 this.columnAMOUNT = new global::System.Data.DataColumn("AMOUNT", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAMOUNT);
-                this._columnAMOUNT_IN_WORDS = new global::System.Data.DataColumn("AMOUNT-IN_WORDS", typeof(string), null, global::System.Data.MappingType.Element);
-                this._columnAMOUNT_IN_WORDS.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnAMOUNT_IN_WORDS");
-                this._columnAMOUNT_IN_WORDS.ExtendedProperties.Add("Generator_UserColumnName", "AMOUNT-IN_WORDS");
-                base.Columns.Add(this._columnAMOUNT_IN_WORDS);
+                this.columnDATE = new global::System.Data.DataColumn("DATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE);
+                this.columnAMOUNT_IN_WORDS = new global::System.Data.DataColumn("AMOUNT_IN_WORDS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT_IN_WORDS);
                 this.columnREPORT_TYPE = new global::System.Data.DataColumn("REPORT_TYPE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnREPORT_TYPE);
+                this.columnSERIAL_NO = new global::System.Data.DataColumn("SERIAL_NO", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSERIAL_NO);
+                this.columnITEM_PRINT_RECEIPT_ID = new global::System.Data.DataColumn("ITEM_PRINT_RECEIPT_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnITEM_PRINT_RECEIPT_ID);
+                this.columnDEPT_ID.AllowDBNull = false;
+                this.columnLocation_Id.AllowDBNull = false;
+                this.columnCOUNTER.ReadOnly = true;
+                this.columnCOUNTER.MaxLength = 100;
+                this.columnLocation_Name.ReadOnly = true;
+                this.columnLocation_Name.MaxLength = 40;
                 this.columnUser_Login_Name.MaxLength = 45;
                 this.columnPR_DATE.AllowDBNull = false;
                 this.columnName.MaxLength = 50;
@@ -680,6 +789,8 @@ namespace SGMOSOL.DataSet {
                 this.columnPRICE.AllowDBNull = false;
                 this.columnQTY.AllowDBNull = false;
                 this.columnAMOUNT.AllowDBNull = false;
+                this.columnDATE.ReadOnly = true;
+                this.columnDATE.MaxLength = 30;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -818,6 +929,61 @@ namespace SGMOSOL.DataSet {
             internal MESS_ITEM_RECEIPT_DATA_VRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableMESS_ITEM_RECEIPT_DATA_V = ((MESS_ITEM_RECEIPT_DATA_VDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int DEPT_ID {
+                get {
+                    return ((int)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.DEPT_IDColumn]));
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.DEPT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Location_Id {
+                get {
+                    return ((int)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.Location_IdColumn]));
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.Location_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string COUNTER {
+                get {
+                    try {
+                        return ((string)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.COUNTERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'COUNTER\' in table \'MESS_ITEM_RECEIPT_DATA_V\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.COUNTERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Location_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.Location_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Location_Name\' in table \'MESS_ITEM_RECEIPT_DATA_V\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.Location_NameColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1060,18 +1226,34 @@ namespace SGMOSOL.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string _AMOUNT_IN_WORDS {
+            public string DATE {
                 get {
                     try {
-                        return ((string)(this[this.tableMESS_ITEM_RECEIPT_DATA_V._AMOUNT_IN_WORDSColumn]));
+                        return ((string)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.DATEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT-IN_WORDS\' in table \'MESS_ITEM_RECEIPT_DATA_V\' is DBN" +
+                        throw new global::System.Data.StrongTypingException("The value for column \'DATE\' in table \'MESS_ITEM_RECEIPT_DATA_V\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string AMOUNT_IN_WORDS {
+                get {
+                    try {
+                        return ((string)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.AMOUNT_IN_WORDSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT_IN_WORDS\' in table \'MESS_ITEM_RECEIPT_DATA_V\' is DBN" +
                                 "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableMESS_ITEM_RECEIPT_DATA_V._AMOUNT_IN_WORDSColumn] = value;
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.AMOUNT_IN_WORDSColumn] = value;
                 }
             }
             
@@ -1090,6 +1272,63 @@ namespace SGMOSOL.DataSet {
                 set {
                     this[this.tableMESS_ITEM_RECEIPT_DATA_V.REPORT_TYPEColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal SERIAL_NO {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.SERIAL_NOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SERIAL_NO\' in table \'MESS_ITEM_RECEIPT_DATA_V\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.SERIAL_NOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal ITEM_PRINT_RECEIPT_ID {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMESS_ITEM_RECEIPT_DATA_V.ITEM_PRINT_RECEIPT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ITEM_PRINT_RECEIPT_ID\' in table \'MESS_ITEM_RECEIPT_DATA_V\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMESS_ITEM_RECEIPT_DATA_V.ITEM_PRINT_RECEIPT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCOUNTERNull() {
+                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V.COUNTERColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCOUNTERNull() {
+                this[this.tableMESS_ITEM_RECEIPT_DATA_V.COUNTERColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLocation_NameNull() {
+                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V.Location_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLocation_NameNull() {
+                this[this.tableMESS_ITEM_RECEIPT_DATA_V.Location_NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1214,14 +1453,26 @@ namespace SGMOSOL.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Is_AMOUNT_IN_WORDSNull() {
-                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V._AMOUNT_IN_WORDSColumn);
+            public bool IsDATENull() {
+                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V.DATEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Set_AMOUNT_IN_WORDSNull() {
-                this[this.tableMESS_ITEM_RECEIPT_DATA_V._AMOUNT_IN_WORDSColumn] = global::System.Convert.DBNull;
+            public void SetDATENull() {
+                this[this.tableMESS_ITEM_RECEIPT_DATA_V.DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAMOUNT_IN_WORDSNull() {
+                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V.AMOUNT_IN_WORDSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAMOUNT_IN_WORDSNull() {
+                this[this.tableMESS_ITEM_RECEIPT_DATA_V.AMOUNT_IN_WORDSColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1234,6 +1485,30 @@ namespace SGMOSOL.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetREPORT_TYPENull() {
                 this[this.tableMESS_ITEM_RECEIPT_DATA_V.REPORT_TYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSERIAL_NONull() {
+                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V.SERIAL_NOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSERIAL_NONull() {
+                this[this.tableMESS_ITEM_RECEIPT_DATA_V.SERIAL_NOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsITEM_PRINT_RECEIPT_IDNull() {
+                return this.IsNull(this.tableMESS_ITEM_RECEIPT_DATA_V.ITEM_PRINT_RECEIPT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetITEM_PRINT_RECEIPT_IDNull() {
+                this[this.tableMESS_ITEM_RECEIPT_DATA_V.ITEM_PRINT_RECEIPT_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1396,6 +1671,10 @@ namespace SGMOSOL.DataSet.MessItemDSTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "MESS_ITEM_RECEIPT_DATA_V";
+            tableMapping.ColumnMappings.Add("DEPT_ID", "DEPT_ID");
+            tableMapping.ColumnMappings.Add("Location_Id", "Location_Id");
+            tableMapping.ColumnMappings.Add("COUNTER", "COUNTER");
+            tableMapping.ColumnMappings.Add("Location_Name", "Location_Name");
             tableMapping.ColumnMappings.Add("User_Login_Name", "User_Login_Name");
             tableMapping.ColumnMappings.Add("User_Id", "User_Id");
             tableMapping.ColumnMappings.Add("PR_DATE", "PR_DATE");
@@ -1413,6 +1692,9 @@ namespace SGMOSOL.DataSet.MessItemDSTableAdapters {
             tableMapping.ColumnMappings.Add("PRICE", "PRICE");
             tableMapping.ColumnMappings.Add("QTY", "QTY");
             tableMapping.ColumnMappings.Add("AMOUNT", "AMOUNT");
+            tableMapping.ColumnMappings.Add("DATE", "DATE");
+            tableMapping.ColumnMappings.Add("SERIAL_NO", "SERIAL_NO");
+            tableMapping.ColumnMappings.Add("ITEM_PRINT_RECEIPT_ID", "ITEM_PRINT_RECEIPT_ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1429,7 +1711,7 @@ namespace SGMOSOL.DataSet.MessItemDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from [MESS_ITEM_RECEIPT_DATA_V] ";
+            this._commandCollection[0].CommandText = "SELECT  *  FROM MESS_ITEM_RECEIPT_DATA_V";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

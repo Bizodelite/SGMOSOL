@@ -36,7 +36,6 @@ namespace SGMOSOL
 
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             frmDengiReceip = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
             if (frmDengiReceip == null)
             {
@@ -83,12 +82,12 @@ namespace SGMOSOL
                 frmbhojnalayaPrintReceipt.MdiParent = this;
                 frmbhojnalayaPrintReceipt.WindowState = FormWindowState.Maximized;
                 frmbhojnalayaPrintReceipt.Show();
-            }
+            }  
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi == null)
             {
                 frmuserDengi = new frmUserDengi();
-               frmuserDengi.WindowState = FormWindowState.Minimized;
+                frmuserDengi.WindowState = FormWindowState.Minimized;
                 frmuserDengi.Show();
             }
         }
@@ -115,7 +114,7 @@ namespace SGMOSOL
             }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)
-            { 
+            {
                 frmuserDengi.Close();
             }
         }

@@ -26,7 +26,7 @@ namespace SGMOSOL.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT ITEM_ID,ITEM_CODE FROM BK_MESS_ITEM_MST_T_BK";
+                string query = "SELECT ITEM_ID,ITEM_CODE FROM BK_MESS_ITEM_MST_T_BK WHERE ACTIVE=1";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 adapter.Fill(dt);
                 connection.Close();
@@ -39,7 +39,7 @@ namespace SGMOSOL.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT ITEM_ID,ITEM_TITLE FROM BK_MESS_ITEM_MST_T_BK";
+                string query = "SELECT ITEM_ID,ITEM_TITLE FROM BK_MESS_ITEM_MST_T_BK WHERE ACTIVE=1";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 adapter.Fill(dt);
                 connection.Close();

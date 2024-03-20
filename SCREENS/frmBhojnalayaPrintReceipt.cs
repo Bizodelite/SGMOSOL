@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using System.Web.UI.WebControls;
 
 namespace SGMOSOL.SCREENS
 {
@@ -39,6 +40,7 @@ namespace SGMOSOL.SCREENS
 
         private void frmBhojnalayaPrintReceipt_Load(object sender, EventArgs e)
         {
+            user = new frmUserDengi();
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
             pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
@@ -52,11 +54,8 @@ namespace SGMOSOL.SCREENS
                 fillDocumentType();
                 txtReceiptno.Text = bhojnalayprintReceiptBAL.getMasterReceiptNumber().ToString();
             }
-
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
-            //user = new frmUserDengi();
-            //user.Show();
         }
         private void fillItemCode()
         {
@@ -111,7 +110,6 @@ namespace SGMOSOL.SCREENS
             cboItemCode.SelectedValue = ItemID;
             price = bhojnalayprintReceiptBAL.getItemPrice((Convert.ToInt32(cboItemCode.SelectedValue)));
             txtPrice.Text = price.ToString();
-
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
@@ -286,7 +284,7 @@ namespace SGMOSOL.SCREENS
             }
             return sum.ToString();
         }
-      
+
         public void addCustomField(DataTable dt)
         {
             string printType = "D";
@@ -311,7 +309,7 @@ namespace SGMOSOL.SCREENS
         {
             frmReportViewer frm = new frmReportViewer("PRINT", txtReceiptno.Tag.ToString(), "D");
             frm.createReport("Bhojnalaya");
-           // frm.Show();
+            // frm.Show();
         }
         private void insertBhojnalayReceiptMaster()
         {
@@ -360,10 +358,9 @@ namespace SGMOSOL.SCREENS
                     string Receipt_Id = Status.ToString();
                     frmReportViewer report = new frmReportViewer("PRINT", Receipt_Id);
                     report.createReport("Bhojnalaya");
-                  //  report.Show();
+                    //  report.Show();
 
                 }
-                //
                 clearControls();
             }
         }
@@ -460,8 +457,6 @@ namespace SGMOSOL.SCREENS
             cboItemCode.Enabled = false;
             cboItemName.Enabled = false;
             btnAdd.Enabled = false;
-
-
         }
 
         private void txtMobile_TextChanged(object sender, EventArgs e)
@@ -476,7 +471,8 @@ namespace SGMOSOL.SCREENS
             {
                 lblMobile.Text = "Please enter a valid 10-digit mobile number.";
             }
-            // user.Setmobile(mobileNumber);
+            user.Setmobile(mobileNumber);
+            user.Show();
         }
 
         private void cboDocName_SelectedIndexChanged(object sender, EventArgs e)
@@ -489,7 +485,8 @@ namespace SGMOSOL.SCREENS
             {
                 lblDocDetail.Text = "";
             }
-            //user.SetDocType(cboDocName.Text);
+            user.SetDocType(cboDocName.Text);
+            user.Show();
         }
 
         private void txtTotalAmount_TextChanged(object sender, EventArgs e)
@@ -502,9 +499,7 @@ namespace SGMOSOL.SCREENS
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-
             DialogResult result = MessageBox.Show("Are you sure you want to close the application?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (result == DialogResult.Yes)
             {
                 this.Close();
@@ -561,22 +556,39 @@ namespace SGMOSOL.SCREENS
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            //  user.SetText(txtName.Text);
+            if (txtName.Text != "")
+            {
+                user.SetText(txtName.Text);
+                user.Show();
+            }
         }
 
         private void txtTaluka_TextChanged(object sender, EventArgs e)
         {
-            // user.SetTaluka(txtTaluka.Text);
+            if (txtTaluka.Text != "")
+            {
+                user.SetTaluka(txtTaluka.Text);
+                user.Show();
+            }
         }
 
         private void txtDocumentName_TextChanged(object sender, EventArgs e)
         {
-            //  user.SetDocDetail(txtDocumentName.Text);
+            if (txtDocumentName.Text != "")
+            {
+                user.SetDocDetail(txtDocumentName.Text);
+                user.Show();
+            }
         }
 
         private void txtAddress_TextChanged(object sender, EventArgs e)
         {
-            // user.SetAddress(txtAddress.Text);
+            if (txtAddress.Text != "")
+            {
+                user.SetAddress(txtAddress.Text);
+                user.Show();
+            }
+
         }
     }
 }

@@ -1041,7 +1041,7 @@ namespace SGMOSOL.SCREENS
                     cboGotra.SelectedValue = obj.gotraId;
                     dtpPrnRcptDt.Text = obj.dr_Date.ToString();
                     if (obj.Doc_type != null)
-                        cboDoctype.Text = obj.Doc_type.ToString();
+                        cboDoctype.SelectedValue = obj.Doc_type.ToString();
                     if (obj.Doc_Detail != null)
                         txtdocDetail.Text = obj.Doc_Detail.ToString();
                     if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)

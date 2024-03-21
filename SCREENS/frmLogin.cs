@@ -65,8 +65,9 @@ namespace SGMOSOL.SCREENS
                         if (Status == "Y")
                         {
                             uID = login.getUserId(isUser);
-                            activeUser = login.GetLoggedInUser(uID);
-                            if (activeUser == 0)
+                            DataTable dtActiveUser = new DataTable();
+                            dtActiveUser = login.GetLoggedInUser(uID);
+                            if (dtActiveUser.Rows.Count == 0)
                             {
                                 UserInfo.UserId = uID;
                                 dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
@@ -89,7 +90,8 @@ namespace SGMOSOL.SCREENS
                             }
                             else
                             {
-                                lblmessage.Text = "User already loggedIn, Please logout first !!!";
+                                string loggedCounterName = dtActiveUser.Rows[0]["COUNTER_NAME"].ToString();
+                                lblmessage.Text = "User already loggedIn ON " + loggedCounterName + ", Please logout first !!!";
                                 return;
                             }
                             UserInfo.UserName = isUser;

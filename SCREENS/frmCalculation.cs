@@ -104,6 +104,11 @@ namespace SGMOSOL.SCREENS
             deleteButtonColumn.UseColumnTextForButtonValue = true;
             dgvItemDetails.Columns.Add(editButtonColumn);
             dgvItemDetails.Columns.Add(deleteButtonColumn);
+            foreach (DataGridViewColumn column in dgvItemDetails.Columns)
+            {
+                if (column.Name != "Quantity")
+                    column.ReadOnly = true;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -325,6 +330,22 @@ namespace SGMOSOL.SCREENS
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvItemDetails_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvItemDetails.Columns["Quantity"].Index && e.RowIndex >= 0)
+            {
+                // Get the quantity and price values
+                int quantity = Convert.ToInt32(dgvItemDetails.Rows[e.RowIndex].Cells["Quantity"].Value);
+                decimal Currency = Convert.ToDecimal(dgvItemDetails.Rows[e.RowIndex].Cells["Currency"].Value);
+
+                // Calculate the amount
+                decimal amount = quantity * Currency;
+
+                // Update the "Amount" cell
+                dgvItemDetails.Rows[e.RowIndex].Cells["Amount"].Value = amount;
+            }
         }
     }
 }

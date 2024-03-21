@@ -150,7 +150,9 @@ namespace SGMOSOL.ADMIN
                     stringBuilder.Append("SELECT isnull(Token_Detail_Id,0) AS Token_Detail_Id");
                     stringBuilder.Append(", isnull(Token_Detail_Name, '') AS Token_Detail_Name");
                     stringBuilder.Append(", isnull(Token_Detail_code, '') AS Token_Detail_Name FROM");
-                    stringBuilder.Append("  com_token_det_t where Token_Mst_Id = 6 ");
+                    stringBuilder.Append("  com_token_det_t");
+                    stringBuilder.Append("  left join PAYMENT_TYPE_MST on PAYMENT_TYPE=Token_Detail_Id ");
+                    stringBuilder.Append(" where Token_Mst_Id = 6 and MODULE_ID=1 and STATUS=1 ");
                     SqlDataAdapter adapter = new SqlDataAdapter(stringBuilder.ToString(), connection);
                     connection.Close();
                     adapter.Fill(dt);

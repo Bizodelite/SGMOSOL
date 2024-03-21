@@ -86,13 +86,13 @@
             this.dgvItemDetails.Location = new System.Drawing.Point(87, 145);
             this.dgvItemDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvItemDetails.Name = "dgvItemDetails";
-            this.dgvItemDetails.ReadOnly = true;
             this.dgvItemDetails.RowHeadersWidth = 51;
             this.dgvItemDetails.RowTemplate.Height = 24;
             this.dgvItemDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvItemDetails.Size = new System.Drawing.Size(576, 147);
             this.dgvItemDetails.TabIndex = 38;
             this.dgvItemDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemDetails_CellContentClick);
+            this.dgvItemDetails.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemDetails_CellValueChanged);
             // 
             // btnAdd
             // 

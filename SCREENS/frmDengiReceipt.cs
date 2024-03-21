@@ -654,13 +654,18 @@ namespace SGMOSOL.SCREENS
                         else { lbldocdetailerr.Text = ""; }
                     }
                 }
-            }
-            if (txtdocDetail.Text != "" && cboDoctype.Text == "Select")
-            {
-                lbldoctype_err.Text = "Please select Document";
-            }
-            else {
-                lbldoctype_err.Text = "";
+                else
+                {
+                    if (cboDoctype.Text == "Select" && txtdocDetail.Text != "")
+                    {
+                        lbldoctype_err.Text = "";
+                    }
+                    else
+                    {
+                        lbldoctype_err.Text = "";
+                        lbldocdetailerr.Text = "";
+                    }
+                }
             }
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
@@ -815,7 +820,8 @@ namespace SGMOSOL.SCREENS
                 dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
                 dengiReceiptModel.DistId = (int)cboDistrict.SelectedValue;
                 dengiReceiptModel.DISTRICT = cboDistrict.Text;
-                dengiReceiptModel.Doc_type = cboDoctype.Text;
+                // dengiReceiptModel.Doc_type = cboDoctype.Text;
+                dengiReceiptModel.Doc_type = cboDoctype.SelectedValue.ToString();
                 dengiReceiptModel.Doc_Detail = txtdocDetail.Text;
                 dengiReceiptModel.netbankname = txtNetBankName.Text;
                 dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;

@@ -148,6 +148,7 @@ namespace SGMOSOL.DAL
                         command.Parameters.AddWithValue("@LOGGED_OUT_TIME", null);
                         command.Parameters.AddWithValue("@LOGIN_TYPE", null);
                         command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
+                        command.Parameters.AddWithValue("@CounterName", UserInfo.Counter_Name);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -217,23 +218,22 @@ namespace SGMOSOL.DAL
             return status;
         }
 
-        public int GetLoggedInUser(int uid)
+        public DataTable GetLoggedInUser(int uid)
         {
-            int Id = 0;
-            string query = "select USER_ID from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
+            DataTable dt = new DataTable();
+            string query = "select USER_ID, COUNTER_NAME from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && result != null)
-                    {
-                        Id = Convert.ToInt32(result);
-                    }
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dt);
+                    connection.Close();
+
                 }
             }
-            return Id;
+            return dt;
         }
     }
 }

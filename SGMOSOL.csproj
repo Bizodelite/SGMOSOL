@@ -302,6 +302,12 @@
     <Compile Include="SCREENS\frmDengiReceiptPrint.Designer.cs">
       <DependentUpon>frmDengiReceiptPrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCREENS\frmEncryption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmEncryption.Designer.cs">
+      <DependentUpon>frmEncryption.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmDengiReceiptPrint.resx">
       <DependentUpon>frmDengiReceiptPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmEncryption.resx">
+      <DependentUpon>frmEncryption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

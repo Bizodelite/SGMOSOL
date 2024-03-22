@@ -118,6 +118,11 @@ namespace SGMOSOL.SCREENS
             lblValue.Text = strDengiType;
             lblDengiHead.Text = strDengiType;
         }
+        public void SetMode(string strMode)
+        {
+            lblValue.Text = strMode;
+            lblMode.Text = strMode;
+        }
         private void btnconvert_Click(object sender, EventArgs e)
         {
             if (btnconvert.Text.ToUpper() == "CONVERT TO ENGLISH")

@@ -304,6 +304,7 @@ namespace SGMOSOL.SCREENS
         {
             dataOnPaymentMode();
             lblPaymentMode.Text = "";
+            userDengi.SetMode(cboPaymentType.Text);
         }
         public void clearControl()
         {
@@ -1272,7 +1273,7 @@ namespace SGMOSOL.SCREENS
 
         private void cboDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDistrict.SelectedIndex != -1)
+            if (cboDistrict.SelectedIndex != 0)
             {
                 userDengi.SetDistrict(cboDistrict.Text);
 

@@ -626,7 +626,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>  (Donor's Signature)</Value>
+                    <Value>(Donor's Signature)</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>

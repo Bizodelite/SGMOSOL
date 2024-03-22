@@ -22,12 +22,31 @@ namespace SGMOSOL.SCREENS
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
             string strEncrypt = CommonFunctions.Encrypt(txtEncrypt.Text, true);
-            lblEncryptValue.Text = strEncrypt;
+            lblEncrypted.Text = strEncrypt;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmEncryption_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblEncrypted.Text);
+            btnCopy.Text = "Copied";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            btnCopy.Text = "Copy";
+            lblEncrypted.Text = "";
+            txtEncrypt.Text = "";
+            Clipboard.Clear();
         }
     }
 }

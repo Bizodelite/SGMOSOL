@@ -606,8 +606,6 @@ namespace SGMOSOL.SCREENS
         private void btnSave_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            string lstEnteredName = null;
-            string lstEnteredAmount = null;
             if (txtmob.Text == "")
             {
                 lblMobile.Text = "Please Enter Mobile number";
@@ -1054,8 +1052,6 @@ namespace SGMOSOL.SCREENS
                     lockControls();
                     btnAcknowledge.Enabled = true;
                     btnPrint.Enabled = true;
-                    // this.IsMdiContainer = true;
-                    // this.Show();
                 }
             }
             catch (Exception ex)
@@ -1130,15 +1126,23 @@ namespace SGMOSOL.SCREENS
             // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
-        {
-            string receptID = txtdengireceiptNo.Tag.ToString();
+         {
+            if (isPrint)
+            {
+                string receptID = txtdengireceiptNo.Tag.ToString();
 
-            // Code to save Duplicate Print
+                // Code to save Duplicate Print
 
-            int status = dengiReceiptDAL.DupPrintDeclaration(receptID);
+                int status = dengiReceiptDAL.DupPrintDeclaration(receptID);
 
-            frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
-            report.createReport("Dengi");
+                frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
+                report.createReport("Dengi");
+            }
+            else {
+                //createTempTableforDeclaration();
+                frmReportViewer report = new frmReportViewer("DECLARATION");
+                report.printDeclarationwithoutSave(createTempTableforDeclaration());
+            }
             // report.Show();
         }
         private void txtdocDetail_TextChanged(object sender, EventArgs e)
@@ -1160,6 +1164,21 @@ namespace SGMOSOL.SCREENS
                     userDengi.SetDocDetail("");
                 }
             }
+        }
+        public DataTable createTempTableforDeclaration()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("DR_DATE", typeof(string));
+            dt.Columns.Add("NAME", typeof(string));
+            dt.Columns.Add("ADDRESS", typeof(string));
+            dt.Columns.Add("CONTACT", typeof(string));
+            dt.Columns.Add("DOC_TYPE", typeof(string));
+            dt.Columns.Add("DOC_DETAIL", typeof(string));
+            dt.Columns.Add("AMOUNT", typeof(string));
+            dt.Columns.Add("AMOUNT_IN_WORDS", typeof(string));
+            dt.Columns.Add("PINCODE", typeof(string));
+            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text,txtmob.Text,cboDoctype.Text,txtdocDetail.Text,txtAmount.Text,commonFunctions.words(Convert.ToDouble(txtAmount.Text)),txtPincode.Text);
+            return dt;
         }
         public void CheckValidDocs()
         {
@@ -1334,7 +1353,7 @@ namespace SGMOSOL.SCREENS
                             if (row["Address"] != null)
                                 txtaddr.Text = row["Address"].ToString();
                             if (row["DOC_TYPE"] != null)
-                                cboDoctype.Text = row["DOC_TYPE"].ToString();
+                                cboDoctype.SelectedValue = row["DOC_TYPE"].ToString();
                             if (row["DOC_DETAIL"] != null)
                                 txtdocDetail.Text = row["DOC_DETAIL"].ToString();
                             if (row["TALUKA"] != null)
@@ -1349,6 +1368,8 @@ namespace SGMOSOL.SCREENS
                                 cboState.SelectedValue = Convert.ToInt32(row["STATE_ID"]);
                             if (row["DISTRICT_ID"] != null)
                                 cboDistrict.SelectedValue = Convert.ToInt32(row["DISTRICT_ID"]);
+                            if (row["GOTRA_NAME"] != null)
+                                cboGotra.Text =row["GOTRA_NAME"].ToString();
 
                         }
                     }

@@ -16,6 +16,7 @@ using SGMOSOL.ADMIN;
 
 
 
+
 namespace SGMOSOL.SCREENS
 {
     public partial class frmReportViewer : Form
@@ -192,7 +193,25 @@ namespace SGMOSOL.SCREENS
                 printReport(DocumentName);
             }
         }
+        public void printDeclarationwithoutSave(DataTable dt)
+        {
+            string reportPath = null;
+            string reportFileName = null;
+            string reportsFolder = "Reports";
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            ReportDataSource reportDataSource = null;
+            string DocumentName = null;
+            reportFileName = "DengiDeclaration.rdlc";
+            reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+            reportViewer2.LocalReport.ReportPath = reportPath;
+            reportDataSource = new ReportDataSource("DataSet1", dt);
+            reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+            DataTable dt1 = (DataTable)reportDataSource.Value;
+           // addCustomField(dt1);
+            reportViewer2.RefreshReport();
+            DocumentName = "DengiDeclaration";
+            printReport(DocumentName);
+        }
     }
-
 }
 

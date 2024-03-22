@@ -33,6 +33,10 @@ namespace SGMOSOL.Custom_User_Contols
             {
                 lblerr.Text = "Please Enter Key";
             }
+            if (txtkey.Text != "159")
+            {
+                lblerr.Text = "Wrong Key !!!";
+            }
             else
             {
                 this.DialogResult = DialogResult.OK;

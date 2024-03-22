@@ -48,7 +48,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(358, 157);
             this.panel1.TabIndex = 0;
@@ -66,18 +66,18 @@
             // txtkey
             // 
             this.txtkey.Location = new System.Drawing.Point(20, 46);
-            this.txtkey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtkey.Margin = new System.Windows.Forms.Padding(2);
             this.txtkey.Name = "txtkey";
             this.txtkey.Size = new System.Drawing.Size(209, 20);
-            this.txtkey.TabIndex = 3;
+            this.txtkey.TabIndex = 1;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(121, 88);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 19);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -85,10 +85,10 @@
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(36, 88);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 19);
-            this.btnOK.TabIndex = 1;
+            this.btnOK.TabIndex = 2;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -110,7 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 157);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "InputBox";
             this.Text = "InputBox";
             this.Load += new System.EventHandler(this.InputBox_Load);

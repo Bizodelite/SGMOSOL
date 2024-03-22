@@ -53,7 +53,7 @@ namespace SGMOSOL.Custom_User_Contols
 
         private void InputBox_Load(object sender, EventArgs e)
         {
-
+            txtkey.Focus();
         }
     }
 }

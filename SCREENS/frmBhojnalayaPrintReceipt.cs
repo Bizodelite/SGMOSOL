@@ -16,6 +16,9 @@ using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace SGMOSOL.SCREENS
 {
@@ -31,6 +34,10 @@ namespace SGMOSOL.SCREENS
             InitializeComponent();
             CenterToParent();
             txtName.Focus();
+            this.KeyDown += new KeyEventHandler(frmBhojnalayaPrintReceipt_KeyDown);
+            this.KeyPreview = true;
+
+            // cboItemCode.SelectedIndexChanged += cboItemCode_SelectedIndexChanged;
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -56,6 +63,7 @@ namespace SGMOSOL.SCREENS
             }
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
+           
         }
         private void fillItemCode()
         {
@@ -72,16 +80,16 @@ namespace SGMOSOL.SCREENS
         }
         private void fillItemName()
         {
-            DataTable dt = new DataTable();
-            dt = bhojnalayprintReceiptBAL.getItemName();
-            DataRow newRow = dt.NewRow();
-            newRow["ITEM_TITLE"] = "Select";
-            newRow["ITEM_ID"] = 0;
-            dt.Rows.InsertAt(newRow, 0);
-            cboItemName.DataSource = dt;
-            cboItemName.DisplayMember = "ITEM_TITLE";
-            cboItemName.ValueMember = "ITEM_ID";
-            cboItemName.SelectedValue = 0;
+            //DataTable dt = new DataTable();
+            //dt = bhojnalayprintReceiptBAL.getItemName();
+            //DataRow newRow = dt.NewRow();
+            //newRow["ITEM_TITLE"] = "Select";
+            //newRow["ITEM_ID"] = 0;
+            //dt.Rows.InsertAt(newRow, 0);
+            //cboItemName.DataSource = dt;
+            //cboItemName.DisplayMember = "ITEM_TITLE";
+            //cboItemName.ValueMember = "ITEM_ID";
+            //cboItemName.SelectedValue = 0;
         }
         public void fillDocumentType()
         {
@@ -97,20 +105,32 @@ namespace SGMOSOL.SCREENS
 
         private void cboItemCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ItemID = 0;
-            ItemID = bhojnalayprintReceiptBAL.getItemID("ITEM_CODE", cboItemCode.Text);
-            cboItemName.SelectedValue = ItemID;
-        }
-
-        private void cboItemName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int ItemID = 0;
+            string ItemName = null;
             decimal price = 0;
-            ItemID = bhojnalayprintReceiptBAL.getItemID("ITEM_TITLE", cboItemName.Text);
-            cboItemCode.SelectedValue = ItemID;
-            price = bhojnalayprintReceiptBAL.getItemPrice((Convert.ToInt32(cboItemCode.SelectedValue)));
-            txtPrice.Text = price.ToString();
+            ItemName = bhojnalayprintReceiptBAL.getItemName("ITEM_CODE", cboItemCode.Text);
+            txtitemName.Text = ItemName;
+            if (cboItemCode.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)cboItemCode.SelectedItem;
+
+                // Retrieve the value from the DataRowView
+                int itemId = Convert.ToInt32(selectedRow["ITEM_ID"]);
+                price = bhojnalayprintReceiptBAL.getItemPrice(itemId);
+                txtPrice.Text = price.ToString();
+            }
         }
+        
+
+        //private void cboItemName_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int ItemID = 0;
+        //    decimal price = 0;
+        //    ItemID = bhojnalayprintReceiptBAL.getItemID("ITEM_TITLE", txtitemName.Text);
+        //    cboItemCode.SelectedValue = ItemID;
+        //    price = bhojnalayprintReceiptBAL.getItemPrice((Convert.ToInt32(cboItemCode.SelectedValue)));
+        //    txtPrice.Text = price.ToString();
+        //}\
+
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
@@ -135,11 +155,45 @@ namespace SGMOSOL.SCREENS
         private void clear()
         {
             cboItemCode.SelectedValue = 0;
-            cboItemName.SelectedValue = 0;
+            //  cboItemName.SelectedValue = 0;
             txtAmount.Text = "";
             //txtPrice.Text = "0";
             txtQuantity.Text = "";
         }
+
+        public void addItemIngrid()
+        {
+            if (txtQuantity.Text != "" && cboItemCode.Text != "Select")
+            {
+                lblQuantity.Text = "";
+                DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{txtitemName.Text}'");
+                if (duplicateRow.Length > 0)
+                {
+                    foreach (DataRow row in duplicateRow)
+                    {
+                        int currentQuantity = Convert.ToInt32(row["Quantity"]);
+                        int currentAmount = Convert.ToInt32(row["Amount"]);
+                        row["Price"] = Convert.ToDecimal(txtPrice.Text);
+                        row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
+                        row["Amount"] = Convert.ToDecimal(txtAmount.Text) + currentAmount;
+                    }
+                }
+                else
+                {
+                    DataRow newRow = tempItemTable.NewRow();
+                    newRow["Item Code"] = cboItemCode.Text.ToString();
+                    newRow["Item Name"] = txtitemName.Text.ToString();
+                    newRow["Price"] = Convert.ToDecimal(txtPrice.Text);
+                    newRow["Quantity"] = Convert.ToInt32(txtQuantity.Text);
+                    newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
+                    tempItemTable.Rows.Add(newRow);
+                }
+                txtTotalAmount.Text = getTotalAmount();
+                clear();
+                cboItemCode.Focus();
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (btnAdd.Text == "Add")
@@ -147,7 +201,7 @@ namespace SGMOSOL.SCREENS
                 if (txtQuantity.Text != "" && cboItemCode.Text != "Select")
                 {
                     lblQuantity.Text = "";
-                    DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{cboItemName.Text}'");
+                    DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{txtitemName.Text}'");
                     if (duplicateRow.Length > 0)
                     {
                         foreach (DataRow row in duplicateRow)
@@ -163,7 +217,7 @@ namespace SGMOSOL.SCREENS
                     {
                         DataRow newRow = tempItemTable.NewRow();
                         newRow["Item Code"] = cboItemCode.Text.ToString();
-                        newRow["Item Name"] = cboItemName.Text.ToString();
+                        // newRow["Item Name"] = cboItemName.Text.ToString();
                         newRow["Price"] = Convert.ToDecimal(txtPrice.Text);
                         newRow["Quantity"] = Convert.ToInt32(txtQuantity.Text);
                         newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
@@ -187,7 +241,7 @@ namespace SGMOSOL.SCREENS
                 {
                     DataRow row = rowsToUpdate[0];
                     row["Item Code"] = cboItemCode.Text.ToString();
-                    row["Item Name"] = cboItemName.Text.ToString();
+                    // row["Item Name"] = cboItemName.Text.ToString();
                     row["Price"] = Convert.ToDecimal(txtPrice.Text);
                     row["Quantity"] = Convert.ToInt32(txtQuantity.Text);
                     row["Amount"] = Convert.ToDecimal(txtAmount.Text);
@@ -237,7 +291,7 @@ namespace SGMOSOL.SCREENS
                 DataGridViewRow selectedRow = dgvItemDetails.Rows[e.RowIndex];
                 int id = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 cboItemCode.Text = Convert.ToString(selectedRow.Cells["Item Code"].Value);
-                cboItemName.Text = Convert.ToString(selectedRow.Cells["Item Name"].Value);
+                //  cboItemName.Text = Convert.ToString(selectedRow.Cells["Item Name"].Value);
                 txtQuantity.Text = Convert.ToString(selectedRow.Cells["Quantity"].Value);
                 txtPrice.Text = Convert.ToString(selectedRow.Cells["Price"].Value);
                 txtAmount.Text = Convert.ToString(selectedRow.Cells["Amount"].Value);
@@ -455,7 +509,7 @@ namespace SGMOSOL.SCREENS
             txtTotalAmount.Enabled = false;
             cboDocName.Enabled = false;
             cboItemCode.Enabled = false;
-            cboItemName.Enabled = false;
+            // cboItemName.Enabled = false;
             btnAdd.Enabled = false;
         }
 
@@ -589,6 +643,26 @@ namespace SGMOSOL.SCREENS
                 user.Show();
             }
 
+        }
+
+        private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addItemIngrid();
+            }
+        }
+
+        private void frmBhojnalayaPrintReceipt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            { 
+                btnSave.PerformClick();
+            }
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                btnPrint.PerformClick();
+            }
         }
     }
 }

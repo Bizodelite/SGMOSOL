@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlMaster = new System.Windows.Forms.Panel();
+            this.txtitemName = new System.Windows.Forms.TextBox();
             this.lblAdd = new System.Windows.Forms.Label();
             this.lblTaluka = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
-            this.cboItemName = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cboItemCode = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             // pnlMaster
             // 
             this.pnlMaster.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlMaster.Controls.Add(this.txtitemName);
             this.pnlMaster.Controls.Add(this.lblAdd);
             this.pnlMaster.Controls.Add(this.lblTaluka);
             this.pnlMaster.Controls.Add(this.label15);
@@ -117,7 +118,6 @@
             this.pnlMaster.Controls.Add(this.label11);
             this.pnlMaster.Controls.Add(this.label10);
             this.pnlMaster.Controls.Add(this.txtPrice);
-            this.pnlMaster.Controls.Add(this.cboItemName);
             this.pnlMaster.Controls.Add(this.label8);
             this.pnlMaster.Controls.Add(this.cboItemCode);
             this.pnlMaster.Controls.Add(this.label7);
@@ -135,6 +135,14 @@
             this.pnlMaster.Size = new System.Drawing.Size(1275, 685);
             this.pnlMaster.TabIndex = 0;
             this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // txtitemName
+            // 
+            this.txtitemName.Location = new System.Drawing.Point(347, 290);
+            this.txtitemName.Name = "txtitemName";
+            this.txtitemName.ReadOnly = true;
+            this.txtitemName.Size = new System.Drawing.Size(151, 24);
+            this.txtitemName.TabIndex = 46;
             // 
             // lblAdd
             // 
@@ -494,6 +502,7 @@
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Visible = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtAmount
@@ -527,6 +536,7 @@
             this.txtQuantity.Size = new System.Drawing.Size(79, 24);
             this.txtQuantity.TabIndex = 9;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantity_KeyDown);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // label11
@@ -543,7 +553,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(467, 290);
+            this.label10.Location = new System.Drawing.Point(504, 290);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 18);
             this.label10.TabIndex = 24;
@@ -553,22 +563,13 @@
             // 
             this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtPrice.Enabled = false;
-            this.txtPrice.Location = new System.Drawing.Point(521, 287);
+            this.txtPrice.Location = new System.Drawing.Point(558, 286);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ReadOnly = true;
-            this.txtPrice.Size = new System.Drawing.Size(153, 24);
+            this.txtPrice.Size = new System.Drawing.Size(100, 24);
             this.txtPrice.TabIndex = 8;
             this.txtPrice.TabStop = false;
-            // 
-            // cboItemName
-            // 
-            this.cboItemName.FormattingEnabled = true;
-            this.cboItemName.Location = new System.Drawing.Point(340, 287);
-            this.cboItemName.Name = "cboItemName";
-            this.cboItemName.Size = new System.Drawing.Size(121, 26);
-            this.cboItemName.TabIndex = 8;
-            this.cboItemName.SelectedIndexChanged += new System.EventHandler(this.cboItemName_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -694,6 +695,7 @@
             this.Controls.Add(this.pnlMaster);
             this.Name = "frmBhojnalayaPrintReceipt";
             this.Load += new System.EventHandler(this.frmBhojnalayaPrintReceipt_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBhojnalayaPrintReceipt_KeyDown);
             this.pnlMaster.ResumeLayout(false);
             this.pnlMaster.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -719,7 +721,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         internal System.Windows.Forms.TextBox txtPrice;
-        private System.Windows.Forms.ComboBox cboItemName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboItemCode;
         internal System.Windows.Forms.TextBox txtAmount;
@@ -756,5 +757,6 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblTaluka;
         private System.Windows.Forms.Label lblAdd;
+        private System.Windows.Forms.TextBox txtitemName;
     }
 }

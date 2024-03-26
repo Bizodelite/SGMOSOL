@@ -46,24 +46,24 @@ namespace SGMOSOL.DAL
             }
             return dt;
         }
-        public int getItemID(string itemType, string itemValue)
+        public string getItemName(string itemType, string itemValue)
         {
-            int itemID = 0;
+            string itemName = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT ITEM_ID FROM BK_MESS_ITEM_MST_T_BK where " + itemType + "='" + itemValue + "'";
+                string query = "SELECT ITEM_TITLE FROM BK_MESS_ITEM_MST_T_BK where " + itemType + "='" + itemValue + "'";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();
                     object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int ID))
+                    if (result != DBNull.Value && result != null )
                     {
-                        itemID = ID;
+                        itemName = result.ToString() ;
                     }
                     connection.Close();
                 }
             }
-            return itemID;
+            return itemName;
         }
         public decimal getItemPrice(int itemID)
         {

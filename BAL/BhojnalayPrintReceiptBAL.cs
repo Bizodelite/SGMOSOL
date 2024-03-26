@@ -19,9 +19,9 @@ namespace SGMOSOL.BAL
         {
             return da.getItemName();
         }
-        public int getItemID(string itemType, string itemValue)
+        public string getItemName(string itemType, string itemValue)
         {
-            return da.getItemID(itemType, itemValue);
+            return da.getItemName(itemType, itemValue);
         }
         public decimal getItemPrice(int itemId)
         {

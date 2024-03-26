@@ -51,14 +51,14 @@
             this.outOfOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.moreThan3DayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDamagedLockerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockerAdvanceVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.addDamagedLockerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pctControls = new System.Windows.Forms.PictureBox();
-            this.lockerAdvanceVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -73,13 +73,13 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bhojanalayaToolStripMenuItem,
             this.dengiToolStripMenuItem,
-            this.settingToolStripMenuItem,
             this.lockerToolStripMenuItem,
+            this.settingToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1020, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1360, 28);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,20 +88,20 @@
             this.bhojanalayaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.printReceiptToolStripMenuItem});
             this.bhojanalayaToolStripMenuItem.Name = "bhojanalayaToolStripMenuItem";
-            this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
             this.bhojanalayaToolStripMenuItem.Text = "Bhojanalaya";
             // 
             // printReceiptToolStripMenuItem
             // 
             this.printReceiptToolStripMenuItem.Name = "printReceiptToolStripMenuItem";
-            this.printReceiptToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.printReceiptToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.printReceiptToolStripMenuItem.Text = "Print Receipt";
             this.printReceiptToolStripMenuItem.Click += new System.EventHandler(this.printReceiptToolStripMenuItem_Click);
             // 
             // dengiToolStripMenuItem
             // 
             this.dengiToolStripMenuItem.Name = "dengiToolStripMenuItem";
-            this.dengiToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.dengiToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.dengiToolStripMenuItem.Text = "Dengi";
             this.dengiToolStripMenuItem.Click += new System.EventHandler(this.dengiToolStripMenuItem_Click);
             // 
@@ -111,20 +111,20 @@
             this.changePasswordToolStripMenuItem,
             this.calculationFormToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // calculationFormToolStripMenuItem
             // 
             this.calculationFormToolStripMenuItem.Name = "calculationFormToolStripMenuItem";
-            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.calculationFormToolStripMenuItem.Text = "Calculation Form";
             this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
             // 
@@ -144,83 +144,97 @@
             this.addDamagedLockerToolStripMenuItem,
             this.lockerAdvanceVoucherToolStripMenuItem});
             this.lockerToolStripMenuItem.Name = "lockerToolStripMenuItem";
-            this.lockerToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.lockerToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.lockerToolStripMenuItem.Text = "Locker";
             // 
             // checkInToolStripMenuItem
             // 
             this.checkInToolStripMenuItem.Name = "checkInToolStripMenuItem";
-            this.checkInToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.checkInToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.checkInToolStripMenuItem.Text = "Check In";
             this.checkInToolStripMenuItem.Click += new System.EventHandler(this.lockerCheckINToolStripMenuItem_Click);
             // 
             // checkOutToolStripMenuItem
             // 
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
-            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.checkOutToolStripMenuItem.Text = "Check Out";
             this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.checkOutToolStripMenuItem_Click);
             // 
             // availableToolStripMenuItem
             // 
             this.availableToolStripMenuItem.Name = "availableToolStripMenuItem";
-            this.availableToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.availableToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.availableToolStripMenuItem.Text = "Available";
             this.availableToolStripMenuItem.Click += new System.EventHandler(this.availableToolStripMenuItem_Click);
             // 
             // occupiedToolStripMenuItem
             // 
             this.occupiedToolStripMenuItem.Name = "occupiedToolStripMenuItem";
-            this.occupiedToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.occupiedToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.occupiedToolStripMenuItem.Text = "Occupied";
             this.occupiedToolStripMenuItem.Click += new System.EventHandler(this.occupiedToolStripMenuItem_Click);
             // 
             // lockerExtendToolStripMenuItem
             // 
             this.lockerExtendToolStripMenuItem.Name = "lockerExtendToolStripMenuItem";
-            this.lockerExtendToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.lockerExtendToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.lockerExtendToolStripMenuItem.Text = "Locker Extend";
             this.lockerExtendToolStripMenuItem.Click += new System.EventHandler(this.lockerExtendToolStripMenuItem_Click);
             // 
             // lockerChangeToolStripMenuItem
             // 
             this.lockerChangeToolStripMenuItem.Name = "lockerChangeToolStripMenuItem";
-            this.lockerChangeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.lockerChangeToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.lockerChangeToolStripMenuItem.Text = "Locker Change";
             this.lockerChangeToolStripMenuItem.Click += new System.EventHandler(this.lockerChangeToolStripMenuItem_Click);
             // 
             // dailyVoucherEntryLockerToolStripMenuItem
             // 
             this.dailyVoucherEntryLockerToolStripMenuItem.Name = "dailyVoucherEntryLockerToolStripMenuItem";
-            this.dailyVoucherEntryLockerToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.dailyVoucherEntryLockerToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.dailyVoucherEntryLockerToolStripMenuItem.Text = "Daily Voucher Entry Locker";
             this.dailyVoucherEntryLockerToolStripMenuItem.Click += new System.EventHandler(this.dailyVoucherEntryLockerToolStripMenuItem_Click);
             // 
             // outOfOrderToolStripMenuItem
             // 
             this.outOfOrderToolStripMenuItem.Name = "outOfOrderToolStripMenuItem";
-            this.outOfOrderToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.outOfOrderToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.outOfOrderToolStripMenuItem.Text = "Out Of Order";
             this.outOfOrderToolStripMenuItem.Click += new System.EventHandler(this.outOfOrderToolStripMenuItem_Click);
             // 
             // lockerToolStripMenuItem1
             // 
             this.lockerToolStripMenuItem1.Name = "lockerToolStripMenuItem1";
-            this.lockerToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.lockerToolStripMenuItem1.Size = new System.Drawing.Size(267, 26);
             this.lockerToolStripMenuItem1.Text = "Locker Checkout Warning";
             this.lockerToolStripMenuItem1.Click += new System.EventHandler(this.lockerToolStripMenuItem1_Click);
             // 
             // moreThan3DayToolStripMenuItem
             // 
             this.moreThan3DayToolStripMenuItem.Name = "moreThan3DayToolStripMenuItem";
-            this.moreThan3DayToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.moreThan3DayToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.moreThan3DayToolStripMenuItem.Text = "More Than 3 Day";
             this.moreThan3DayToolStripMenuItem.Click += new System.EventHandler(this.moreThan3DayToolStripMenuItem_Click);
+            // 
+            // addDamagedLockerToolStripMenuItem
+            // 
+            this.addDamagedLockerToolStripMenuItem.Name = "addDamagedLockerToolStripMenuItem";
+            this.addDamagedLockerToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
+            this.addDamagedLockerToolStripMenuItem.Text = "Add Damaged Locker";
+            this.addDamagedLockerToolStripMenuItem.Click += new System.EventHandler(this.addDamagedLockerToolStripMenuItem_Click);
+            // 
+            // lockerAdvanceVoucherToolStripMenuItem
+            // 
+            this.lockerAdvanceVoucherToolStripMenuItem.Name = "lockerAdvanceVoucherToolStripMenuItem";
+            this.lockerAdvanceVoucherToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
+            this.lockerAdvanceVoucherToolStripMenuItem.Text = "Locker Advance Voucher";
+            this.lockerAdvanceVoucherToolStripMenuItem.Click += new System.EventHandler(this.lockerAdvanceVoucherToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -234,44 +248,30 @@
             // 
             this.toolTip2.ShowAlways = true;
             // 
-            // addDamagedLockerToolStripMenuItem
-            // 
-            this.addDamagedLockerToolStripMenuItem.Name = "addDamagedLockerToolStripMenuItem";
-            this.addDamagedLockerToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.addDamagedLockerToolStripMenuItem.Text = "Add Damaged Locker";
-            this.addDamagedLockerToolStripMenuItem.Click += new System.EventHandler(this.addDamagedLockerToolStripMenuItem_Click);
-            // 
             // pctControls
             // 
             this.pctControls.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pctControls.BackgroundImage")));
             this.pctControls.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pctControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.pctControls.Image = ((System.Drawing.Image)(resources.GetObject("pctControls.Image")));
-            this.pctControls.Location = new System.Drawing.Point(0, 24);
-            this.pctControls.Margin = new System.Windows.Forms.Padding(2);
+            this.pctControls.Location = new System.Drawing.Point(0, 28);
+            this.pctControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pctControls.Name = "pctControls";
-            this.pctControls.Size = new System.Drawing.Size(1020, 136);
+            this.pctControls.Size = new System.Drawing.Size(1360, 167);
             this.pctControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctControls.TabIndex = 33;
             this.pctControls.TabStop = false;
             // 
-            // lockerAdvanceVoucherToolStripMenuItem
-            // 
-            this.lockerAdvanceVoucherToolStripMenuItem.Name = "lockerAdvanceVoucherToolStripMenuItem";
-            this.lockerAdvanceVoucherToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.lockerAdvanceVoucherToolStripMenuItem.Text = "Locker Advance Voucher";
-            this.lockerAdvanceVoucherToolStripMenuItem.Click += new System.EventHandler(this.lockerAdvanceVoucherToolStripMenuItem_Click);
-            // 
             // MDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 587);
+            this.ClientSize = new System.Drawing.Size(1360, 722);
             this.Controls.Add(this.pctControls);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Menu = this.mainMenu2;
             this.Name = "MDI";
             this.Text = "Form1";

@@ -280,29 +280,36 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Shri Gajanan Maharaj  Sansthan,</Value>
+                    <Value>Shri Gajanan Maharaj  Sansthan,  Shegaon-444203</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Shegaon-444203</Value>
+                    <Value> (Public Trust Rej.No A-250 Bul.)</Value>
                     <Style>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -319,7 +326,7 @@
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.76568cm</Top>
             <Height>1.51017cm</Height>
-            <Width>7.69337cm</Width>
+            <Width>11.00476cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -619,7 +626,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>  (Donor's Signature)</Value>
+                    <Value>(Donor's Signature)</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -630,8 +637,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.38168cm</Top>
+            <Left>0.9525cm</Left>
             <Height>6.76664cm</Height>
-            <Width>11.25453cm</Width>
+            <Width>10.30203cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -756,8 +764,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>9.27299cm</Top>
+            <Left>0.9525cm</Left>
             <Height>2.10284cm</Height>
-            <Width>11.25453cm</Width>
+            <Width>10.30203cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -780,7 +789,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>REPORT_TYPE</rd:DefaultName>

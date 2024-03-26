@@ -1,6 +1,7 @@
 ﻿using SGMOSOL.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace SGMOSOL.BAL
         {
             return login.DeleteUser_Login_details();
         }
-        public int GetLoggedInUser(int uid)
+        public DataTable GetLoggedInUser(int uid)
         {
             return login.GetLoggedInUser(uid);
         }

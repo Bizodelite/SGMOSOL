@@ -61,7 +61,7 @@
             this.pnlLogin.Location = new System.Drawing.Point(383, 174);
             this.pnlLogin.Margin = new System.Windows.Forms.Padding(3, 0, 3, 2);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(547, 318);
+            this.pnlLogin.Size = new System.Drawing.Size(612, 343);
             this.pnlLogin.TabIndex = 0;
             // 
             // pictureBox1
@@ -73,7 +73,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(547, 90);
+            this.pictureBox1.Size = new System.Drawing.Size(612, 90);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
@@ -84,7 +84,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.GhostWhite;
-            this.btnClose.Location = new System.Drawing.Point(409, 238);
+            this.btnClose.Location = new System.Drawing.Point(411, 258);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(111, 46);
@@ -96,22 +96,23 @@
             // lnkRestPassword
             // 
             this.lnkRestPassword.AutoSize = true;
-            this.lnkRestPassword.Location = new System.Drawing.Point(408, 286);
+            this.lnkRestPassword.Location = new System.Drawing.Point(407, 318);
             this.lnkRestPassword.Name = "lnkRestPassword";
             this.lnkRestPassword.Size = new System.Drawing.Size(106, 16);
             this.lnkRestPassword.TabIndex = 5;
             this.lnkRestPassword.TabStop = true;
             this.lnkRestPassword.Text = "Reset Password";
+            this.lnkRestPassword.Visible = false;
             this.lnkRestPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkRestPassword_LinkClicked);
             // 
             // lblmessage
             // 
             this.lblmessage.AutoSize = true;
-            this.lblmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblmessage.ForeColor = System.Drawing.Color.Red;
-            this.lblmessage.Location = new System.Drawing.Point(39, 209);
+            this.lblmessage.Location = new System.Drawing.Point(27, 217);
             this.lblmessage.Name = "lblmessage";
-            this.lblmessage.Size = new System.Drawing.Size(137, 22);
+            this.lblmessage.Size = new System.Drawing.Size(130, 20);
             this.lblmessage.TabIndex = 4;
             this.lblmessage.Text = "User message";
             // 
@@ -123,7 +124,6 @@
             this.txtpwd.Name = "txtpwd";
             this.txtpwd.Size = new System.Drawing.Size(303, 26);
             this.txtpwd.TabIndex = 3;
-            this.txtpwd.Text = "admin123";
             this.txtpwd.UseSystemPasswordChar = true;
             // 
             // btnLogin
@@ -132,7 +132,7 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.GhostWhite;
-            this.btnLogin.Location = new System.Drawing.Point(293, 238);
+            this.btnLogin.Location = new System.Drawing.Point(293, 258);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(111, 46);
@@ -171,7 +171,6 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(303, 26);
             this.txtUser.TabIndex = 1;
-            this.txtUser.Text = "bhagwatrg";
             // 
             // pctControls
             // 

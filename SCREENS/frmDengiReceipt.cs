@@ -304,6 +304,7 @@ namespace SGMOSOL.SCREENS
         {
             dataOnPaymentMode();
             lblPaymentMode.Text = "";
+            userDengi.SetMode(cboPaymentType.Text);
         }
         public void clearControl()
         {
@@ -403,6 +404,7 @@ namespace SGMOSOL.SCREENS
             chkScanDoc.Enabled = false;
             btnScan.Enabled = false;
             btnClear.Enabled = false;
+            cobTid.Enabled = false;
 
         }
 
@@ -605,8 +607,6 @@ namespace SGMOSOL.SCREENS
         private void btnSave_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            string lstEnteredName = null;
-            string lstEnteredAmount = null;
             if (txtmob.Text == "")
             {
                 lblMobile.Text = "Please Enter Mobile number";
@@ -653,14 +653,18 @@ namespace SGMOSOL.SCREENS
                         else { lbldocdetailerr.Text = ""; }
                     }
                 }
-            }
-            if (txtdocDetail.Text != "" && cboDoctype.Text == "Select")
-            {
-                lbldoctype_err.Text = "Please select Document";
-            }
-            else
-            {
-                lbldoctype_err.Text = "";
+                else
+                {
+                    if (cboDoctype.Text == "Select" && txtdocDetail.Text != "")
+                    {
+                        lbldoctype_err.Text = "";
+                    }
+                    else
+                    {
+                        lbldoctype_err.Text = "";
+                        lbldocdetailerr.Text = "";
+                    }
+                }
             }
             if (cboPaymentType.Text == "Swipe" && cobTid.Text == "")
             {
@@ -815,7 +819,8 @@ namespace SGMOSOL.SCREENS
                 dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
                 dengiReceiptModel.DistId = (int)cboDistrict.SelectedValue;
                 dengiReceiptModel.DISTRICT = cboDistrict.Text;
-                dengiReceiptModel.Doc_type = cboDoctype.Text;
+                // dengiReceiptModel.Doc_type = cboDoctype.Text;
+                dengiReceiptModel.Doc_type = cboDoctype.SelectedValue.ToString();
                 dengiReceiptModel.Doc_Detail = txtdocDetail.Text;
                 dengiReceiptModel.netbankname = txtNetBankName.Text;
                 dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
@@ -1035,7 +1040,7 @@ namespace SGMOSOL.SCREENS
                     cboGotra.SelectedValue = obj.gotraId;
                     dtpPrnRcptDt.Text = obj.dr_Date.ToString();
                     if (obj.Doc_type != null)
-                        cboDoctype.Text = obj.Doc_type.ToString();
+                        cboDoctype.SelectedValue = obj.Doc_type.ToString();
                     if (obj.Doc_Detail != null)
                         txtdocDetail.Text = obj.Doc_Detail.ToString();
                     if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)
@@ -1048,8 +1053,6 @@ namespace SGMOSOL.SCREENS
                     lockControls();
                     btnAcknowledge.Enabled = true;
                     btnPrint.Enabled = true;
-                    // this.IsMdiContainer = true;
-                    // this.Show();
                 }
             }
             catch (Exception ex)
@@ -1124,15 +1127,23 @@ namespace SGMOSOL.SCREENS
             // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
-        {
-            string receptID = txtdengireceiptNo.Tag.ToString();
+         {
+            if (isPrint)
+            {
+                string receptID = txtdengireceiptNo.Tag.ToString();
 
-            // Code to save Duplicate Print
+                // Code to save Duplicate Print
 
-            int status = dengiReceiptDAL.DupPrintDeclaration(receptID);
+                int status = dengiReceiptDAL.DupPrintDeclaration(receptID);
 
-            frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
-            report.createReport("Dengi");
+                frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
+                report.createReport("Dengi");
+            }
+            else {
+                //createTempTableforDeclaration();
+                frmReportViewer report = new frmReportViewer("DECLARATION");
+                report.printDeclarationwithoutSave(createTempTableforDeclaration());
+            }
             // report.Show();
         }
         private void txtdocDetail_TextChanged(object sender, EventArgs e)
@@ -1154,6 +1165,22 @@ namespace SGMOSOL.SCREENS
                     userDengi.SetDocDetail("");
                 }
             }
+        }
+        public DataTable createTempTableforDeclaration()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("DR_DATE", typeof(string));
+            dt.Columns.Add("NAME", typeof(string));
+            dt.Columns.Add("ADDRESS", typeof(string));
+            dt.Columns.Add("CONTACT", typeof(string));
+            dt.Columns.Add("DOC_TYPE", typeof(string));
+            dt.Columns.Add("DOC_DETAIL", typeof(string));
+            dt.Columns.Add("AMOUNT", typeof(string));
+            dt.Columns.Add("AMOUNT_IN_WORDS", typeof(string));
+            dt.Columns.Add("PINCODE", typeof(string));
+            dt.Columns.Add("TYPE", typeof(string));
+            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text,txtmob.Text,cboDoctype.Text,txtdocDetail.Text,txtAmount.Text,commonFunctions.words(Convert.ToDouble(txtAmount.Text)),txtPincode.Text, cboDengiType.Text);
+            return dt;
         }
         public void CheckValidDocs()
         {
@@ -1247,7 +1274,7 @@ namespace SGMOSOL.SCREENS
 
         private void cboDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDistrict.SelectedIndex != -1)
+            if (cboDistrict.SelectedIndex != 0)
             {
                 userDengi.SetDistrict(cboDistrict.Text);
 
@@ -1328,7 +1355,7 @@ namespace SGMOSOL.SCREENS
                             if (row["Address"] != null)
                                 txtaddr.Text = row["Address"].ToString();
                             if (row["DOC_TYPE"] != null)
-                                cboDoctype.Text = row["DOC_TYPE"].ToString();
+                                cboDoctype.SelectedValue = row["DOC_TYPE"].ToString();
                             if (row["DOC_DETAIL"] != null)
                                 txtdocDetail.Text = row["DOC_DETAIL"].ToString();
                             if (row["TALUKA"] != null)
@@ -1343,6 +1370,8 @@ namespace SGMOSOL.SCREENS
                                 cboState.SelectedValue = Convert.ToInt32(row["STATE_ID"]);
                             if (row["DISTRICT_ID"] != null)
                                 cboDistrict.SelectedValue = Convert.ToInt32(row["DISTRICT_ID"]);
+                            if (row["GOTRA_NAME"] != null)
+                                cboGotra.Text =row["GOTRA_NAME"].ToString();
 
                         }
                     }

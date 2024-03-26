@@ -126,7 +126,7 @@ namespace SGMOSOL.ADMIN
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "select 0 as DocumentID,'Select'as DocumentName union all select Lookup_Value_Order as DocumentID,Lookup_Value_Name as DocumentName from COM_LOOKUP_VALUES_MST_V where Lookup_Name = 'Document Type'";
+                    string query = "select 0 as DocumentID,'Select'as DocumentName union all select Lookup_Value_Id as DocumentID,Lookup_Value_Name as DocumentName from COM_LOOKUP_VALUES_MST_V where Lookup_Name = 'Document Type'";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     connection.Close();
                     adapter.Fill(dt);
@@ -150,7 +150,9 @@ namespace SGMOSOL.ADMIN
                     stringBuilder.Append("SELECT isnull(Token_Detail_Id,0) AS Token_Detail_Id");
                     stringBuilder.Append(", isnull(Token_Detail_Name, '') AS Token_Detail_Name");
                     stringBuilder.Append(", isnull(Token_Detail_code, '') AS Token_Detail_Name FROM");
-                    stringBuilder.Append("  com_token_det_t where Token_Mst_Id = 6 ");
+                    stringBuilder.Append("  com_token_det_t");
+                    stringBuilder.Append("  inner join PAYMENT_TYPE_MST on PAYMENT_TYPE=Token_Detail_Id ");
+                    stringBuilder.Append(" where Token_Mst_Id = 6 and MODULE_ID=9 and STATUS=1 and COUNTER_ID=" + UserInfo.ctrMachID + " ");
                     SqlDataAdapter adapter = new SqlDataAdapter(stringBuilder.ToString(), connection);
                     connection.Close();
                     adapter.Fill(dt);

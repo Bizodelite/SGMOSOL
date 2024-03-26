@@ -29,7 +29,10 @@ namespace SGMOSOL.SCREENS
         {
             fillDengiType();
             fillDengiReceipt();
-
+            dtFromDate.Format = DateTimePickerFormat.Custom;
+            dtFromDate.CustomFormat = "dd/MM/yyyy";
+            dtToDate.Format = DateTimePickerFormat.Custom;
+            dtToDate.CustomFormat = "dd/MM/yyyy";
         }
         private void fillDengiReceipt()
         {

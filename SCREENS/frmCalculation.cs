@@ -104,6 +104,11 @@ namespace SGMOSOL.SCREENS
             deleteButtonColumn.UseColumnTextForButtonValue = true;
             dgvItemDetails.Columns.Add(editButtonColumn);
             dgvItemDetails.Columns.Add(deleteButtonColumn);
+            foreach (DataGridViewColumn column in dgvItemDetails.Columns)
+            {
+                if (column.Name != "Quantity")
+                    column.ReadOnly = true;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -124,9 +129,13 @@ namespace SGMOSOL.SCREENS
             {
                 lblQuntity.Text = "";
             }
+            if (txtQuantity.Text == "0")
+            {
+                lblQuntity.Text = "Quantity Can not be 0";
+            }
             if (btnAdd.Text == "Add")
             {
-                if (txtQuantity.Text != "" && cboCurrency.Text != "Select")
+                if (txtQuantity.Text != "" && cboCurrency.Text != "Select" && txtQuantity.Text != "0")
                 {
                     //lblQuantity.Text = "";
                     DataRow[] duplicateRow = tempItemTable.Select($"[Currency] = '{cboCurrency.Text}'");
@@ -251,36 +260,58 @@ namespace SGMOSOL.SCREENS
             createItemTable();
 
         }
-
-        private void btnPrint_Click(object sender, EventArgs e)
+        public bool CheckQuantityValue()
         {
-            cm = new CommonFunctions();
-            DataTable dataGridViewData = new DataTable();
-            foreach (DataGridViewColumn column in dgvItemDetails.Columns)
-            {
-                dataGridViewData.Columns.Add(column.HeaderText);
-            }
+            bool foundZeroQuantity = false;
             foreach (DataGridViewRow row in dgvItemDetails.Rows)
             {
-                DataRow dataRow = dataGridViewData.NewRow();
-                foreach (DataGridViewCell cell in row.Cells)
+                if (!row.IsNewRow && row.Cells["Quantity"].Value != null)
                 {
-                    dataRow[cell.ColumnIndex] = cell.Value;
+                    if (row.Cells["Quantity"].Value.ToString() == "0")
+                    {
+                        foundZeroQuantity = true;
+                    }
                 }
-                dataGridViewData.Rows.Add(dataRow);
             }
-            ReportParameter[] parameters = new ReportParameter[5];
-            parameters[0] = new ReportParameter("CounterName", txtCounter.Text);
-            parameters[1] = new ReportParameter("UserName", txtUser.Text);
-            parameters[2] = new ReportParameter("Date", dtpPrnRcptDt.Text);
-            parameters[3] = new ReportParameter("TotalAmount", txtTotalAmount.Text);
-            parameters[4] = new ReportParameter("TotalAmountInWords", cm.words(Convert.ToDouble(txtTotalAmount.Text)));
-            reportViewer1.LocalReport.SetParameters(parameters);
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dataGridViewData);
-            reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-            this.reportViewer1.RefreshReport();
-            printReport("TotalFundReport");
+            return foundZeroQuantity;
+        }
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (CheckQuantityValue())
+            {
+                lblAlertMsg.Text = "Quantity Can not 0 !!!";
+            }
+            else
+            {
+                lblAlertMsg.Text = "";
+                cm = new CommonFunctions();
+                DataTable dataGridViewData = new DataTable();
+                foreach (DataGridViewColumn column in dgvItemDetails.Columns)
+                {
+                    dataGridViewData.Columns.Add(column.HeaderText);
+                }
+                foreach (DataGridViewRow row in dgvItemDetails.Rows)
+                {
+                    DataRow dataRow = dataGridViewData.NewRow();
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        dataRow[cell.ColumnIndex] = cell.Value;
+                    }
+                    dataGridViewData.Rows.Add(dataRow);
+                }
+                ReportParameter[] parameters = new ReportParameter[5];
+                parameters[0] = new ReportParameter("CounterName", txtCounter.Text);
+                parameters[1] = new ReportParameter("UserName", txtUser.Text);
+                parameters[2] = new ReportParameter("Date", dtpPrnRcptDt.Text);
+                parameters[3] = new ReportParameter("TotalAmount", txtTotalAmount.Text);
+                parameters[4] = new ReportParameter("TotalAmountInWords", cm.words(Convert.ToDouble(txtTotalAmount.Text)));
+                reportViewer1.LocalReport.SetParameters(parameters);
+                ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dataGridViewData);
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                this.reportViewer1.RefreshReport();
+                printReport("TotalFundReport");
+            }
         }
         public void printReport(string docName)
         {
@@ -325,6 +356,22 @@ namespace SGMOSOL.SCREENS
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvItemDetails_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvItemDetails.Columns["Quantity"].Index && e.RowIndex >= 0)
+            {
+                // Get the quantity and price values
+                int quantity = Convert.ToInt32(dgvItemDetails.Rows[e.RowIndex].Cells["Quantity"].Value);
+                decimal Currency = Convert.ToDecimal(dgvItemDetails.Rows[e.RowIndex].Cells["Currency"].Value);
+
+                // Calculate the amount
+                decimal amount = quantity * Currency;
+
+                // Update the "Amount" cell
+                dgvItemDetails.Rows[e.RowIndex].Cells["Amount"].Value = amount;
+            }
         }
     }
 }

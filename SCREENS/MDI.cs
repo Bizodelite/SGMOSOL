@@ -127,5 +127,11 @@ namespace SGMOSOL
             // Application.Exit();
             //s System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
+
+        private void encryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEncryption frm=new frmEncryption();
+            frm.Show();
+        }
     }
 }

@@ -1322,6 +1322,11 @@ namespace SGMOSOL.SCREENS
                     btnPrint.PerformClick();
                     e.Handled = true;
                 }
+                if(e.Control && e.KeyCode == Keys.D)
+                {
+                    btnAcknowledge.PerformClick();
+                    e.Handled = true;
+                }
                 if (e.KeyCode == Keys.F10)
                 {
                     string lastName = "";

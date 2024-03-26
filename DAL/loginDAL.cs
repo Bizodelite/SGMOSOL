@@ -220,19 +220,23 @@ namespace SGMOSOL.DAL
         public int GetLoggedInUser(int uid)
         {
             int Id = 0;
-            string query = "select USER_ID from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "select USER_ID from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && result != null)
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        Id = Convert.ToInt32(result);
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            Id = Convert.ToInt32(result);
+                        }
                     }
                 }
             }
+            catch(Exception ex) { }
             return Id;
         }
     }

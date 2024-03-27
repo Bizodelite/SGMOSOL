@@ -242,7 +242,7 @@ namespace SGMOSOL.DAL
                             command.ExecuteNonQuery();
                             status = Convert.ToInt32(command.Parameters["@Receipt_ID"].Value);
                         }
-                        MessageBox.Show("Dengi Receipt saved Successfully");
+                      //  MessageBox.Show("Dengi Receipt saved Successfully");
                     }
                 }
             }

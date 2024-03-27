@@ -25,6 +25,7 @@ namespace SGMOSOL.SCREENS
         {
             ba = new BhojnalayPrintReceiptBAL();
             getAllData();
+          //  this.reportViewer1.RefreshReport();
         }
         public void getAllData()
         {
@@ -39,6 +40,7 @@ namespace SGMOSOL.SCREENS
             if (dt != null)
             {
                 dgvbhojnalay.DataSource = dt;
+                dgvbhojnalay.Columns["PRINT_RECEIPT_MST_ID"].Visible = false;
             }
         }
 
@@ -72,6 +74,7 @@ namespace SGMOSOL.SCREENS
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
+                    model.SerialNo = row["SERIAL_NO"].ToString();
                     model.Name = row["Name"].ToString();
                     model.Mobile = row["MOBILE"].ToString();
                     model.Address = row["ADDRESS"].ToString();
@@ -80,10 +83,14 @@ namespace SGMOSOL.SCREENS
                     model.DocTypeDetail = row["DOC_DETAIL"].ToString();
                     model.TotalAmount = Convert.ToDecimal(row["AMOUNT"].ToString());
                     frmBhojnalayaPrintReceipt frm = new frmBhojnalayaPrintReceipt();
-                    frm.isPrint = true;
-                    frm.getAllData(model);
+                    frm = Application.OpenForms.OfType<frmBhojnalayaPrintReceipt>().FirstOrDefault();
+                    if (frm != null)
+                    {
+                        frm.isPrint = true;
+                        frm.getAllData(model);
+                        this.Close();
+                    }
                     this.Close();
-                    frm.Show();
                 }
             }
         }

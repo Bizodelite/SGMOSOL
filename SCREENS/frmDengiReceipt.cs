@@ -47,7 +47,7 @@ namespace SGMOSOL.SCREENS
             txtAmount.TextChanged += txtAmount_TextChanged;
             txtPANNo.TextChanged += txtPANNo_TextChanged;
             txtaddr.TextChanged += txtaddr_TextChanged;
-            //btnSave.Click += btnSave_Click;
+            // btnSave.Click += btnSave_Click;
             cboState.SelectedIndexChanged += cboState_SelectedIndexChanged;
             UserInfo.module = "Dengi";
         }
@@ -304,6 +304,7 @@ namespace SGMOSOL.SCREENS
         {
             dataOnPaymentMode();
             lblPaymentMode.Text = "";
+            userDengi.SetMode(cboPaymentType.Text);
         }
         public void clearControl()
         {
@@ -403,6 +404,7 @@ namespace SGMOSOL.SCREENS
             chkScanDoc.Enabled = false;
             btnScan.Enabled = false;
             btnClear.Enabled = false;
+            cobTid.Enabled = false;
 
         }
 
@@ -494,6 +496,7 @@ namespace SGMOSOL.SCREENS
             lblTaluka.Text = "";
             lblPincode.Text = "";
             dtpPrnRcptDt.Enabled = false;
+            cboDoctype.SelectedValue = 0;
         }
         private void txtname_TextChanged(object sender, EventArgs e)
         {
@@ -590,7 +593,10 @@ namespace SGMOSOL.SCREENS
                 lblpan.Text = "";
             }
             //userDengi.SetPan(txtPANNo.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -730,7 +736,10 @@ namespace SGMOSOL.SCREENS
                 txtAddGotra.Visible = false;
             }
             userDengi.SetGotra(cboGotra.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
         private void txtaddr_TextChanged(object sender, EventArgs e)
         {
@@ -847,9 +856,10 @@ namespace SGMOSOL.SCREENS
                     {
                         dengiReceiptModel.IsDuplicate = Convert.ToInt32(inputbox.keyValue);
                     }
-                    else
+                    if (result1 == DialogResult.Cancel)
                     {
-                        dengiReceiptModel.IsDuplicate = 0;
+                        // inputbox.Close();
+                        return;
                     }
                 }
                 else
@@ -1030,7 +1040,7 @@ namespace SGMOSOL.SCREENS
                     cboGotra.SelectedValue = obj.gotraId;
                     dtpPrnRcptDt.Text = obj.dr_Date.ToString();
                     if (obj.Doc_type != null)
-                        cboDoctype.Text = obj.Doc_type.ToString();
+                        cboDoctype.SelectedValue = obj.Doc_type.ToString();
                     if (obj.Doc_Detail != null)
                         txtdocDetail.Text = obj.Doc_Detail.ToString();
                     if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)
@@ -1071,7 +1081,10 @@ namespace SGMOSOL.SCREENS
                 lblPincode.Text = "Please enter a valid 6-digit pincode.";
             }
             userDengi.SetPincode(txtPincode.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
 
         private void txttal_TextChanged(object sender, EventArgs e)
@@ -1081,7 +1094,10 @@ namespace SGMOSOL.SCREENS
                 lblTaluka.Text = "";
             }
             userDengi.SetTaluka(txttal.Text);
-            userDengi.Show();
+            if (userDengi.Visible)
+            {
+                userDengi.Show();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -1162,7 +1178,8 @@ namespace SGMOSOL.SCREENS
             dt.Columns.Add("AMOUNT", typeof(string));
             dt.Columns.Add("AMOUNT_IN_WORDS", typeof(string));
             dt.Columns.Add("PINCODE", typeof(string));
-            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text,txtmob.Text,cboDoctype.Text,txtdocDetail.Text,txtAmount.Text,commonFunctions.words(Convert.ToDouble(txtAmount.Text)),txtPincode.Text);
+            dt.Columns.Add("TYPE", typeof(string));
+            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text,txtmob.Text,cboDoctype.Text,txtdocDetail.Text,txtAmount.Text,commonFunctions.words(Convert.ToDouble(txtAmount.Text)),txtPincode.Text, cboDengiType.Text);
             return dt;
         }
         public void CheckValidDocs()
@@ -1257,7 +1274,7 @@ namespace SGMOSOL.SCREENS
 
         private void cboDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDistrict.SelectedIndex != -1)
+            if (cboDistrict.SelectedIndex != 0)
             {
                 userDengi.SetDistrict(cboDistrict.Text);
 

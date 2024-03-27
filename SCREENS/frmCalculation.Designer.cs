@@ -52,6 +52,7 @@
             this.lblCurrency = new System.Windows.Forms.Label();
             this.lblQuntity = new System.Windows.Forms.Label();
             this.lblAmountInWords = new System.Windows.Forms.Label();
+            this.lblAlertMsg = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemDetails)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,7 @@
             this.txtTotalAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtTotalAmount.Enabled = false;
             this.txtTotalAmount.Location = new System.Drawing.Point(757, 378);
-            this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.ReadOnly = true;
             this.txtTotalAmount.Size = new System.Drawing.Size(127, 22);
@@ -73,7 +74,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(642, 382);
+            this.label13.Location = new System.Drawing.Point(643, 382);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(108, 18);
             this.label13.TabIndex = 39;
@@ -84,6 +85,7 @@
             this.dgvItemDetails.AllowUserToAddRows = false;
             this.dgvItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItemDetails.Location = new System.Drawing.Point(116, 178);
+            this.dgvItemDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvItemDetails.Name = "dgvItemDetails";
             this.dgvItemDetails.RowHeadersWidth = 51;
             this.dgvItemDetails.RowTemplate.Height = 24;
@@ -96,9 +98,10 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(772, 121);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(112, 42);
-            this.btnAdd.TabIndex = 35;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -108,7 +111,7 @@
             this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtAmount.Enabled = false;
             this.txtAmount.Location = new System.Drawing.Point(623, 129);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(127, 22);
@@ -129,19 +132,18 @@
             // txtQuantity
             // 
             this.txtQuantity.BackColor = System.Drawing.Color.MistyRose;
-            this.txtQuantity.Location = new System.Drawing.Point(444, 131);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4);
+            this.txtQuantity.Location = new System.Drawing.Point(444, 130);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(79, 22);
-            this.txtQuantity.TabIndex = 33;
-            this.txtQuantity.TabStop = false;
+            this.txtQuantity.TabIndex = 2;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(367, 131);
+            this.label11.Location = new System.Drawing.Point(367, 130);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 18);
             this.label11.TabIndex = 36;
@@ -152,10 +154,10 @@
             this.btnNew.CausesValidation = false;
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Location = new System.Drawing.Point(283, 428);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(133, 57);
-            this.btnNew.TabIndex = 41;
+            this.btnNew.TabIndex = 4;
             this.btnNew.Text = "&New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -165,10 +167,10 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Location = new System.Drawing.Point(565, 428);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(133, 57);
-            this.btnClose.TabIndex = 43;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "&Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -177,10 +179,10 @@
             // 
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Location = new System.Drawing.Point(424, 428);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(133, 57);
-            this.btnPrint.TabIndex = 42;
+            this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "&Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -188,10 +190,11 @@
             // cboCurrency
             // 
             this.cboCurrency.FormattingEnabled = true;
-            this.cboCurrency.Location = new System.Drawing.Point(227, 125);
+            this.cboCurrency.Location = new System.Drawing.Point(227, 126);
+            this.cboCurrency.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCurrency.Name = "cboCurrency";
             this.cboCurrency.Size = new System.Drawing.Size(121, 24);
-            this.cboCurrency.TabIndex = 44;
+            this.cboCurrency.TabIndex = 1;
             // 
             // label8
             // 
@@ -212,6 +215,7 @@
             this.panel1.Controls.Add(this.txtCounter);
             this.panel1.Controls.Add(this.Label2);
             this.panel1.Location = new System.Drawing.Point(108, 38);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(813, 63);
             this.panel1.TabIndex = 48;
@@ -222,8 +226,8 @@
             this.dtpPrnRcptDt.CustomFormat = "dd/MM/yyyy";
             this.dtpPrnRcptDt.Enabled = false;
             this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrnRcptDt.Location = new System.Drawing.Point(582, 28);
-            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpPrnRcptDt.Location = new System.Drawing.Point(581, 28);
+            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
             this.dtpPrnRcptDt.Size = new System.Drawing.Size(132, 22);
             this.dtpPrnRcptDt.TabIndex = 13;
@@ -247,7 +251,7 @@
             // 
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(293, 24);
+            this.Label5.Location = new System.Drawing.Point(293, 25);
             this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(53, 23);
@@ -259,8 +263,8 @@
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(354, 27);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUser.Location = new System.Drawing.Point(355, 27);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
             this.txtUser.Size = new System.Drawing.Size(147, 22);
@@ -272,20 +276,20 @@
             this.txtCounter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtCounter.Enabled = false;
             this.txtCounter.Location = new System.Drawing.Point(131, 23);
-            this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCounter.Name = "txtCounter";
             this.txtCounter.ReadOnly = true;
-            this.txtCounter.Size = new System.Drawing.Size(126, 22);
+            this.txtCounter.Size = new System.Drawing.Size(127, 22);
             this.txtCounter.TabIndex = 9;
             this.txtCounter.TabStop = false;
             // 
             // Label2
             // 
             this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(17, 13);
+            this.Label2.Location = new System.Drawing.Point(17, 14);
             this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(94, 37);
+            this.Label2.Size = new System.Drawing.Size(93, 37);
             this.Label2.TabIndex = 8;
             this.Label2.Text = "Counter";
             this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -294,7 +298,8 @@
             // reportViewer1
             // 
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SGMOSOL.Reports.Fund_Calculation_Print.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(158, 557);
+            this.reportViewer1.Location = new System.Drawing.Point(157, 558);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(678, 246);
@@ -326,11 +331,22 @@
             this.lblAmountInWords.Size = new System.Drawing.Size(0, 16);
             this.lblAmountInWords.TabIndex = 52;
             // 
+            // lblAlertMsg
+            // 
+            this.lblAlertMsg.AutoSize = true;
+            this.lblAlertMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblAlertMsg.Location = new System.Drawing.Point(249, 397);
+            this.lblAlertMsg.Name = "lblAlertMsg";
+            this.lblAlertMsg.Size = new System.Drawing.Size(94, 16);
+            this.lblAlertMsg.TabIndex = 53;
+            this.lblAlertMsg.Text = "Alert Message";
+            // 
             // frmCalculation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1161, 812);
+            this.ClientSize = new System.Drawing.Size(1161, 750);
+            this.Controls.Add(this.lblAlertMsg);
             this.Controls.Add(this.lblAmountInWords);
             this.Controls.Add(this.lblQuntity);
             this.Controls.Add(this.lblCurrency);
@@ -349,6 +365,8 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label11);
+            this.ForeColor = System.Drawing.Color.Black;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmCalculation";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmCalculation_Load);
@@ -386,5 +404,6 @@
         private System.Windows.Forms.Label lblCurrency;
         private System.Windows.Forms.Label lblQuntity;
         private System.Windows.Forms.Label lblAmountInWords;
+        private System.Windows.Forms.Label lblAlertMsg;
     }
 }

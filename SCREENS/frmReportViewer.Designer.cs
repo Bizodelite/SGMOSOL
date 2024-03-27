@@ -51,7 +51,7 @@
             this.reportViewer2.Location = new System.Drawing.Point(0, 0);
             this.reportViewer2.Name = "reportViewer2";
             this.reportViewer2.ServerReport.BearerToken = null;
-            this.reportViewer2.Size = new System.Drawing.Size(466, 523);
+            this.reportViewer2.Size = new System.Drawing.Size(919, 703);
             this.reportViewer2.TabIndex = 0;
             this.reportViewer2.Load += new System.EventHandler(this.reportViewer2_Load);
             // 
@@ -59,7 +59,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 523);
+            this.ClientSize = new System.Drawing.Size(919, 703);
             this.Controls.Add(this.reportViewer2);
             this.Name = "frmReportViewer";
             this.Text = "frmReportViewer";

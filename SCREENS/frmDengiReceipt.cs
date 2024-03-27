@@ -1447,5 +1447,10 @@ namespace SGMOSOL.SCREENS
         {
             lbldoctype_err.Text = "";
         }
+
+        private void pnlMaster_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

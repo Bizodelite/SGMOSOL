@@ -224,6 +224,7 @@
     <Compile Include="BAL\BhojnalayPrintReceiptBAL.cs" />
     <Compile Include="BAL\DengiReceiptBAL.cs" />
     <Compile Include="BAL\LoginBAL.cs" />
+    <Compile Include="BAL\ReqToAdminBAL.cs" />
     <Compile Include="Custom User Contols\InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +234,7 @@
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="DAL\DengiReceiptDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
+    <Compile Include="DAL\ReqToAdminDAL.cs" />
     <Compile Include="DataModel\bhojnalayPrintReceiptModel.cs" />
     <Compile Include="DataModel\dengiReceiptModel.cs" />
     <Compile Include="DataSet\Calculation.Designer.cs">
@@ -389,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmReportViewer.resx">
       <DependentUpon>frmReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmReqToAdmin.resx">
+      <DependentUpon>frmReqToAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmSearchDengi.resx">
       <DependentUpon>frmSearchDengi.cs</DependentUpon>

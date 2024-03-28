@@ -46,7 +46,7 @@
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.encryptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -62,8 +62,7 @@
             this.bhojanalayaToolStripMenuItem,
             this.dengiToolStripMenuItem,
             this.settingToolStripMenuItem,
-            this.logoutToolStripMenuItem,
-            this.encryptionToolStripMenuItem});
+            this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -97,7 +96,9 @@
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changePasswordToolStripMenuItem,
-            this.calculationFormToolStripMenuItem});
+            this.calculationFormToolStripMenuItem,
+            this.encryptionToolStripMenuItem1});
+            this.settingToolStripMenuItem.Enabled = false;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.settingToolStripMenuItem.Text = "Setting";
@@ -105,14 +106,14 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // calculationFormToolStripMenuItem
             // 
             this.calculationFormToolStripMenuItem.Name = "calculationFormToolStripMenuItem";
-            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.calculationFormToolStripMenuItem.Text = "Calculation Form";
             this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
             // 
@@ -147,12 +148,12 @@
             // 
             this.toolTip2.ShowAlways = true;
             // 
-            // encryptionToolStripMenuItem
+            // encryptionToolStripMenuItem1
             // 
-            this.encryptionToolStripMenuItem.Name = "encryptionToolStripMenuItem";
-            this.encryptionToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
-            this.encryptionToolStripMenuItem.Text = "Encryption";
-            this.encryptionToolStripMenuItem.Click += new System.EventHandler(this.encryptionToolStripMenuItem_Click);
+            this.encryptionToolStripMenuItem1.Name = "encryptionToolStripMenuItem1";
+            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.encryptionToolStripMenuItem1.Text = "Encryption";
+            this.encryptionToolStripMenuItem1.Click += new System.EventHandler(this.encryptionToolStripMenuItem1_Click);
             // 
             // MDI
             // 
@@ -194,7 +195,7 @@
         private System.Windows.Forms.ToolStripMenuItem printReceiptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculationFormToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem1;
     }
 }
 

@@ -68,10 +68,18 @@ namespace SGMOSOL.DAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "Select * from DEN_DENGI_RECEIPT_MST_T  where SERIAL_NO='" + receiptID + "' AND LOC_ID=" + UserInfo.Loc_id + " AND DEPT_ID=" + UserInfo.Dept_id + " AND CTR_MACH_ID=" + UserInfo.ctrMachID + "";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    adapter.Fill(dataTable);
-                    connection.Close();
+                    using (SqlCommand command = new SqlCommand("SP_GET_DENGI_RECEIPT_DATABYID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@SERIAL_NO", receiptID);
+                        command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
+                        command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
+                        command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        {
+                            da.Fill(dataTable);
+                        }
+                    }     
                 }
             }
             catch (Exception ex)
@@ -98,7 +106,6 @@ namespace SGMOSOL.DAL
             catch (Exception ex)
             {
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-
             }
             return ds.Tables["DEN_Dengi_Receipt_View"];
         }

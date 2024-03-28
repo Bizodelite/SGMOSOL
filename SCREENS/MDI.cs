@@ -131,7 +131,12 @@ namespace SGMOSOL
 
         private void encryptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmEncryption frm=new frmEncryption();
+            
+        }
+
+        private void encryptionToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmEncryption frm = new frmEncryption();
             frm.Show();
         }
     }

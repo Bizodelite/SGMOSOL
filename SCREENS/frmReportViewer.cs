@@ -28,25 +28,45 @@ namespace SGMOSOL.SCREENS
         BhojnalayPrintReceiptDAL bhojnalayDAL;
         CommonFunctions cm = new CommonFunctions();
 
+        public enum PrinterNames
+        {
+            DengiDeclaration,
+            DengiPrint,
+            BHDeclaration,
+            BHPrint
+        }
+
         public frmReportViewer(string flag, string value = null, string PrintType = null)
         {
             InitializeComponent();
             this.receiptID = value;
             this.flag = flag;
             this.printType = PrintType;
-           // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
-           // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
+            // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
+            // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
         }
-        
+
         private void frmReportViewer_Load(object sender, EventArgs e)
         {
             //frmReportViewer frmReport = new frmReportViewer();
-           // this.reportViewer3.RefreshReport();
+            // this.reportViewer3.RefreshReport();
         }
 
-        public void printReport(string docName)
+        public void printReport(string docName, PrinterNames PrinterType)
         {
-            string printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+            string printerName = null;
+            if (PrinterType == PrinterNames.DengiDeclaration)
+            {
+                printerName = System.Configuration.ConfigurationManager.AppSettings["DengiDec_Printer_name"].ToString();
+            }
+            if (PrinterType == PrinterNames.DengiPrint)
+            {
+                printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
+            }
+            //else
+            //{
+            //    printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+            //}
 
             byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
@@ -100,7 +120,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "DengiReceipt";
-                    printReport(DocumentName);
+                    printReport(DocumentName,PrinterNames.DengiPrint);
 
                 }
                 if (flag == "DECLARATION")
@@ -115,7 +135,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "DengiDeclaration";
-                    printReport(DocumentName);
+                    printReport(DocumentName,PrinterNames.DengiDeclaration);
                 }
             }
             if (form == "Bhojnalaya")
@@ -157,7 +177,7 @@ namespace SGMOSOL.SCREENS
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             ReportDataSource reportDataSource = null;
             string DocumentName = null;
-           
+
             if (flag == "PRINT")
             {
                 dt = bhojnalayDAL.getMessItemDataForReport(receiptID);
@@ -175,9 +195,9 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
-                    printReport(DocumentName);
+                    printReport(DocumentName, PrinterNames.BHPrint);
                 }
-              
+
             }
             if (flag == "DECLARATION")
             {
@@ -192,7 +212,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.RefreshReport();
                 DocumentName = "BhojnalayDeclaration" +
                     "";
-                printReport(DocumentName);
+                printReport(DocumentName, PrinterNames.BHDeclaration);
             }
         }
         public void printDeclarationwithoutSave(DataTable dt)
@@ -209,10 +229,10 @@ namespace SGMOSOL.SCREENS
             reportDataSource = new ReportDataSource("DataSet1", dt);
             reportViewer2.LocalReport.DataSources.Add(reportDataSource);
             DataTable dt1 = (DataTable)reportDataSource.Value;
-           // addCustomField(dt1);
+            // addCustomField(dt1);
             reportViewer2.RefreshReport();
             DocumentName = "DengiDeclaration";
-            printReport(DocumentName);
+            printReport(DocumentName, PrinterNames.DengiDeclaration);
         }
     }
 }

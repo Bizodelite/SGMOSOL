@@ -1,24 +1,16 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿
 using SGMOSOL.ADMIN;
 using SGMOSOL.Custom_User_Contols;
 using SGMOSOL.DAL;
 using SGMOSOL.DataModel;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web.ModelBinding;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using WIA;
+using System.IO;
+using CommonDialog = WIA.CommonDialog;
 
 namespace SGMOSOL.SCREENS
 {
@@ -825,6 +817,10 @@ namespace SGMOSOL.SCREENS
                 dengiReceiptModel.netbankname = txtNetBankName.Text;
                 dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
                 dengiReceiptModel.Invoiceno = txtInvoice.Text;
+                if (txtScan.Text != "")
+                {
+                    dengiReceiptModel.ScanImage = txtScan.Text;
+                }
                 if (cboPaymentType.Text == "Swipe")
                 {
                     dengiReceiptModel.tidId = (int)cobTid.SelectedValue;
@@ -1127,7 +1123,7 @@ namespace SGMOSOL.SCREENS
             // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
-         {
+        {
             if (isPrint)
             {
                 string receptID = txtdengireceiptNo.Tag.ToString();
@@ -1139,7 +1135,8 @@ namespace SGMOSOL.SCREENS
                 frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
                 report.createReport("Dengi");
             }
-            else {
+            else
+            {
                 //createTempTableforDeclaration();
                 frmReportViewer report = new frmReportViewer("DECLARATION");
                 report.printDeclarationwithoutSave(createTempTableforDeclaration());
@@ -1321,12 +1318,56 @@ namespace SGMOSOL.SCREENS
         }
         private void btnScan_Click(object sender, EventArgs e)
         {
-
+            ScanDocument();
         }
-        public void Scan_Document()
+        public void ScanDocument()
         {
-            string tempfile = "";
+            try
+            {
+                string scannerPath = System.Configuration.ConfigurationManager.AppSettings.Get("ScannerPath");
+                string tempFile;
+                string s = txtname.Text + txtCounter.Text; // Assuming txtname and txtCounter are TextBox controls in your form
+
+                CommonDialog commonDialog = new CommonDialog();
+                Device myDevice = commonDialog.ShowSelectDevice(WiaDeviceType.ScannerDeviceType, true, false);
+
+                if (myDevice == null)
+                {
+                    MessageBox.Show("Could not connect to the scanner. Please check if it's properly attached.");
+                    return;
+                }
+
+                Item scannerItem = myDevice.Items[1];
+                scannerItem.Properties["6146"].set_Value(WiaImageIntent.ColorIntent); // Color Intent
+                WIA.ImageFile imageFile = null;
+                imageFile = (WIA.ImageFile)scannerItem.Transfer(scannerItem.Properties["6147"].get_Value());
+                if (imageFile == null)
+                {
+                    DialogResult answer = MessageBox.Show("There is no file in the scanner. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (answer == DialogResult.Yes)
+                        return;
+                }
+
+                string fileName = $"{s}.{imageFile.FileExtension}";
+                string filePath = Path.Combine(scannerPath, fileName);
+
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+
+                imageFile.SaveFile(filePath);
+                txtScan.Text = s;
+
+                imgVideo.ImageLocation = filePath;
+            }
+            catch (Exception ex)
+            {
+                DialogResult answer = MessageBox.Show("There is no file in the scanner or the scanner is not attached. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (answer == DialogResult.Yes)
+                    return;
+                MessageBox.Show(ex.Message);
+            }
         }
+
 
         private void frmDengiReceipt_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1337,6 +1378,11 @@ namespace SGMOSOL.SCREENS
                 if (e.Control && e.KeyCode == Keys.P)
                 {
                     btnPrint.PerformClick();
+                    e.Handled = true;
+                }
+                if (e.Control && e.KeyCode == Keys.D)
+                {
+                    btnAcknowledge.PerformClick();
                     e.Handled = true;
                 }
                 if (e.KeyCode == Keys.F10)
@@ -1371,7 +1417,7 @@ namespace SGMOSOL.SCREENS
                             if (row["DISTRICT_ID"] != null)
                                 cboDistrict.SelectedValue = Convert.ToInt32(row["DISTRICT_ID"]);
                             if (row["GOTRA_NAME"] != null)
-                                cboGotra.Text =row["GOTRA_NAME"].ToString();
+                                cboGotra.Text = row["GOTRA_NAME"].ToString();
 
                         }
                     }
@@ -1447,6 +1493,17 @@ namespace SGMOSOL.SCREENS
         private void cboDoctype_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             lbldoctype_err.Text = "";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you wish to clear Scan document?", "Acknowledgement Form", MessageBoxButtons.YesNo);
+            if ((result == DialogResult.Yes))
+            {
+                txtScan.Text = "";
+                imgVideo.Image = null;
+                imgVideo.BackgroundImage = null;
+            }
         }
     }
 }

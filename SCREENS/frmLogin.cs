@@ -23,12 +23,14 @@ namespace SGMOSOL.SCREENS
         public int Mach_ID;
         public frmLogin()
         {
+            string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
             login = new LoginBAL();
             cm = new CommonFunctions();
             InitializeComponent();
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            string value = CommonFunctions.Decrypt("ts5vnrplu7a8bswroz8/vetad6icxske1wrmlibojrgcgo3tzmpokkvzjw1x59c6eod0evxwsvso4nbo/itxt8f7+5tv/mhg94qb3mlefml+pnzcapa5+w==", true);
             pnlLogin.Left = (this.ClientSize.Width - pnlLogin.Width) / 2;
             cm = new CommonFunctions();
             this.AcceptButton = btnLogin;
@@ -50,6 +52,7 @@ namespace SGMOSOL.SCREENS
             string isPwd = null;
             string Status = null;
             int activeUser = 0;
+
             int uID = 0;
             DataTable dt = new DataTable();
             DataTable dtuser = new DataTable();

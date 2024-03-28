@@ -48,6 +48,7 @@ namespace SGMOSOL.SCREENS
             this.lblAmount1 = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.pnlDocument = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblDocType = new System.Windows.Forms.Label();
             this.lblDocDetail = new System.Windows.Forms.Label();
             this.pnlPincode = new System.Windows.Forms.FlowLayoutPanel();
             this.lblPincode1 = new System.Windows.Forms.Label();
@@ -75,7 +76,7 @@ namespace SGMOSOL.SCREENS
             this.pnlMode = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblMode = new System.Windows.Forms.Label();
-            this.lblDocType = new System.Windows.Forms.Label();
+            this.tableAdapterManager1 = new SGMOSOL.DataSet.DengiReceiptDataSetTableAdapters.TableAdapterManager();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlName.SuspendLayout();
@@ -100,7 +101,7 @@ namespace SGMOSOL.SCREENS
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1, -5);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1345, 146);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1345, 115);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // pictureBox1
@@ -110,7 +111,7 @@ namespace SGMOSOL.SCREENS
             this.pictureBox1.Location = new System.Drawing.Point(3, 4);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1337, 143);
+            this.pictureBox1.Size = new System.Drawing.Size(1337, 117);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -146,10 +147,10 @@ namespace SGMOSOL.SCREENS
             this.pnlName.Controls.Add(this.lblName1);
             this.pnlName.Controls.Add(this.lblName);
             this.pnlName.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlName.Location = new System.Drawing.Point(684, 423);
+            this.pnlName.Location = new System.Drawing.Point(19, 453);
             this.pnlName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlName.Name = "pnlName";
-            this.pnlName.Size = new System.Drawing.Size(657, 50);
+            this.pnlName.Size = new System.Drawing.Size(1313, 75);
             this.pnlName.TabIndex = 4;
             // 
             // lblName
@@ -167,10 +168,10 @@ namespace SGMOSOL.SCREENS
             this.pnlMobile.Controls.Add(this.lblMobile1);
             this.pnlMobile.Controls.Add(this.lblMobile);
             this.pnlMobile.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMobile.Location = new System.Drawing.Point(684, 481);
+            this.pnlMobile.Location = new System.Drawing.Point(683, 536);
             this.pnlMobile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlMobile.Name = "pnlMobile";
-            this.pnlMobile.Size = new System.Drawing.Size(656, 50);
+            this.pnlMobile.Size = new System.Drawing.Size(647, 50);
             this.pnlMobile.TabIndex = 6;
             // 
             // lblMobile1
@@ -200,7 +201,7 @@ namespace SGMOSOL.SCREENS
             this.pnlAddress.Controls.Add(this.lblAddress1);
             this.pnlAddress.Controls.Add(this.lblAddress);
             this.pnlAddress.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlAddress.Location = new System.Drawing.Point(29, 539);
+            this.pnlAddress.Location = new System.Drawing.Point(18, 594);
             this.pnlAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlAddress.Name = "pnlAddress";
             this.pnlAddress.Size = new System.Drawing.Size(1312, 82);
@@ -232,7 +233,7 @@ namespace SGMOSOL.SCREENS
             this.pnlAmount.Controls.Add(this.lblAmount1);
             this.pnlAmount.Controls.Add(this.lblAmount);
             this.pnlAmount.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlAmount.Location = new System.Drawing.Point(29, 247);
+            this.pnlAmount.Location = new System.Drawing.Point(20, 234);
             this.pnlAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlAmount.Name = "pnlAmount";
             this.pnlAmount.Size = new System.Drawing.Size(1312, 54);
@@ -265,12 +266,23 @@ namespace SGMOSOL.SCREENS
             this.pnlDocument.Controls.Add(this.lblDocType);
             this.pnlDocument.Controls.Add(this.lblDocDetail);
             this.pnlDocument.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlDocument.Location = new System.Drawing.Point(29, 359);
+            this.pnlDocument.Location = new System.Drawing.Point(20, 344);
             this.pnlDocument.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlDocument.Name = "pnlDocument";
             this.pnlDocument.Size = new System.Drawing.Size(648, 50);
             this.pnlDocument.TabIndex = 9;
             this.pnlDocument.Tag = "";
+            // 
+            // lblDocType
+            // 
+            this.lblDocType.AutoSize = true;
+            this.lblDocType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocType.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblDocType.Location = new System.Drawing.Point(3, 0);
+            this.lblDocType.Name = "lblDocType";
+            this.lblDocType.Size = new System.Drawing.Size(146, 31);
+            this.lblDocType.TabIndex = 4;
+            this.lblDocType.Text = "Document";
             // 
             // lblDocDetail
             // 
@@ -287,10 +299,10 @@ namespace SGMOSOL.SCREENS
             this.pnlPincode.Controls.Add(this.lblPincode1);
             this.pnlPincode.Controls.Add(this.lblPincode);
             this.pnlPincode.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlPincode.Location = new System.Drawing.Point(689, 687);
+            this.pnlPincode.Location = new System.Drawing.Point(687, 747);
             this.pnlPincode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlPincode.Name = "pnlPincode";
-            this.pnlPincode.Size = new System.Drawing.Size(656, 50);
+            this.pnlPincode.Size = new System.Drawing.Size(645, 50);
             this.pnlPincode.TabIndex = 10;
             // 
             // lblPincode1
@@ -320,10 +332,10 @@ namespace SGMOSOL.SCREENS
             this.pnlTaluka.Controls.Add(this.lblTaluka1);
             this.pnlTaluka.Controls.Add(this.lblTaluka);
             this.pnlTaluka.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlTaluka.Location = new System.Drawing.Point(32, 684);
+            this.pnlTaluka.Location = new System.Drawing.Point(18, 744);
             this.pnlTaluka.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlTaluka.Name = "pnlTaluka";
-            this.pnlTaluka.Size = new System.Drawing.Size(651, 50);
+            this.pnlTaluka.Size = new System.Drawing.Size(663, 50);
             this.pnlTaluka.TabIndex = 11;
             // 
             // lblTaluka1
@@ -353,10 +365,10 @@ namespace SGMOSOL.SCREENS
             this.pnlState.Controls.Add(this.lblState1);
             this.pnlState.Controls.Add(this.lblState);
             this.pnlState.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlState.Location = new System.Drawing.Point(29, 629);
+            this.pnlState.Location = new System.Drawing.Point(19, 689);
             this.pnlState.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlState.Name = "pnlState";
-            this.pnlState.Size = new System.Drawing.Size(656, 50);
+            this.pnlState.Size = new System.Drawing.Size(664, 50);
             this.pnlState.TabIndex = 12;
             // 
             // lblState1
@@ -386,7 +398,7 @@ namespace SGMOSOL.SCREENS
             this.pnlAmtWord.Controls.Add(this.lblDengiHead1);
             this.pnlAmtWord.Controls.Add(this.lblDengiHead);
             this.pnlAmtWord.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlAmtWord.Location = new System.Drawing.Point(686, 359);
+            this.pnlAmtWord.Location = new System.Drawing.Point(674, 344);
             this.pnlAmtWord.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlAmtWord.Name = "pnlAmtWord";
             this.pnlAmtWord.Size = new System.Drawing.Size(656, 50);
@@ -399,16 +411,16 @@ namespace SGMOSOL.SCREENS
             this.lblDengiHead1.ForeColor = System.Drawing.Color.DarkBlue;
             this.lblDengiHead1.Location = new System.Drawing.Point(3, 0);
             this.lblDengiHead1.Name = "lblDengiHead1";
-            this.lblDengiHead1.Size = new System.Drawing.Size(174, 31);
+            this.lblDengiHead1.Size = new System.Drawing.Size(258, 31);
             this.lblDengiHead1.TabIndex = 2;
-            this.lblDengiHead1.Text = "Type (तपशिल)";
+            this.lblDengiHead1.Text = "Dengi Type (तपशिल)";
             // 
             // lblDengiHead
             // 
             this.lblDengiHead.AutoSize = true;
             this.lblDengiHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDengiHead.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblDengiHead.Location = new System.Drawing.Point(183, 0);
+            this.lblDengiHead.Location = new System.Drawing.Point(267, 0);
             this.lblDengiHead.Name = "lblDengiHead";
             this.lblDengiHead.Size = new System.Drawing.Size(0, 36);
             this.lblDengiHead.TabIndex = 3;
@@ -419,10 +431,10 @@ namespace SGMOSOL.SCREENS
             this.flowLayoutPanel2.Controls.Add(this.lblDistrict1);
             this.flowLayoutPanel2.Controls.Add(this.lblDistrict);
             this.flowLayoutPanel2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(693, 629);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(691, 689);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(648, 50);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(641, 50);
             this.flowLayoutPanel2.TabIndex = 14;
             // 
             // lblDistrict1
@@ -452,10 +464,10 @@ namespace SGMOSOL.SCREENS
             this.pnlGotra.Controls.Add(this.lblGotra1);
             this.pnlGotra.Controls.Add(this.lblGotra);
             this.pnlGotra.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlGotra.Location = new System.Drawing.Point(29, 481);
+            this.pnlGotra.Location = new System.Drawing.Point(20, 536);
             this.pnlGotra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlGotra.Name = "pnlGotra";
-            this.pnlGotra.Size = new System.Drawing.Size(648, 50);
+            this.pnlGotra.Size = new System.Drawing.Size(658, 50);
             this.pnlGotra.TabIndex = 15;
             // 
             // lblGotra1
@@ -484,7 +496,7 @@ namespace SGMOSOL.SCREENS
             this.flowLayoutPanel3.BackColor = System.Drawing.Color.Silver;
             this.flowLayoutPanel3.Controls.Add(this.lblAmtWords);
             this.flowLayoutPanel3.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(29, 302);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(20, 289);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1312, 49);
@@ -505,10 +517,10 @@ namespace SGMOSOL.SCREENS
             this.flowLayoutPanel4.Controls.Add(this.label1);
             this.flowLayoutPanel4.Controls.Add(this.lblValue);
             this.flowLayoutPanel4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(29, 150);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(20, 118);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(1312, 101);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(1312, 108);
             this.flowLayoutPanel4.TabIndex = 17;
             // 
             // label1
@@ -538,10 +550,10 @@ namespace SGMOSOL.SCREENS
             this.pnlMode.Controls.Add(this.label2);
             this.pnlMode.Controls.Add(this.lblMode);
             this.pnlMode.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMode.Location = new System.Drawing.Point(20, 417);
+            this.pnlMode.Location = new System.Drawing.Point(19, 398);
             this.pnlMode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlMode.Name = "pnlMode";
-            this.pnlMode.Size = new System.Drawing.Size(657, 50);
+            this.pnlMode.Size = new System.Drawing.Size(1311, 50);
             this.pnlMode.TabIndex = 5;
             // 
             // label2
@@ -551,51 +563,46 @@ namespace SGMOSOL.SCREENS
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 31);
+            this.label2.Size = new System.Drawing.Size(320, 31);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Mode (माध्यम )";
+            this.label2.Text = "Payment Mode (पेमेंट मोड)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblMode
             // 
             this.lblMode.AutoSize = true;
             this.lblMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMode.Location = new System.Drawing.Point(187, 0);
+            this.lblMode.Location = new System.Drawing.Point(329, 0);
             this.lblMode.Name = "lblMode";
             this.lblMode.Size = new System.Drawing.Size(0, 51);
             this.lblMode.TabIndex = 1;
             // 
-            // lblDocType
+            // tableAdapterManager1
             // 
-            this.lblDocType.AutoSize = true;
-            this.lblDocType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocType.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblDocType.Location = new System.Drawing.Point(3, 0);
-            this.lblDocType.Name = "lblDocType";
-            this.lblDocType.Size = new System.Drawing.Size(146, 31);
-            this.lblDocType.TabIndex = 4;
-            this.lblDocType.Text = "Document";
+            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.Connection = null;
+            this.tableAdapterManager1.UpdateOrder = SGMOSOL.DataSet.DengiReceiptDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // frmUserDengi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(1371, 750);
+            this.ClientSize = new System.Drawing.Size(1362, 800);
+            this.Controls.Add(this.pnlGotra);
+            this.Controls.Add(this.pnlAmount);
+            this.Controls.Add(this.pnlMobile);
             this.Controls.Add(this.pnlPincode);
             this.Controls.Add(this.pnlName);
             this.Controls.Add(this.pnlMode);
             this.Controls.Add(this.flowLayoutPanel4);
             this.Controls.Add(this.pnlAmtWord);
             this.Controls.Add(this.flowLayoutPanel3);
-            this.Controls.Add(this.pnlAmount);
-            this.Controls.Add(this.pnlGotra);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.pnlState);
             this.Controls.Add(this.pnlTaluka);
             this.Controls.Add(this.pnlDocument);
             this.Controls.Add(this.pnlAddress);
-            this.Controls.Add(this.pnlMobile);
             this.Controls.Add(this.btnconvert);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -682,5 +689,6 @@ namespace SGMOSOL.SCREENS
         private Label label2;
         private Label lblMode;
         private Label lblDocType;
+        private DataSet.DengiReceiptDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
     }
 }

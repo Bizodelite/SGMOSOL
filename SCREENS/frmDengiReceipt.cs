@@ -1176,7 +1176,7 @@ namespace SGMOSOL.SCREENS
             dt.Columns.Add("AMOUNT_IN_WORDS", typeof(string));
             dt.Columns.Add("PINCODE", typeof(string));
             dt.Columns.Add("TYPE", typeof(string));
-            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text, txtmob.Text, cboDoctype.Text, txtdocDetail.Text, txtAmount.Text, commonFunctions.words(Convert.ToDouble(txtAmount.Text)), txtPincode.Text, cboDengiType.Text);
+            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text,txtmob.Text,cboDoctype.Text,txtdocDetail.Text,txtAmount.Text,commonFunctions.words(Convert.ToDouble(txtAmount.Text)),txtPincode.Text,cboDengiType.Text);
             return dt;
         }
         public void CheckValidDocs()

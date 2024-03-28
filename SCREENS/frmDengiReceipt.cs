@@ -817,6 +817,10 @@ namespace SGMOSOL.SCREENS
                 dengiReceiptModel.netbankname = txtNetBankName.Text;
                 dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
                 dengiReceiptModel.Invoiceno = txtInvoice.Text;
+                if (txtScan.Text != "")
+                {
+                    dengiReceiptModel.ScanImage = txtScan.Text;
+                }
                 if (cboPaymentType.Text == "Swipe")
                 {
                     dengiReceiptModel.tidId = (int)cobTid.SelectedValue;
@@ -1491,6 +1495,15 @@ namespace SGMOSOL.SCREENS
             lbldoctype_err.Text = "";
         }
 
-
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you wish to clear Scan document?", "Acknowledgement Form", MessageBoxButtons.YesNo);
+            if ((result == DialogResult.Yes))
+            {
+                txtScan.Text = "";
+                imgVideo.Image = null;
+                imgVideo.BackgroundImage = null;
+            }
+        }
     }
 }

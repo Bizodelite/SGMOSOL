@@ -243,6 +243,7 @@ namespace SGMOSOL.DAL
                                 command.Parameters.AddWithValue("@Doc_Type", null);
                             command.Parameters.AddWithValue("@Doc_Detail", obj.Doc_Detail);
                             command.Parameters.AddWithValue("@IsDuplicate", obj.IsDuplicate);
+                            command.Parameters.AddWithValue("@ScanImage",obj.ScanImage);
                             SqlParameter idParam = new SqlParameter("@Receipt_ID", SqlDbType.Decimal);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);

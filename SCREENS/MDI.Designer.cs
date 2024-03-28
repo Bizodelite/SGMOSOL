@@ -40,13 +40,13 @@
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pctControls = new System.Windows.Forms.PictureBox();
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -98,10 +98,10 @@
             this.changePasswordToolStripMenuItem,
             this.calculationFormToolStripMenuItem,
             this.encryptionToolStripMenuItem1});
-            this.settingToolStripMenuItem.Enabled = false;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
@@ -116,6 +116,13 @@
             this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.calculationFormToolStripMenuItem.Text = "Calculation Form";
             this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
+            // 
+            // encryptionToolStripMenuItem1
+            // 
+            this.encryptionToolStripMenuItem1.Name = "encryptionToolStripMenuItem1";
+            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.encryptionToolStripMenuItem1.Text = "Encryption";
+            this.encryptionToolStripMenuItem1.Click += new System.EventHandler(this.encryptionToolStripMenuItem1_Click);
             // 
             // logoutToolStripMenuItem
             // 
@@ -147,13 +154,6 @@
             // toolTip2
             // 
             this.toolTip2.ShowAlways = true;
-            // 
-            // encryptionToolStripMenuItem1
-            // 
-            this.encryptionToolStripMenuItem1.Name = "encryptionToolStripMenuItem1";
-            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.encryptionToolStripMenuItem1.Text = "Encryption";
-            this.encryptionToolStripMenuItem1.Click += new System.EventHandler(this.encryptionToolStripMenuItem1_Click);
             // 
             // MDI
             // 

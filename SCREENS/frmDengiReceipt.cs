@@ -468,7 +468,7 @@ namespace SGMOSOL.SCREENS
             cboDengiType.SelectedIndex = 1;
             cboDistrict.SelectedIndex = 0;
             cboGotra.SelectedIndex = 0;
-            cboPaymentType.SelectedIndex = 1;
+            cboPaymentType.SelectedValue = 8;
             cboState.SelectedValue = 21;
             txtdocDetail.Text = "";
             cboDoctype.Text = "";
@@ -1248,7 +1248,7 @@ namespace SGMOSOL.SCREENS
             }
             else
             {
-                userDengi.SetDocType("");
+                userDengi.SetDocType("Document");
             }
         }
         private void cboState_SelectedIndexChanged(object sender, EventArgs e)

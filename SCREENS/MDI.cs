@@ -133,5 +133,14 @@ namespace SGMOSOL
             frmEncryption frm=new frmEncryption();
             frm.Show();
         }
+
+        private void requirementToAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReqToAdmin frm=new frmReqToAdmin();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
     }
 }

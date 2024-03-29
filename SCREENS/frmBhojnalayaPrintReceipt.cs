@@ -268,17 +268,17 @@ namespace SGMOSOL.SCREENS
             tempItemTable.Columns["ID"].AutoIncrementSeed = 1;
             tempItemTable.Columns["ID"].AutoIncrementStep = 1;
             dgvItemDetails.DataSource = tempItemTable;
-            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
-            editButtonColumn.Name = "EditButton";
-            editButtonColumn.HeaderText = "Edit";
-            editButtonColumn.Text = "Edit";
-            editButtonColumn.UseColumnTextForButtonValue = true;
+            //DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            //editButtonColumn.Name = "EditButton";
+            //editButtonColumn.HeaderText = "Edit";
+            //editButtonColumn.Text = "Edit";
+            //editButtonColumn.UseColumnTextForButtonValue = true;
             DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
             deleteButtonColumn.Name = "DeleteButton";
             deleteButtonColumn.HeaderText = "Delete";
             deleteButtonColumn.Text = "Delete";
             deleteButtonColumn.UseColumnTextForButtonValue = true;
-            dgvItemDetails.Columns.Add(editButtonColumn);
+           // dgvItemDetails.Columns.Add(editButtonColumn);
             dgvItemDetails.Columns.Add(deleteButtonColumn);
         }
 

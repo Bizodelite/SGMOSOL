@@ -72,12 +72,21 @@ namespace SGMOSOL.SCREENS
                         {
                             uID = login.getUserId(isUser);
                             activeUser = login.GetLoggedInUser(uID);
+                            UserInfo.UserName = isUser;
                             if (activeUser == 0)
                             {
                                 UserInfo.UserId = uID;
+
                                 dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
                                 if (dtuser.Rows.Count > 0)
                                 {
+                                    if (Convert.ToDateTime(dtuser.Rows[0]["ResetPasswordDate"]).AddDays(45) < DateTime.Now)
+                                    {
+                                        frmChnagePassword frmchnagepassword = new frmChnagePassword();
+                                        frmchnagepassword.ShowDialog();
+                                        lblmessage.Text = "Please Login Again With New Password.";
+                                        return;
+                                    }
                                     UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
                                     foreach (DataRow row in dtuser.Rows)
                                     {
@@ -98,12 +107,19 @@ namespace SGMOSOL.SCREENS
                                 lblmessage.Text = "User already loggedIn, Please logout first !!!";
                                 return;
                             }
-                            UserInfo.UserName = isUser;
                             DataTable dd = cm.getFYDetail();
-                            UserInfo.CompanyID = 9;
-                            UserInfo.fy_id = Convert.ToInt32(dd.Rows[0]["FINANCIAL_YEAR_ID"]);
-                            UserInfo.FYStartDate = Convert.ToDateTime(dd.Rows[0]["Start_Date"]);
-                            UserInfo.FYEndDate = Convert.ToDateTime(dd.Rows[0]["End_Date"]);
+                            if (dd != null && dd.Rows.Count > 0)
+                            {
+                                UserInfo.CompanyID = 9;
+                                UserInfo.fy_id = Convert.ToInt32(dd.Rows[0]["FINANCIAL_YEAR_ID"]);
+                                UserInfo.FYStartDate = Convert.ToDateTime(dd.Rows[0]["Start_Date"]);
+                                UserInfo.FYEndDate = Convert.ToDateTime(dd.Rows[0]["End_Date"]);
+                            }
+                            else
+                            {
+                                lblmessage.Text = "Financial Year Not Found Please Check!";
+                                return;
+                            }
                             lblmessage.Text = "Login Successfull";
                             login.InsertUser_Login_details();
                             LoginStatusMessage(true);

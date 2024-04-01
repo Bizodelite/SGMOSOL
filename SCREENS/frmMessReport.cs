@@ -245,8 +245,8 @@ namespace SGMOSOL.DAL.Locker
 
             if (mScreenId == eScreenID.DailyDengi)
             {
-                // strReportName = "crDailyReceiptDetails_desk2.rpt"
-                strReportName = "crDailyDengiRcptVchr.rpt";
+                // strReportName = "crDailyReceiptDetails_desk2.rdlc"
+                strReportName = "crDailyDengiRcptVchr.rdlc";
                 ds = mClsPrintReceipt.GetDsDailyDengi(strFromDate, intCtrMachId);
 
 
@@ -278,178 +278,179 @@ namespace SGMOSOL.DAL.Locker
             else if (mScreenId == eScreenID.PrasadWatap)
             {
                 ds = mClsPrintReceipt.GetDsPrasadWatap(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpPrasadWtp_desk.rpt";
+                strReportName = "crpPrasadWtp_desk.rdlc";
             }
             else if (mScreenId == eScreenID.ReceiptDetail)
             {
                 ds = mClsPrintReceipt.GetDsReceiptDetail(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crReceiptDetails_desk.rpt";
+                strReportName = "crReceiptDetails_desk.rdlc";
             }
             else if (mScreenId == eScreenID.EntryGateUserWise)
             {
                 ds = mClsPrintReceipt.GetDsEntryGateUserWise(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpEntryGateUserWise.rpt";
+                strReportName = "crpEntryGateUserWise.rdlc";
             }
             else if (mScreenId == eScreenID.EntryGateDailyReceipt)
             {
                 ds = mClsPrintReceipt.GetDsEntryGateDailyReceipt(strFromDate, intCtrMachId);
-                strReportName = "crpEntryGateDailyReceipt.rpt";
+                strReportName = "crpEntryGateDailyReceipt.rdlc";
             }
             else if (mScreenId == eScreenID.ToyTrainUserWise)
             {
                 ds = mClsPrintReceipt.GetDsToyTrainUserWise(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpToyTrainUserWise.rpt";
+                strReportName = "crpToyTrainUserWise.rdlc";
             }
             else if (mScreenId == eScreenID.ToyTrainDailyReceipt)
             {
                 ds = mClsPrintReceipt.GetDsToyTrainDailyReceipt(strFromDate, intCtrMachId);
-                strReportName = "crpToyTrainDailyReceipt.rpt";
+                strReportName = "crpToyTrainDailyReceipt.rdlc";
             }
             else if (mScreenId == eScreenID.GameUserWise)
             {
                 ds = mClsPrintReceipt.GetDsGameUserWise(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpGameUserWise.rpt";
+                strReportName = "crpGameUserWise.rdlc";
             }
             else if (mScreenId == eScreenID.DengiUserwise)
             {
                 ds = mClsPrintReceipt.GetDengiUserwise(strFromDate, strToDate, strFromTime, strToTime, intCtrMachId);
-                strReportName = "crDengiUserWise.rpt";
+                strReportName = "crDengiUserWise.rdlc";
             }
             else if (mScreenId == eScreenID.dengireceiptdetail)
             {
                 ds = mClsPrintReceipt.GetDsDengiReceiptDetail(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crDengiReceiptDetail.rpt";
+                strReportName = "crDengiReceiptDetail.rdlc";
             }
             else if (mScreenId == eScreenID.GameDailyReceipt)
             {
                 ds = mClsPrintReceipt.GetDsGameDailyReceipt(strFromDate, intCtrMachId);
-                strReportName = "crpGameDailyReceipt.rpt";
+                strReportName = "crpGameDailyReceipt.rdlc";
             }
             else if (mScreenId == eScreenID.DailyDengiReceiptRpt)
             {
                 ds = mClsPrintReceipt.GetDsDailyDengiMess(strFromDate, intCtrMachId);
-                strReportName = "crpDailyDengiReceipt.rpt";
+                strReportName = "crpDailyDengiReceipt.rdlc";
             }
             else if (mScreenId == eScreenID.EntryGateReceiptDetail)
             {
                 ds = mClsPrintReceipt.GetDsEntryGateReceiptDetail(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpEGRDtls.rpt";
+                strReportName = "crpEGRDtls.rdlc";
             }
             else if (mScreenId == eScreenID.ChequeDengiReceiptVoucher)
             {
                 ds = mClsPrintReceipt.GetChequeReptDetail(strFromDate, intCtrMachId);
-                strReportName = "crDailyDengiRcptVchr.rpt";
+                strReportName = "crDailyDengiRcptVchr.rdlc";
             }
             else if (mScreenId == eScreenID.AbhishekRegister)
             {
                 ds = mClsPrintReceipt.GetDengiVoucherDetails(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crDengiVoucherDtls.rpt";
+                strReportName = "crDengiVoucherDtls.rdlc";
             }
             else if (mScreenId == eScreenID.DailyDengiReceipt)
             {
                 ds = mClsPrintReceipt.GetDsDailyDengiReceipt(strFromDate, intCtrMachId);
-                strReportName = "crpDaily_Dengi_Receipt_Updated.rpt";
+                strReportName = "crpDaily_Dengi_Receipt_Updated.rdlc";
             }
             else if (mScreenId == eScreenID.ChequeDengiReceiptVoucher)
             {
                 ds = mClsPrintReceipt.GetChequeReptDetail(strFromDate, intCtrMachId);
-                strReportName = "crChequeReceiptDetails_desk1.rpt";
+                strReportName = "crChequeReceiptDetails_desk1.rdlc";
             }
             else if (mScreenId == eScreenID.lockercheckoutuserwise)
             {
                 ds = mClsPrintReceipt.GetDsckeckoutLockeruserwise(strFromDate, strToDate, strFromTime, strToTime, LocID);
-                strReportName = "crLockerChkOutUserWise_Desk.rpt";
+                strReportName = "crLockerChkOutUserWise_Desk.rdlc";
             }
             else if (mScreenId == eScreenID.lockercheckinuserwise)
             {
                 ds = mClsPrintReceipt.GetDschkinLockeruserwise(strFromDate, strToDate, strFromTime, strToTime, LocID);
-                strReportName = "crLockerChkInUserWise_Desk.rpt";
+                strReportName = "crLockerChkInUserWise_Desk.rdlc";
             }
             else if (mScreenId == eScreenID.lockerreceiptdetail)
             {
                 ds = mClsPrintReceipt.GetDslockerreceiptdetail(strFromDate, strToDate, LocID);
-                strReportName = "crpLockerRDtls_Desk.rpt";
+                strReportName = "crpLockerRDtls_Desk.rdlc";
             }
             else if (mScreenId == eScreenID.lockerCheckInCheckOut)
             {
                 ds = mClsPrintReceipt.GetDsLockerCheckInCheckOut(strFromDate, strToDate, LocID);
-                strReportName = "crpLockerChkInChkOut.rpt";
+                strReportName = "crpLockerChkInChkOut.rdlc";
             }
             else if (mScreenId == eScreenID.lockercheckoutdaily)
             {
                 ds = mClsPrintReceipt.GetDsDailyLockerCheckOut(strFromDate, LocID);
-                strReportName = "crCheckOutDailyRpt_desk.rpt";
+                strReportName = "crCheckOutDailyRpt_desk.rdlc";
             }
             else if (mScreenId == eScreenID.lockercheckindaily)
             {
                 ds = mClsPrintReceipt.GetDsDailyLockerCheckIn(strFromDate, LocID);
-                strReportName = "crCheckInDailyRpt_desk.rpt";
+                strReportName = "crCheckInDailyRpt_desk.rdlc";
             }
             else if (mScreenId == eScreenID.BNRoomReceiptDetail)
             {
                 ds = mClsPrintReceipt.GetDsRoomReceiptDetail(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpRoomReceiptDetails.rpt";
+                strReportName = "crpRoomReceiptDetails.rdlc";
             }
             else if (mScreenId == eScreenID.BNDailyRoomCheckOut)
             {
                 clsConnection objCon = new clsConnection();
                  //System.Data.DataTable dt = objCon.GetRecordDataTable("Select User_First_Name + ' ' + User_Last_Name as UserFName from sec_user_mst_t where User_Id=" + UserInfo.UserId);
                 ds = mClsPrintReceipt.GetDsDailyRoomCheckOut(strFromDate, intCtrMachId, intSublocId, LocID, payTypeid, UserInfo.UserName);
-                strReportName = "crDailyRoomCheckOut.rpt";
+                strReportName = "crDailyRoomCheckOut.rdlc";
             }
             else if (mScreenId == eScreenID.BNDailyRoomCheckIN)
             {
                 ds = mClsPrintReceipt.GetDsDailyRoomCheckIn(strFromDate, intCtrMachId, intSublocId, LocID, payTypeid);
-                strReportName = "crDailyRoomCheckIN.rpt";
+                strReportName = "crDailyRoomCheckIN.rdlc";
             }
             else if (mScreenId == eScreenID.lockeradvancevouchure)
             {
                 ds = mClsPrintReceipt.GetDsLockerAdvanceVouchers(strFromDate, strToDate, strFromTime, strToTime, intCtrMachId);
-                strReportName = "crpLockerAdvVchr.rpt";
+                strReportName = "crpLockerAdvVchr.rdlc";
             }
             else if (mScreenId == eScreenID.BNRoomCheckOutUserwise)
             {
                 ds = mClsPrintReceipt.GetDsRoomCheckOutUserwise(strFromDate, strToDate, strFromTime, strToTime, intSublocId, LocID, payTypeid);
-                strReportName = "crRoomChkOutUserWise.rpt";
+                strReportName = "crRoomChkOutUserWise.rdlc";
             }
             else if (mScreenId == eScreenID.BNRoomCheckINUserwise)
             {
                 ds = mClsPrintReceipt.GetDsRoomCheckInUserwise(strFromDate, strToDate, strFromTime, strToTime, intSublocId, LocID, payTypeid);
-                strReportName = "crRoomChkINUserWise.rpt";
+                strReportName = "crRoomChkINUserWise.rdlc";
             }
             else if (mScreenId == eScreenID.BNRoomAdvanceVoucher)
             {
                 ds = mClsPrintReceipt.GetDsRoomAdvanceVouchers(strFromDate, strToDate, strFromTime, strToTime, intSublocId, LocID, payTypeid);
-                strReportName = "crpRoomAdvVchr.rpt";
+                strReportName = "crpRoomAdvVchr.rdlc";
             }
             else if (mScreenId == eScreenID.BEDRoomAdvanceVoucher)
             {
                 // ds = mClsPrintReceipt.GetDsRoomAdvanceVouchers(strFromDate, strToDate, strFromTime, strToTime, intSublocId)
                 ds = mClsPrintReceipt.GetDsBedAdvanceVouchers(strFromDate, strToDate, strFromTime, strToTime, intSublocId, payTypeid);
-                strReportName = "crpBedAdvVchr.rpt";
+                strReportName = "crpBedAdvVchr.rdlc";
             }
             else if (mScreenId == eScreenID.BNUserwiseCashReport)
             {
                 ds = mClsPrintReceipt.GetDsBNUserwiseCashReport(strFromDate, strToDate, strFromTime, strToTime, intCtrMachId);
-                strReportName = "crpRoomChkInChkOut.rpt";
+                strReportName = "crpRoomChkInChkOut.rdlc";
             }
             else if (mScreenId == eScreenID.DengiBhetvastuUserwise)
             {
                 ds = mClsPrintReceipt.GetDengiBhetVastuUserwise(strFromDate, strToDate, strFromTime, strToTime, intCtrMachId);
-                strReportName = "crDengiBhetvastuUserWise.rpt";
+                strReportName = "crDengiBhetvastuUserWise.rdlc";
             }
             else
             {
                 ds = mClsPrintReceipt.GetDsAnnadanRec(strFromDate, strToDate, intCtrMachId);
-                strReportName = "crpAnnadanRec_desk.rpt";
+                strReportName = "crpAnnadanRec_desk.rdlc";
             }
             setCursor(this, true);
-            //sForm = New frmCrystalViewer(UserInfo.ReportPath & strReportName, , ds, , pColl, mScreenId, False)
 
-            //sForm = new frmReportViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, mScreenId, false);
-            //sForm.Text = this.Text;
-            //setCursor(this, true);
-            //sForm.Show();
+            //sForm = new frmCrystalViewer(UserInfo.ReportPath & strReportName,null , ds, , pColl, mScreenId, False)
+
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, mScreenId, false);
+            sForm.Text = this.Text;
+            setCursor(this, true);
+            sForm.Show();
         }
     }
 

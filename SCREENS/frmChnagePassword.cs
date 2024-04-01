@@ -39,15 +39,20 @@ namespace SGMOSOL.SCREENS
                         int status = login.updatePassword(txtUserName.Text, txtNewPassword.Text);
                         if (status == 1)
                         {
-                            MessageBox.Show("Password Updated Successfully");
-                            MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
-                            if (mdiParentForm != null)
+                            status = login.InsertUser_PassWord_Logs(txtNewPassword.Text);
+                            if (status == 0)
                             {
-                                this.Close();    
-                            }
-                            else {
-                                MDI home = new MDI();
-                                home.Show();
+                                MessageBox.Show("Password Updated Successfully");
+                                MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
+                                //if (mdiParentForm != null)
+                                //{
+                                    this.Close();
+                                //}
+                                //else
+                                //{
+                                //    MDI home = new MDI();
+                                //    home.Show();
+                                //}
                             }
                         }
                     }

@@ -2,6 +2,8 @@
 using SGMOSOL.BAL;
 using SGMOSOL.DAL.Locker;
 using SGMOSOL.SCREENS;
+using SGMOSOL.SCREENS.Bed_System;
+using SGMOSOL.SCREENS.BedSystem;
 using SGMOSOL.SCREENS.Locker;
 using System;
 using System.Collections.Generic;
@@ -36,6 +38,11 @@ namespace SGMOSOL
         frmLockChkOutWrng frmMoreThan3Day;
         frmDamagedLokers frmDamagedLokers;
         frmMessReport frmLockerAdvanceVoucher;
+        frmDailyVoucherEntryBed frmDailyVoucherEntryBed;
+        FrmBedCheckIN FrmBedCheckIN;
+        FrmBedCheckOut FrmBedCheckOut;
+        FrmBedO FrmBedO;
+        frmMessReport frmBedAdvanceVoucher;
 
         CommonFunctions cm;
         public MDI()
@@ -49,6 +56,7 @@ namespace SGMOSOL
         private void MDI_Load(object sender, EventArgs e)
         {
             InitAppParam();
+            LoadBedCheckInMaxAmount();
         }
         public void InitAppParam()
         {
@@ -57,9 +65,19 @@ namespace SGMOSOL
             //UserInfo.MaxRowsOfFindGrid = 300;
             //UserInfo.DengiAlertAmt = 5000;
             //UserInfo.InstrumentDateDays = 30;
-            UserInfo.ReportPath = Application.StartupPath + "\\Reports";
+            UserInfo.ReportPath = Application.StartupPath.Replace("bin\\Debug","") + "Reports\\";
         }
-
+        private void LoadBedCheckInMaxAmount()
+        {
+            try
+            {
+                UserInfo.BedCheckInMaxAmount = CommonFunctions.getBedCheckInMaxAmount(); ;
+            }
+            catch (Exception ex)
+            {
+                UserInfo.BedCheckInMaxAmount = 0;
+            }
+        }
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDengiReceip = new frmDengiReceipt();
@@ -231,6 +249,51 @@ namespace SGMOSOL
             frmLockerAdvanceVoucher.MdiParent = this;
             frmLockerAdvanceVoucher.WindowState = FormWindowState.Maximized;
             frmLockerAdvanceVoucher.Show();
+        }
+
+        private void dailyVoucherEntryBedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDailyVoucherEntryBed = new frmDailyVoucherEntryBed(CommonFunctions.eScreenID.DailyVoucherEntryBed);
+            frmDailyVoucherEntryBed.StartPosition = FormStartPosition.CenterParent;
+            frmDailyVoucherEntryBed.MdiParent = this;
+            frmDailyVoucherEntryBed.WindowState = FormWindowState.Maximized;
+            frmDailyVoucherEntryBed.Show();
+        }
+
+        private void bedCheckInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBedCheckIN = new FrmBedCheckIN(CommonFunctions.eScreenID.DailyVoucherEntryBed);
+            FrmBedCheckIN.StartPosition = FormStartPosition.CenterParent;
+            FrmBedCheckIN.MdiParent = this;
+            FrmBedCheckIN.WindowState = FormWindowState.Maximized;
+            FrmBedCheckIN.Show();
+        }
+
+        private void bedCheckOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBedCheckOut = new FrmBedCheckOut(eScreenID.BedCheckOut);
+            FrmBedCheckOut.StartPosition = FormStartPosition.CenterParent;
+            FrmBedCheckOut.MdiParent = this;
+            FrmBedCheckOut.WindowState = FormWindowState.Maximized;
+            FrmBedCheckOut.Show();
+        }
+
+        private void bedOccupiedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBedO = new FrmBedO(eScreenID.BedOccupied);
+            FrmBedO.StartPosition = FormStartPosition.CenterParent;
+            FrmBedO.MdiParent = this;
+            FrmBedO.WindowState = FormWindowState.Maximized;
+            FrmBedO.Show();
+        }
+
+        private void bedAdvanceVoucherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBedAdvanceVoucher = new frmMessReport(eScreenID.BEDRoomAdvanceVoucher);
+            frmBedAdvanceVoucher.StartPosition = FormStartPosition.CenterParent;
+            frmBedAdvanceVoucher.MdiParent = this;
+            frmBedAdvanceVoucher.WindowState = FormWindowState.Maximized;
+            frmBedAdvanceVoucher.Show();
         }
     }
 }

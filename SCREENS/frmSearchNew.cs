@@ -33,11 +33,11 @@ namespace SGMOSOL.SCREENS
         {
             InitializeComponent();
         }
-        public frmSearchNew(string strTableName, bool txtNameView)
+        public frmSearchNew(string strTableName, bool txtNameView, eModType BedSystem)
         {
             InitializeComponent();
             mStrTableName = strTableName;
-            txtName.Visible = txtNameView;
+            txtName.Visible = txtNameView;//IF FRMSearch then Ans False
         }
         private void frmSearchNew_Load(System.Object sender, System.EventArgs e)
         {

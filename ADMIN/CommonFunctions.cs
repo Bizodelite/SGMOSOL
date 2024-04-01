@@ -220,6 +220,22 @@ namespace SGMOSOL.ADMIN
             // Code Added 14/
             DengiAcknowledge = 10006
         }
+        public enum eBhaktaType
+        {
+            Bhkta,
+            Trip,
+            Gorup
+        }
+        public enum ePrintReceipt
+        {
+            ProductN,
+            ProductC,
+            Advance,
+            Nidhi,
+            Qty,
+            TotAdv,
+            TotNidhi
+        }
         //public enum eEntryGate
         //{
         //    Code,
@@ -430,9 +446,36 @@ namespace SGMOSOL.ADMIN
             {
                 sb.AppendLine("Password must contain at least one numeric value.");
             }
+            if (CheckPassWord(password))
+            {
+                sb.AppendLine("Entered password is in your last 3 entered password, Please enter new password.");
+            }
             return sb.ToString();
         }
-
+        public bool CheckPassWord(string password)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_CheckLast3PassWord", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@UserID", UserInfo.UserId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+                foreach (DataRow item in dt.Rows)
+                {
+                    if (item["Password"].ToString() == password)
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return false;
+        }
         // Code added Robin
         public string words(double numbers)
         {
@@ -746,10 +789,10 @@ namespace SGMOSOL.ADMIN
             try
             {
                 SqlCommand command = new SqlCommand("SP_GetCurrency", clsConnection.GetConnection());
-                        command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = CommandType.StoredProcedure;
 
-                        SqlDataAdapter adapter = new SqlDataAdapter(command);
-                        adapter.Fill(dt);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
             }
             catch (Exception ex)
             {
@@ -890,7 +933,7 @@ namespace SGMOSOL.ADMIN
 
         public System.Data.DataTable GetDrCounterMachId(int intUserId, string strHddModelNo, string strHddSerialNo, string strMacId, int mod_type, int CtrMachId = 0)
         {
-            System.Data.DataTable mReader = null;
+            System.Data.DataTable mReader = new DataTable();
 
             try
             {
@@ -904,12 +947,15 @@ namespace SGMOSOL.ADMIN
                 command.Parameters.AddWithValue("@ModType", mod_type);
                 command.Parameters.AddWithValue("@CtrMachId", CtrMachId);
                 mReader = clsConnection.ExecuteReader(command);
+                if (mReader.Rows.Count == 0)
+                {
+                    mReader.Rows.Add(new Object[] { "", "",0,0,"","","",0 });
+                }
             }
             catch (Exception ex)
             {
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
-
             return mReader;
         }
         public static void setCursor(Form Frm, bool mouDefault = true)
@@ -1721,7 +1767,7 @@ namespace SGMOSOL.ADMIN
                 objHash.Add("ExportButton", false);
 
                 //while (rstAction.Read())
-                    foreach (DataRow dr in rstAction.Rows)
+                foreach (DataRow dr in rstAction.Rows)
                 {
                     blnRecordFound = true;
                     switch (dr["ActionId"])
@@ -1849,7 +1895,7 @@ namespace SGMOSOL.ADMIN
                     var withBlock = myReader;
                     int i = 0;
                     //while (myReader.Read())
-                        foreach (DataRow myReaderitem in myReader.Rows)
+                    foreach (DataRow myReaderitem in myReader.Rows)
                     {
                         if (cboIndex == "")
                             cbo.Items.Add(withBlock.Rows[i][cboAttribute]);
@@ -2027,7 +2073,91 @@ namespace SGMOSOL.ADMIN
 
             return mReader;
         }
+        public System.Data.DataSet GetDsProductMenu(int intUserId = 0)
+        {
+            System.Data.DataSet ds = new System.Data.DataSet();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_GetProductMenu", clsConnection.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@intUserId", intUserId);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return ds;
+        }
+        public void FillComboWithDataSet(System.Windows.Forms.ListBox cbo, DataTable objDTable, string SortOrderField, string cboAttribute, string cboIndex = "", string Name2 = "", string strFilter = "")
+        {
+            try
+            {
+                DataView objDataView;
 
+                if (strFilter != "")
+                    objDataView = new DataView(objDTable, strFilter, SortOrderField, DataViewRowState.CurrentRows);
+                else
+                {
+                    objDataView = new DataView(objDTable);
+                    objDataView.Sort = SortOrderField;
+                }
+                cbo.BeginUpdate();
+                cbo.Items.Clear();
+                foreach (DataRowView dvRow in objDataView)
+                {
+                    if (cboIndex == "")
+                        cbo.Items.Add(dvRow[cboAttribute]);
+                    else if (Name2 == "")
+                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex])));
+                    else
+                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), Convert.ToInt64(dvRow[Name2])));
+                }
+                cbo.EndUpdate();
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+        }
+        public string GetComSysPrintTimeRpt(string strUserName = "")
+        {
+            string sysTime = string.Empty;
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetSysTime", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                DataTable dr = clsConnection.ExecuteReader(command);
+                if (dr.Rows.Count > 0)
+                {
+                    sysTime = dr.Rows[0]["SysTime"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return sysTime;
+        }
+        public static decimal getBedCheckInMaxAmount()
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_getBedCheckInMaxAmount", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                DataTable dr = clsConnection.ExecuteReader(command);
+                if (dr.Rows.Count > 0)
+                {
+                    return Convert.ToDecimal(dr.Rows[0]["Max_Amount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                clsConnection.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return 0;
+        }
     }
 }
 

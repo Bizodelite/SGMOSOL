@@ -595,7 +595,7 @@ namespace SGMOSOL.SCREENS.Locker
             }
 
             setCursor(this, false);
-            frmSearchNew form1 = new frmSearchNew("LOCK_LOCKER_CHANGE_MST_T_FIND_V", false);
+            frmSearchNew form1 = new frmSearchNew("LOCK_LOCKER_CHANGE_MST_T_FIND_V", false, eModType.Locker);
             long lngSearchId;
             form1.mIntCtrMachId = Convert.ToInt32(txtCounter.Tag + Constants.vbNullString);
             form1.ShowDialog();

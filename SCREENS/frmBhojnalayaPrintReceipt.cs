@@ -29,6 +29,7 @@ namespace SGMOSOL.SCREENS
         CommonFunctions cm;
         private DataTable tempItemTable;
         public bool isPrint = false;
+        CommonFunctions commonFunctions;
         public frmBhojnalayaPrintReceipt()
         {
             InitializeComponent();
@@ -418,6 +419,65 @@ namespace SGMOSOL.SCREENS
                 clearControls();
             }
         }
+        public void CheckValidDocs()
+        {
+            commonFunctions = new CommonFunctions();
+            if (cboDocName.Text == "Pan Card")
+            {
+                if (!commonFunctions.IsValidPan(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid pan number!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Adhar Card")
+            {
+                if (!commonFunctions.IsValidAadhar(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid adhar number!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Passport")
+            {
+                if (!commonFunctions.IsValidPassport(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid passport number!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Driving License")
+            {
+                if (!commonFunctions.IsValidLicenseNumber(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid driving license!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Voter ID")
+            {
+                if (!commonFunctions.IsValidVoterId(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid Voter ID!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (txtMobile.Text == "")
@@ -548,9 +608,6 @@ namespace SGMOSOL.SCREENS
             CommonFunctions cm = new CommonFunctions();
             lblamouwords.Text = cm.words(Convert.ToDouble(txtTotalAmount.Text));
         }
-
-
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to close the application?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -559,7 +616,6 @@ namespace SGMOSOL.SCREENS
                 this.Close();
             }
         }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
             clearControls();
@@ -628,6 +684,10 @@ namespace SGMOSOL.SCREENS
 
         private void txtDocumentName_TextChanged(object sender, EventArgs e)
         {
+            if (cboDocName.Text == "Adhar Card")
+            {
+                txtDocumentName.MaxLength = 12;
+            }
             if (txtDocumentName.Text != "")
             {
                 user.SetDocDetail(txtDocumentName.Text);

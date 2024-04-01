@@ -59,5 +59,21 @@ namespace SGMOSOL.BAL
         {
             return da.getMessItemDataForReport(Receipt_ID);
         }
+        public string getReqNumber()
+        {
+            return da.getReqNumber();
+        }
+        //public DataTable getItemCode()
+        //{
+        //    return obj.getItemCode();
+        //}
+        public string getItemName(int ItemId)
+        {
+            return da.getItemName(ItemId);
+        }
+        public int InsertReqToAdmin_MST(object data)
+        {
+            return da.InsertReqToAdmin_MST(data);
+        }
     }
 }

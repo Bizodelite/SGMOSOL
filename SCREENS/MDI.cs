@@ -147,6 +147,11 @@ namespace SGMOSOL
 
         private void totalDengiReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void totalDengiReportToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
             frmTotalDengiReport frm = new frmTotalDengiReport();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.MdiParent = this;

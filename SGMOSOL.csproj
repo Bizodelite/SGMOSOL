@@ -248,6 +248,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet\DengiTotalAmountReport.cs">
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet\DengiTotalAmountReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet\MessItemDS.cs">
       <DependentUpon>MessItemDS.xsd</DependentUpon>
     </Compile>
@@ -326,6 +334,12 @@
     <Compile Include="SCREENS\frmSearchDengi.Designer.cs">
       <DependentUpon>frmSearchDengi.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCREENS\frmTotalDengiReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmTotalDengiReport.Designer.cs">
+      <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\frmUserDengi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +357,7 @@
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DengiCalculation.rdlc" />
     <EmbeddedResource Include="Reports\DengiDeclaration.rdlc" />
     <EmbeddedResource Include="Reports\DengiReceipt1.rdlc" />
     <EmbeddedResource Include="Reports\Fund_Calculation_Print.rdlc" />
@@ -380,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmSearchDengi.resx">
       <DependentUpon>frmSearchDengi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmTotalDengiReport.resx">
+      <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmUserDengi.resx">
       <DependentUpon>frmUserDengi.cs</DependentUpon>
@@ -421,6 +439,17 @@
     </None>
     <None Include="DataSet\DengiReceiptDataSet.xss">
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\DengiTotalAmountReport.xsc">
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\DengiTotalAmountReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DengiTotalAmountReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet\DengiTotalAmountReport.xss">
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
     </None>
     <None Include="DataSet\MessItemDS.xsc">
       <DependentUpon>MessItemDS.xsd</DependentUpon>

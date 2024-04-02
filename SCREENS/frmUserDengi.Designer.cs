@@ -522,6 +522,7 @@ namespace SGMOSOL.SCREENS
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(1312, 108);
             this.flowLayoutPanel4.TabIndex = 17;
+            this.flowLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel4_Paint);
             // 
             // label1
             // 
@@ -543,6 +544,7 @@ namespace SGMOSOL.SCREENS
             this.lblValue.Size = new System.Drawing.Size(396, 73);
             this.lblValue.TabIndex = 1;
             this.lblValue.Text = "Display Text";
+            this.lblValue.Click += new System.EventHandler(this.lblValue_Click);
             // 
             // pnlMode
             // 
@@ -563,7 +565,7 @@ namespace SGMOSOL.SCREENS
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(320, 31);
+            this.label2.Size = new System.Drawing.Size(282, 31);
             this.label2.TabIndex = 0;
             this.label2.Text = "Payment Mode (पेमेंट मोड)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -572,7 +574,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblMode.AutoSize = true;
             this.lblMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMode.Location = new System.Drawing.Point(329, 0);
+            this.lblMode.Location = new System.Drawing.Point(291, 0);
             this.lblMode.Name = "lblMode";
             this.lblMode.Size = new System.Drawing.Size(0, 51);
             this.lblMode.TabIndex = 1;

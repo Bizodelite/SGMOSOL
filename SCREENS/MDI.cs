@@ -144,5 +144,14 @@ namespace SGMOSOL
         {
 
         }
+
+        private void totalDengiReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTotalDengiReport frm = new frmTotalDengiReport();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
     }
 }

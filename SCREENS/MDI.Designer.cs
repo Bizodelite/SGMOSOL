@@ -47,6 +47,7 @@
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.totalDengiReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -97,7 +98,8 @@
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changePasswordToolStripMenuItem,
             this.calculationFormToolStripMenuItem,
-            this.encryptionToolStripMenuItem1});
+            this.encryptionToolStripMenuItem1,
+            this.totalDengiReportToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.settingToolStripMenuItem.Text = "Setting";
@@ -155,6 +157,13 @@
             // 
             this.toolTip2.ShowAlways = true;
             // 
+            // totalDengiReportToolStripMenuItem
+            // 
+            this.totalDengiReportToolStripMenuItem.Name = "totalDengiReportToolStripMenuItem";
+            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.totalDengiReportToolStripMenuItem.Text = "Total Dengi Report";
+            this.totalDengiReportToolStripMenuItem.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem_Click);
+            // 
             // MDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -196,6 +205,7 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculationFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem totalDengiReportToolStripMenuItem;
     }
 }
 

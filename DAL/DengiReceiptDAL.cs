@@ -89,6 +89,43 @@ namespace SGMOSOL.DAL
             }
             return dataTable;
         }
+
+        public DataTable GETTOTALAMOUNTBYPAYMENTID(DateTime fromDate, DateTime ToDate)
+        {
+            DengiTotalAmountReport ds = new DengiTotalAmountReport();
+            try
+            {
+                string fdate = fromDate.ToString("yyyy-MM-dd");
+                string ldate = ToDate.ToString("yyyy-MM-dd");
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("GET_TOTAL_AMOUNT_BY_PAYMENTID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@FROMDATE", fdate);
+                        command.Parameters.AddWithValue("@TODATE", ldate);
+                        command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
+                        command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
+                        command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                       // command.Parameters.AddWithValue("@FY_ID", 11);
+                        command.Parameters.AddWithValue("@USERID", UserInfo.UserId);
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        {
+                            da.Fill(ds, "TotalAmountByPaymentId");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return ds.Tables["TotalAmountByPaymentId"];
+        }
+
+
         public DataTable getDengiReceiptDataForReport(string receiptID)
         {
             DengiReceiptDataSet ds = new DengiReceiptDataSet();

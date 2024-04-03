@@ -23,14 +23,12 @@ namespace SGMOSOL.SCREENS
         public int Mach_ID;
         public frmLogin()
         {
-            // string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
             login = new LoginBAL();
             cm = new CommonFunctions();
             InitializeComponent();
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            // string value = CommonFunctions.Decrypt("ts5vnrplu7a8bswroz8/vetad6icxske1wrmlibojrgcgo3tzmpokkvzjw1x59c6eod0evxwsvso4nbo/itxt8f7+5tv/mhg94qb3mlefml+pnzcapa5+w==", true);
             pnlLogin.Left = (this.ClientSize.Width - pnlLogin.Width) / 2;
             cm = new CommonFunctions();
             this.AcceptButton = btnLogin;
@@ -44,8 +42,11 @@ namespace SGMOSOL.SCREENS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            string strValue = CommonFunctions.Encrypt(txtpwd.Text,true);
+            string strValue1 = CommonFunctions.Decrypt(txtpwd.Text,true);
             getauthentication();
         }
+       
         private void getauthentication()
         {
             string isUser = null;
@@ -59,7 +60,7 @@ namespace SGMOSOL.SCREENS
             isUser = login.GetUserDetails(txtUser.Text);
             if (isUser != "")
             {
-                isPwd = CommonFunctions.Decrypt(login.GetPwdDetails(isUser), true);
+                isPwd =CommonFunctions.Decrypt(login.GetPwdDetails(isUser),true);
                 if (isPwd == txtpwd.Text)
                 {
                     if (login.CheckDateTime())

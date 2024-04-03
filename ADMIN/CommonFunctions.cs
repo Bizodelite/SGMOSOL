@@ -34,6 +34,25 @@ namespace SGMOSOL.ADMIN
             Rupees,
             Dollars
         }
+        public static string fncEncode(string password)
+        {
+            string strDeCodePassword = "";
+            for (int ctr = 0; ctr < password.Length; ctr++)
+            {
+                strDeCodePassword += (char)(password[ctr] + 50);
+            }
+            return strDeCodePassword;
+        }
+        public static string fncDecode(string password)
+        {
+            string strDeCodePassword = "";
+            for (int ctr = 0; ctr < password.Length; ctr++)
+            {
+                strDeCodePassword += (char)(password[ctr] - 50);
+            }
+            return strDeCodePassword;
+        }
+
 
         string connectionString = Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
 

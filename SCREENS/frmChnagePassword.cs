@@ -33,19 +33,21 @@ namespace SGMOSOL.SCREENS
                 isError = commonFunctions.IsPasswordValid(txtNewPassword.Text);
                 if (isError == "")
                 {
+                    string newPassword = CommonFunctions.Encrypt(txtNewPassword.Text, true);
                     lblError.Text = "";
                     if (txtOldPassword.Text != txtNewPassword.Text)
                     {
-                        int status = login.updatePassword(txtUserName.Text, txtNewPassword.Text);
+                        int status = login.updatePassword(txtUserName.Text, newPassword);
                         if (status == 1)
                         {
                             MessageBox.Show("Password Updated Successfully");
                             MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
                             if (mdiParentForm != null)
                             {
-                                this.Close();    
+                                this.Close();
                             }
-                            else {
+                            else
+                            {
                                 MDI home = new MDI();
                                 home.Show();
                             }
@@ -62,7 +64,7 @@ namespace SGMOSOL.SCREENS
                 }
             }
         }
-
+       
         private void frmChnagePassword_Load(object sender, EventArgs e)
         {
             txtUserName.Text = UserInfo.UserName;
@@ -75,9 +77,10 @@ namespace SGMOSOL.SCREENS
                 this.Show();
             }
         }
+
         private void txtOldPassword_TextChanged(object sender, EventArgs e)
         {
-            string lastPassword = login.GetPwdDetails(txtUserName.Text);
+            string lastPassword = CommonFunctions.Decrypt(login.GetPwdDetails(txtUserName.Text),true);
             if (lastPassword != txtOldPassword.Text)
             {
                 lbloldpwderror.Text = "Incorrect last password !!!";

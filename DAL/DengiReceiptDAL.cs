@@ -256,12 +256,12 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@CardBankReferenceName", obj.cardbankrefnumber);
                             command.Parameters.AddWithValue("@EnteredBy", UserInfo.UserName);
 
-                            command.Parameters.AddWithValue("@ModifiedBy", obj.modifiedby);
+                            command.Parameters.AddWithValue("@ModifiedBy", UserInfo.UserName);
                             DateTime? modifiedOn = obj.ModifiedOn;
                             if (modifiedOn.HasValue && obj.modifiedby != null)
                                 command.Parameters.AddWithValue("@ModifiedOn", obj.ModifiedOn);
                             else
-                                command.Parameters.AddWithValue("@ModifiedOn", null);
+                                command.Parameters.AddWithValue("@ModifiedOn", System.DateTime.Now.ToString());
                             command.Parameters.AddWithValue("@MachineName", UserInfo.Counter_Name);
                             command.Parameters.AddWithValue("@UserId", UserInfo.UserId);
                             command.Parameters.AddWithValue("@SERVERNAME", UserInfo.serverName);

@@ -47,7 +47,7 @@
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.totalDengiReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.totalDengiReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -66,8 +66,8 @@
             this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1360, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1020, 24);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,20 +76,22 @@
             this.bhojanalayaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.printReceiptToolStripMenuItem});
             this.bhojanalayaToolStripMenuItem.Name = "bhojanalayaToolStripMenuItem";
-            this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
+            this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.bhojanalayaToolStripMenuItem.Text = "Bhojanalaya";
             // 
             // printReceiptToolStripMenuItem
             // 
             this.printReceiptToolStripMenuItem.Name = "printReceiptToolStripMenuItem";
-            this.printReceiptToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.printReceiptToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.printReceiptToolStripMenuItem.Text = "Print Receipt";
             this.printReceiptToolStripMenuItem.Click += new System.EventHandler(this.printReceiptToolStripMenuItem_Click);
             // 
             // dengiToolStripMenuItem
             // 
+            this.dengiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.totalDengiReportToolStripMenuItem1});
             this.dengiToolStripMenuItem.Name = "dengiToolStripMenuItem";
-            this.dengiToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.dengiToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.dengiToolStripMenuItem.Text = "Dengi";
             this.dengiToolStripMenuItem.Click += new System.EventHandler(this.dengiToolStripMenuItem_Click);
             // 
@@ -98,38 +100,37 @@
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changePasswordToolStripMenuItem,
             this.calculationFormToolStripMenuItem,
-            this.encryptionToolStripMenuItem1,
-            this.totalDengiReportToolStripMenuItem});
+            this.encryptionToolStripMenuItem1});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.settingToolStripMenuItem.Text = "Setting";
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // calculationFormToolStripMenuItem
             // 
             this.calculationFormToolStripMenuItem.Name = "calculationFormToolStripMenuItem";
-            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.calculationFormToolStripMenuItem.Text = "Calculation Form";
             this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
             // 
             // encryptionToolStripMenuItem1
             // 
             this.encryptionToolStripMenuItem1.Name = "encryptionToolStripMenuItem1";
-            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.encryptionToolStripMenuItem1.Text = "Encryption";
             this.encryptionToolStripMenuItem1.Click += new System.EventHandler(this.encryptionToolStripMenuItem1_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -145,10 +146,10 @@
             this.pctControls.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pctControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.pctControls.Image = ((System.Drawing.Image)(resources.GetObject("pctControls.Image")));
-            this.pctControls.Location = new System.Drawing.Point(0, 28);
-            this.pctControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pctControls.Location = new System.Drawing.Point(0, 24);
+            this.pctControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pctControls.Name = "pctControls";
-            this.pctControls.Size = new System.Drawing.Size(1360, 167);
+            this.pctControls.Size = new System.Drawing.Size(1020, 136);
             this.pctControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctControls.TabIndex = 33;
             this.pctControls.TabStop = false;
@@ -157,23 +158,23 @@
             // 
             this.toolTip2.ShowAlways = true;
             // 
-            // totalDengiReportToolStripMenuItem
+            // totalDengiReportToolStripMenuItem1
             // 
-            this.totalDengiReportToolStripMenuItem.Name = "totalDengiReportToolStripMenuItem";
-            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.totalDengiReportToolStripMenuItem.Text = "Total Dengi Report";
-            this.totalDengiReportToolStripMenuItem.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem_Click);
+            this.totalDengiReportToolStripMenuItem1.Name = "totalDengiReportToolStripMenuItem1";
+            this.totalDengiReportToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.totalDengiReportToolStripMenuItem1.Text = "Total Dengi Report";
+            this.totalDengiReportToolStripMenuItem1.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem1_Click);
             // 
             // MDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1360, 722);
+            this.ClientSize = new System.Drawing.Size(1020, 587);
             this.Controls.Add(this.pctControls);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Menu = this.mainMenu2;
             this.Name = "MDI";
             this.Text = "Form1";
@@ -205,7 +206,7 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculationFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem totalDengiReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem totalDengiReportToolStripMenuItem1;
     }
 }
 

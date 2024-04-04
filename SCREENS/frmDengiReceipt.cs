@@ -450,6 +450,7 @@ namespace SGMOSOL.SCREENS
         }
         private void resetAllFields()
         {
+            isPrint = false;
             txtAddGotra.Text = "";
             txtAmount.Text = "";
             txtaddr.Text = "";
@@ -1363,14 +1364,14 @@ namespace SGMOSOL.SCREENS
 
                 if (myDevice == null)
                 {
-                    MessageBox.Show("Could not connect to the scanner. Please check if it's properly attached.");
+                    MessageBox.Show("Scanner failed to transfer an Image");
                     return;
                 }
 
                 Item scannerItem = myDevice.Items[1];
                 scannerItem.Properties["6146"].set_Value(WiaImageIntent.ColorIntent); // Color Intent
                 WIA.ImageFile imageFile = null;
-                imageFile = (WIA.ImageFile)scannerItem.Transfer(scannerItem.Properties["6147"].get_Value());
+                imageFile = (WIA.ImageFile)scannerItem.Transfer(scannerItem.Properties["6147"].get_Value().ToString());
                 if (imageFile == null)
                 {
                     DialogResult answer = MessageBox.Show("There is no file in the scanner. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

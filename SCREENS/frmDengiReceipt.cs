@@ -160,7 +160,9 @@ namespace SGMOSOL.SCREENS
                 cboDoctype.DataSource = dt;
                 cboDoctype.DisplayMember = "DocumentName";
                 cboDoctype.ValueMember = "DocumentID";
+                txtdocDetail.Enabled = false;
             }
+
             catch (Exception ex)
             {
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -596,9 +598,8 @@ namespace SGMOSOL.SCREENS
             getDengiNo();
             unLockControls();
         }
-        private void btnSave_Click(object sender, EventArgs e)
+        public void validationCheck()
         {
-            DataTable dt = new DataTable();
             if (txtmob.Text == "")
             {
                 lblMobile.Text = "Please Enter Mobile number";
@@ -662,6 +663,11 @@ namespace SGMOSOL.SCREENS
             {
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";
             }
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            validationCheck();
             if (lblAdd.Text == "" && lblMobile.Text == "" && lbldoctype_err.Text == "" && lbldocdetailerr.Text == "" && lblName.Text == "" && lblTaluka.Text == "" && lblDistrict.Text == "")
             {
                 if (txtAmount.Text != "")
@@ -890,7 +896,7 @@ namespace SGMOSOL.SCREENS
                             {
                                 return;
                             }
-                            txtdengireceiptNo.Text = status.ToString();
+                           // txtdengireceiptNo.Text = status.ToString();
 
                             //Refrence_Amount.Text = txtAmount.Text;
                             //Refrence_Name.Text = txtname.Text;
@@ -904,14 +910,14 @@ namespace SGMOSOL.SCREENS
                             string receptID = status.ToString();
                             frmReportViewer report = new frmReportViewer("PRINT", receptID);
                             report.createReport("Dengi");
-                            //  report.Show();
+                            report.Show();
                         }
                         if (chkDeclaration.Checked == true)
                         {
                             string receptID = status.ToString();
                             frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
                             report.createReport("Dengi");
-                            // report.Show();
+                            report.Show(); 
                         }
                     }
                     else
@@ -1120,26 +1126,32 @@ namespace SGMOSOL.SCREENS
 
             frmReportViewer report = new frmReportViewer("PRINT", receptID, "D");
             report.createReport("Dengi");
-            // report.Show();
+            report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
         {
-            if (isPrint)
+            validationCheck();
+            if (lblAdd.Text == "" && lblMobile.Text == "" && lbldoctype_err.Text == "" && lbldocdetailerr.Text == "" && lblName.Text == "" && lblTaluka.Text == "" && lblDistrict.Text == "")
             {
-                string receptID = txtdengireceiptNo.Tag.ToString();
+                if (isPrint)
+                {
+                    string receptID = txtdengireceiptNo.Tag.ToString();
 
-                // Code to save Duplicate Print
+                    // Code to save Duplicate Print
 
-                int status = dengiReceiptDAL.DupPrintDeclaration(receptID);
+                    int status = dengiReceiptDAL.DupPrintDeclaration(receptID);
 
-                frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
-                report.createReport("Dengi");
-            }
-            else
-            {
-                //createTempTableforDeclaration();
-                frmReportViewer report = new frmReportViewer("DECLARATION");
-                report.printDeclarationwithoutSave(createTempTableforDeclaration());
+                    frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
+                    report.createReport("Dengi");
+                    report.Show();
+                }
+                else
+                {
+                    //createTempTableforDeclaration();
+                    frmReportViewer report = new frmReportViewer("DECLARATION");
+                    report.printDeclarationwithoutSave(createTempTableforDeclaration());
+                    report.Show();
+                }
             }
             // report.Show();
         }
@@ -1150,7 +1162,7 @@ namespace SGMOSOL.SCREENS
                 txtdocDetail.MaxLength = 12;
             }
 
-            if (cboDoctype.Text != "")
+            if (cboDoctype.Text != "Select")
             {
                 if (txtdocDetail.Text != "")
                 {
@@ -1159,6 +1171,7 @@ namespace SGMOSOL.SCREENS
                 }
                 else
                 {
+                    lbldocdetailerr.Text = "Please enter Document Details";
                     userDengi.SetDocDetail("");
                 }
             }
@@ -1176,7 +1189,7 @@ namespace SGMOSOL.SCREENS
             dt.Columns.Add("AMOUNT_IN_WORDS", typeof(string));
             dt.Columns.Add("PINCODE", typeof(string));
             dt.Columns.Add("TYPE", typeof(string));
-            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text,txtmob.Text,cboDoctype.Text,txtdocDetail.Text,txtAmount.Text,commonFunctions.words(Convert.ToDouble(txtAmount.Text)),txtPincode.Text,cboDengiType.Text);
+            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text, txtmob.Text, cboDoctype.Text != "Select" ? cboDoctype.Text : "", txtdocDetail.Text != "" ? txtdocDetail.Text : "", txtAmount.Text, commonFunctions.words(Convert.ToDouble(txtAmount.Text)), txtPincode.Text, cboDengiType.Text);
             return dt;
         }
         public void CheckValidDocs()
@@ -1240,10 +1253,27 @@ namespace SGMOSOL.SCREENS
         }
         private void cboDoctype_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboDoctype.Text == "Select")
+            {
+                txtdocDetail.Enabled = false;
+                txtdocDetail.Text = "";
+                lbldocdetailerr.Text = "";
+            }
+            else
+            {
+                txtdocDetail.Enabled = true;
+            }
             if (cboDoctype.SelectedIndex > 0)
             {
                 lbldoctype_err.Text = "";
-                txtdocDetail.Text = "";
+                if (txtdocDetail.Text == "")
+                {
+                    lbldocdetailerr.Text = "Please enter Document number";
+                }
+                else
+                {
+                    txtdocDetail.Text = "";
+                }
                 userDengi.SetDocType(cboDoctype.Text);
             }
             else

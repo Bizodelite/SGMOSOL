@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlMaster = new System.Windows.Forms.Panel();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.brnClose = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.dtToDate = new System.Windows.Forms.DateTimePicker();
@@ -39,7 +40,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCounter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.pnlMaster.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,9 +59,18 @@
             this.pnlMaster.Controls.Add(this.label1);
             this.pnlMaster.Location = new System.Drawing.Point(83, 28);
             this.pnlMaster.Name = "pnlMaster";
-            this.pnlMaster.Size = new System.Drawing.Size(1040, 559);
+            this.pnlMaster.Size = new System.Drawing.Size(1040, 706);
             this.pnlMaster.TabIndex = 0;
             this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMaster_Paint);
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SGMOSOL.Reports.DengiCalculation.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(21, 262);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(999, 416);
+            this.reportViewer1.TabIndex = 10;
             // 
             // brnClose
             // 
@@ -151,21 +160,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "COUNTER";
             // 
-            // reportViewer1
-            // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SGMOSOL.Reports.DengiCalculation.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(112, 266);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(396, 246);
-            this.reportViewer1.TabIndex = 10;
-            this.reportViewer1.Visible = false;
-            // 
             // frmTotalDengiReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 633);
+            this.ClientSize = new System.Drawing.Size(1172, 769);
             this.Controls.Add(this.pnlMaster);
             this.Name = "frmTotalDengiReport";
             this.Text = "frmTotalDengiReport";

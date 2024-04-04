@@ -120,7 +120,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "DengiReceipt";
-                    printReport(DocumentName,PrinterNames.DengiPrint);
+                  //  printReport(DocumentName,PrinterNames.DengiPrint);
 
                 }
                 if (flag == "DECLARATION")
@@ -135,7 +135,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "DengiDeclaration";
-                    printReport(DocumentName,PrinterNames.DengiDeclaration);
+                   // printReport(DocumentName,PrinterNames.DengiDeclaration);
                 }
             }
             if (form == "Bhojnalaya")
@@ -195,7 +195,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
-                    printReport(DocumentName, PrinterNames.BHPrint);
+                   // printReport(DocumentName, PrinterNames.BHPrint);
                 }
 
             }
@@ -212,7 +212,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.RefreshReport();
                 DocumentName = "BhojnalayDeclaration" +
                     "";
-                printReport(DocumentName, PrinterNames.BHDeclaration);
+               // printReport(DocumentName, PrinterNames.BHDeclaration);
             }
         }
         public void printDeclarationwithoutSave(DataTable dt)
@@ -232,7 +232,7 @@ namespace SGMOSOL.SCREENS
             // addCustomField(dt1);
             reportViewer2.RefreshReport();
             DocumentName = "DengiDeclaration";
-            printReport(DocumentName, PrinterNames.DengiDeclaration);
+           // printReport(DocumentName, PrinterNames.DengiDeclaration);
         }
     }
 }

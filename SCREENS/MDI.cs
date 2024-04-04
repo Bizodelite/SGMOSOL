@@ -37,22 +37,7 @@ namespace SGMOSOL
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            frmDengiReceip = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
-            if (frmDengiReceip == null)
-            {
-                frmDengiReceip = new frmDengiReceipt();
-                frmDengiReceip.StartPosition = FormStartPosition.CenterParent;
-                frmDengiReceip.MdiParent = this;
-                frmDengiReceip.WindowState = FormWindowState.Maximized;
-                frmDengiReceip.Show();
-            }
-            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
-            if (frmuserDengi == null)
-            {
-                frmuserDengi = new frmUserDengi();
-                frmuserDengi.WindowState = FormWindowState.Minimized;
-                frmuserDengi.Show();
-            }
+            
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -151,6 +136,27 @@ namespace SGMOSOL
         }
 
         private void totalDengiReportToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmDengiReceip = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
+            if (frmDengiReceip == null)
+            {
+                frmDengiReceip = new frmDengiReceipt();
+                frmDengiReceip.StartPosition = FormStartPosition.CenterParent;
+                frmDengiReceip.MdiParent = this;
+                frmDengiReceip.WindowState = FormWindowState.Maximized;
+                frmDengiReceip.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi == null)
+            {
+                frmuserDengi = new frmUserDengi();
+                frmuserDengi.WindowState = FormWindowState.Minimized;
+                frmuserDengi.Show();
+            }
+           
+        }
+
+        private void totalDengiReportToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             frmTotalDengiReport frm = new frmTotalDengiReport();
             frm.StartPosition = FormStartPosition.CenterParent;

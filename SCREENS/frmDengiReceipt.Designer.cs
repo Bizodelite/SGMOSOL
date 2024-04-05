@@ -185,7 +185,7 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Name = "pnlMaster";
             this.pnlMaster.Size = new System.Drawing.Size(1082, 200);
             this.pnlMaster.TabIndex = 2;
-            this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMaster_Paint);
+            //this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMaster_Paint);
             // 
             // cboDoctype
             // 

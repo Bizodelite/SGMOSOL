@@ -40,6 +40,7 @@
             this.cboItemCode = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dgvItemDetails = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.Label5 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
@@ -48,7 +49,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCounter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemDetails)).BeginInit();
             this.panel2.SuspendLayout();
@@ -98,6 +98,7 @@
             this.btnSave.TabIndex = 49;
             this.btnSave.Text = "Save\r\n";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnNew
             // 
@@ -187,6 +188,21 @@
             this.dgvItemDetails.Size = new System.Drawing.Size(631, 172);
             this.dgvItemDetails.TabIndex = 40;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.Label5);
+            this.panel2.Controls.Add(this.txtUser);
+            this.panel2.Controls.Add(this.dtpDate);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.txtReqID);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.txtCounter);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Location = new System.Drawing.Point(23, 17);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1049, 72);
+            this.panel2.TabIndex = 39;
+            // 
             // Label5
             // 
             this.Label5.AutoSize = true;
@@ -261,21 +277,6 @@
             this.label1.Size = new System.Drawing.Size(53, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Counter";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.Label5);
-            this.panel2.Controls.Add(this.txtUser);
-            this.panel2.Controls.Add(this.dtpDate);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.txtReqID);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtCounter);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(23, 17);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1049, 72);
-            this.panel2.TabIndex = 39;
             // 
             // frmReqToAdmin
             // 

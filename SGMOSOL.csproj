@@ -248,6 +248,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet\DengiTotalAmountReport.cs">
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet\DengiTotalAmountReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet\MessItemDS.cs">
       <DependentUpon>MessItemDS.xsd</DependentUpon>
     </Compile>
@@ -332,11 +340,11 @@
     <Compile Include="SCREENS\frmSearchDengi.Designer.cs">
       <DependentUpon>frmSearchDengi.cs</DependentUpon>
     </Compile>
-    <Compile Include="SCREENS\frmStockIn.cs">
+    <Compile Include="SCREENS\frmTotalDengiReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SCREENS\frmStockIn.Designer.cs">
-      <DependentUpon>frmStockIn.cs</DependentUpon>
+    <Compile Include="SCREENS\frmTotalDengiReport.Designer.cs">
+      <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </Compile>
     <Compile Include="SCREENS\frmUserDengi.cs">
       <SubType>Form</SubType>
@@ -355,6 +363,7 @@
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DengiCalculation.rdlc" />
     <EmbeddedResource Include="Reports\DengiDeclaration.rdlc" />
     <EmbeddedResource Include="Reports\DengiReceipt1.rdlc" />
     <EmbeddedResource Include="Reports\Fund_Calculation_Print.rdlc" />
@@ -396,8 +405,8 @@
     <EmbeddedResource Include="SCREENS\frmSearchDengi.resx">
       <DependentUpon>frmSearchDengi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SCREENS\frmStockIn.resx">
-      <DependentUpon>frmStockIn.cs</DependentUpon>
+    <EmbeddedResource Include="SCREENS\frmTotalDengiReport.resx">
+      <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmUserDengi.resx">
       <DependentUpon>frmUserDengi.cs</DependentUpon>
@@ -439,6 +448,17 @@
     </None>
     <None Include="DataSet\DengiReceiptDataSet.xss">
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\DengiTotalAmountReport.xsc">
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\DengiTotalAmountReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DengiTotalAmountReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet\DengiTotalAmountReport.xss">
+      <DependentUpon>DengiTotalAmountReport.xsd</DependentUpon>
     </None>
     <None Include="DataSet\MessItemDS.xsc">
       <DependentUpon>MessItemDS.xsd</DependentUpon>
@@ -595,6 +615,20 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WIA">
+      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ScanImages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

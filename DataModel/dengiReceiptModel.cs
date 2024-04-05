@@ -64,6 +64,7 @@ namespace SGMOSOL.DataModel
         public DateTime receiptFDate { get; set; }
         public DateTime ReceiptLDate { get; set; }
         public int IsDuplicate { get; set; }
+        public string ScanImage { get; set; }
 
     }
     public struct DengiErrorLog

@@ -68,10 +68,18 @@ namespace SGMOSOL.DAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "Select * from DEN_DENGI_RECEIPT_MST_T  where SERIAL_NO='" + receiptID + "' AND LOC_ID=" + UserInfo.Loc_id + " AND DEPT_ID=" + UserInfo.Dept_id + " AND CTR_MACH_ID=" + UserInfo.ctrMachID + "";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    adapter.Fill(dataTable);
-                    connection.Close();
+                    using (SqlCommand command = new SqlCommand("SP_GET_DENGI_RECEIPT_DATABYID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@SERIAL_NO", receiptID);
+                        command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
+                        command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
+                        command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        {
+                            da.Fill(dataTable);
+                        }
+                    }     
                 }
             }
             catch (Exception ex)
@@ -81,6 +89,43 @@ namespace SGMOSOL.DAL
             }
             return dataTable;
         }
+
+        public DataTable GETTOTALAMOUNTBYPAYMENTID(DateTime fromDate, DateTime ToDate)
+        {
+            DengiTotalAmountReport ds = new DengiTotalAmountReport();
+            try
+            {
+                string fdate = fromDate.ToString("yyyy-MM-dd");
+                string ldate = ToDate.ToString("yyyy-MM-dd");
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("GET_TOTAL_AMOUNT_BY_PAYMENTID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@FROMDATE", fdate);
+                        command.Parameters.AddWithValue("@TODATE", ldate);
+                        command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
+                        command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
+                        command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                       // command.Parameters.AddWithValue("@FY_ID", 11);
+                        command.Parameters.AddWithValue("@USERID", UserInfo.UserId);
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        {
+                            da.Fill(ds, "TotalAmountByPaymentId");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return ds.Tables["TotalAmountByPaymentId"];
+        }
+
+
         public DataTable getDengiReceiptDataForReport(string receiptID)
         {
             DengiReceiptDataSet ds = new DengiReceiptDataSet();
@@ -98,7 +143,6 @@ namespace SGMOSOL.DAL
             catch (Exception ex)
             {
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-
             }
             return ds.Tables["DEN_Dengi_Receipt_View"];
         }
@@ -212,12 +256,12 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@CardBankReferenceName", obj.cardbankrefnumber);
                             command.Parameters.AddWithValue("@EnteredBy", UserInfo.UserName);
 
-                            command.Parameters.AddWithValue("@ModifiedBy", obj.modifiedby);
+                            command.Parameters.AddWithValue("@ModifiedBy", UserInfo.UserName);
                             DateTime? modifiedOn = obj.ModifiedOn;
                             if (modifiedOn.HasValue && obj.modifiedby != null)
                                 command.Parameters.AddWithValue("@ModifiedOn", obj.ModifiedOn);
                             else
-                                command.Parameters.AddWithValue("@ModifiedOn", null);
+                                command.Parameters.AddWithValue("@ModifiedOn", System.DateTime.Now.ToString());
                             command.Parameters.AddWithValue("@MachineName", UserInfo.Counter_Name);
                             command.Parameters.AddWithValue("@UserId", UserInfo.UserId);
                             command.Parameters.AddWithValue("@SERVERNAME", UserInfo.serverName);
@@ -236,6 +280,7 @@ namespace SGMOSOL.DAL
                                 command.Parameters.AddWithValue("@Doc_Type", null);
                             command.Parameters.AddWithValue("@Doc_Detail", obj.Doc_Detail);
                             command.Parameters.AddWithValue("@IsDuplicate", obj.IsDuplicate);
+                            command.Parameters.AddWithValue("@ScanImage",obj.ScanImage);
                             SqlParameter idParam = new SqlParameter("@Receipt_ID", SqlDbType.Decimal);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);

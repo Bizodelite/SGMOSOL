@@ -141,7 +141,7 @@ namespace SGMOSOL.SCREENS
         {
             //08/03/24 
             lblValue.Text = "";
-            lblValue.Font = new Font("Microsoft Sans Serif", 50);
+            lblValue.Font = new Font("Microsoft Sans Serif", 40);
             Font LabelFont = new Font("Microsoft Sans Serif", 20);
             //String strLabel = "";
             lblAmount.Font = LabelFont;
@@ -179,6 +179,16 @@ namespace SGMOSOL.SCREENS
             lblState1.Text = lblState1.Text + ": ";
             lblTaluka1.Text = lblTaluka1.Text + ": ";
 
+
+        }
+
+        private void flowLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblValue_Click(object sender, EventArgs e)
+        {
 
         }
     }

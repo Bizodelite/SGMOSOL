@@ -42,21 +42,25 @@ namespace SGMOSOL.SCREENS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            string strValue = CommonFunctions.Encrypt(txtpwd.Text,true);
+            string strValue1 = CommonFunctions.Decrypt(txtpwd.Text,true);
             getauthentication();
         }
+       
         private void getauthentication()
         {
             string isUser = null;
             string isPwd = null;
             string Status = null;
             int activeUser = 0;
+
             int uID = 0;
             DataTable dt = new DataTable();
             DataTable dtuser = new DataTable();
             isUser = login.GetUserDetails(txtUser.Text);
             if (isUser != "")
             {
-                isPwd = login.GetPwdDetails(isUser);
+                isPwd =CommonFunctions.Decrypt(login.GetPwdDetails(isUser),true);
                 if (isPwd == txtpwd.Text)
                 {
                     if (login.CheckDateTime())

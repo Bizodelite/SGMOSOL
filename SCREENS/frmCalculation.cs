@@ -47,7 +47,7 @@ namespace SGMOSOL.SCREENS
             fillCurrency();
             createItemTable();
             this.reportViewer1.RefreshReport();
-            reportViewer1.Visible = false;
+            reportViewer1.Visible = true;
         }
         public void fillCurrency()
         {
@@ -310,7 +310,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(reportDataSource);
                 this.reportViewer1.RefreshReport();
-                printReport("TotalFundReport");
+               // printReport("TotalFundReport");
             }
         }
         public void printReport(string docName)

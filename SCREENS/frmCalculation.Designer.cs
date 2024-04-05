@@ -62,7 +62,7 @@
             this.txtTotalAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtTotalAmount.Enabled = false;
             this.txtTotalAmount.Location = new System.Drawing.Point(757, 378);
-            this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.ReadOnly = true;
             this.txtTotalAmount.Size = new System.Drawing.Size(127, 22);
@@ -111,7 +111,7 @@
             this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtAmount.Enabled = false;
             this.txtAmount.Location = new System.Drawing.Point(623, 129);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(127, 22);
@@ -133,7 +133,7 @@
             // 
             this.txtQuantity.BackColor = System.Drawing.Color.MistyRose;
             this.txtQuantity.Location = new System.Drawing.Point(444, 130);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(79, 22);
             this.txtQuantity.TabIndex = 2;
@@ -154,7 +154,7 @@
             this.btnNew.CausesValidation = false;
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Location = new System.Drawing.Point(283, 428);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(133, 57);
             this.btnNew.TabIndex = 4;
@@ -167,7 +167,7 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Location = new System.Drawing.Point(565, 428);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(133, 57);
             this.btnClose.TabIndex = 6;
@@ -179,7 +179,7 @@
             // 
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Location = new System.Drawing.Point(424, 428);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(133, 57);
             this.btnPrint.TabIndex = 5;
@@ -227,7 +227,7 @@
             this.dtpPrnRcptDt.Enabled = false;
             this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPrnRcptDt.Location = new System.Drawing.Point(581, 28);
-            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
             this.dtpPrnRcptDt.Size = new System.Drawing.Size(132, 22);
             this.dtpPrnRcptDt.TabIndex = 13;
@@ -264,7 +264,7 @@
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtUser.Enabled = false;
             this.txtUser.Location = new System.Drawing.Point(355, 27);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
             this.txtUser.Size = new System.Drawing.Size(147, 22);
@@ -276,7 +276,7 @@
             this.txtCounter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtCounter.Enabled = false;
             this.txtCounter.Location = new System.Drawing.Point(131, 23);
-            this.txtCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
             this.txtCounter.Name = "txtCounter";
             this.txtCounter.ReadOnly = true;
             this.txtCounter.Size = new System.Drawing.Size(127, 22);
@@ -298,11 +298,11 @@
             // reportViewer1
             // 
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SGMOSOL.Reports.Fund_Calculation_Print.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(157, 558);
+            this.reportViewer1.Location = new System.Drawing.Point(95, 493);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(678, 246);
+            this.reportViewer1.Size = new System.Drawing.Size(806, 246);
             this.reportViewer1.TabIndex = 49;
             // 
             // lblCurrency

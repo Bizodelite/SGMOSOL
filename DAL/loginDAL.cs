@@ -20,7 +20,7 @@ namespace SGMOSOL.DAL
         public string GetPwdDetails(string uid)
         {
             string pwd = "";
-            string query = "select User_Login_Password from SEC_user_mst_t where User_Login_Name='" + uid + "'";
+            string query = "select LOGIN_PASSWORD from SEC_user_mst_t where User_Login_Name='" + uid + "'";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -95,7 +95,7 @@ namespace SGMOSOL.DAL
             int status = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "Update SEC_user_mst_t set User_Login_Password='" + pwd + "' where User_Login_Name='" + uid + "'";
+                string query = "Update SEC_user_mst_t set LOGIN_PASSWORD='" + pwd + "' where User_Login_Name='" + uid + "'";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();
@@ -172,7 +172,6 @@ namespace SGMOSOL.DAL
                     using (SqlCommand command = new SqlCommand("DML_SEC_LOGIN_DETAILS", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-
                         command.Parameters.AddWithValue("@FLAG", "U");
                         command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
                         command.Parameters.AddWithValue("@LOGGED_OUT_TIME", DateTime.Now);

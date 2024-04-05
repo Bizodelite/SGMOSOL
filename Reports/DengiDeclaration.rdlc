@@ -276,6 +276,7 @@
                   <TextRun>
                     <Value>The Managing Trustee</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -289,6 +290,7 @@
                   <TextRun>
                     <Value>Shri Gajanan Maharaj  Sansthan,  Shegaon-444203</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -302,7 +304,7 @@
                   <TextRun>
                     <Value> (Public Trust Rej.No A-250 Bul.)</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -316,6 +318,7 @@
                   <TextRun>
                     <Value />
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -326,7 +329,7 @@
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.76568cm</Top>
             <Height>1.51017cm</Height>
-            <Width>11.00476cm</Width>
+            <Width>11.25453cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -374,7 +377,7 @@
                   <TextRun>
                     <Value>Dear sir,</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -387,7 +390,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -400,7 +403,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -413,26 +416,13 @@
                   <TextRun>
                     <Value>Donation for  </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Fields!TYPE.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>General</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -445,19 +435,19 @@
                   <TextRun>
                     <Value>I, wish to give donation of RS </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Fields!AMOUNT.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value> /- </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -470,14 +460,14 @@
                   <TextRun>
                     <Value>=Fields!AMOUNT_IN_WORDS.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value> Only</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -491,7 +481,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -505,7 +495,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -519,7 +509,7 @@
                   <TextRun>
                     <Value>You are requested to accept the same.</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -532,7 +522,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -545,7 +535,7 @@
                   <TextRun>
                     <Value>Thanking you</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -558,7 +548,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -571,7 +561,7 @@
                   <TextRun>
                     <Value>Yours Faithfully</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -584,7 +574,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -595,7 +585,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -628,7 +618,7 @@
                   <TextRun>
                     <Value>(Donor's Signature)</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -637,9 +627,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.38168cm</Top>
-            <Left>0.9525cm</Left>
-            <Height>6.76664cm</Height>
-            <Width>10.30203cm</Width>
+            <Left>0.74083cm</Left>
+            <Height>8.10839cm</Height>
+            <Width>10.5137cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -656,106 +646,103 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Donor Name </Value>
+                    <Value> Donor Name </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Fields!NAME.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <LineHeight>1pt</LineHeight>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value> Address: </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Fields!ADDRESS.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <LineHeight>1pt</LineHeight>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value> Pincode: </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Fields!PINCODE.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!DOC_TYPE.Value</Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> :  </Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!DOC_DETAIL.Value</Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
+                <Style>
+                  <LineHeight>1pt</LineHeight>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value> Mobile: </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Fields!CONTACT.Value</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <LineHeight>1pt</LineHeight>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value xml:space="preserve"> </Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!DOC_TYPE.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">    </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!DOC_DETAIL.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -763,10 +750,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>9.27299cm</Top>
-            <Left>0.9525cm</Left>
-            <Height>2.10284cm</Height>
-            <Width>10.30203cm</Width>
+            <Top>10.66647cm</Top>
+            <Left>0.74083cm</Left>
+            <Height>2.16666cm</Height>
+            <Width>10.5137cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -809,7 +796,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>11.53667cm</Height>
+        <Height>12.9125cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -817,7 +804,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>11.25453cm</Width>
+      <Width>11.41328cm</Width>
       <Page>
         <PageHeight>14.5cm</PageHeight>
         <PageWidth>12.3cm</PageWidth>

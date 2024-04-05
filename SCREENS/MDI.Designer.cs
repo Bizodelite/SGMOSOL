@@ -38,9 +38,11 @@
             this.printReceiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.requirementToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dengiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.totalDengiReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encryptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -48,6 +50,7 @@
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.totalDengiReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -63,8 +66,7 @@
             this.bhojanalayaToolStripMenuItem,
             this.dengiToolStripMenuItem,
             this.settingToolStripMenuItem,
-            this.logoutToolStripMenuItem,
-            this.encryptionToolStripMenuItem});
+            this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -97,19 +99,31 @@
             // 
             // dengiToolStripMenuItem
             // 
+            this.dengiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.totalDengiReportToolStripMenuItem1,
+            this.totalDengiReportToolStripMenuItem});
             this.dengiToolStripMenuItem.Name = "dengiToolStripMenuItem";
             this.dengiToolStripMenuItem.Size = new System.Drawing.Size(63, 26);
             this.dengiToolStripMenuItem.Text = "Dengi";
             this.dengiToolStripMenuItem.Click += new System.EventHandler(this.dengiToolStripMenuItem_Click);
             // 
+            // totalDengiReportToolStripMenuItem1
+            // 
+            this.totalDengiReportToolStripMenuItem1.Name = "totalDengiReportToolStripMenuItem1";
+            this.totalDengiReportToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.totalDengiReportToolStripMenuItem1.Text = "Dengi Receipt";
+            this.totalDengiReportToolStripMenuItem1.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem1_Click);
+            // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changePasswordToolStripMenuItem,
-            this.calculationFormToolStripMenuItem});
+            this.calculationFormToolStripMenuItem,
+            this.encryptionToolStripMenuItem1});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
             this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
@@ -124,6 +138,13 @@
             this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.calculationFormToolStripMenuItem.Text = "Calculation Form";
             this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
+            // 
+            // encryptionToolStripMenuItem1
+            // 
+            this.encryptionToolStripMenuItem1.Name = "encryptionToolStripMenuItem1";
+            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(207, 26);
+            this.encryptionToolStripMenuItem1.Text = "Encryption";
+            this.encryptionToolStripMenuItem1.Click += new System.EventHandler(this.encryptionToolStripMenuItem1_Click);
             // 
             // logoutToolStripMenuItem
             // 
@@ -162,6 +183,13 @@
             // toolTip2
             // 
             this.toolTip2.ShowAlways = true;
+            // 
+            // totalDengiReportToolStripMenuItem
+            // 
+            this.totalDengiReportToolStripMenuItem.Name = "totalDengiReportToolStripMenuItem";
+            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.totalDengiReportToolStripMenuItem.Text = "Total Dengi Report";
+            this.totalDengiReportToolStripMenuItem.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem_Click_1);
             // 
             // MDI
             // 
@@ -203,6 +231,9 @@
         private System.Windows.Forms.ToolStripMenuItem printReceiptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculationFormToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem totalDengiReportToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem totalDengiReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem requirementToAdminToolStripMenuItem;
     }

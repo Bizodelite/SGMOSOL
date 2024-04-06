@@ -21,6 +21,7 @@ namespace SGMOSOL.SCREENS
         LoginBAL login;
         CommonFunctions cm;
         public int Mach_ID;
+        bool oldUser;
         public frmLogin()
         {
             // string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
@@ -42,6 +43,12 @@ namespace SGMOSOL.SCREENS
             txtUser.Focus();
         }
 
+        public string getDesktopPassword(string userName)
+        {
+            string strDesktopPassword;
+            strDesktopPassword = login.getDesktopPassword(userName);
+            return strDesktopPassword;
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             getauthentication();
@@ -59,6 +66,12 @@ namespace SGMOSOL.SCREENS
             isUser = login.GetUserDetails(txtUser.Text);
             if (isUser != "")
             {
+                if (getDesktopPassword(isUser) == "")
+                {
+                    lblmessage.Text = "Please reset your password!!!";
+                    oldUser = true;
+                    return;
+                }
                 isPwd = CommonFunctions.Decrypt(login.GetPwdDetails(isUser), true);
                 if (isPwd == txtpwd.Text)
                 {
@@ -153,7 +166,7 @@ namespace SGMOSOL.SCREENS
                 else
                 {
                     UserInfo.UserName = isUser;
-                    frmChnagePassword frmchnagepassword = new frmChnagePassword();
+                    frmChnagePassword frmchnagepassword = new frmChnagePassword(oldUser);
                     frmchnagepassword.Show();
                     // this.Close();
                 }

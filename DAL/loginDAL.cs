@@ -14,13 +14,21 @@ namespace SGMOSOL.DAL
 {
     public class loginDAL
     {
-        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString,true);
+        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
         CommonFunctions commonFunctions = new CommonFunctions();
 
-        public string GetPwdDetails(string uid)
+        public string GetPwdDetails(string uid, bool? olduser = null)
         {
             string pwd = "";
-            string query = "select User_Login_Password from SEC_user_mst_t where User_Login_Name='" + uid + "'";
+            string query = "";
+            if (olduser == true)
+            {
+                query = "select User_Login_Password from SEC_user_mst_t where User_Login_Name='" + uid + "'";
+            }
+            else
+            {
+                query = "select DESKTOP_PASSWORD from SEC_user_mst_t where User_Login_Name='" + uid + "'";
+            }
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -39,6 +47,24 @@ namespace SGMOSOL.DAL
         {
             string status = "";
             string query = "select User_Status from SEC_user_mst_t where User_Login_Name='" + uid + "'";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        status = result.ToString();
+                    }
+                }
+            }
+            return status;
+        }
+        public string getDesktopPassword(string uid)
+        {
+            string status = "";
+            string query = "select DESKTOP_PASSWORD from SEC_user_mst_t where User_Login_Name='" + uid + "'";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -95,7 +121,7 @@ namespace SGMOSOL.DAL
             int status = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "Update SEC_user_mst_t set User_Login_Password='" + pwd + "' where User_Login_Name='" + uid + "'";
+                string query = "Update SEC_user_mst_t set DESKTOP_PASSWORD='" + pwd + "' where User_Login_Name='" + uid + "'";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();

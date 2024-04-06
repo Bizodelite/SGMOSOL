@@ -41,13 +41,13 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.totalDengiReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pctControls = new System.Windows.Forms.PictureBox();
             this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.totalDengiReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -108,23 +108,30 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // calculationFormToolStripMenuItem
             // 
             this.calculationFormToolStripMenuItem.Name = "calculationFormToolStripMenuItem";
-            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.calculationFormToolStripMenuItem.Text = "Calculation Form";
             this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
             // 
             // encryptionToolStripMenuItem1
             // 
             this.encryptionToolStripMenuItem1.Name = "encryptionToolStripMenuItem1";
-            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.encryptionToolStripMenuItem1.Size = new System.Drawing.Size(218, 26);
             this.encryptionToolStripMenuItem1.Text = "Encryption";
             this.encryptionToolStripMenuItem1.Click += new System.EventHandler(this.encryptionToolStripMenuItem1_Click);
+            // 
+            // totalDengiReportToolStripMenuItem
+            // 
+            this.totalDengiReportToolStripMenuItem.Name = "totalDengiReportToolStripMenuItem";
+            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.totalDengiReportToolStripMenuItem.Text = "Total Dengi Report";
+            this.totalDengiReportToolStripMenuItem.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
@@ -157,13 +164,6 @@
             // 
             this.toolTip2.ShowAlways = true;
             // 
-            // totalDengiReportToolStripMenuItem
-            // 
-            this.totalDengiReportToolStripMenuItem.Name = "totalDengiReportToolStripMenuItem";
-            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.totalDengiReportToolStripMenuItem.Text = "Total Dengi Report";
-            this.totalDengiReportToolStripMenuItem.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem_Click);
-            // 
             // MDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,6 +179,10 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDI_FormClosing);
             this.Load += new System.EventHandler(this.MDI_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MDI_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MDI_KeyPress);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MDI_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MDI_MouseMove);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).EndInit();

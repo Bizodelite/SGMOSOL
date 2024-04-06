@@ -911,14 +911,14 @@ namespace SGMOSOL.SCREENS
                             string receptID = status.ToString();
                             frmReportViewer report = new frmReportViewer("PRINT", receptID);
                             report.createReport("Dengi");
-                            report.Show();
+                            //report.Show();
                         }
                         if (chkDeclaration.Checked == true)
                         {
                             string receptID = status.ToString();
                             frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
                             report.createReport("Dengi");
-                            report.Show(); 
+                            //report.Show(); 
                         }
                     }
                     else
@@ -1127,7 +1127,7 @@ namespace SGMOSOL.SCREENS
 
             frmReportViewer report = new frmReportViewer("PRINT", receptID, "D");
             report.createReport("Dengi");
-            report.Show();
+           // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
         {
@@ -1144,14 +1144,14 @@ namespace SGMOSOL.SCREENS
 
                     frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
                     report.createReport("Dengi");
-                    report.Show();
+                  //  report.Show();
                 }
                 else
                 {
                     //createTempTableforDeclaration();
                     frmReportViewer report = new frmReportViewer("DECLARATION");
                     report.printDeclarationwithoutSave(createTempTableforDeclaration());
-                    report.Show();
+                   // report.Show();
                 }
             }
             // report.Show();

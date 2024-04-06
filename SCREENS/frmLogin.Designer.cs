@@ -102,7 +102,6 @@
             this.lnkRestPassword.TabIndex = 5;
             this.lnkRestPassword.TabStop = true;
             this.lnkRestPassword.Text = "Reset Password";
-            this.lnkRestPassword.Visible = false;
             this.lnkRestPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkRestPassword_LinkClicked);
             // 
             // lblmessage

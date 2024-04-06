@@ -1,5 +1,6 @@
 ﻿using SGMOSOL.ADMIN;
 using SGMOSOL.BAL;
+using SGMOSOL.Custom_User_Contols;
 using SGMOSOL.SCREENS;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace SGMOSOL
         frmBhojnalayaPrintReceipt frmbhojnalayaPrintReceipt;
         frmCalculation frmCalculation;
         CommonFunctions cm;
+        SessionManager sessionManager;
+       
         public MDI()
         {
             InitializeComponent();
@@ -31,7 +34,8 @@ namespace SGMOSOL
 
         private void MDI_Load(object sender, EventArgs e)
         {
-
+            sessionManager = new SessionManager();
+            sessionManager.StartTimer();
         }
 
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,7 +49,7 @@ namespace SGMOSOL
             frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
             if (frmChnagePassword == null)
             {
-                frmChnagePassword = new frmChnagePassword();
+                frmChnagePassword = new frmChnagePassword(false);
                 frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
                 frmChnagePassword.MdiParent = this;
                 frmChnagePassword.WindowState = FormWindowState.Maximized;
@@ -163,6 +167,26 @@ namespace SGMOSOL
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private void MDI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void MDI_KeyDown(object sender, KeyEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void MDI_MouseMove(object sender, MouseEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void MDI_MouseClick(object sender, MouseEventArgs e)
+        {
+            sessionManager.ResetSession();
         }
     }
 }

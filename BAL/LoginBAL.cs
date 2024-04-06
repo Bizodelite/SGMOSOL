@@ -12,13 +12,17 @@ namespace SGMOSOL.BAL
     public class LoginBAL
     {
         loginDAL login = new loginDAL();
-        public string GetPwdDetails(string uid)
+        public string GetPwdDetails(string uid, bool? olduser=null)
         {
-            return login.GetPwdDetails(uid);
+            return login.GetPwdDetails(uid, olduser);
         }
         public string GetUserStatus(string uid)
         {
             return login.GetUserStatus(uid);
+        }
+        public string getDesktopPassword(string uid)
+        {
+            return login.getDesktopPassword(uid);
         }
         public int getUserId(string userName)
         {

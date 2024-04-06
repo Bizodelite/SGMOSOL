@@ -139,6 +139,8 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(73, 22);
             this.txtQuantity.TabIndex = 42;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantity_KeyDown);
             // 
             // label11
             // 
@@ -167,6 +169,7 @@
             this.cboItemCode.Name = "cboItemCode";
             this.cboItemCode.Size = new System.Drawing.Size(104, 24);
             this.cboItemCode.TabIndex = 41;
+            this.cboItemCode.SelectedIndexChanged += new System.EventHandler(this.cboItemCode_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -185,7 +188,7 @@
             this.dgvItemDetails.Name = "dgvItemDetails";
             this.dgvItemDetails.RowHeadersWidth = 51;
             this.dgvItemDetails.RowTemplate.Height = 24;
-            this.dgvItemDetails.Size = new System.Drawing.Size(631, 172);
+            this.dgvItemDetails.Size = new System.Drawing.Size(708, 172);
             this.dgvItemDetails.TabIndex = 40;
             // 
             // panel2

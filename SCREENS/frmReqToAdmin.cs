@@ -134,8 +134,7 @@ namespace SGMOSOL.SCREENS
                     // newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
                     tempItemTable.Rows.Add(newRow);
                 }
-                //txtTotalAmount.Text = getTotalAmount();
-                // clear();
+                txtQuantity.Text = "";
                 cboItemCode.Focus();
             }
         }
@@ -214,6 +213,9 @@ namespace SGMOSOL.SCREENS
 
         }
 
-        
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

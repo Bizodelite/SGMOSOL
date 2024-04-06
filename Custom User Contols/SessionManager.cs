@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace SGMOSOL.Custom_User_Contols
 {
     public class SessionManager
     {
-        private const int SessionTimeoutMilliseconds = 600000; // 10 minutes
+       
+        int SessionTimeoutMilliseconds;
         private DateTime lastActivityTime;
         private Timer sessionTimer;
 
         public SessionManager()
         {
+            SessionTimeoutMilliseconds = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Timer"]);
             // Initialize last activity time
             lastActivityTime = DateTime.Now;
 

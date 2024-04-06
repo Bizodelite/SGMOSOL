@@ -67,6 +67,8 @@ namespace SGMOSOL.SCREENS
             isUser = login.GetUserDetails(txtUser.Text);
             if (isUser != "")
             {
+                uID = login.getUserId(isUser);
+                UserInfo.UserId = uID;
                 if (getDesktopPassword(isUser) == "")
                 {
                     lblmessage.Text = "Please reset your password!!!";
@@ -81,12 +83,11 @@ namespace SGMOSOL.SCREENS
                         Status = login.GetUserStatus(txtUser.Text);
                         if (Status == "Y")
                         {
-                            uID = login.getUserId(isUser);
                             DataTable dtActiveUser = new DataTable();
                             dtActiveUser = login.GetLoggedInUser(uID);
                             if (dtActiveUser.Rows.Count == 0)
                             {
-                                UserInfo.UserId = uID;
+                                
                                 dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
                                 if (dtuser.Rows.Count > 0)
                                 {

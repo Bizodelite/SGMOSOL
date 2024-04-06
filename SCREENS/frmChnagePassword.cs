@@ -1,4 +1,5 @@
-﻿using SGMOSOL.ADMIN;
+﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using SGMOSOL.ADMIN;
 using SGMOSOL.BAL;
 using SGMOSOL.DAL;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -30,6 +32,16 @@ namespace SGMOSOL.SCREENS
         private void btnchange_Click(object sender, EventArgs e)
         {
             string isError = null;
+            int uID = 0;
+            int ctrMachID = 0;
+            DataTable dtuser = new DataTable();
+            uID = login.getUserId(txtUserName.Text.Trim());
+            dtuser = commonFunctions.getUserAllDetails(UserInfo.MachineId, uID);
+            
+            foreach (DataRow row in dtuser.Rows)
+            {
+              UserInfo.ctrMachID = Convert.ToInt32(row["CTR_MACH_ID"]);
+            }
             if (lbloldpwderror.Text == "")
             {
                 isError = commonFunctions.IsPasswordValid(txtNewPassword.Text);
@@ -39,20 +51,30 @@ namespace SGMOSOL.SCREENS
                     lblError.Text = "";
                     if (txtOldPassword.Text != txtNewPassword.Text)
                     {
-                        int status = login.updatePassword(txtUserName.Text, CommonFunctions.Encrypt(txtNewPassword.Text, true));
-                        if (status == 1)
+                        DataTable dtckMachineAccess = new DataTable();
+                        dtckMachineAccess = login.chkmachneAccess(UserInfo.UserId
+                            );
+                        if (dtckMachineAccess.Rows.Count > 0)
                         {
-                            MessageBox.Show("Password Updated Successfully");
-                            MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
-                            if (mdiParentForm != null)
+                            int status = login.updatePassword(txtUserName.Text, CommonFunctions.Encrypt(txtNewPassword.Text, true));
+                            if (status == 1)
                             {
-                                this.Close();
+                                MessageBox.Show("Password Updated Successfully");
+                                MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
+                                if (mdiParentForm != null)
+                                {
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MDI home = new MDI();
+                                    home.Show();
+                                }
                             }
-                            else
-                            {
-                                MDI home = new MDI();
-                                home.Show();
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("You dont have access for this machine");
                         }
                     }
                     else
@@ -66,7 +88,7 @@ namespace SGMOSOL.SCREENS
                 }
             }
         }
-       
+
         private void frmChnagePassword_Load(object sender, EventArgs e)
         {
             txtUserName.Text = UserInfo.UserName;

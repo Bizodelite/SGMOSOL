@@ -79,6 +79,22 @@ namespace SGMOSOL.DAL
             }
             return status;
         }
+        public DataTable chkmachneAccess(int uid)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT * FROM SEC_USER_COUNTER_MST_T WHERE USER_ID=" + uid + " AND CTR_MACH_ID=" + UserInfo.ctrMachID + "";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dt);
+                    connection.Close();
+                }
+            }
+            return dt;
+        }
         public int getUserId(string userName)
         {
             int userId = 0;

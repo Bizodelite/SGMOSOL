@@ -12,7 +12,7 @@ namespace SGMOSOL.BAL
     public class LoginBAL
     {
         loginDAL login = new loginDAL();
-        public string GetPwdDetails(string uid, bool? olduser=null)
+        public string GetPwdDetails(string uid, bool? olduser = null)
         {
             return login.GetPwdDetails(uid, olduser);
         }
@@ -31,6 +31,10 @@ namespace SGMOSOL.BAL
         public string GetUserDetails(string uid)
         {
             return login.GetUserDetails(uid);
+        }
+        public DataTable chkmachneAccess(int uid)
+        {
+            return login.chkmachneAccess(uid);
         }
         public int updatePassword(string uid, string pwd)
         {

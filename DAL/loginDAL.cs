@@ -9,6 +9,7 @@ using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SGMOSOL.BAL.LockerBAL;
 
 namespace SGMOSOL.DAL
 {
@@ -107,6 +108,24 @@ namespace SGMOSOL.DAL
                 }
             }
             return status;
+        }
+        public int InsertUser_PassWord_Logs(string pwd)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_InsertPasswordLog", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@UserID", UserInfo.UserId);
+                command.Parameters.AddWithValue("@Password", pwd);
+
+                return Convert.ToInt32(clsConnection.ExecuteNonQuery(command));
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return -10; // Error
+            }
         }
         public bool CheckDateTime()
         {
@@ -219,20 +238,25 @@ namespace SGMOSOL.DAL
 
         public DataTable GetLoggedInUser(int uid)
         {
-            DataTable dt = new DataTable();
-            string query = "select USER_ID, COUNTER_NAME from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            int Id = 0;
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "select USER_ID from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    adapter.Fill(dt);
-                    connection.Close();
-
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            Id = Convert.ToInt32(result);
+                        }
+                    }
                 }
             }
-            return dt;
+            catch(Exception ex) { }
+            return Id;
         }
     }
 }

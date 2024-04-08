@@ -216,7 +216,7 @@ namespace SGMOSOL.DAL
                         if (data is dengiReceiptModel obj)
                         {
                             //command.Parameters.AddWithValue("@DR_DATE",Convert.ToDateTime(obj.dr_Date));
-                            command.Parameters.AddWithValue("@Com_Id", 9);
+                            command.Parameters.AddWithValue("@Com_Id", UserInfo.CompanyID);
                             command.Parameters.AddWithValue("@Loc_Id", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@Fy_Id", UserInfo.fy_id);

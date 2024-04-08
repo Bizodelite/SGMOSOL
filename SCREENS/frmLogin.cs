@@ -37,6 +37,7 @@ namespace SGMOSOL.SCREENS
             UserInfo.version = Application.ProductVersion;
             this.Text = cm.getFormTitle() + " / " + UserInfo.version;
             UserInfo.module = "Login";
+            UserInfo.Machine_Name = System.Environment.MachineName;
             txtUser.Focus();
         }
 
@@ -45,8 +46,12 @@ namespace SGMOSOL.SCREENS
             string strValue = CommonFunctions.Encrypt(txtpwd.Text,true);
             string strValue1 = CommonFunctions.Decrypt(txtpwd.Text,true);
             getauthentication();
+            InitOnServer();
         }
-       
+        private void InitOnServer()
+        {
+            clsConnection.GetConnection();
+        }
         private void getauthentication()
         {
             string isUser = null;
@@ -69,14 +74,22 @@ namespace SGMOSOL.SCREENS
                         if (Status == "Y")
                         {
                             uID = login.getUserId(isUser);
-                            DataTable dtActiveUser = new DataTable();
-                            dtActiveUser = login.GetLoggedInUser(uID);
-                            if (dtActiveUser.Rows.Count == 0)
+                            activeUser = login.GetLoggedInUser(uID);
+                            UserInfo.UserName = isUser;
+                            if (activeUser == 0)
                             {
                                 UserInfo.UserId = uID;
+
                                 dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
                                 if (dtuser.Rows.Count > 0)
                                 {
+                                    if (Convert.ToDateTime(dtuser.Rows[0]["ResetPasswordDate"]).AddDays(45) < DateTime.Now)
+                                    {
+                                        frmChnagePassword frmchnagepassword = new frmChnagePassword();
+                                        frmchnagepassword.ShowDialog();
+                                        lblmessage.Text = "Please Login Again With New Password.";
+                                        return;
+                                    }
                                     UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
                                     foreach (DataRow row in dtuser.Rows)
                                     {
@@ -98,9 +111,19 @@ namespace SGMOSOL.SCREENS
                                 lblmessage.Text = "User already loggedIn ON " + loggedCounterName + ", Please logout first !!!";
                                 return;
                             }
-                            UserInfo.UserName = isUser;
-                            UserInfo.fy_id = cm.getFYID();
-                            UserInfo.Machine_Name = System.Environment.MachineName;
+                            DataTable dd = cm.getFYDetail();
+                            if (dd != null && dd.Rows.Count > 0)
+                            {
+                                UserInfo.CompanyID = 9;
+                                UserInfo.fy_id = Convert.ToInt32(dd.Rows[0]["FINANCIAL_YEAR_ID"]);
+                                UserInfo.FYStartDate = Convert.ToDateTime(dd.Rows[0]["Start_Date"]);
+                                UserInfo.FYEndDate = Convert.ToDateTime(dd.Rows[0]["End_Date"]);
+                            }
+                            else
+                            {
+                                lblmessage.Text = "Financial Year Not Found Please Check!";
+                                return;
+                            }
                             lblmessage.Text = "Login Successfull";
                             login.InsertUser_Login_details();
                             LoginStatusMessage(true);

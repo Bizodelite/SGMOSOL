@@ -21,7 +21,7 @@ namespace SGMOSOL.SCREENS
         LoginBAL login;
         CommonFunctions commonFunctions;
         bool OldUser = false;
-        public frmChnagePassword(bool oldUser)
+        public frmChnagePassword(bool oldUser = false)
         {
             InitializeComponent();
             login = new LoginBAL();

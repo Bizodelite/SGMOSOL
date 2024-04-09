@@ -348,9 +348,9 @@
     <Compile Include="Custom User Contols\InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
-	  <Compile Include="DAL\Bed System\BedCheckOutDAL.cs" />
-	  <Compile Include="DAL\Bed System\BedCheckINDAL.cs" />
-	  <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
+    <Compile Include="DAL\Bed System\BedCheckOutDAL.cs" />
+    <Compile Include="DAL\Bed System\BedCheckINDAL.cs" />
+    <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="Custom User Contols\SessionManager.cs" />
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="DAL\DengiReceiptDAL.cs" />
@@ -491,48 +491,48 @@
     <Compile Include="SCREENS\frmEncryption.Designer.cs">
       <DependentUpon>frmEncryption.cs</DependentUpon>
     </Compile>
-	  <Compile Include="SCREENS\frmCrystalViewer.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\frmCrystalViewer.Designer.cs">
-		  <DependentUpon>frmCrystalViewer.cs</DependentUpon>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmDamagedLokers.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmDamagedLokers.Designer.cs">
-		  <DependentUpon>frmDamagedLokers.cs</DependentUpon>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmDmLockerList.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmDmLockerList.Designer.cs">
-		  <DependentUpon>frmDmLockerList.cs</DependentUpon>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockChkOutWrng.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockChkOutWrng.Designer.cs">
-		  <DependentUpon>frmLockChkOutWrng.cs</DependentUpon>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockerChange.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockerChange.Designer.cs">
-		  <DependentUpon>frmLockerChange.cs</DependentUpon>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockerCheckIn.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockerCheckIn.Designer.cs">
-		  <DependentUpon>frmLockerCheckIn.cs</DependentUpon>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockerCheckOut.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\Locker\frmLockerCheckOut.Designer.cs">
-		  <DependentUpon>frmLockerCheckOut.cs</DependentUpon>
-	  </Compile>
+    <Compile Include="SCREENS\frmCrystalViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmCrystalViewer.Designer.cs">
+      <DependentUpon>frmCrystalViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmDamagedLokers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmDamagedLokers.Designer.cs">
+      <DependentUpon>frmDamagedLokers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmDmLockerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmDmLockerList.Designer.cs">
+      <DependentUpon>frmDmLockerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockChkOutWrng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockChkOutWrng.Designer.cs">
+      <DependentUpon>frmLockChkOutWrng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerChange.Designer.cs">
+      <DependentUpon>frmLockerChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerCheckIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerCheckIn.Designer.cs">
+      <DependentUpon>frmLockerCheckIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerCheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerCheckOut.Designer.cs">
+      <DependentUpon>frmLockerCheckOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -557,12 +557,12 @@
     <Compile Include="SCREENS\frmTotalDengiReport.Designer.cs">
       <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </Compile>
-	  <Compile Include="SCREENS\frmSearchNew.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="SCREENS\frmSearchNew.Designer.cs">
-		  <DependentUpon>frmSearchNew.cs</DependentUpon>
-	  </Compile>
+    <Compile Include="SCREENS\frmSearchNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmSearchNew.Designer.cs">
+      <DependentUpon>frmSearchNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\frmUserDengi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -588,28 +588,27 @@
       <DependentUpon>MDI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DengiCalculation.rdlc" />
-	  <EmbeddedResource Include="Reports\crpBedAdvVchr.rdlc" />
-	  <EmbeddedResource Include="Reports\crpLockerAdvVchr.rdlc" />
-	  <EmbeddedResource Include="SCREENS\Bed System\dgScanPrievew.resx">
-		  <DependentUpon>dgScanPrievew.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Bed System\FrmBedCheckIN.resx">
-		  <DependentUpon>FrmBedCheckIN.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Bed System\FrmBedCheckOut.resx">
-		  <DependentUpon>FrmBedCheckOut.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Bed System\FrmBedO.resx">
-		  <DependentUpon>FrmBedO.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\frmMessReport.resx">
-		  <DependentUpon>frmMessReport.cs</DependentUpon>
-	  </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crpBedAdvVchr.rdlc" />
+    <EmbeddedResource Include="Reports\crpLockerAdvVchr.rdlc" />
+    <EmbeddedResource Include="SCREENS\Bed System\dgScanPrievew.resx">
+      <DependentUpon>dgScanPrievew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Bed System\FrmBedCheckIN.resx">
+      <DependentUpon>FrmBedCheckIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Bed System\FrmBedCheckOut.resx">
+      <DependentUpon>FrmBedCheckOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Bed System\FrmBedO.resx">
+      <DependentUpon>FrmBedO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmMessReport.resx">
+      <DependentUpon>frmMessReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\DengiDeclaration.rdlc" />
     <EmbeddedResource Include="Reports\DengiReceipt1.rdlc" />
     <EmbeddedResource Include="Reports\Fund_Calculation_Print.rdlc" />
@@ -644,27 +643,27 @@
     <EmbeddedResource Include="SCREENS\frmEncryption.resx">
       <DependentUpon>frmEncryption.cs</DependentUpon>
     </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\frmCrystalViewer.resx">
-		  <DependentUpon>frmCrystalViewer.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Locker\frmDamagedLokers.resx">
-		  <DependentUpon>frmDamagedLokers.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Locker\frmDmLockerList.resx">
-		  <DependentUpon>frmDmLockerList.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Locker\frmLockChkOutWrng.resx">
-		  <DependentUpon>frmLockChkOutWrng.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Locker\frmLockerChange.resx">
-		  <DependentUpon>frmLockerChange.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Locker\frmLockerCheckIn.resx">
-		  <DependentUpon>frmLockerCheckIn.cs</DependentUpon>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\Locker\frmLockerCheckOut.resx">
-		  <DependentUpon>frmLockerCheckOut.cs</DependentUpon>
-	  </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmCrystalViewer.resx">
+      <DependentUpon>frmCrystalViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmDamagedLokers.resx">
+      <DependentUpon>frmDamagedLokers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmDmLockerList.resx">
+      <DependentUpon>frmDmLockerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmLockChkOutWrng.resx">
+      <DependentUpon>frmLockChkOutWrng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmLockerChange.resx">
+      <DependentUpon>frmLockerChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmLockerCheckIn.resx">
+      <DependentUpon>frmLockerCheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmLockerCheckOut.resx">
+      <DependentUpon>frmLockerCheckOut.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -677,9 +676,9 @@
     <EmbeddedResource Include="SCREENS\frmTotalDengiReport.resx">
       <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </EmbeddedResource>
-	  <EmbeddedResource Include="SCREENS\frmSearchNew.resx">
-		  <DependentUpon>frmSearchNew.cs</DependentUpon>
-	  </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmSearchNew.resx">
+      <DependentUpon>frmSearchNew.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmUserDengi.resx">
       <DependentUpon>frmUserDengi.cs</DependentUpon>
     </EmbeddedResource>
@@ -909,22 +908,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="WIA">
-      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="ScanImages\" />
   </ItemGroup>
-	<ItemGroup>
-		<WCFMetadata Include="Connected Services\" />
-	</ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

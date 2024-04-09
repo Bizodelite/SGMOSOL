@@ -9,7 +9,6 @@ using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SGMOSOL.BAL.LockerBAL;
 
 namespace SGMOSOL.DAL
 {

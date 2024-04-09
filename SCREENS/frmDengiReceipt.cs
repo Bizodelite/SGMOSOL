@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using WIA;
 using System.IO;
 using CommonDialog = WIA.CommonDialog;
+using Microsoft.VisualBasic;
+using System.Xml.Linq;
 
 namespace SGMOSOL.SCREENS
 {
@@ -1349,55 +1351,133 @@ namespace SGMOSOL.SCREENS
         }
         private void btnScan_Click(object sender, EventArgs e)
         {
-            ScanDocument();
+            //ScanDocument();
+            Scan_Document();
         }
-        public void ScanDocument()
+        public static string val1 = "";
+        public void Scan_Document()
         {
+            string tempfile;
+            WIA.Device mydevice;
+            WIA.Item item;
+            WIA.ImageFile F;
+            System.Windows.Forms.Label Err_btnTakePicture_click;
+            WIA.CommonDialog CommonDialogBox = new WIA.CommonDialog();
+            WIA.CommonDialog Commondialog1 = new WIA.CommonDialog();
+            string F1 = System.Configuration.ConfigurationManager.AppSettings.Get("ScannerPath");
+            string s;
+            DialogResult answer;
+
+
             try
             {
-                string scannerPath = System.Configuration.ConfigurationManager.AppSettings.Get("ScannerPath");
-                string tempFile;
-                string s = txtname.Text + txtCounter.Text; // Assuming txtname and txtCounter are TextBox controls in your form
+                WIA.DeviceManager DeviceManager1 = new WIA.DeviceManager();//= Interaction.CreateObject("WIA.DeviceManager");
+                int i = 0;
+                mydevice = CommonDialogBox.ShowSelectDevice(WIA.WiaDeviceType.ScannerDeviceType, true, false);
 
-                CommonDialog commonDialog = new CommonDialog();
-                Device myDevice = commonDialog.ShowSelectDevice(WiaDeviceType.ScannerDeviceType, true, false);
-
-                if (myDevice == null)
+                if (DeviceManager1.DeviceInfos[1].Type == WIA.WiaDeviceType.ScannerDeviceType)
                 {
-                    MessageBox.Show("Scanner failed to transfer an Image");
-                    return;
-                }
-
-                Item scannerItem = myDevice.Items[1];
-                scannerItem.Properties["6146"].set_Value(WiaImageIntent.ColorIntent); // Color Intent
-                WIA.ImageFile imageFile = null;
-                imageFile = (WIA.ImageFile)scannerItem.Transfer(scannerItem.Properties["6147"].get_Value().ToString());
-                if (imageFile == null)
-                {
-                    DialogResult answer = MessageBox.Show("There is no file in the scanner. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (answer == DialogResult.Yes)
+                    WIA.Device Scanner = DeviceManager1.DeviceInfos[1].Connect();
+                    if (Information.IsNothing(Scanner))
+                    {
+                        Interaction.MsgBox("Could not connect to scanner please check attached Properly.");
                         return;
+                    }
+                    else
+                        try
+                        {
+                            s = txtname.Text + txtdengireceiptNo.Text;
+                            {
+                                var withBlock = Scanner.Items[1];
+                                withBlock.Properties["6146"].set_Value(WIA.WiaImageIntent.ColorIntent);  // 4 is Black-white,gray is 2, color 1 (Color Intent)
+                            }
+                            F = (WIA.ImageFile)Scanner.Items[1].Transfer("{B96B3CAE-0728-11D3-9D7B-0000F81EF32E}");
+                            //F = (WIA.ImageFile)Scanner.Items[1].Transfer(WIA.FormatID.wiaFormatJPEG);
+
+                            if (Information.IsNothing(F))
+                            {
+                                answer = MessageBox.Show("There is no file in scanner do you want to scan blank image", "Yes/no sample", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (answer == DialogResult.Yes)
+                                    return;
+                            }
+                            val1 = s + "." + F.FileExtension;
+                            F1 = F1 + val1;
+                            txtScan.Text = s;
+                            if (File.Exists(F1))
+                                FileSystem.Kill(F1);
+                            F.SaveFile(F1);
+                            txtScan.Text = s;
+                        }
+                        catch (Exception ex)
+                        {
+                            Interaction.MsgBox(ex.Message);
+                        }
+                        finally
+                        {
+                            Scanner = null;
+                        }
                 }
+                else
+                    Interaction.MsgBox("Scanner is not attached checked it");
 
-                string fileName = $"{s}.{imageFile.FileExtension}";
-                string filePath = Path.Combine(scannerPath, fileName);
-
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
-
-                imageFile.SaveFile(filePath);
-                txtScan.Text = s;
-
-                imgVideo.ImageLocation = filePath;
+                imgVideo.ImageLocation = F1;
+                DeviceManager1 = null;
             }
+
             catch (Exception ex)
             {
-                DialogResult answer = MessageBox.Show("There is no file in the scanner or the scanner is not attached. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                answer = MessageBox.Show("There is no file in scanner or scanner not attached do you want to scan blank image", "Yes/no sample", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (answer == DialogResult.Yes)
                     return;
-                MessageBox.Show(ex.Message);
             }
         }
+        //public void ScanDocument()
+        //{
+        //    try
+        //    {
+        //        string scannerPath = System.Configuration.ConfigurationManager.AppSettings.Get("ScannerPath");
+        //        string tempFile;
+        //        string s = txtname.Text + txtCounter.Text; // Assuming txtname and txtCounter are TextBox controls in your form
+
+        //        CommonDialog commonDialog = new CommonDialog();
+        //        Device myDevice = commonDialog.ShowSelectDevice(WiaDeviceType.ScannerDeviceType, true, false);
+
+        //        if (myDevice == null)
+        //        {
+        //            MessageBox.Show("Scanner failed to transfer an Image");
+        //            return;
+        //        }
+
+        //        Item scannerItem = myDevice.Items[1];
+        //        scannerItem.Properties["6146"].set_Value(WiaImageIntent.ColorIntent); // Color Intent
+        //        WIA.ImageFile imageFile = null;
+        //        imageFile = (WIA.ImageFile)scannerItem.Transfer(scannerItem.Properties["6147"].get_Value().ToString());
+        //        if (imageFile == null)
+        //        {
+        //            DialogResult answer = MessageBox.Show("There is no file in the scanner. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //            if (answer == DialogResult.Yes)
+        //                return;
+        //        }
+
+        //        string fileName = $"{s}.{imageFile.FileExtension}";
+        //        string filePath = Path.Combine(scannerPath, fileName);
+
+        //        if (File.Exists(filePath))
+        //            File.Delete(filePath);
+
+        //        imageFile.SaveFile(filePath);
+        //        txtScan.Text = s;
+
+        //        imgVideo.ImageLocation = filePath;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DialogResult answer = MessageBox.Show("There is no file in the scanner or the scanner is not attached. Do you want to scan a blank image?", "Yes/No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //        if (answer == DialogResult.Yes)
+        //            return;
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
 
         private void frmDengiReceipt_KeyDown(object sender, KeyEventArgs e)

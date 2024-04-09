@@ -67,10 +67,10 @@ namespace SGMOSOL.SCREENS
             {
                 printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
             }
-            //else
-            //{
-            //    printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
-            //}
+            else
+            {
+                printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+            }
 
             byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))

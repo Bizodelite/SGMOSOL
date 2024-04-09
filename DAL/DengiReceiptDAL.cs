@@ -45,6 +45,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                            command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
                             using (SqlDataAdapter da = new SqlDataAdapter(command))
                             {
                                 da.Fill(dt);
@@ -75,6 +76,7 @@ namespace SGMOSOL.DAL
                         command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                         command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                         command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                        command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
                         using (SqlDataAdapter da = new SqlDataAdapter(command))
                         {
                             da.Fill(dataTable);
@@ -108,7 +110,7 @@ namespace SGMOSOL.DAL
                         command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                         command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                         command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
-                       // command.Parameters.AddWithValue("@FY_ID", 11);
+                        command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
                         command.Parameters.AddWithValue("@USERID", UserInfo.UserId);
                         using (SqlDataAdapter da = new SqlDataAdapter(command))
                         {

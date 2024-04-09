@@ -17,16 +17,22 @@ namespace SGMOSOL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmLogin loginForm=new frmLogin();
-            loginForm.WindowState = FormWindowState.Maximized;
-            if (loginForm.ShowDialog() == DialogResult.OK)
-            {
-                Application.Run(new MDI());
-            }
-            else {
-                Application.Exit();
-            }
 
+            //// Show the login form
+            //frmLogin loginForm = new frmLogin();
+            //loginForm.WindowState = FormWindowState.Maximized;
+
+            // Show the MDI form if login is successful
+            //if (loginForm.ShowDialog() == DialogResult.OK)
+            //{
+                // If login is successful, start the MDI parent form
+                Application.Run(new MDI());
+            //}
+            //else
+            //{
+            //    // If login fails or the login form is closed, exit the application
+            //    Application.Exit();
+            //}
         }
     }
 }

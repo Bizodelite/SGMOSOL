@@ -33,9 +33,10 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!SERIAL_NO.Value</Value>
+                <Value>=Fields!ITEM_PRINT_RECEIPT_ID.Value</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -93,7 +94,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!ITEM_PRINT_RECEIPT_ID.Value</Value>
+                <Value />
                 <Style>
                   <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -107,7 +108,7 @@
         <Top>1.04224cm</Top>
         <Left>0.59157cm</Left>
         <Height>2.07491cm</Height>
-        <Width>5.1062cm</Width>
+        <Width>6.49986cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -521,7 +522,7 @@
         <Top>5.6007cm</Top>
         <Left>0.59157cm</Left>
         <Height>1.2cm</Height>
-        <Width>8.6665cm</Width>
+        <Width>8.66648cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>

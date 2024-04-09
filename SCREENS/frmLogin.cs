@@ -140,8 +140,11 @@ namespace SGMOSOL.SCREENS
                             }
                             lblmessage.Text = "Login Successfull";
                             login.InsertUser_Login_details();
-                            LoginStatusMessage(true);
-
+                            this.DialogResult = DialogResult.OK;
+                           // this.Close();
+                            //MDI home = new MDI();
+                            //home.Show();
+                            //this.Hide();
                         }
                         else
                         {
@@ -177,6 +180,7 @@ namespace SGMOSOL.SCREENS
         private void lnkRestPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string isUser = null;
+            txtpwd.Text = "";
             if (txtUser.Text == "")
             {
                 lblmessage.Text = "Please enter user name";

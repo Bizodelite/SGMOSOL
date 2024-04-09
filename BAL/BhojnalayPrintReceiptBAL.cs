@@ -15,13 +15,17 @@ namespace SGMOSOL.BAL
         {
             return da.getItemCode();
         }
+        public DataTable getItemCodeAssignToCounter()
+        {
+            return da.getItemCodeAssignToCounter();
+        }
         public DataTable getItemName()
         {
             return da.getItemName();
         }
-        public int getItemID(string itemType, string itemValue)
+        public string getItemName(string itemType, string itemValue)
         {
-            return da.getItemID(itemType, itemValue);
+            return da.getItemName(itemType, itemValue);
         }
         public decimal getItemPrice(int itemId)
         {
@@ -38,6 +42,10 @@ namespace SGMOSOL.BAL
         public int InsertMessItemData(object data)
         {
             return da.InsertMessItemData(data);
+        }
+        public int InsertRquToAdmin_DET(object data)
+        {
+            return da.InsertRquToAdmin_DET(data);
         }
         public int getItemIdbyItemName(string ItemName)
         {
@@ -58,6 +66,22 @@ namespace SGMOSOL.BAL
         public DataTable getMessItemDataForReport(string Receipt_ID)
         {
             return da.getMessItemDataForReport(Receipt_ID);
+        }
+        public string getReqNumber()
+        {
+            return da.getReqNumber();
+        }
+        //public DataTable getItemCode()
+        //{
+        //    return obj.getItemCode();
+        //}
+        public string getItemName(int ItemId)
+        {
+            return da.getItemName(ItemId);
+        }
+        public int InsertReqToAdmin_MST(object data)
+        {
+            return da.InsertReqToAdmin_MST(data);
         }
     }
 }

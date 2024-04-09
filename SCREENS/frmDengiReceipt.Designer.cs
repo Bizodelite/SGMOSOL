@@ -185,6 +185,7 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Name = "pnlMaster";
             this.pnlMaster.Size = new System.Drawing.Size(1082, 200);
             this.pnlMaster.TabIndex = 2;
+            //this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMaster_Paint);
             // 
             // cboDoctype
             // 
@@ -278,6 +279,8 @@ namespace SGMOSOL.SCREENS
             this.dtDDdate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDDdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDDdate.Location = new System.Drawing.Point(809, 7);
+            this.dtDDdate.Location = new System.Drawing.Point(1079, 9);
+            this.dtDDdate.Margin = new System.Windows.Forms.Padding(4);
             this.dtDDdate.Name = "dtDDdate";
             this.dtDDdate.Size = new System.Drawing.Size(116, 26);
             this.dtDDdate.TabIndex = 11;
@@ -932,6 +935,8 @@ namespace SGMOSOL.SCREENS
             this.chkScanDoc.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkScanDoc.ForeColor = System.Drawing.Color.DarkBlue;
             this.chkScanDoc.Location = new System.Drawing.Point(752, 162);
+            this.chkScanDoc.Location = new System.Drawing.Point(1003, 199);
+            this.chkScanDoc.Margin = new System.Windows.Forms.Padding(4);
             this.chkScanDoc.Name = "chkScanDoc";
             this.chkScanDoc.Size = new System.Drawing.Size(141, 22);
             this.chkScanDoc.TabIndex = 23;
@@ -1266,6 +1271,8 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcknowledge.Image = global::SGMOSOL.ResourceMain.Edit;
             this.btnAcknowledge.Location = new System.Drawing.Point(301, 8);
+            this.btnAcknowledge.Location = new System.Drawing.Point(401, 10);
+            this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(4);
             this.btnAcknowledge.Name = "btnAcknowledge";
             this.btnAcknowledge.Size = new System.Drawing.Size(93, 46);
             this.btnAcknowledge.TabIndex = 4;

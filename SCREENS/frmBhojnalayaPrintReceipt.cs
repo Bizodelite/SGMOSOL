@@ -15,6 +15,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using System.Web.UI.WebControls;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace SGMOSOL.SCREENS
 {
@@ -25,11 +29,16 @@ namespace SGMOSOL.SCREENS
         CommonFunctions cm;
         private DataTable tempItemTable;
         public bool isPrint = false;
+        CommonFunctions commonFunctions;
         public frmBhojnalayaPrintReceipt()
         {
             InitializeComponent();
             CenterToParent();
             txtName.Focus();
+            this.KeyDown += new KeyEventHandler(frmBhojnalayaPrintReceipt_KeyDown);
+            this.KeyPreview = true;
+
+            // cboItemCode.SelectedIndexChanged += cboItemCode_SelectedIndexChanged;
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -39,6 +48,7 @@ namespace SGMOSOL.SCREENS
 
         private void frmBhojnalayaPrintReceipt_Load(object sender, EventArgs e)
         {
+            user = new frmUserDengi();
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
             pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
@@ -52,16 +62,14 @@ namespace SGMOSOL.SCREENS
                 fillDocumentType();
                 txtReceiptno.Text = bhojnalayprintReceiptBAL.getMasterReceiptNumber().ToString();
             }
-
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
-            //user = new frmUserDengi();
-            //user.Show();
+           
         }
         private void fillItemCode()
         {
             DataTable dt = new DataTable();
-            dt = bhojnalayprintReceiptBAL.getItemCode();
+            dt = bhojnalayprintReceiptBAL.getItemCodeAssignToCounter();
             DataRow newRow = dt.NewRow();
             newRow["ITEM_CODE"] = "Select";
             newRow["ITEM_ID"] = 0;
@@ -73,16 +81,16 @@ namespace SGMOSOL.SCREENS
         }
         private void fillItemName()
         {
-            DataTable dt = new DataTable();
-            dt = bhojnalayprintReceiptBAL.getItemName();
-            DataRow newRow = dt.NewRow();
-            newRow["ITEM_TITLE"] = "Select";
-            newRow["ITEM_ID"] = 0;
-            dt.Rows.InsertAt(newRow, 0);
-            cboItemName.DataSource = dt;
-            cboItemName.DisplayMember = "ITEM_TITLE";
-            cboItemName.ValueMember = "ITEM_ID";
-            cboItemName.SelectedValue = 0;
+            //DataTable dt = new DataTable();
+            //dt = bhojnalayprintReceiptBAL.getItemName();
+            //DataRow newRow = dt.NewRow();
+            //newRow["ITEM_TITLE"] = "Select";
+            //newRow["ITEM_ID"] = 0;
+            //dt.Rows.InsertAt(newRow, 0);
+            //cboItemName.DataSource = dt;
+            //cboItemName.DisplayMember = "ITEM_TITLE";
+            //cboItemName.ValueMember = "ITEM_ID";
+            //cboItemName.SelectedValue = 0;
         }
         public void fillDocumentType()
         {
@@ -98,21 +106,32 @@ namespace SGMOSOL.SCREENS
 
         private void cboItemCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ItemID = 0;
-            ItemID = bhojnalayprintReceiptBAL.getItemID("ITEM_CODE", cboItemCode.Text);
-            cboItemName.SelectedValue = ItemID;
-        }
-
-        private void cboItemName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int ItemID = 0;
+            string ItemName = null;
             decimal price = 0;
-            ItemID = bhojnalayprintReceiptBAL.getItemID("ITEM_TITLE", cboItemName.Text);
-            cboItemCode.SelectedValue = ItemID;
-            price = bhojnalayprintReceiptBAL.getItemPrice((Convert.ToInt32(cboItemCode.SelectedValue)));
-            txtPrice.Text = price.ToString();
+            ItemName = bhojnalayprintReceiptBAL.getItemName("ITEM_CODE", cboItemCode.Text);
+            txtitemName.Text = ItemName;
+            if (cboItemCode.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)cboItemCode.SelectedItem;
 
+                // Retrieve the value from the DataRowView
+                int itemId = Convert.ToInt32(selectedRow["ITEM_ID"]);
+                price = bhojnalayprintReceiptBAL.getItemPrice(itemId);
+                txtPrice.Text = price.ToString();
+            }
         }
+        
+
+        //private void cboItemName_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int ItemID = 0;
+        //    decimal price = 0;
+        //    ItemID = bhojnalayprintReceiptBAL.getItemID("ITEM_TITLE", txtitemName.Text);
+        //    cboItemCode.SelectedValue = ItemID;
+        //    price = bhojnalayprintReceiptBAL.getItemPrice((Convert.ToInt32(cboItemCode.SelectedValue)));
+        //    txtPrice.Text = price.ToString();
+        //}\
+
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
@@ -137,11 +156,45 @@ namespace SGMOSOL.SCREENS
         private void clear()
         {
             cboItemCode.SelectedValue = 0;
-            cboItemName.SelectedValue = 0;
+            //  cboItemName.SelectedValue = 0;
             txtAmount.Text = "";
             //txtPrice.Text = "0";
             txtQuantity.Text = "";
         }
+
+        public void addItemIngrid()
+        {
+            if (txtQuantity.Text != "" && cboItemCode.Text != "Select")
+            {
+                lblQuantity.Text = "";
+                DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{txtitemName.Text}'");
+                if (duplicateRow.Length > 0)
+                {
+                    foreach (DataRow row in duplicateRow)
+                    {
+                        int currentQuantity = Convert.ToInt32(row["Quantity"]);
+                        int currentAmount = Convert.ToInt32(row["Amount"]);
+                        row["Price"] = Convert.ToDecimal(txtPrice.Text);
+                        row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
+                        row["Amount"] = Convert.ToDecimal(txtAmount.Text) + currentAmount;
+                    }
+                }
+                else
+                {
+                    DataRow newRow = tempItemTable.NewRow();
+                    newRow["Item Code"] = cboItemCode.Text.ToString();
+                    newRow["Item Name"] = txtitemName.Text.ToString();
+                    newRow["Price"] = Convert.ToDecimal(txtPrice.Text);
+                    newRow["Quantity"] = Convert.ToInt32(txtQuantity.Text);
+                    newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
+                    tempItemTable.Rows.Add(newRow);
+                }
+                txtTotalAmount.Text = getTotalAmount();
+                clear();
+                cboItemCode.Focus();
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (btnAdd.Text == "Add")
@@ -149,7 +202,7 @@ namespace SGMOSOL.SCREENS
                 if (txtQuantity.Text != "" && cboItemCode.Text != "Select")
                 {
                     lblQuantity.Text = "";
-                    DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{cboItemName.Text}'");
+                    DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{txtitemName.Text}'");
                     if (duplicateRow.Length > 0)
                     {
                         foreach (DataRow row in duplicateRow)
@@ -165,7 +218,7 @@ namespace SGMOSOL.SCREENS
                     {
                         DataRow newRow = tempItemTable.NewRow();
                         newRow["Item Code"] = cboItemCode.Text.ToString();
-                        newRow["Item Name"] = cboItemName.Text.ToString();
+                        // newRow["Item Name"] = cboItemName.Text.ToString();
                         newRow["Price"] = Convert.ToDecimal(txtPrice.Text);
                         newRow["Quantity"] = Convert.ToInt32(txtQuantity.Text);
                         newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
@@ -189,7 +242,7 @@ namespace SGMOSOL.SCREENS
                 {
                     DataRow row = rowsToUpdate[0];
                     row["Item Code"] = cboItemCode.Text.ToString();
-                    row["Item Name"] = cboItemName.Text.ToString();
+                    // row["Item Name"] = cboItemName.Text.ToString();
                     row["Price"] = Convert.ToDecimal(txtPrice.Text);
                     row["Quantity"] = Convert.ToInt32(txtQuantity.Text);
                     row["Amount"] = Convert.ToDecimal(txtAmount.Text);
@@ -216,17 +269,17 @@ namespace SGMOSOL.SCREENS
             tempItemTable.Columns["ID"].AutoIncrementSeed = 1;
             tempItemTable.Columns["ID"].AutoIncrementStep = 1;
             dgvItemDetails.DataSource = tempItemTable;
-            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
-            editButtonColumn.Name = "EditButton";
-            editButtonColumn.HeaderText = "Edit";
-            editButtonColumn.Text = "Edit";
-            editButtonColumn.UseColumnTextForButtonValue = true;
+            //DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            //editButtonColumn.Name = "EditButton";
+            //editButtonColumn.HeaderText = "Edit";
+            //editButtonColumn.Text = "Edit";
+            //editButtonColumn.UseColumnTextForButtonValue = true;
             DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
             deleteButtonColumn.Name = "DeleteButton";
             deleteButtonColumn.HeaderText = "Delete";
             deleteButtonColumn.Text = "Delete";
             deleteButtonColumn.UseColumnTextForButtonValue = true;
-            dgvItemDetails.Columns.Add(editButtonColumn);
+           // dgvItemDetails.Columns.Add(editButtonColumn);
             dgvItemDetails.Columns.Add(deleteButtonColumn);
         }
 
@@ -239,7 +292,7 @@ namespace SGMOSOL.SCREENS
                 DataGridViewRow selectedRow = dgvItemDetails.Rows[e.RowIndex];
                 int id = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 cboItemCode.Text = Convert.ToString(selectedRow.Cells["Item Code"].Value);
-                cboItemName.Text = Convert.ToString(selectedRow.Cells["Item Name"].Value);
+                //  cboItemName.Text = Convert.ToString(selectedRow.Cells["Item Name"].Value);
                 txtQuantity.Text = Convert.ToString(selectedRow.Cells["Quantity"].Value);
                 txtPrice.Text = Convert.ToString(selectedRow.Cells["Price"].Value);
                 txtAmount.Text = Convert.ToString(selectedRow.Cells["Amount"].Value);
@@ -286,7 +339,7 @@ namespace SGMOSOL.SCREENS
             }
             return sum.ToString();
         }
-      
+
         public void addCustomField(DataTable dt)
         {
             string printType = "D";
@@ -311,7 +364,7 @@ namespace SGMOSOL.SCREENS
         {
             frmReportViewer frm = new frmReportViewer("PRINT", txtReceiptno.Tag.ToString(), "D");
             frm.createReport("Bhojnalaya");
-           // frm.Show();
+            // frm.Show();
         }
         private void insertBhojnalayReceiptMaster()
         {
@@ -360,11 +413,69 @@ namespace SGMOSOL.SCREENS
                     string Receipt_Id = Status.ToString();
                     frmReportViewer report = new frmReportViewer("PRINT", Receipt_Id);
                     report.createReport("Bhojnalaya");
-                  //  report.Show();
+                    //  report.Show();
 
                 }
-                //
                 clearControls();
+            }
+        }
+        public void CheckValidDocs()
+        {
+            commonFunctions = new CommonFunctions();
+            if (cboDocName.Text == "Pan Card")
+            {
+                if (!commonFunctions.IsValidPan(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid pan number!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Adhar Card")
+            {
+                if (!commonFunctions.IsValidAadhar(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid adhar number!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Passport")
+            {
+                if (!commonFunctions.IsValidPassport(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid passport number!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Driving License")
+            {
+                if (!commonFunctions.IsValidLicenseNumber(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid driving license!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
+            }
+            if (cboDocName.Text == "Voter ID")
+            {
+                if (!commonFunctions.IsValidVoterId(txtDocumentName.Text))
+                {
+                    lblDocDetail.Text = "Please enter valid Voter ID!";
+                }
+                else
+                {
+                    lblDocDetail.Text = "";
+                }
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -458,10 +569,8 @@ namespace SGMOSOL.SCREENS
             txtTotalAmount.Enabled = false;
             cboDocName.Enabled = false;
             cboItemCode.Enabled = false;
-            cboItemName.Enabled = false;
+            // cboItemName.Enabled = false;
             btnAdd.Enabled = false;
-
-
         }
 
         private void txtMobile_TextChanged(object sender, EventArgs e)
@@ -476,7 +585,8 @@ namespace SGMOSOL.SCREENS
             {
                 lblMobile.Text = "Please enter a valid 10-digit mobile number.";
             }
-            // user.Setmobile(mobileNumber);
+            user.Setmobile(mobileNumber);
+            user.Show();
         }
 
         private void cboDocName_SelectedIndexChanged(object sender, EventArgs e)
@@ -489,7 +599,8 @@ namespace SGMOSOL.SCREENS
             {
                 lblDocDetail.Text = "";
             }
-            //user.SetDocType(cboDocName.Text);
+            user.SetDocType(cboDocName.Text);
+            user.Show();
         }
 
         private void txtTotalAmount_TextChanged(object sender, EventArgs e)
@@ -497,20 +608,14 @@ namespace SGMOSOL.SCREENS
             CommonFunctions cm = new CommonFunctions();
             lblamouwords.Text = cm.words(Convert.ToDouble(txtTotalAmount.Text));
         }
-
-
-
         private void btnClose_Click(object sender, EventArgs e)
         {
-
             DialogResult result = MessageBox.Show("Are you sure you want to close the application?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (result == DialogResult.Yes)
             {
                 this.Close();
             }
         }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
             clearControls();
@@ -561,22 +666,63 @@ namespace SGMOSOL.SCREENS
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            //  user.SetText(txtName.Text);
+            if (txtName.Text != "")
+            {
+                user.SetText(txtName.Text);
+                user.Show();
+            }
         }
 
         private void txtTaluka_TextChanged(object sender, EventArgs e)
         {
-            // user.SetTaluka(txtTaluka.Text);
+            if (txtTaluka.Text != "")
+            {
+                user.SetTaluka(txtTaluka.Text);
+                user.Show();
+            }
         }
 
         private void txtDocumentName_TextChanged(object sender, EventArgs e)
         {
-            //  user.SetDocDetail(txtDocumentName.Text);
+            if (cboDocName.Text == "Adhar Card")
+            {
+                txtDocumentName.MaxLength = 12;
+            }
+            if (txtDocumentName.Text != "")
+            {
+                user.SetDocDetail(txtDocumentName.Text);
+                user.Show();
+            }
         }
 
         private void txtAddress_TextChanged(object sender, EventArgs e)
         {
-            // user.SetAddress(txtAddress.Text);
+            if (txtAddress.Text != "")
+            {
+                user.SetAddress(txtAddress.Text);
+                user.Show();
+            }
+
+        }
+
+        private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addItemIngrid();
+            }
+        }
+
+        private void frmBhojnalayaPrintReceipt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            { 
+                btnSave.PerformClick();
+            }
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                btnPrint.PerformClick();
+            }
         }
     }
 }

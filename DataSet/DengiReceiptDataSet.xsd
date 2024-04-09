@@ -341,8 +341,8 @@
               <xs:element name="ENTERED_ON" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="ENTERED_ONColumn" msprop:Generator_ColumnPropNameInRow="ENTERED_ON" msprop:Generator_UserColumnName="ENTERED_ON" msprop:Generator_ColumnVarNameInTable="columnENTERED_ON" type="xs:dateTime" minOccurs="0" />
               <xs:element name="AMOUNT_IN_WORDS" msprop:Generator_ColumnPropNameInTable="AMOUNT_IN_WORDSColumn" msprop:Generator_ColumnPropNameInRow="AMOUNT_IN_WORDS" msprop:Generator_UserColumnName="AMOUNT_IN_WORDS" msprop:Generator_ColumnVarNameInTable="columnAMOUNT_IN_WORDS" type="xs:string" minOccurs="0" />
               <xs:element name="REPORT_TYPE" msprop:Generator_ColumnPropNameInTable="REPORT_TYPEColumn" msprop:Generator_ColumnPropNameInRow="REPORT_TYPE" msprop:Generator_UserColumnName="REPORT_TYPE" msprop:Generator_ColumnVarNameInTable="columnREPORT_TYPE" type="xs:string" minOccurs="0" />
-              <xs:element name="DEC_STATUS" msprop:Generator_UserColumnName="DEC_STATUS" msprop:Generator_ColumnPropNameInTable="DEC_STATUSColumn" msprop:Generator_ColumnPropNameInRow="DEC_STATUS" msprop:Generator_ColumnVarNameInTable="columnDEC_STATUS" type="xs:string" minOccurs="0" />
-              <xs:element name="GOTRA_NAME" msprop:Generator_ColumnPropNameInRow="GOTRA_NAME" msprop:Generator_ColumnPropNameInTable="GOTRA_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnGOTRA_NAME" msprop:Generator_UserColumnName="GOTRA_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="DEC_STATUS" msprop:Generator_ColumnPropNameInTable="DEC_STATUSColumn" msprop:Generator_ColumnPropNameInRow="DEC_STATUS" msprop:Generator_UserColumnName="DEC_STATUS" msprop:Generator_ColumnVarNameInTable="columnDEC_STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="GOTRA_NAME" msprop:Generator_UserColumnName="GOTRA_NAME" msprop:Generator_ColumnPropNameInTable="GOTRA_NAMEColumn" msprop:Generator_ColumnPropNameInRow="GOTRA_NAME" msprop:Generator_ColumnVarNameInTable="columnGOTRA_NAME" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

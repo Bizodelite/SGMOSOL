@@ -12,14 +12,19 @@ namespace SGMOSOL.ADMIN
         private static string userName;
         private static string machine_id;
         private static int Location_id;
+        private static int Company_ID;
         private static int dept_id;
         private static string CounterName;
         private static int ctr_mach_id;
         private static string MachineName;
         private static int FY_ID;
+        private static DateTime FYstartdate;
+        private static DateTime FYenddate;
         private static string Module;
         private static string Version;
         private static string ServerName;
+        private static string reportpath;
+        private static decimal bedCheckInMaxAmount;
 
         public static int UserId
         {
@@ -40,6 +45,11 @@ namespace SGMOSOL.ADMIN
         {
             get { return Location_id; }
             set { Location_id = value; }
+        }
+        public static int CompanyID
+        {
+            get { return Company_ID; }
+            set { Company_ID = value; }
         }
         public static int Dept_id
         {
@@ -69,6 +79,16 @@ namespace SGMOSOL.ADMIN
             get { return FY_ID; }
             set { FY_ID = value; }
         }
+        public static DateTime FYStartDate
+        {
+            get { return FYstartdate; }
+            set { FYstartdate = value; }
+        }
+        public static DateTime FYEndDate
+        {
+            get { return FYenddate; }
+            set { FYenddate = value; }
+        }
         public static string module
         {
             get { return Module; }
@@ -83,6 +103,16 @@ namespace SGMOSOL.ADMIN
         {
             get { return ServerName; }
             set { ServerName = value; }
+        }
+        public static string ReportPath
+        {
+            get { return reportpath; }
+            set { reportpath = value; }
+        }
+        public static decimal BedCheckInMaxAmount
+        {
+            get { return bedCheckInMaxAmount; }
+            set { bedCheckInMaxAmount = value; }
         }
     }
 }

@@ -69,6 +69,110 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Engine.13.0.4001\lib\net40\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.CrystalReports.TemplateEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Enterprise.Viewing.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.Enterprise.Viewing.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.DataSetConversion.13.0.4001\lib\net40\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportSource.13.0.4001\lib\net40\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Shared.13.0.4001\lib\net40\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.VSDesigner.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Web.13.0.4001\lib\net40\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Windows.Forms.13.0.4001\lib\net40\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WIA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.WIA.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExhibitPowerLatest\packages\log4net\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Data.SqlClient.5.1.2\lib\net462\Microsoft.Data.SqlClient.dll</HintPath>
     </Reference>
@@ -77,6 +181,10 @@
     </Reference>
     <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=2.19.3.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Identity.Client.Extensions.Msal.2.19.3\lib\net45\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -99,7 +207,10 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -129,6 +240,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -218,11 +330,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADMIN\clsConnection.cs" />
     <Compile Include="ADMIN\CommonFunctions.cs" />
+    <Compile Include="ADMIN\FormatData.cs" />
+    <Compile Include="ADMIN\Helper.cs" />
     <Compile Include="ADMIN\SystemModel.cs" />
     <Compile Include="ADMIN\UserInfo.cs" />
     <Compile Include="BAL\BhojnalayPrintReceiptBAL.cs" />
+    <Compile Include="BAL\clsItemData.cs" />
     <Compile Include="BAL\DengiReceiptBAL.cs" />
+    <Compile Include="BAL\BadBAL.cs" />
+    <Compile Include="BAL\LockerBAL.cs" />
     <Compile Include="BAL\LoginBAL.cs" />
     <Compile Include="Custom User Contols\InputBox.cs">
       <SubType>Form</SubType>
@@ -230,9 +348,56 @@
     <Compile Include="Custom User Contols\InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
+	  <Compile Include="DAL\Bed System\BedCheckOutDAL.cs" />
+	  <Compile Include="DAL\Bed System\BedCheckINDAL.cs" />
+	  <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="Custom User Contols\SessionManager.cs" />
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="DAL\DengiReceiptDAL.cs" />
+    <Compile Include="DataSet\DataSetReportViewer.cs">
+      <DependentUpon>DataSetReportViewer.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet\DataSetReportViewer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReportViewer.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\dgScanPrievew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\dgScanPrievew.Designer.cs">
+      <DependentUpon>dgScanPrievew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\FrmBedCheckIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\FrmBedCheckIN.Designer.cs">
+      <DependentUpon>FrmBedCheckIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\FrmBedCheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\FrmBedCheckOut.Designer.cs">
+      <DependentUpon>FrmBedCheckOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\FrmBedO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Bed System\FrmBedO.Designer.cs">
+      <DependentUpon>FrmBedO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\frmMessReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmMessReport.Designer.cs">
+      <DependentUpon>frmMessReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Locker\LockerChangeDAL.cs" />
+    <Compile Include="DAL\Locker\LockerMasterDAL.cs" />
+    <Compile Include="DAL\Locker\LockerCheckOutDAL.cs" />
+    <Compile Include="DAL\Locker\LockerCheckInDAL.cs" />
+    <Compile Include="DAL\DailyVoucherTransactionDAL.cs" />
+    <Compile Include="DAL\MessPrintReceiptDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
     <Compile Include="DataModel\bhojnalayPrintReceiptModel.cs" />
     <Compile Include="DataModel\dengiReceiptModel.cs" />
@@ -264,6 +429,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MessItemDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="OSOL23DataSet.cs">
+      <DependentUpon>OSOL23DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="OSOL23DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -299,6 +467,12 @@
     <Compile Include="SCREENS\frmChnagePassword.Designer.cs">
       <DependentUpon>frmChnagePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCREENS\frmDailyVoucherEntryBed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmDailyVoucherEntryBed.Designer.cs">
+      <DependentUpon>frmDailyVoucherEntryBed.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\frmDengiReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +491,48 @@
     <Compile Include="SCREENS\frmEncryption.Designer.cs">
       <DependentUpon>frmEncryption.cs</DependentUpon>
     </Compile>
+	  <Compile Include="SCREENS\frmCrystalViewer.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\frmCrystalViewer.Designer.cs">
+		  <DependentUpon>frmCrystalViewer.cs</DependentUpon>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmDamagedLokers.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmDamagedLokers.Designer.cs">
+		  <DependentUpon>frmDamagedLokers.cs</DependentUpon>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmDmLockerList.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmDmLockerList.Designer.cs">
+		  <DependentUpon>frmDmLockerList.cs</DependentUpon>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockChkOutWrng.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockChkOutWrng.Designer.cs">
+		  <DependentUpon>frmLockChkOutWrng.cs</DependentUpon>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockerChange.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockerChange.Designer.cs">
+		  <DependentUpon>frmLockerChange.cs</DependentUpon>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockerCheckIn.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockerCheckIn.Designer.cs">
+		  <DependentUpon>frmLockerCheckIn.cs</DependentUpon>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockerCheckOut.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\Locker\frmLockerCheckOut.Designer.cs">
+		  <DependentUpon>frmLockerCheckOut.cs</DependentUpon>
+	  </Compile>
     <Compile Include="SCREENS\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -341,11 +557,29 @@
     <Compile Include="SCREENS\frmTotalDengiReport.Designer.cs">
       <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </Compile>
+	  <Compile Include="SCREENS\frmSearchNew.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="SCREENS\frmSearchNew.Designer.cs">
+		  <DependentUpon>frmSearchNew.cs</DependentUpon>
+	  </Compile>
     <Compile Include="SCREENS\frmUserDengi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SCREENS\frmUserDengi.Designer.cs">
       <DependentUpon>frmUserDengi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmLockerList.Designer.cs">
+      <DependentUpon>frmLockerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmOccupiedLockers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\Locker\frmOccupiedLockers.Designer.cs">
+      <DependentUpon>frmOccupiedLockers.cs</DependentUpon>
     </Compile>
     <Compile Include="SCREENS\MDI.cs">
       <SubType>Form</SubType>
@@ -359,9 +593,28 @@
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DengiCalculation.rdlc" />
+	  <EmbeddedResource Include="Reports\crpBedAdvVchr.rdlc" />
+	  <EmbeddedResource Include="Reports\crpLockerAdvVchr.rdlc" />
+	  <EmbeddedResource Include="SCREENS\Bed System\dgScanPrievew.resx">
+		  <DependentUpon>dgScanPrievew.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Bed System\FrmBedCheckIN.resx">
+		  <DependentUpon>FrmBedCheckIN.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Bed System\FrmBedCheckOut.resx">
+		  <DependentUpon>FrmBedCheckOut.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Bed System\FrmBedO.resx">
+		  <DependentUpon>FrmBedO.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\frmMessReport.resx">
+		  <DependentUpon>frmMessReport.cs</DependentUpon>
+	  </EmbeddedResource>
     <EmbeddedResource Include="Reports\DengiDeclaration.rdlc" />
     <EmbeddedResource Include="Reports\DengiReceipt1.rdlc" />
     <EmbeddedResource Include="Reports\Fund_Calculation_Print.rdlc" />
+    <EmbeddedResource Include="Reports\LockerCheckOutReceipt.rdlc" />
+    <EmbeddedResource Include="Reports\LockerCheckInReceipt_New.rdlc" />
     <EmbeddedResource Include="Reports\mess_item_receipt.rdlc" />
     <EmbeddedResource Include="ResourceMain.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -379,6 +632,9 @@
     <EmbeddedResource Include="SCREENS\frmChnagePassword.resx">
       <DependentUpon>frmChnagePassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmDailyVoucherEntryBed.resx">
+      <DependentUpon>frmDailyVoucherEntryBed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmDengiReceipt.resx">
       <DependentUpon>frmDengiReceipt.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +644,27 @@
     <EmbeddedResource Include="SCREENS\frmEncryption.resx">
       <DependentUpon>frmEncryption.cs</DependentUpon>
     </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\frmCrystalViewer.resx">
+		  <DependentUpon>frmCrystalViewer.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Locker\frmDamagedLokers.resx">
+		  <DependentUpon>frmDamagedLokers.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Locker\frmDmLockerList.resx">
+		  <DependentUpon>frmDmLockerList.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Locker\frmLockChkOutWrng.resx">
+		  <DependentUpon>frmLockChkOutWrng.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Locker\frmLockerChange.resx">
+		  <DependentUpon>frmLockerChange.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Locker\frmLockerCheckIn.resx">
+		  <DependentUpon>frmLockerCheckIn.cs</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\Locker\frmLockerCheckOut.resx">
+		  <DependentUpon>frmLockerCheckOut.cs</DependentUpon>
+	  </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -400,8 +677,17 @@
     <EmbeddedResource Include="SCREENS\frmTotalDengiReport.resx">
       <DependentUpon>frmTotalDengiReport.cs</DependentUpon>
     </EmbeddedResource>
+	  <EmbeddedResource Include="SCREENS\frmSearchNew.resx">
+		  <DependentUpon>frmSearchNew.cs</DependentUpon>
+	  </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmUserDengi.resx">
       <DependentUpon>frmUserDengi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmLockerList.resx">
+      <DependentUpon>frmLockerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\Locker\frmOccupiedLockers.resx">
+      <DependentUpon>frmOccupiedLockers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\MDI.resx">
       <DependentUpon>MDI.cs</DependentUpon>
@@ -429,6 +715,17 @@
     </None>
     <None Include="DataSet\Calculation.xss">
       <DependentUpon>Calculation.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\DataSetReportViewer.xsc">
+      <DependentUpon>DataSetReportViewer.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\DataSetReportViewer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReportViewer.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet\DataSetReportViewer.xss">
+      <DependentUpon>DataSetReportViewer.xsd</DependentUpon>
     </None>
     <None Include="DataSet\DengiReceiptDataSet.xsc">
       <DependentUpon>DengiReceiptDataSet.xsd</DependentUpon>
@@ -477,6 +774,9 @@
       <DependentUpon>OSOL23DataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\SGMOSOL.BAL.LockerBAL+LockerCheckInMst.datasource" />
+    <None Include="Properties\DataSources\SGMOSOL.BAL.LockerBAL+LockerCheckInPrintModel.datasource" />
+    <None Include="Properties\DataSources\SGMOSOL.DataSet.ReportViewer.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -622,6 +922,9 @@
   <ItemGroup>
     <Folder Include="ScanImages\" />
   </ItemGroup>
+	<ItemGroup>
+		<WCFMetadata Include="Connected Services\" />
+	</ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

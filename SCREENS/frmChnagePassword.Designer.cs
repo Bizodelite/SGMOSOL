@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lbloldpwderror = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.btnchange = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,11 +55,24 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtUserName);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(109, 45);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(442, 244);
+            this.panel1.Size = new System.Drawing.Size(474, 316);
             this.panel1.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(166, 160);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(68, 32);
+            this.btnClose.TabIndex = 9;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lbloldpwderror
             // 
@@ -86,7 +99,7 @@
             // 
             this.btnchange.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnchange.Location = new System.Drawing.Point(94, 160);
-            this.btnchange.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnchange.Margin = new System.Windows.Forms.Padding(2);
             this.btnchange.Name = "btnchange";
             this.btnchange.Size = new System.Drawing.Size(68, 32);
             this.btnchange.TabIndex = 6;
@@ -98,7 +111,7 @@
             // 
             this.txtNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNewPassword.Location = new System.Drawing.Point(126, 115);
-            this.txtNewPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNewPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(212, 19);
             this.txtNewPassword.TabIndex = 5;
@@ -119,7 +132,7 @@
             // 
             this.txtOldPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOldPassword.Location = new System.Drawing.Point(126, 76);
-            this.txtOldPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtOldPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtOldPassword.Name = "txtOldPassword";
             this.txtOldPassword.Size = new System.Drawing.Size(212, 19);
             this.txtOldPassword.TabIndex = 3;
@@ -142,7 +155,7 @@
             this.txtUserName.Enabled = false;
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(126, 29);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(212, 19);
             this.txtUserName.TabIndex = 1;
@@ -158,26 +171,15 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "UserName";
             // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(166, 160);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(68, 32);
-            this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // frmChnagePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 440);
+            this.ClientSize = new System.Drawing.Size(474, 316);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmChnagePassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmChnagePassword";
             this.Load += new System.EventHandler(this.frmChnagePassword_Load);
             this.panel1.ResumeLayout(false);

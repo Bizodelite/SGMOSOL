@@ -13,6 +13,7 @@ using SGMOSOL.DAL;
 using SGMOSOL.DataSet;
 using Microsoft.Identity.Client;
 using SGMOSOL.ADMIN;
+using System.Diagnostics;
 
 
 
@@ -24,6 +25,7 @@ namespace SGMOSOL.SCREENS
         private string receiptID = null;
         private string printType = null;
         public string flag { get; set; }
+        public DataTable DataTableDT { get; set; }
         DengiReceiptDAL da;
         BhojnalayPrintReceiptDAL bhojnalayDAL;
         CommonFunctions cm = new CommonFunctions();
@@ -33,17 +35,19 @@ namespace SGMOSOL.SCREENS
             DengiDeclaration,
             DengiPrint,
             BHDeclaration,
-            BHPrint
+            BHPrint,
+            Locker
         }
 
-        public frmReportViewer(string flag, string value = null, string PrintType = null)
+        public frmReportViewer(string flag, string value = null, string PrintType = null, DataTable DT = null)
         {
             InitializeComponent();
             this.receiptID = value;
             this.flag = flag;
             this.printType = PrintType;
-            // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
-            // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
+            this.DataTableDT = DT;
+           // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
+           // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
         }
 
         private void frmReportViewer_Load(object sender, EventArgs e)
@@ -142,6 +146,14 @@ namespace SGMOSOL.SCREENS
             {
                 createBhojnalayRepoort();
             }
+            if (form == "LockerCheckIN")
+            {
+                LockerCheckInReport();
+            }
+            if (form == "LockerCheckOut")
+            {
+                LockerCheckOutReport();
+            }
         }
 
         private void reportViewer2_Load(object sender, EventArgs e)
@@ -195,7 +207,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
-                   // printReport(DocumentName, PrinterNames.BHPrint);
+                   printReport(DocumentName, PrinterNames.BHPrint);
                 }
 
             }
@@ -212,7 +224,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.RefreshReport();
                 DocumentName = "BhojnalayDeclaration" +
                     "";
-               // printReport(DocumentName, PrinterNames.BHDeclaration);
+               printReport(DocumentName, PrinterNames.BHDeclaration);
             }
         }
         public void printDeclarationwithoutSave(DataTable dt)
@@ -232,7 +244,73 @@ namespace SGMOSOL.SCREENS
             // addCustomField(dt1);
             reportViewer2.RefreshReport();
             DocumentName = "DengiDeclaration";
-            printReport(DocumentName, PrinterNames.DengiDeclaration);
+           printReport(DocumentName, PrinterNames.DengiDeclaration);
+        }
+        public void LockerCheckInReport()
+        {
+            bhojnalayDAL = new BhojnalayPrintReceiptDAL();
+            DataTable dt = new DataTable();
+            string reportPath = null;
+            string reportFileName = null;
+            string reportsFolder = "Reports";
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            appDirectory = appDirectory.Replace("bin\\Debug\\","");
+            ReportDataSource reportDataSource = null;
+            string DocumentName = null;
+            reportViewer2.LocalReport.DataSources.Clear();
+            if (flag == "PRINT")
+            {
+                dt = DataTableDT.Copy();// bhojnalayDAL.getMessItemDataForReport(receiptID);
+                reportFileName = "LockerCheckInReceipt_New.rdlc";
+                reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                reportViewer2.LocalReport.ReportPath = reportPath;
+                foreach (DataRow row in dt.Rows)
+                {
+                    DataTable datatable = dt.Clone();
+                    datatable.ImportRow(row);
+                    reportDataSource = new ReportDataSource("DataSet1", datatable);
+                    reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                    DataTable dt1 = (DataTable)reportDataSource.Value;
+                    addCustomField(dt1);
+                    reportViewer2.RefreshReport();
+                    DocumentName = "LockerCheckInReceipt";
+                    printReport(DocumentName, PrinterNames.Locker);
+
+                }
+            }
+        }
+        public void LockerCheckOutReport()
+        {
+            bhojnalayDAL = new BhojnalayPrintReceiptDAL();
+            DataTable dt = new DataTable();
+            string reportPath = null;
+            string reportFileName = null;
+            string reportsFolder = "Reports";
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            appDirectory = appDirectory.Replace("bin\\Debug\\", "");
+            ReportDataSource reportDataSource = null;
+            string DocumentName = null;
+            reportViewer2.LocalReport.DataSources.Clear();
+            if (flag == "PRINT")
+            {
+                dt = DataTableDT.Copy();// bhojnalayDAL.getMessItemDataForReport(receiptID);
+                reportFileName = "LockerCheckOutReceipt.rdlc";
+                reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                reportViewer2.LocalReport.ReportPath = reportPath;
+                foreach (DataRow row in dt.Rows)
+                {
+                    DataTable datatable = dt.Clone();
+                    datatable.ImportRow(row);
+                    reportDataSource = new ReportDataSource("DataSet1", datatable);
+                    reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                    DataTable dt1 = (DataTable)reportDataSource.Value;
+                    addCustomField(dt1);
+                    reportViewer2.RefreshReport();
+                    DocumentName = "LockerCheckOutReceipt";
+                    printReport(DocumentName, PrinterNames.Locker);
+
+                }
+            }
         }
     }
 }

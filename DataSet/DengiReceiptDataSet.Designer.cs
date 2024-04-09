@@ -10,8 +10,6 @@
 
 #pragma warning disable 1591
 
-using SGMOSOL.ADMIN;
-
 namespace SGMOSOL.DataSet {
     
     

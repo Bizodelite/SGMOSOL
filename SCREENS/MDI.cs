@@ -1,5 +1,6 @@
 ﻿using SGMOSOL.ADMIN;
 using SGMOSOL.BAL;
+using SGMOSOL.Custom_User_Contols;
 using SGMOSOL.SCREENS;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace SGMOSOL
         frmBhojnalayaPrintReceipt frmbhojnalayaPrintReceipt;
         frmCalculation frmCalculation;
         CommonFunctions cm;
+        SessionManager sessionManager;
+
         public MDI()
         {
             InitializeComponent();
@@ -31,7 +34,22 @@ namespace SGMOSOL
 
         private void MDI_Load(object sender, EventArgs e)
         {
+            // Show the login form
+            frmLogin loginForm = new frmLogin();
+            loginForm.WindowState = FormWindowState.Maximized;
 
+            //Show the MDI form if login is successful
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                // If login is successful, start the MDI parent form
+                sessionManager = new SessionManager();
+                sessionManager.StartTimer();
+            }
+            else
+            {
+                // If login fails or the login form is closed, exit the application
+                Application.Exit();
+            }
         }
 
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,7 +63,7 @@ namespace SGMOSOL
             frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
             if (frmChnagePassword == null)
             {
-                frmChnagePassword = new frmChnagePassword();
+                frmChnagePassword = new frmChnagePassword(false);
                 frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
                 frmChnagePassword.MdiParent = this;
                 frmChnagePassword.WindowState = FormWindowState.Maximized;
@@ -83,8 +101,8 @@ namespace SGMOSOL
             LoginBAL loginBAL = new LoginBAL();
             loginBAL.updateUser_Login_Details();
             loginBAL.DeleteUser_Login_details();
-            Application.Exit();
-            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            this.MDI_Load(null,null);
+
         }
 
         private void calculationFormToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,10 +131,21 @@ namespace SGMOSOL
             // Application.Exit();
             //s System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
-
+        private void ResetApplicationState()
+        {
+            // Close or hide any child forms or dialogs
+            List<Form> openFormsCopy = new List<Form>(Application.OpenForms.Cast<Form>());
+            foreach (Form form in openFormsCopy)
+            {
+                if (form != this && form != null) // Exclude the MDI parent form
+                {
+                    form.Close(); // or form.Hide();
+                }
+            }
+        }
         private void encryptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void encryptionToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -172,6 +201,26 @@ namespace SGMOSOL
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private void MDI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void MDI_KeyDown(object sender, KeyEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void MDI_MouseMove(object sender, MouseEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void MDI_MouseClick(object sender, MouseEventArgs e)
+        {
+            sessionManager.ResetSession();
         }
     }
 }

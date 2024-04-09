@@ -18,11 +18,13 @@ namespace SGMOSOL.SCREENS
     {
         LoginBAL login;
         CommonFunctions commonFunctions;
-        public frmChnagePassword()
+        bool OldUser = false;
+        public frmChnagePassword(bool oldUser)
         {
             InitializeComponent();
             login = new LoginBAL();
             commonFunctions = new CommonFunctions();
+            OldUser = oldUser;
         }
 
         private void btnchange_Click(object sender, EventArgs e)
@@ -37,19 +39,19 @@ namespace SGMOSOL.SCREENS
                     lblError.Text = "";
                     if (txtOldPassword.Text != txtNewPassword.Text)
                     {
-                        int status = login.updatePassword(txtUserName.Text, newPassword);
+                        int status = login.updatePassword(txtUserName.Text, CommonFunctions.Encrypt(txtNewPassword.Text, true));
                         if (status == 1)
                         {
-                            MessageBox.Show("Password Updated Successfully");
                             MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
                             if (mdiParentForm != null)
                             {
+                                MessageBox.Show("Password Updated Successfully");
                                 this.Close();
                             }
                             else
                             {
-                                MDI home = new MDI();
-                                home.Show();
+                                MessageBox.Show("Password Updated Successfully!!! Please Login First");
+                                this.Hide();
                             }
                         }
                     }
@@ -68,6 +70,7 @@ namespace SGMOSOL.SCREENS
         private void frmChnagePassword_Load(object sender, EventArgs e)
         {
             txtUserName.Text = UserInfo.UserName;
+
         }
         public void getuserfromLogin(string uid)
         {
@@ -80,12 +83,27 @@ namespace SGMOSOL.SCREENS
 
         private void txtOldPassword_TextChanged(object sender, EventArgs e)
         {
-            string lastPassword = CommonFunctions.Decrypt(login.GetPwdDetails(txtUserName.Text),true);
+            string lastPassword = "";
+
+            if (OldUser == true)
+            {
+                lastPassword = login.GetPwdDetails(txtUserName.Text, true);
+            }
+            else
+            {
+                lastPassword = CommonFunctions.Decrypt(login.GetPwdDetails(txtUserName.Text, false), true);
+            }
+
+
             if (lastPassword != txtOldPassword.Text)
             {
                 lbloldpwderror.Text = "Incorrect last password !!!";
             }
-            else
+            if (lastPassword == "")
+            {
+                string strlastPassword = login.GetPwdDetails(txtUserName.Text);
+            }
+            if (lastPassword == txtOldPassword.Text)
             {
                 lbloldpwderror.Text = "";
             }

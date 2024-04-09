@@ -34,8 +34,22 @@ namespace SGMOSOL
 
         private void MDI_Load(object sender, EventArgs e)
         {
-            sessionManager = new SessionManager();
-            sessionManager.StartTimer();
+            // Show the login form
+            frmLogin loginForm = new frmLogin();
+            loginForm.WindowState = FormWindowState.Maximized;
+
+            //Show the MDI form if login is successful
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                // If login is successful, start the MDI parent form
+                sessionManager = new SessionManager();
+                sessionManager.StartTimer();
+            }
+            else
+            {
+                // If login fails or the login form is closed, exit the application
+                Application.Exit();
+            }
         }
 
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,7 +116,7 @@ namespace SGMOSOL
             LoginBAL loginBAL = new LoginBAL();
             loginBAL.updateUser_Login_Details();
             loginBAL.DeleteUser_Login_details();
-            this.Close();
+            this.MDI_Load(null,null);
 
         }
 

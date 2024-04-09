@@ -21,7 +21,7 @@ namespace SGMOSOL.SCREENS
         LoginBAL login;
         CommonFunctions commonFunctions;
         bool OldUser = false;
-        public frmChnagePassword(bool oldUser)
+        public frmChnagePassword(bool oldUser = false)
         {
             InitializeComponent();
             login = new LoginBAL();
@@ -52,23 +52,27 @@ namespace SGMOSOL.SCREENS
                     if (txtOldPassword.Text != txtNewPassword.Text)
                     {
                         DataTable dtckMachineAccess = new DataTable();
-                        dtckMachineAccess = login.chkmachneAccess(UserInfo.UserId
-                            );
+                        dtckMachineAccess = login.chkmachneAccess(UserInfo.UserId);
                         if (dtckMachineAccess.Rows.Count > 0)
                         {
                             int status = login.updatePassword(txtUserName.Text, CommonFunctions.Encrypt(txtNewPassword.Text, true));
                             if (status == 1)
                             {
-                                MessageBox.Show("Password Updated Successfully");
-                                MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
-                                if (mdiParentForm != null)
+                                status = login.InsertUser_PassWord_Logs(txtNewPassword.Text);
+                                if (status == 0)
                                 {
+                                    MessageBox.Show("Password Updated Successfully");
+                                    MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
+
+                                    //if (mdiParentForm != null)
+                                    //{
                                     this.Close();
-                                }
-                                else
-                                {
-                                    MDI home = new MDI();
-                                    home.Show();
+                                    //}
+                                    //else
+                                    //{
+                                    //    MDI home = new MDI();
+                                    //    home.Show();
+                                    //}
                                 }
                             }
                         }

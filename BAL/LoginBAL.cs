@@ -40,6 +40,10 @@ namespace SGMOSOL.BAL
         {
             return login.updatePassword(uid, pwd);
         }
+        public int InsertUser_PassWord_Logs(string pwd)
+        {
+            return login.InsertUser_PassWord_Logs(pwd);
+        }
         public bool CheckDateTime()
         {
             return login.CheckDateTime();

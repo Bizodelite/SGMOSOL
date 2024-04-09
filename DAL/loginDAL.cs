@@ -150,6 +150,24 @@ namespace SGMOSOL.DAL
             }
             return status;
         }
+        public int InsertUser_PassWord_Logs(string pwd)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_InsertPasswordLog", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@UserID", UserInfo.UserId);
+                command.Parameters.AddWithValue("@Password", pwd);
+
+                return Convert.ToInt32(clsConnection.ExecuteNonQuery(command));
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return -10; // Error
+            }
+        }
         public bool CheckDateTime()
         {
             bool status = false;

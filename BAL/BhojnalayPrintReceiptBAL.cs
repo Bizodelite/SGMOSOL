@@ -15,6 +15,10 @@ namespace SGMOSOL.BAL
         {
             return da.getItemCode();
         }
+        public DataTable getItemCodeAssignToCounter()
+        {
+            return da.getItemCodeAssignToCounter();
+        }
         public DataTable getItemName()
         {
             return da.getItemName();
@@ -38,6 +42,10 @@ namespace SGMOSOL.BAL
         public int InsertMessItemData(object data)
         {
             return da.InsertMessItemData(data);
+        }
+        public int InsertRquToAdmin_DET(object data)
+        {
+            return da.InsertRquToAdmin_DET(data);
         }
         public int getItemIdbyItemName(string ItemName)
         {

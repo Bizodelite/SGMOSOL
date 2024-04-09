@@ -22,6 +22,9 @@ namespace SGMOSOL.SCREENS
         public frmReqToAdmin()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(frmReqToAdmin_KeyDown);
+            this.KeyPreview = true;
+            CenterToParent();
         }
 
         private void frmReqToAdmin_Load(object sender, EventArgs e)
@@ -34,7 +37,14 @@ namespace SGMOSOL.SCREENS
             txtUser.Text = UserInfo.UserName;
             fillItemCode();
             createItemTable();
-            CenterToParent();
+            cboItemCode.Focus();
+        }
+        private void ClearRowSelection()
+        {
+            foreach (DataGridViewRow row in dgvItemDetails.Rows)
+            {
+                row.DefaultCellStyle.BackColor = dgvItemDetails.DefaultCellStyle.BackColor;
+            }
         }
         public void getRequirementber()
         {
@@ -53,6 +63,14 @@ namespace SGMOSOL.SCREENS
             cboItemCode.DisplayMember = "ITEM_CODE";
             cboItemCode.ValueMember = "ITEM_ID";
             cboItemCode.SelectedValue = 0;
+        }
+        public void clearControl()
+        {
+            txtQuantity.Text = "";
+            txtItemName.Text = "";
+            cboItemCode.SelectedValue = 0;
+            createItemTable();
+            getRequirementber();
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -143,7 +161,14 @@ namespace SGMOSOL.SCREENS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                addItemIngrid();
+                if (txtQuantity.Text == "")
+                {
+                    lblQty.Text = "Please Enter Quantity";
+                }
+                else
+                {
+                    addItemIngrid();
+                }
             }
         }
 
@@ -151,7 +176,7 @@ namespace SGMOSOL.SCREENS
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvItemDetails.Columns["DeleteButton"].Index)
             {
-                // ClearRowSelection();
+                ClearRowSelection();
                 dgvItemDetails.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.LightPink;
                 int id = Convert.ToInt32(dgvItemDetails.Rows[e.RowIndex].Cells["ID"].Value);
                 DialogResult result = MessageBox.Show($"Are you sure you want to delete the row with ID {id}?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -168,16 +193,38 @@ namespace SGMOSOL.SCREENS
                 }
             }
         }
+        public string getSelectedItems()
+        {
+            StringBuilder itemNames = new StringBuilder();
+            foreach (DataGridViewRow row in dgvItemDetails.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    object cellValue = row.Cells["Item Name"].Value;
+                    if (cellValue != null)
+                    {
+                        itemNames.Append(cellValue.ToString());
+                        if (row.Index < dgvItemDetails.Rows.Count - 1)
+                        {
+                            itemNames.Append(",");
+                        }
+                    }
+                }
+            }
+            return itemNames.ToString();
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             saveRequirement();
+            clearControl();
         }
         public void saveRequirement()
         {
             int Status = 0;
             bhojnalayPrintReceiptModel bhojnalayModel = new bhojnalayPrintReceiptModel();
             bhojnalayModel.SerialNo = txtReqID.Text;
+            bhojnalayModel.ItemName = getSelectedItems().ToString();
             Status = obj.InsertReqToAdmin_MST(bhojnalayModel);
             if (Status != 0)
             {
@@ -196,10 +243,10 @@ namespace SGMOSOL.SCREENS
                             if (itemName == item)
                             {
                                 bhojnalayModel.PRINT_MST_ID = Status;
-                                bhojnalayModel.Price = Convert.ToDecimal(row.Cells["Price"].Value);
+                               // bhojnalayModel.Price = Convert.ToDecimal(row.Cells["Price"].Value);
                                 bhojnalayModel.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                                 //bhojnalayModel.Amount = Convert.ToDecimal(row.Cells["Amount"].Value);
-                                int id = obj.InsertMessItemData(bhojnalayModel);
+                                int id = obj.InsertRquToAdmin_DET(bhojnalayModel);
                             }
                         }
                     }
@@ -210,12 +257,34 @@ namespace SGMOSOL.SCREENS
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-
+            clearControl();
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pnlMaster_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmReqToAdmin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                btnSave.PerformClick();
+            }
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                btnNew.PerformClick();
+            }
         }
     }
 }

@@ -33,6 +33,20 @@ namespace SGMOSOL.DAL
             }
             return dt;
         }
+
+        public DataTable getItemCodeAssignToCounter()
+        {
+            dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "select * from MESS_COUNTER_ITEM_ASSIGN_MST_T_V where ACTIVE=1 and CTR_MACH_ID="+UserInfo.ctrMachID+"";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(dt);
+                connection.Close();
+            }
+            return dt;
+        }
         public DataTable getItemName()
         {
             dt = new DataTable();
@@ -177,7 +191,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@QTY", obj.Quantity);
                             command.Parameters.AddWithValue("@AMOUNT", obj.Amount);
                             command.Parameters.AddWithValue("@PR_DATE", obj.PR_Date);
-                            command.Parameters.AddWithValue("@DEPT_ID", 29);
+                            command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@GUEST1", 0);
                             SqlParameter idParam = new SqlParameter("@PRINT_RECEIPT_ID_DET", SqlDbType.Int);
                             idParam.Direction = ParameterDirection.Output;
@@ -212,7 +226,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@REQ_TO_ADMIN_MST_ID", obj.PRINT_MST_ID);
                             command.Parameters.AddWithValue("@ITEM_ID", obj.ItemId);
                             command.Parameters.AddWithValue("@QTY", obj.Quantity);
-                            command.Parameters.AddWithValue("@MIN_LEVEL", obj.Amount);
+                            command.Parameters.AddWithValue("@MIN_LEVEL", 0);
                             SqlParameter idParam = new SqlParameter("@REQ_TO_ADMIN_DET_ID", SqlDbType.Int);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);
@@ -426,7 +440,7 @@ namespace SGMOSOL.DAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("SP_DML_MESS_REQ_TO_ADMIN_MS", connection))
+                    using (SqlCommand command = new SqlCommand("SP_DML_MESS_REQ_TO_ADMIN_MST", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         if (data is bhojnalayPrintReceiptModel obj)
@@ -439,6 +453,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@USER_ID", UserInfo.UserId);
                             command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
                             command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
+                            command.Parameters.AddWithValue("@MODIFIED_BY", UserInfo.UserName);
                             command.Parameters.AddWithValue("@MACHINE_NAME", UserInfo.Machine_Name);
                             command.Parameters.AddWithValue("@SERVER_NAME", UserInfo.serverName);
                             command.Parameters.AddWithValue("@RECORD_MODIFIED_COUNT", "2");

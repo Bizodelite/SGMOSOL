@@ -69,7 +69,7 @@ namespace SGMOSOL.SCREENS
         private void fillItemCode()
         {
             DataTable dt = new DataTable();
-            dt = bhojnalayprintReceiptBAL.getItemCode();
+            dt = bhojnalayprintReceiptBAL.getItemCodeAssignToCounter();
             DataRow newRow = dt.NewRow();
             newRow["ITEM_CODE"] = "Select";
             newRow["ITEM_ID"] = 0;

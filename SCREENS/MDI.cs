@@ -76,11 +76,11 @@ namespace SGMOSOL
             }
         }
 
-            InitAppParam();
-            LoadBedCheckInMaxAmount();
-            sessionManager = new SessionManager();
-            sessionManager.StartTimer();
-        }
+            //InitAppParam();
+            //LoadBedCheckInMaxAmount();
+            //sessionManager = new SessionManager();
+            //sessionManager.StartTimer();
+        
         public void InitAppParam()
         {
             //UserInfo.Rounding = "N";

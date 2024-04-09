@@ -126,14 +126,19 @@ namespace SGMOSOL.SCREENS
                 foreach (DataRow row in dt.Rows)
                 {
                     double amount = Convert.ToDouble(row["AMOUNT"]);
-                    row["AMOUNT_IN_WORDS"] = cm.words(Convert.ToInt32(amount));
-                    if (sprintType == "D")
+
+                    if (dt.Columns.Contains("AMOUNT_IN_WORDS"))
+                        row["AMOUNT_IN_WORDS"] = cm.words(Convert.ToInt32(amount));
+                    if (dt.Columns.Contains("REPORT_TYPE"))
                     {
-                        row["REPORT_TYPE"] = "Duplicate";
-                    }
-                    else
-                    {
-                        row["REPORT_TYPE"] = "ND";
+                        if (sprintType == "D")
+                        {
+                            row["REPORT_TYPE"] = "Duplicate";
+                        }
+                        else
+                        {
+                            row["REPORT_TYPE"] = "ND";
+                        }
                     }
                 }
             }

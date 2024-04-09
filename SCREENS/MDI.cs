@@ -71,7 +71,7 @@ namespace SGMOSOL
         {
             try
             {
-                UserInfo.BedCheckInMaxAmount = CommonFunctions.getBedCheckInMaxAmount(); ;
+                CommonFunctions.getBedCheckInMaxAmount(); ;
             }
             catch (Exception ex)
             {

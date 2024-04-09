@@ -86,7 +86,6 @@ namespace SGMOSOL.SCREENS.Locker
             Int32 row = 0;
             Int32 col = 0;
             DataView Dv;
-            //DataRowView Drv;
             string Filtercriteria = "";
             try
             {

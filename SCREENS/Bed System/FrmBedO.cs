@@ -67,14 +67,14 @@ namespace SGMOSOL.SCREENS.Bed_System
         }
         public enum PrintReceipt
         {
-            ProductN,
-            ProductC,
-            Advance,
-            Nidhi,
-            Qty,
-            Occupied,
-            Pending,
-            outofbedorder,
+            ProductN = 0,
+            ProductC = 1,
+            Advance = 2,
+            Nidhi = 3,
+            Qty = 4,
+            Occupied = 5,
+            Pending = 6,
+            outofbedorder = 7,
         }
         private void FrmBedO_Load(System.Object sender, System.EventArgs e)
         {
@@ -104,53 +104,6 @@ namespace SGMOSOL.SCREENS.Bed_System
             //this.Location = new Point(ctr, 0);
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
-        //private void SetGridScreen()
-        //{
-        //    FarPoint.Win.Spread.InputMap inputmap1 = new FarPoint.Win.Spread.InputMap();
-        //    FarPoint.Win.Spread.FpSpread FpSpread;
-        //    // -- Set object equal to existing map
-        //    Int16 ctr;
-        //    // For ctr = 1 To 2
-        //    // If ctr = 1 Then
-        //    // FpSpread = fpsPrintReceipt
-        //    // Else
-        //    // FpSpread = fpsMinLevel
-        //    // End If
-        //    FpSpread = fpsPrintReceipt;
-        //    inputmap1 = FpSpread.GetInputMap(FarPoint.Win.Spread.InputMapMode.WhenAncestorOfFocused);
-        //    // -- Map Enter key
-        //    inputmap1.Put(new FarPoint.Win.Spread.Keystroke(Keys.Enter, Keys.None), FarPoint.Win.Spread.SpreadActions.MoveToNextColumnWrap);
-        //    // -- Create InputMap object
-        //    FarPoint.Win.Spread.InputMap inputmap2 = new FarPoint.Win.Spread.InputMap();
-        //    // -- Set object equal to existing map
-        //    inputmap2 = FpSpread.GetInputMap(FarPoint.Win.Spread.InputMapMode.WhenFocused);
-        //    // -- Map Enter key
-        //    inputmap2.Put(new FarPoint.Win.Spread.Keystroke(Keys.Enter, Keys.None), FarPoint.Win.Spread.SpreadActions.MoveToNextColumnWrap);
-        //    // -- Map Tab key 
-        //    inputmap1.Put(new FarPoint.Win.Spread.Keystroke(Keys.Tab, Keys.None), FarPoint.Win.Spread.SpreadActions.None);
-        //    // -- set Tab key to move to next control
-        //    inputmap1 = FpSpread.GetInputMap(FarPoint.Win.Spread.InputMapMode.WhenAncestorOfFocused);
-        //    // -- set shift + Tab key to move to previous control
-        //    inputmap1.Put(new FarPoint.Win.Spread.Keystroke(Keys.Tab, Keys.Shift), FarPoint.Win.Spread.SpreadActions.None);
-        //    // -- Create InputMap object
-        //    FarPoint.Win.Spread.InputMap inputmap3 = new FarPoint.Win.Spread.InputMap();
-        //    // -- Set object equal to existing map
-        //    inputmap3 = FpSpread.GetInputMap(FarPoint.Win.Spread.InputMapMode.WhenFocused);
-        //    // -- Map F2 key to edit the enabled cells
-        //    inputmap3.Put(new FarPoint.Win.Spread.Keystroke(Keys.F2, Keys.None), FarPoint.Win.Spread.SpreadActions.StartEditing);
-
-        //    // Dim sfir As New FarPoint.Win.Spread.SolidFocusIndicatorRenderer(Color.Blue, 2)
-
-        //    // fpsPrintReceipt.FocusRenderer = sfir
-
-        //    // fpsPrintReceipt.FocusRenderer = New MyIndicator()
-
-        //    fpsPrintReceipt.Sheets(0).Columns(PrintReceipt.ProductC).Width = 0;
-        //    this.fpsPrintReceipt_Sheet1.GrayAreaBackColor = System.Drawing.Color.White;
-        //}
-
-
-
         private void FillCounter()
         {
             System.Data.DataTable dr = cf.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.BedSystem));
@@ -177,7 +130,7 @@ namespace SGMOSOL.SCREENS.Bed_System
             strDate = FormatDateToString(dtpCheckIn.Value);
             try
             {
-                dsItemMaster = cf.GetDsProductMenu(UserInfo.UserId);
+                dsItemMaster = cf.GetDsProductMenu(UserInfo.UserId,0);
             }
             catch (Exception ex)
             {
@@ -187,21 +140,16 @@ namespace SGMOSOL.SCREENS.Bed_System
                 cf.FillComboWithDataSet(lstItemMaster, dsItemMaster.Tables[0], "ItemTitle", "ItemTitle", "ItemId", "ItemCode", "");
 
             DataGridViewComboBoxCell cboItem = new DataGridViewComboBoxCell();
-            cboItem.DataSource = lstItemMaster;
-            cboItem.ReadOnly = true;
-            fpsPrintReceipt.Columns[(int)PrintReceipt.ProductN].CellTemplate = cboItem;
-
-            //FarPoint.Win.Spread.CellType.ComboBoxCellType cboItem = new FarPoint.Win.Spread.CellType.ComboBoxCellType();
-            //cboItem.ListControl = lstItemMaster;
-            //cboItem.Editable = true;
-            //fpsPrintReceipt.Sheets(0).Columns(PrintReceipt.ProductN).CellType = cboItem;
+            foreach (var item in lstItemMaster.Items)
+            {
+                cboItem.Items.Add(item.ToString());
+            }
+            ((DataGridViewComboBoxColumn)fpsPrintReceipt.Columns[(int)ePrintReceipt.ProductN]).DataSource = cboItem.Items;
         }
         private void LoadTransaction()
         {
             System.Data.DataTable dr;
             BedCheckInDet PrnRcptDtDet = new BedCheckInDet();
-            long lngCtrMachId;
-            int bhaktype;
             mDelColl = new Collection();
 
             try
@@ -209,23 +157,26 @@ namespace SGMOSOL.SCREENS.Bed_System
                 dr = BedCheckOutDALobj.GetDrOcc(UserInfo.UserId);
                 {
                     var withBlock = fpsPrintReceipt;
-                    withBlock.RowCount = 0;
-                    withBlock.RowCount = 1;
                     //while (dr.Read)
                     foreach (DataRow drrow in dr.Rows)
                     {
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.ProductN].Value = drrow["ItemTitle"];
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.ProductC].ReadOnly = true;
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.ProductN].Tag = drrow["ItemId"];
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.ProductC].Value = drrow["ItemCode"];
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.Qty].Value = (drrow["Qty"]);
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.Nidhi].Value = (drrow["RENT"]);
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.Advance].Value = (drrow["ADVANCE"]);
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.Occupied].Value = (drrow["occupied"]);
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.Pending].Value = (drrow["pending"]);
-                        withBlock.Rows[withBlock.RowCount - 1].Cells[(int)PrintReceipt.outofbedorder].Value = (drrow["OutOFOrderBed"]);
-                        mDelColl.Add(PrnRcptDtDet);
                         withBlock.RowCount = withBlock.RowCount + 1;
+                    }
+                    int i = 0;
+                    foreach (DataRow drrow in dr.Rows)
+                    {
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.ProductN].Value = drrow["ItemTitle"];
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.ProductC].ReadOnly = true;
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.ProductN].Tag = drrow["ItemId"];
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.ProductC].Value = drrow["ItemCode"];
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.Qty].Value = (drrow["Qty"]);
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.Nidhi].Value = (drrow["RENT"]);
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.Advance].Value = (drrow["ADVANCE"]);
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.Occupied].Value = (drrow["occupied"]);
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.Pending].Value = (drrow["pending"]);
+                        withBlock.Rows[i].Cells[(int)PrintReceipt.outofbedorder].Value = (drrow["OutOFOrderBed"]);
+                        mDelColl.Add(PrnRcptDtDet);
+                        i++;
                     }
                 }
                 FillItemMaster();

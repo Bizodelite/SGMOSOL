@@ -238,25 +238,20 @@ namespace SGMOSOL.DAL
 
         public DataTable GetLoggedInUser(int uid)
         {
-            int Id = 0;
-            try
+            DataTable dt = new DataTable();
+            string query = "select USER_ID, COUNTER_NAME from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "select USER_ID from SEC_ACTIVE_LOGIN_DETAILS where USER_ID=" + uid + "";
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        connection.Open();
-                        object result = command.ExecuteScalar();
-                        if (result != DBNull.Value && result != null)
-                        {
-                            Id = Convert.ToInt32(result);
-                        }
-                    }
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dt);
+                    connection.Close();
+
                 }
             }
-            catch(Exception ex) { }
-            return Id;
+            return dt;
         }
     }
 }

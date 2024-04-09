@@ -35,7 +35,8 @@ namespace SGMOSOL.SCREENS
             DengiDeclaration,
             DengiPrint,
             BHDeclaration,
-            BHPrint
+            BHPrint,
+            Locker
         }
 
         public frmReportViewer(string flag, string value = null, string PrintType = null, DataTable DT = null)
@@ -206,7 +207,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
-                   // printReport(DocumentName, PrinterNames.BHPrint);
+                   printReport(DocumentName, PrinterNames.BHPrint);
                 }
 
             }
@@ -223,7 +224,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.RefreshReport();
                 DocumentName = "BhojnalayDeclaration" +
                     "";
-               // printReport(DocumentName, PrinterNames.BHDeclaration);
+               printReport(DocumentName, PrinterNames.BHDeclaration);
             }
         }
         public void printDeclarationwithoutSave(DataTable dt)
@@ -243,7 +244,7 @@ namespace SGMOSOL.SCREENS
             // addCustomField(dt1);
             reportViewer2.RefreshReport();
             DocumentName = "DengiDeclaration";
-           // printReport(DocumentName, PrinterNames.DengiDeclaration);
+           printReport(DocumentName, PrinterNames.DengiDeclaration);
         }
         public void LockerCheckInReport()
         {
@@ -273,7 +274,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "LockerCheckInReceipt";
-                    printReport(DocumentName);
+                    printReport(DocumentName, PrinterNames.Locker);
 
                 }
             }
@@ -306,7 +307,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "LockerCheckOutReceipt";
-                    printReport(DocumentName);
+                    printReport(DocumentName, PrinterNames.Locker);
 
                 }
             }

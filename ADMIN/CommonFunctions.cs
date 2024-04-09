@@ -87,9 +87,7 @@ namespace SGMOSOL.ADMIN
             Collegemess = 10,
             Medical = 11
         }
-        public enum eScreenID
-        {
-            Login = 100,
+        
         public static string fncEncode(string password)
         {
             string strDeCodePassword = "";
@@ -108,6 +106,9 @@ namespace SGMOSOL.ADMIN
             }
             return strDeCodePassword;
         }
+        public enum eScreenID
+        {
+            Login = 100, 
 
             // --- Security Masters
             User = 1000,

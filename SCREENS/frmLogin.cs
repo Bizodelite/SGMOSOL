@@ -74,9 +74,9 @@ namespace SGMOSOL.SCREENS
                         if (Status == "Y")
                         {
                             uID = login.getUserId(isUser);
-                            activeUser = login.GetLoggedInUser(uID);
-                            UserInfo.UserName = isUser;
-                            if (activeUser == 0)
+                            DataTable dtActiveUser = new DataTable();
+                            dtActiveUser = login.GetLoggedInUser(uID);
+                            if (dtActiveUser.Rows.Count == 0)
                             {
                                 UserInfo.UserId = uID;
 
@@ -114,6 +114,7 @@ namespace SGMOSOL.SCREENS
                             DataTable dd = cm.getFYDetail();
                             if (dd != null && dd.Rows.Count > 0)
                             {
+                                UserInfo.UserName = isUser;
                                 UserInfo.CompanyID = 9;
                                 UserInfo.fy_id = Convert.ToInt32(dd.Rows[0]["FINANCIAL_YEAR_ID"]);
                                 UserInfo.FYStartDate = Convert.ToDateTime(dd.Rows[0]["Start_Date"]);

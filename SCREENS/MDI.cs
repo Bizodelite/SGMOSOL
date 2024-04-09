@@ -23,7 +23,7 @@ namespace SGMOSOL
         frmCalculation frmCalculation;
         CommonFunctions cm;
         SessionManager sessionManager;
-       
+
         public MDI()
         {
             InitializeComponent();
@@ -92,7 +92,7 @@ namespace SGMOSOL
             if (frmuserDengi == null)
             {
                 frmuserDengi = new frmUserDengi();
-               frmuserDengi.WindowState = FormWindowState.Minimized;
+                frmuserDengi.WindowState = FormWindowState.Minimized;
                 frmuserDengi.Show();
             }
         }
@@ -102,8 +102,8 @@ namespace SGMOSOL
             LoginBAL loginBAL = new LoginBAL();
             loginBAL.updateUser_Login_Details();
             loginBAL.DeleteUser_Login_details();
-            Application.Exit();
-            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            this.Close();
+
         }
 
         private void calculationFormToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace SGMOSOL
             }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)
-            { 
+            {
                 frmuserDengi.Close();
             }
         }
@@ -132,10 +132,21 @@ namespace SGMOSOL
             // Application.Exit();
             //s System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
-
+        private void ResetApplicationState()
+        {
+            // Close or hide any child forms or dialogs
+            List<Form> openFormsCopy = new List<Form>(Application.OpenForms.Cast<Form>());
+            foreach (Form form in openFormsCopy)
+            {
+                if (form != this && form != null) // Exclude the MDI parent form
+                {
+                    form.Close(); // or form.Hide();
+                }
+            }
+        }
         private void encryptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void encryptionToolStripMenuItem1_Click(object sender, EventArgs e)

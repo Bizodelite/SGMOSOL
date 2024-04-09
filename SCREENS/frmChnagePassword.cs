@@ -41,16 +41,16 @@ namespace SGMOSOL.SCREENS
                         int status = login.updatePassword(txtUserName.Text, CommonFunctions.Encrypt(txtNewPassword.Text, true));
                         if (status == 1)
                         {
-                            MessageBox.Show("Password Updated Successfully");
                             MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
                             if (mdiParentForm != null)
                             {
+                                MessageBox.Show("Password Updated Successfully");
                                 this.Close();
                             }
                             else
                             {
-                                MDI home = new MDI();
-                                home.Show();
+                                MessageBox.Show("Password Updated Successfully!!! Please Login First");
+                                this.Hide();
                             }
                         }
                     }

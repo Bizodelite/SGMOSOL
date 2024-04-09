@@ -195,7 +195,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
-                   // printReport(DocumentName, PrinterNames.BHPrint);
+                    printReport(DocumentName, PrinterNames.BHPrint);
                 }
 
             }
@@ -212,7 +212,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.RefreshReport();
                 DocumentName = "BhojnalayDeclaration" +
                     "";
-               // printReport(DocumentName, PrinterNames.BHDeclaration);
+                printReport(DocumentName, PrinterNames.BHDeclaration);
             }
         }
         public void printDeclarationwithoutSave(DataTable dt)

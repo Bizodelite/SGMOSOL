@@ -35,6 +35,7 @@ namespace SGMOSOL.SCREENS
             dtfromDate.CustomFormat = "dd/MM/yyyy";
             dtToDate.Format = DateTimePickerFormat.Custom;
             dtToDate.CustomFormat = "dd/MM/yyyy";
+            getTotalAmountByPaymentId();
             this.reportViewer1.RefreshReport();
         }
 
@@ -62,7 +63,7 @@ namespace SGMOSOL.SCREENS
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
             this.reportViewer1.RefreshReport();
-            printReport("TotalDengiCalculation");
+           // printReport("TotalDengiCalculation");
         }
         public void printReport(string docName)
         {

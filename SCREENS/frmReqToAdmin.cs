@@ -217,7 +217,7 @@ namespace SGMOSOL.SCREENS
         private void btnSave_Click(object sender, EventArgs e)
         {
             saveRequirement();
-            clearControl();
+        
         }
         public void saveRequirement()
         {
@@ -252,6 +252,7 @@ namespace SGMOSOL.SCREENS
                     }
                 }
                 MessageBox.Show("Record Saved Successully");
+                txtQuantity.Text = "";
             }
         }
 

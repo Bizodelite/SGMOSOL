@@ -191,5 +191,14 @@ namespace SGMOSOL.SCREENS
         {
 
         }
+
+        private void frmUserDengi_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dengiReceipt = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
+            if (dengiReceipt != null)
+            {
+                dengiReceipt.Close();
+            }
+        }
     }
 }

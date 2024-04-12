@@ -53,7 +53,6 @@ namespace SGMOSOL
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cm = new CommonFunctions();
-            this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
         }
 
         private void MDI_Load(object sender, EventArgs e)
@@ -65,6 +64,7 @@ namespace SGMOSOL
             //Show the MDI form if login is successful
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
+                this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
                 // If login is successful, start the MDI parent form
                 sessionManager = new SessionManager();
                 sessionManager.StartTimer();
@@ -139,8 +139,8 @@ namespace SGMOSOL
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi == null)
             {
-                frmuserDengi = new frmUserDengi();
-                frmuserDengi.WindowState = FormWindowState.Minimized;
+               // frmuserDengi = new frmUserDengi();
+               // frmuserDengi.WindowState = FormWindowState.Minimized;
                 frmuserDengi.Show();
             }
         }
@@ -154,24 +154,7 @@ namespace SGMOSOL
 
         }
 
-        private void calculationFormToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmCalculation = Application.OpenForms.OfType<frmCalculation>().FirstOrDefault();
-            if (frmCalculation == null)
-            {
-                frmCalculation = new frmCalculation();
-                frmCalculation.StartPosition = FormStartPosition.CenterParent;
-                frmCalculation.MdiParent = this;
-                frmCalculation.WindowState = FormWindowState.Maximized;
-                frmCalculation.Show();
-            }
-            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
-            if (frmuserDengi != null)
-            {
-                frmuserDengi.Close();
-            }
-        }
-
+       
         private void MDI_FormClosing(object sender, FormClosingEventArgs e)
         {
             LoginBAL loginBAL = new LoginBAL();
@@ -193,11 +176,6 @@ namespace SGMOSOL
             }
         }
         private void encryptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void encryptionToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmEncryption frm = new frmEncryption();
             frm.Show();
@@ -227,8 +205,8 @@ namespace SGMOSOL
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi == null)
             {
-                frmuserDengi = new frmUserDengi();
-                frmuserDengi.WindowState = FormWindowState.Minimized;
+               // frmuserDengi = new frmUserDengi();
+               // frmuserDengi.WindowState = FormWindowState.Minimized;
                 frmuserDengi.Show();
             }
            
@@ -431,6 +409,24 @@ namespace SGMOSOL
             frmBedAdvanceVoucher.MdiParent = this;
             frmBedAdvanceVoucher.WindowState = FormWindowState.Maximized;
             frmBedAdvanceVoucher.Show();
+        }
+
+        private void fundCalculationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCalculation = Application.OpenForms.OfType<frmCalculation>().FirstOrDefault();
+            if (frmCalculation == null)
+            {
+                frmCalculation = new frmCalculation();
+                frmCalculation.StartPosition = FormStartPosition.CenterParent;
+                frmCalculation.MdiParent = this;
+                frmCalculation.WindowState = FormWindowState.Maximized;
+                frmCalculation.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi != null)
+            {
+                frmuserDengi.Close();
+            }
         }
     }
 }

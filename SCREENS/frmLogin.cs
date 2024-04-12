@@ -50,8 +50,8 @@ namespace SGMOSOL.SCREENS
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string strValue = CommonFunctions.Encrypt(txtpwd.Text,true);
-            string strValue1 = CommonFunctions.Decrypt(txtpwd.Text,true);
+            string strValue = CommonFunctions.Encrypt(txtpwd.Text, true);
+            string strValue1 = CommonFunctions.Decrypt(txtpwd.Text, true);
             getauthentication();
             InitOnServer();
         }
@@ -92,7 +92,7 @@ namespace SGMOSOL.SCREENS
                             dtActiveUser = login.GetLoggedInUser(uID);
                             if (dtActiveUser.Rows.Count == 0)
                             {
-                                
+
                                 dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
                                 if (dtuser.Rows.Count > 0)
                                 {
@@ -103,6 +103,7 @@ namespace SGMOSOL.SCREENS
                                         lblmessage.Text = "Please Login Again With New Password.";
                                         return;
                                     }
+                                    //UserInfo.serverName = cm.GetSqlServerInstances();
                                     UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
                                     foreach (DataRow row in dtuser.Rows)
                                     {
@@ -141,7 +142,7 @@ namespace SGMOSOL.SCREENS
                             lblmessage.Text = "Login Successfull";
                             login.InsertUser_Login_details();
                             this.DialogResult = DialogResult.OK;
-                           // this.Close();
+                            // this.Close();
                             //MDI home = new MDI();
                             //home.Show();
                             //this.Hide();
@@ -181,6 +182,8 @@ namespace SGMOSOL.SCREENS
         {
             string isUser = null;
             txtpwd.Text = "";
+            lblmessage.Text = "";
+            lblmessage.Text = "";
             if (txtUser.Text == "")
             {
                 lblmessage.Text = "Please enter user name";

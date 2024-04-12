@@ -217,13 +217,13 @@ namespace SGMOSOL.DAL
                         command.CommandType = CommandType.StoredProcedure;
                         if (data is dengiReceiptModel obj)
                         {
-                            //command.Parameters.AddWithValue("@DR_DATE",Convert.ToDateTime(obj.dr_Date));
+                            command.Parameters.AddWithValue("@DR_DATE",Convert.ToDateTime(obj.dr_Date));
                             command.Parameters.AddWithValue("@Com_Id", UserInfo.CompanyID);
                             command.Parameters.AddWithValue("@Loc_Id", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@Fy_Id", UserInfo.fy_id);
                             command.Parameters.AddWithValue("@Ctr_mac_Id", UserInfo.ctrMachID);
-                            command.Parameters.AddWithValue("@SERIAL_NO", obj.serailId);
+                           // command.Parameters.AddWithValue("@SERIAL_NO", obj.serailId);
                             command.Parameters.AddWithValue("@Dengi_Id", obj.DengiId);
                             command.Parameters.AddWithValue("@amount", obj.amount);
                             command.Parameters.AddWithValue("@payment_type_Id", obj.paymentTypeId);
@@ -286,8 +286,16 @@ namespace SGMOSOL.DAL
                             SqlParameter idParam = new SqlParameter("@Receipt_ID", SqlDbType.Decimal);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);
-                            command.ExecuteNonQuery();
-                            status = Convert.ToInt32(command.Parameters["@Receipt_ID"].Value);
+                            int rowsAffected = command.ExecuteNonQuery();
+                            //  command.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                status = Convert.ToInt32(command.Parameters["@Receipt_ID"].Value);
+                            }
+                            else {
+                                status = rowsAffected;
+                                MessageBox.Show("Can not insert this record due to date mismatch!!! Please check date.");
+                            }
                         }
                       //  MessageBox.Show("Dengi Receipt saved Successfully");
                     }
@@ -307,7 +315,7 @@ namespace SGMOSOL.DAL
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + "";
+                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + " and CTR_MACH_ID="+UserInfo.ctrMachID+"";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         connection.Open();

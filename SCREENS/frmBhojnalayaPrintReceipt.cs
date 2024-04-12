@@ -48,7 +48,6 @@ namespace SGMOSOL.SCREENS
 
         private void frmBhojnalayaPrintReceipt_Load(object sender, EventArgs e)
         {
-            user = new frmUserDengi();
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
             pnlMaster.Location = new System.Drawing.Point(centerX, centerY);

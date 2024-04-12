@@ -58,44 +58,51 @@ namespace SGMOSOL.SCREENS
 
         public void printReport(string docName, PrinterNames PrinterType)
         {
-            string printerName = null;
-            if (PrinterType == PrinterNames.DengiDeclaration)
+            try
             {
-                printerName = System.Configuration.ConfigurationManager.AppSettings["DengiDec_Printer_name"].ToString();
-            }
-            if (PrinterType == PrinterNames.DengiPrint)
-            {
-                printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
-            }
-            else
-            {
-                printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
-            }
-
-            byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
-            using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
-            {
-                using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
+                string printerName = null;
+                if (PrinterType == PrinterNames.DengiDeclaration)
                 {
-                    try
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["DengiDec_Printer_name"].ToString();
+                }
+                if (PrinterType == PrinterNames.DengiPrint)
+                {
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
+                }
+                else
+                {
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+                }
+
+                byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
+                using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
+                {
+                    using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
                     {
-                        PrintDocument printDoc = new PrintDocument();
-                        printDoc.PrinterSettings.PrinterName = printerName;
-                        printDoc.DocumentName = docName;
-                        PaperSize paperSize = new PaperSize("Custom", (int)(4.84 * 100), (int)(5.70 * 100));
-                        printDoc.DefaultPageSettings.PaperSize = paperSize;
-                        printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                        printDoc.PrintPage += (s, args) =>
+                        try
                         {
-                            args.Graphics.DrawImage(image, args.MarginBounds);
-                        };
-                        printDoc.Print();
-                    }
-                    catch (Exception ex)
-                    {
-                        cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                            PrintDocument printDoc = new PrintDocument();
+                            printDoc.PrinterSettings.PrinterName = printerName;
+                            printDoc.DocumentName = docName;
+                            PaperSize paperSize = new PaperSize("Custom", (int)(4.84 * 100), (int)(5.70 * 100));
+                            printDoc.DefaultPageSettings.PaperSize = paperSize;
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                            printDoc.PrintPage += (s, args) =>
+                            {
+                                args.Graphics.DrawImage(image, args.MarginBounds);
+                            };
+                            printDoc.Print();
+                        }
+                        catch (Exception ex)
+                        {
+                            cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                        }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+               cm.InsertErrorLog(ex.Message,UserInfo.module, UserInfo.version);
             }
 
         }

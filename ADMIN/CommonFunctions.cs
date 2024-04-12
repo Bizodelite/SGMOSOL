@@ -22,7 +22,10 @@ using Microsoft.Reporting.Map.WebForms.BingMaps;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic;
 using System.Resources;
+using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+using System.Data.Sql;
 
 
 
@@ -87,7 +90,7 @@ namespace SGMOSOL.ADMIN
             Collegemess = 10,
             Medical = 11
         }
-        
+
         public static string fncEncode(string password)
         {
             string strDeCodePassword = "";
@@ -108,7 +111,7 @@ namespace SGMOSOL.ADMIN
         }
         public enum eScreenID
         {
-            Login = 100, 
+            Login = 100,
 
             // --- Security Masters
             User = 1000,
@@ -295,12 +298,12 @@ namespace SGMOSOL.ADMIN
             dt = new DataTable();
             try
             {
-            SqlCommand command = new SqlCommand("SP_GetStatesByCountryId", clsConnection.GetConnection());
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@CountryId", countryId);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            adapter.Fill(dt);
-        }
+                SqlCommand command = new SqlCommand("SP_GetStatesByCountryId", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CountryId", countryId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
             catch (Exception ex)
             {
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -312,12 +315,12 @@ namespace SGMOSOL.ADMIN
             DataTable dt = new DataTable();
             try
             {
-            SqlCommand command = new SqlCommand("SP_GetTIDByCounterId", clsConnection.GetConnection());
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@CounterId", UserInfo.ctrMachID);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            adapter.Fill(dt);
-        }
+                SqlCommand command = new SqlCommand("SP_GetTIDByCounterId", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CounterId", UserInfo.ctrMachID);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
             catch (Exception ex)
             {
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -329,12 +332,12 @@ namespace SGMOSOL.ADMIN
             DataTable dt = new DataTable();
             try
             {
-            SqlCommand command = new SqlCommand("SP_GetDistrictsByStateId", clsConnection.GetConnection());
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@StateId", stateId);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            adapter.Fill(dt);
-        }
+                SqlCommand command = new SqlCommand("SP_GetDistrictsByStateId", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@StateId", stateId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
             catch (Exception ex)
             {
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -346,11 +349,11 @@ namespace SGMOSOL.ADMIN
             DataTable dt = new DataTable();
             try
             {
-            SqlCommand command = new SqlCommand("SP_GetDocumentTypes", clsConnection.GetConnection());
-            command.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            adapter.Fill(dt);
-        }
+                SqlCommand command = new SqlCommand("SP_GetDocumentTypes", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
             catch (Exception ex)
             {
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -978,7 +981,7 @@ namespace SGMOSOL.ADMIN
                 mReader = clsConnection.ExecuteReader(command);
                 if (mReader.Rows.Count == 0)
                 {
-                    mReader.Rows.Add(new Object[] { "", "",0,0,"","","",0 });
+                    mReader.Rows.Add(new Object[] { "", "", 0, 0, "", "", "", 0 });
                 }
             }
             catch (Exception ex)
@@ -2187,8 +2190,28 @@ namespace SGMOSOL.ADMIN
             }
             return 0;
         }
-       
+        public string GetSqlServerInstances()
+        {
+            DataTable dataTable = SqlDataSourceEnumerator.Instance.GetDataSources();
+            string strServerName = "";
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string serverName = row["ServerName"].ToString();
+                string instanceName = row["InstanceName"].ToString();
+
+                if (string.IsNullOrEmpty(instanceName))
+                {
+                    strServerName = serverName;
+                }
+                else
+                {
+                    strServerName = serverName + "\\" + instanceName;
+                }
+            }
+            return strServerName;
+        }
     }
+
 }
 
 

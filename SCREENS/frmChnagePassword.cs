@@ -27,6 +27,7 @@ namespace SGMOSOL.SCREENS
             login = new LoginBAL();
             commonFunctions = new CommonFunctions();
             OldUser = oldUser;
+            this.AcceptButton = btnchange;
         }
 
         private void btnchange_Click(object sender, EventArgs e)
@@ -61,7 +62,7 @@ namespace SGMOSOL.SCREENS
                                 status = login.InsertUser_PassWord_Logs(txtNewPassword.Text);
                                 if (status == 0)
                                 {
-                                    MessageBox.Show("Password Updated Successfully");
+                                    MessageBox.Show("Password Updated Successfully!!!");
                                     MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
 
                                     //if (mdiParentForm != null)
@@ -138,6 +139,11 @@ namespace SGMOSOL.SCREENS
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmChnagePassword_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

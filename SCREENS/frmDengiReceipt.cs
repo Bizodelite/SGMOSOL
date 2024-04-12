@@ -13,6 +13,7 @@ using System.IO;
 using CommonDialog = WIA.CommonDialog;
 using Microsoft.VisualBasic;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace SGMOSOL.SCREENS
 {
@@ -780,6 +781,7 @@ namespace SGMOSOL.SCREENS
                 DialogResult result;
                 dengiReceiptModel = new dengiReceiptModel();
                 loginDAL login = new loginDAL();
+                dengiReceiptModel.dr_Date = DateTime.Parse(dtpPrnRcptDt.Text);
                 dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
                 dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;
                 dengiReceiptModel.COUNTRY_NAME = cboCountry.Text;
@@ -791,7 +793,7 @@ namespace SGMOSOL.SCREENS
                 dengiReceiptModel.chno = txtChqNo.Text;
                 dengiReceiptModel.chqbankname = txtChqBankname.Text;
                 dengiReceiptModel.PinCode = txtPincode.Text;
-                dengiReceiptModel.userId = login.getUserId(txtUser.Text);
+                dengiReceiptModel.userId = UserInfo.UserId;
                 dengiReceiptModel.PanNo = txtPANNo.Text;
                 dengiReceiptModel.Taluka = txttal.Text;
                 dengiReceiptModel.gotraId = (int)cboGotra.SelectedValue;
@@ -849,11 +851,6 @@ namespace SGMOSOL.SCREENS
                 }
                 if (Convert.ToString(lstEnteredAmount) == txtAmount.Text && lstEnteredName == txtname.Text.Trim())
                 {
-                    //result = MessageBox.Show("Do you want to save duplicate record?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    //if (result == DialogResult.Yes)
-                    //{
-                    //    dengiReceiptModel.IsDuplicate = 159;
-                    //}
                     InputBox inputbox = new InputBox();
                     inputbox.MessageText = "Do you want to save Duplicate Record? Please insert Key";
                     DialogResult result1 = inputbox.ShowDialog();
@@ -899,13 +896,9 @@ namespace SGMOSOL.SCREENS
                             {
                                 return;
                             }
-                           // txtdengireceiptNo.Text = status.ToString();
-
-                            //Refrence_Amount.Text = txtAmount.Text;
-                            //Refrence_Name.Text = txtname.Text;
                         }
 
-                        if (status != 0)
+                        if (status != 0 && status != -1)
                         {
                             resetAllFields();
                             getDengiNo();
@@ -1129,7 +1122,7 @@ namespace SGMOSOL.SCREENS
 
             frmReportViewer report = new frmReportViewer("PRINT", receptID, "D");
             report.createReport("Dengi");
-           // report.Show();
+            // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
         {
@@ -1146,14 +1139,14 @@ namespace SGMOSOL.SCREENS
 
                     frmReportViewer report = new frmReportViewer("DECLARATION", receptID, "D");
                     report.createReport("Dengi");
-                  //  report.Show();
+                    //  report.Show();
                 }
                 else
                 {
                     //createTempTableforDeclaration();
                     frmReportViewer report = new frmReportViewer("DECLARATION");
                     report.printDeclarationwithoutSave(createTempTableforDeclaration());
-                   // report.Show();
+                    // report.Show();
                 }
             }
             // report.Show();
@@ -1346,8 +1339,12 @@ namespace SGMOSOL.SCREENS
 
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
-            frmSearch = new frmSearchDengi();
-            frmSearch.Show();
+            frmSearch = Application.OpenForms.OfType<frmSearchDengi>().FirstOrDefault();
+            if (frmSearch == null)
+            {
+                frmSearch = new frmSearchDengi();
+                frmSearch.Show();
+            }
         }
         private void btnScan_Click(object sender, EventArgs e)
         {

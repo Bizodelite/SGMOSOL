@@ -74,6 +74,7 @@ namespace SGMOSOL.SCREENS
             {
                 uID = login.getUserId(isUser);
                 UserInfo.UserId = uID;
+                long LogID = cm.InsertUpdateLog(0, UserInfo.UserId, 0, 0, false, "INSERT");
                 if (getDesktopPassword(isUser) == "")
                 {
                     lblmessage.Text = "Please reset your password!!!";
@@ -111,6 +112,7 @@ namespace SGMOSOL.SCREENS
                                         UserInfo.Loc_id = Convert.ToInt32(row["LOC_ID"]);
                                         UserInfo.Dept_id = Convert.ToInt32(row["DEPT_ID"]);
                                         UserInfo.ctrMachID = Convert.ToInt32(row["CTR_MACH_ID"]);
+                                        cm.InsertUpdateLog(Convert.ToInt32(LogID), UserInfo.UserId, UserInfo.Loc_id, UserInfo.ctrMachID, true, "UPDATE");
                                     }
                                 }
                                 else

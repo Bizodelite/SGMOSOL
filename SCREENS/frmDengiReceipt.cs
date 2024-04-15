@@ -14,6 +14,7 @@ using CommonDialog = WIA.CommonDialog;
 using Microsoft.VisualBasic;
 using System.Xml.Linq;
 using System.Linq;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -27,6 +28,11 @@ namespace SGMOSOL.SCREENS
         frmReportViewer frmreport;
         DataTable dt;
         public bool isPrint = false;
+        private string mStrCounterMachineShortName;
+        private int PrintReceiptDeptID;
+        private string PrintReceiptDeptName;
+        private string PrintReceiptLocName;
+        private int PrintReceiptLocId;
         public frmDengiReceipt()
         {
             InitializeComponent();
@@ -125,6 +131,7 @@ namespace SGMOSOL.SCREENS
                 txtUser.Text = UserInfo.UserName;
                 if (isPrint == false)
                 {
+                    FillCounter();
                     FillDocumentType();
                     fillCountry();
                     fillStateByCountryId();
@@ -141,6 +148,23 @@ namespace SGMOSOL.SCREENS
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
 
+        }
+        private void FillCounter()
+        {
+            System.Data.DataTable dr;
+            dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Dengi));
+            if (dr.Rows.Count > 0)
+            {
+                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+                UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+                PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
+            //dr.Close();
         }
         private void getDengiNo()
         {

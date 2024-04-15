@@ -26,6 +26,7 @@ using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 using System.Data.Sql;
+using System.Windows;
 
 
 
@@ -589,6 +590,26 @@ namespace SGMOSOL.ADMIN
         //    }
         //    return dt;
         //}
+        public long InsertUpdateLog(int LogID, int UserID, int LocId, int CounterId, bool IsSuccess, string Type)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_CRUDLoginLog", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@LogID", LogID);
+                command.Parameters.AddWithValue("@UserId", UserID);
+                command.Parameters.AddWithValue("@LocId", LocId);
+                command.Parameters.AddWithValue("@CounterId", CounterId);
+                command.Parameters.AddWithValue("@IsSuccess", IsSuccess);
+                command.Parameters.AddWithValue("@Type", Type);
+                return clsConnection.ExecuteScalar(command);
+            }
+            catch (Exception ex)
+            {
+                clsConnection.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return 0;
+        }
         public DataTable getUserAllDetails(string strMachineId, int uid = 0)
         {
             DataTable dt = new DataTable();

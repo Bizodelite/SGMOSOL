@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using SGMOSOL.SCREENS;
 
 namespace SGMOSOL.Custom_User_Contols
 {
@@ -47,12 +48,15 @@ namespace SGMOSOL.Custom_User_Contols
 
                 // Session timeout
                 MessageBox.Show("Session has timed out. You will be redirected to the login page.");
+              
 
-                Application.Exit();
-                System.Diagnostics.Process.Start(Application.ExecutablePath);
+               // Application.Exit();
+               // System.Diagnostics.Process.Start(Application.ExecutablePath);
 
                 // Close the current form
                 Form.ActiveForm.Close();
+                frmLogin frm = new frmLogin();
+                frm.ShowDialog();
             }
             else
             {

@@ -122,7 +122,36 @@ namespace SGMOSOL.ADMIN
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
-        
+        public static long ExecuteScalar(SqlCommand objCmd)
+        {
+            try
+            {
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.Connection = glbCon;
+                objCmd.Transaction = glbTransaction;
+                object result = objCmd.ExecuteScalar();
+                if (result != null)
+                {
+                    lngErrNum = Convert.ToInt32(result);
+                }
+                else
+                {
+                    lngErrNum = -1;
+                }
+            }
+            catch (SqlException ex)
+            {
+                lngErrNum = -(ex.Number);
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            catch (Exception ex)
+            {
+                lngErrNum = -1;
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return lngErrNum;
+        }
+
         public static long DMLStoredProc(string strCmd, SqlCommand objCmd)
         {
             // Dim objCmd As New SqlClient.SqlCommand()

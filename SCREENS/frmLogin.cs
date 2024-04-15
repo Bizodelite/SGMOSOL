@@ -212,5 +212,9 @@ namespace SGMOSOL.SCREENS
             this.Close();
         }
 
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          //  Application.Exit();
+        }
     }
 }

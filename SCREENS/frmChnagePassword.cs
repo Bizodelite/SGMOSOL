@@ -65,9 +65,17 @@ namespace SGMOSOL.SCREENS
                                     MessageBox.Show("Password Updated Successfully!!!");
                                     MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
 
-                                    //if (mdiParentForm != null)
-                                    //{
-                                    this.Close();
+                                    if (mdiParentForm != null)
+                                    {
+                                        this.Close();
+                                        frmLogin loginForm = new frmLogin();
+                                        loginForm.WindowState = FormWindowState.Maximized;
+                                        loginForm.ShowDialog();
+                                    }
+                                    else { 
+                                    
+                                    }
+                                   
                                     //}
                                     //else
                                     //{

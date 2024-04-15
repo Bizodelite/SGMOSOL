@@ -19,6 +19,7 @@ using System.Web.UI.WebControls;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -48,11 +49,13 @@ namespace SGMOSOL.SCREENS
 
         private void frmBhojnalayaPrintReceipt_Load(object sender, EventArgs e)
         {
+            user = new frmUserDengi();
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
             pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
             SystemModel.Computer_Name.Comp_Name = System.Environment.MachineName;
             bhojnalayprintReceiptBAL = new BhojnalayPrintReceiptBAL();
+            FillCounter();
             if (isPrint == false)
             {
                 fillItemCode();
@@ -64,6 +67,24 @@ namespace SGMOSOL.SCREENS
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
            
+        }
+        private void FillCounter()
+        {
+            commonFunctions = new CommonFunctions();
+            System.Data.DataTable dr;
+            dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Bhojnalay));
+            if (dr.Rows.Count > 0)
+            {
+                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+                UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+               // PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+              //  PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
+               // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
+            //dr.Close();
         }
         private void fillItemCode()
         {
@@ -284,19 +305,19 @@ namespace SGMOSOL.SCREENS
 
         private void dgvItemDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgvItemDetails.Columns["EditButton"].Index)
-            {
-                ClearRowSelection();
-                dgvItemDetails.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.LightPink;
-                DataGridViewRow selectedRow = dgvItemDetails.Rows[e.RowIndex];
-                int id = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-                cboItemCode.Text = Convert.ToString(selectedRow.Cells["Item Code"].Value);
-                //  cboItemName.Text = Convert.ToString(selectedRow.Cells["Item Name"].Value);
-                txtQuantity.Text = Convert.ToString(selectedRow.Cells["Quantity"].Value);
-                txtPrice.Text = Convert.ToString(selectedRow.Cells["Price"].Value);
-                txtAmount.Text = Convert.ToString(selectedRow.Cells["Amount"].Value);
-                btnAdd.Text = "Update";
-            }
+            //if (e.RowIndex >= 0 && e.ColumnIndex == dgvItemDetails.Columns["EditButton"].Index)
+            //{
+            //    ClearRowSelection();
+            //    dgvItemDetails.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.LightPink;
+            //    DataGridViewRow selectedRow = dgvItemDetails.Rows[e.RowIndex];
+            //    int id = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+            //    cboItemCode.Text = Convert.ToString(selectedRow.Cells["Item Code"].Value);
+            //    //  cboItemName.Text = Convert.ToString(selectedRow.Cells["Item Name"].Value);
+            //    txtQuantity.Text = Convert.ToString(selectedRow.Cells["Quantity"].Value);
+            //    txtPrice.Text = Convert.ToString(selectedRow.Cells["Price"].Value);
+            //    txtAmount.Text = Convert.ToString(selectedRow.Cells["Amount"].Value);
+            //    btnAdd.Text = "Update";
+            //}
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvItemDetails.Columns["DeleteButton"].Index)
             {
                 ClearRowSelection();

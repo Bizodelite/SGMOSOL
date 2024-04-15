@@ -40,7 +40,7 @@ namespace SGMOSOL.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "select * from MESS_COUNTER_ITEM_ASSIGN_MST_T_V where ACTIVE=1 and CTR_MACH_ID="+UserInfo.ctrMachID+"";
+                string query = "select * from MESS_COUNTER_ITEM_ASSIGN_MST_T_V where ACTIVE=1 and CTR_MACH_ID=" + UserInfo.ctrMachID + "";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 adapter.Fill(dt);
                 connection.Close();
@@ -70,9 +70,9 @@ namespace SGMOSOL.DAL
                 {
                     connection.Open();
                     object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && result != null )
+                    if (result != DBNull.Value && result != null)
                     {
-                        itemName = result.ToString() ;
+                        itemName = result.ToString();
                     }
                     connection.Close();
                 }
@@ -101,16 +101,21 @@ namespace SGMOSOL.DAL
         public int getMasterReceiptNumber()
         {
             int ReceiptNumber = 0;
+            int maxId = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT MAX(SERIAL_NO) FROM MESS_PRINT_RECEIPT_MST_T WHERE LOC_ID=" + UserInfo.Loc_id + " AND DEPT_ID=" + UserInfo.Dept_id + " AND FY_ID=" + UserInfo.fy_id + "";
+                string query = "SELECT MAX(SERIAL_NO) FROM MESS_PRINT_RECEIPT_MST_T WHERE LOC_ID=" + UserInfo.Loc_id + " AND DEPT_ID=" + UserInfo.Dept_id + " AND FY_ID=" + UserInfo.fy_id + " AND CTR_MACH_ID=" + UserInfo.ctrMachID + "";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();
                     object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int maxId))
+                    if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out maxId))
                     {
                         ReceiptNumber = maxId + 1;
+                    }
+                    if (maxId == 0)
+                    {
+                        ReceiptNumber = 1;
                     }
                     connection.Close();
                 }

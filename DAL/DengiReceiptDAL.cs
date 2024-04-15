@@ -217,7 +217,7 @@ namespace SGMOSOL.DAL
                         command.CommandType = CommandType.StoredProcedure;
                         if (data is dengiReceiptModel obj)
                         {
-                            command.Parameters.AddWithValue("@DR_DATE",Convert.ToDateTime(obj.dr_Date));
+                            command.Parameters.AddWithValue("@DR_DATE",obj.dr_Date);
                             command.Parameters.AddWithValue("@Com_Id", UserInfo.CompanyID);
                             command.Parameters.AddWithValue("@Loc_Id", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);

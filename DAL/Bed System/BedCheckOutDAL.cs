@@ -131,7 +131,7 @@ namespace SGMOSOL.DAL
                     return lngErrNo;
                 }
 
-                dr = GetDrRoomCheckInMstId(strMacName);
+                dr = GetDrBedCheckInMstId(strMacName);
                 if (dr.Rows.Count > 0)
                 {
                     lngMstId = Convert.ToInt64(dr.Rows[0]["CheckInMstId"]);
@@ -193,12 +193,12 @@ namespace SGMOSOL.DAL
                 return -10; // Error code
             }
         }
-        public DataTable GetDrRoomCheckInMstId(string strMachineName = null)
+        public DataTable GetDrBedCheckInMstId(string strMachineName = null)
         {
             DataTable dt = new DataTable();
             try
             {
-                SqlCommand command = new SqlCommand("SP_GetRoomCheckInMstId", clsConnection.GetConnection());
+                SqlCommand command = new SqlCommand("SP_GetBedCheckInMstId", clsConnection.GetConnection());
                 command.CommandType = CommandType.StoredProcedure;
 
                 if (!string.IsNullOrEmpty(strMachineName))

@@ -11,14 +11,14 @@ namespace SGMOSOL.BAL
         private string sName;
         private int iID;
 
-        private long sName2;
+        private string sName2;
         private string sName3;
 
         public clsItemData()
         {
             sName = "";
             iID = 0;
-            sName2 = 0;
+            sName2 = "";
         }
 
         public clsItemData(string Name, int ID)
@@ -27,14 +27,14 @@ namespace SGMOSOL.BAL
             iID = ID;
         }
 
-        public clsItemData(string Name, int ID, long Name2)
+        public clsItemData(string Name, int ID, string Name2)
         {
             sName = Name;
             iID = ID;
             sName2 = Name2;
         }
 
-        public clsItemData(string Name, int ID, long Name2, string Name3)
+        public clsItemData(string Name, int ID, string Name2, string Name3)
         {
             sName = Name;
             iID = ID;
@@ -47,7 +47,7 @@ namespace SGMOSOL.BAL
             sName = Name;
         }
 
-        public void setName2(long Name2)
+        public void setName2(string Name2)
         {
             sName2 = Name2;
         }
@@ -81,7 +81,7 @@ namespace SGMOSOL.BAL
             }
         }
 
-        public long ItemName2
+        public string ItemName2
         {
             get
             {

@@ -70,15 +70,43 @@ namespace SGMOSOL.ADMIN
                 objCmd.Transaction = glbTransaction;
                 lngErrNum = objCmd.ExecuteNonQuery();
                 if (lngErrNum == 0)
-                    lngErrNum = -6;
+                    return -6;
                 else
-                    lngErrNum = 0;
+                    return 0;
+            }
+            catch (SqlException ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return -(ex.Number);
+
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return -1;
+            }
+        }
+        public static long ExecuteScalar(SqlCommand objCmd)
+        {
+            try
+            {
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.Connection = glbCon;
+                objCmd.Transaction = glbTransaction;
+                object result = objCmd.ExecuteScalar();
+                if (result != null)
+                {
+                    lngErrNum = Convert.ToInt32(result);
+                }
+                else
+                {
+                    lngErrNum = -1;
+                }
             }
             catch (SqlException ex)
             {
                 lngErrNum = -(ex.Number);
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-
             }
             catch (Exception ex)
             {

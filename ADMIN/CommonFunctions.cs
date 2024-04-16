@@ -307,6 +307,23 @@ namespace SGMOSOL.ADMIN
             }
             return dt;
         }
+        public System.Data.DataSet GetState(int countryId)
+        {
+            System.Data.DataSet dataSet = new System.Data.DataSet();
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetStatesByCountryId", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CountryId", countryId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataSet);
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return dataSet;
+        }
         public DataTable fillTID()
         {
             DataTable dt = new DataTable();
@@ -324,6 +341,23 @@ namespace SGMOSOL.ADMIN
             }
             return dt;
         }
+        public System.Data.DataSet GetDsTID(int CounterId)
+        {
+            System.Data.DataSet dt = new System.Data.DataSet();
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetTIDByCounterId", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CounterId", CounterId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return dt;
+        }
         public DataTable getDisctrictbyStateId(int stateId)
         {
             DataTable dt = new DataTable();
@@ -335,6 +369,23 @@ namespace SGMOSOL.ADMIN
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             adapter.Fill(dt);
         }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return dt;
+        }
+        public System.Data.DataSet GetDistrict(int stateId)
+        {
+            System.Data.DataSet dt = new System.Data.DataSet();
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetDistrictsByStateId", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@StateId", stateId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
             catch (Exception ex)
             {
                 InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -945,7 +996,7 @@ namespace SGMOSOL.ADMIN
                         else if (Name2 == "")
                             lsb.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[lsbIndex])));
                         else
-                            lsb.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[lsbIndex]), Convert.ToInt64(myReaderitem[Name2])));
+                            lsb.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[lsbIndex]), myReaderitem[Name2].ToString()));
                         i++;
                     }
                     //withBlock.Close();
@@ -1029,7 +1080,7 @@ namespace SGMOSOL.ADMIN
             }
         }
 
-        public long lsbItemName2(ListBox lsb, int intIndex)
+        public string lsbItemName2(ListBox lsb, int intIndex)
         {
             try
             {
@@ -1040,7 +1091,7 @@ namespace SGMOSOL.ADMIN
             catch (Exception ex)
             {
                 InsertErrorLog("lsbItemName : " + lsb.Name + ex.ToString(), UserInfo.module, UserInfo.version);
-                return -1;
+                return "";
             }
         }
         public string GetErrorMessage(string[] colAray, long Message_Id)
@@ -1881,6 +1932,18 @@ namespace SGMOSOL.ADMIN
         {
             foreach (Control C in MyFrom.Controls)
             {
+                if (C is System.Windows.Forms.Panel)
+                {
+                    foreach (Control P in C.Controls)
+                    {
+                        if (Strings.UCase(P.Name) == Strings.UCase(caption))
+                        {
+                            P.Enabled = true;
+                            break;
+                        }
+                    }
+                }
+
                 if (C is System.Windows.Forms.Button)
                 {
                     if (Strings.UCase(C.Name) == Strings.UCase(caption))
@@ -1931,9 +1994,9 @@ namespace SGMOSOL.ADMIN
                         else if (Name2 == "")
                             cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex])));
                         else if (Name3 == "")
-                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), Convert.ToInt64(myReaderitem[Name2])));
+                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), myReaderitem[Name2].ToString()));
                         else
-                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), Convert.ToInt64(myReaderitem[Name2]), myReaderitem[Name3].ToString()));
+                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), myReaderitem[Name2].ToString(), myReaderitem[Name3].ToString()));
                         i++;
                     }
                 }
@@ -1984,7 +2047,7 @@ namespace SGMOSOL.ADMIN
                 return null;
             }
         }
-        public long cmbItemName2(System.Windows.Forms.ComboBox cbo, int intIndex)
+        public string cmbItemName2(System.Windows.Forms.ComboBox cbo, int intIndex)
         {
             try
             {
@@ -1995,24 +2058,24 @@ namespace SGMOSOL.ADMIN
             catch (Exception ex)
             {
                 SetError("cmbItemdata2 : " + cbo.Name + Constants.vbCrLf + ex.ToString());
-                return 0;
+                return "";
             }
         }
 
 
         // Get Itemdata of ComboBox. Parameters : ComboBox, Selected Index 
-        public long cmbItemName3(System.Windows.Forms.ComboBox cbo, int intIndex)
+        public string cmbItemName3(System.Windows.Forms.ComboBox cbo, int intIndex)
         {
             try
             {
                 clsItemData mItemData;
                 mItemData = (clsItemData)cbo.Items[intIndex];
-                return Convert.ToInt64(mItemData.ItemName3);
+                return mItemData.ItemName3;
             }
             catch (Exception ex)
             {
                 SetError("cmbItemdata3 : " + cbo.Name + Constants.vbCrLf + ex.ToString());
-                return 0;
+                return "";
             }
         }
         public System.Data.DataSet GetDsPaymentType2(int[] Typet)
@@ -2070,7 +2133,7 @@ namespace SGMOSOL.ADMIN
                     else if (Name2 == "")
                         cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex])));
                     else
-                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), Convert.ToInt64(dvRow[Name2])));
+                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), dvRow[Name2].ToString()));
                 }
                 cbo.EndUpdate();
             }
@@ -2141,7 +2204,7 @@ namespace SGMOSOL.ADMIN
                     else if (Name2 == "")
                         cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex])));
                     else
-                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), Convert.ToInt64(dvRow[Name2])));
+                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), dvRow[Name2].ToString()));
                 }
                 cbo.EndUpdate();
             }
@@ -2187,7 +2250,45 @@ namespace SGMOSOL.ADMIN
             }
             return 0;
         }
-       
+
+        public static decimal getRoomCheckInMaxAmount()
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetRoomCheckInMaxAmount", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                DataTable dr = clsConnection.ExecuteReader(command);
+                if (dr.Rows.Count > 0)
+                {
+                    return Convert.ToDecimal(dr.Rows[0]["Max_Amount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                clsConnection.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return 0;
+        }
+        public long InsertUpdateLog(int LogID, int UserID, int LocId, int CounterId,bool IsSuccess,string Type)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_CRUDLoginLog", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@LogID", LogID);
+                command.Parameters.AddWithValue("@UserId", UserID);
+                command.Parameters.AddWithValue("@LocId", LocId);
+                command.Parameters.AddWithValue("@CounterId", CounterId);
+                command.Parameters.AddWithValue("@IsSuccess", IsSuccess);
+                command.Parameters.AddWithValue("@Type", Type);
+                return clsConnection.ExecuteScalar(command);
+            }
+            catch (Exception ex)
+            {
+                clsConnection.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return 0;
+        }
     }
 }
 

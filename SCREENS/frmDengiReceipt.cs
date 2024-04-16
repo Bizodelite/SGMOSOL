@@ -13,6 +13,7 @@ using System.IO;
 using CommonDialog = WIA.CommonDialog;
 using Microsoft.VisualBasic;
 using System.Xml.Linq;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -25,6 +26,11 @@ namespace SGMOSOL.SCREENS
         dengiReceiptModel dengiReceiptModel;
         frmReportViewer frmreport;
         DataTable dt;
+        private string mStrCounterMachineShortName;
+        private int PrintReceiptDeptID;
+        private string PrintReceiptDeptName;
+        private string PrintReceiptLocName;
+        private int PrintReceiptLocId;
         public bool isPrint = false;
         public frmDengiReceipt()
         {
@@ -113,6 +119,7 @@ namespace SGMOSOL.SCREENS
 
         private void frmDengiReceipt_Load(object sender, EventArgs e)
         {
+            FillCounter();
             try
             {
                 int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
@@ -140,6 +147,23 @@ namespace SGMOSOL.SCREENS
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
 
+        }
+        private void FillCounter()
+        {
+            System.Data.DataTable dr;
+            dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Dengi));
+            if (dr.Rows.Count > 0)
+            {
+                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+                PrintReceiptDeptID = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+                PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                PrintReceiptLocId = Convert.ToInt32(dr.Rows[0]["LocId"]);
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
+            //dr.Close();
         }
         private void getDengiNo()
         {

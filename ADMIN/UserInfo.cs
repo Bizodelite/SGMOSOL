@@ -25,6 +25,7 @@ namespace SGMOSOL.ADMIN
         private static string ServerName;
         private static string reportpath;
         private static decimal bedCheckInMaxAmount;
+        private static decimal roomCheckInMaxAmount;
 
         public static int UserId
         {
@@ -113,6 +114,11 @@ namespace SGMOSOL.ADMIN
         {
             get { return bedCheckInMaxAmount; }
             set { bedCheckInMaxAmount = value; }
+        }
+        public static decimal RoomCheckInMaxAmount
+        {
+            get { return roomCheckInMaxAmount; }
+            set { roomCheckInMaxAmount = value; }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CrystalDecisions.ReportAppServer;
 using Microsoft.VisualBasic;
+using SGMOSOL.SCREENS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,25 +19,25 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security;
-using System.Data.SqlClient;
 using SGMOSOL.ADMIN;
-using SGMOSOL.DAL;
-using static SGMOSOL.BAL.LockerBAL;
+using SGMOSOL.DAL.BhaktNiwas;
+using static SGMOSOL.BAL.BhaktNiwasBAL;
 using SGMOSOL.BAL;
 
 
-namespace SGMOSOL.SCREENS
+namespace SGMOSOL.SCREENS.BhaktNiwas
 {
-    public partial class frmLockerCheckOut : Form
+    public partial class frmRoomCheckOut : Form
     {
         private eScreenID mScreenID;
         private bool mBlnEdit = false;
         private eAction mAction;
-        private ArrayList CtrlArr = new ArrayList();
+        private ArrayList CtrlArr = new ArrayList(); 
         private ArrayList btnArr = new ArrayList();
-        private CommonFunctions cf = new CommonFunctions();
-        LockerCheckOutDAL LockerCheckOutDALobj = new LockerCheckOutDAL();
+
+        private RoomCheckInDAL RoomCheckInDALobj = new RoomCheckInDAL();
         private bool DisableSendKeys;
+
         private bool bkDateEntry = false;
         private bool blnformChange;
         private string[] col;
@@ -44,71 +45,66 @@ namespace SGMOSOL.SCREENS
         public long mSearchId;
         private Collection mDelColl = new Collection();
         private DataTable TempTable1;
-        //private DataTable TempTable2;
+        private DataTable TempTable2;
         private System.Data.DataSet ds = new System.Data.DataSet();
         private DataRow MyRow;
         private DateTime dtEnteredOn;
-        private double LockerAdvanceTariff;
-        private double LockerRentPerday;
+        private double RoomTotalRent;
         private string mStrCounterMachineShortName;
-        private int LockerCheckOutDeptID;
-        private string LockerCheckOutDeptName;
-        private string LockerCheckOutLocName;
-        private string NameLockerHolder;
-        private long PrintReceiptLocId;
-        private string PlaceLockerHolder;
+        private int RoomCheckOutDeptID;
+        private int RoomCheckInLockID;
+
+        private string RoomCheckOutDeptName;
+        private string RoomCheckOutLocName;
+        private string NameRoomHolder;
+        private string PlaceRoomHolder;
         private long countedDays;
         private long oldDays;
-
-        public frmLockerCheckOut(eScreenID ScreenID)
+        private bool Eprint;
+        CommonFunctions cf;
+        RoomCheckOutDAL RoomCheckOutDALobj;
+        public frmRoomCheckOut(eScreenID ScreenID)
         {
             InitializeComponent();
-            this.Closing += new CancelEventHandler(this.frmLockerCheckOut_Closing);
             mScreenID = ScreenID;
+            this.Closing += new CancelEventHandler(this.frmRoomCheckOut_Closing);
+            cf = new CommonFunctions();
+            RoomCheckOutDALobj = new RoomCheckOutDAL();
         }
-
         private void btnNew_Click(System.Object sender, System.EventArgs e)
         {
-            DataTable dr = new DataTable();
+            DataTable dr;
             FormClear();
-            // fncSetDateAndRange(dtpCheckOut)
             cf.fncSysTime(dtpCheckOutTime);
             cf.fncSetDateAndRange(dtpCurDate);
             cf.fncSysTime(dtpCurTime);
-            // fncSetDateAndRange(dtpCheckOut)
             cf.fncSysTime(dtpCheckOutTime);
-            // dtpCheckOut.Enabled = bkDateEntry
             mAction = eAction.ActionInsert;
             cf.subLockForm(false, CtrlArr, false);
-            btnPrint.Enabled = btnNew.Enabled;
+            btnSave.Enabled = btnNew.Enabled;
             btnLoad.Enabled = true;
-            chkLockers.Enabled = true;
+            chkRooms.Enabled = true;
             try
             {
-                dr = LockerCheckOutDALobj.GetDrMaxSrNo(Convert.ToInt64(txtCounter.Tag), UserInfo.CompanyID, PrintReceiptLocId, 0, UserInfo.fy_id);
+                dr = RoomCheckOutDALobj.GetDrMaxSrNo(Convert.ToInt64(txtCounter.Tag), UserInfo.CompanyID, RoomCheckInLockID, 0, UserInfo.fy_id);
                 if (dr.Rows.Count > 0)
-                    txtVchNo.Text = (Convert.ToInt32(dr.Rows[0]["SerialNo"]) + 1).ToString();
+                    txtVchNo.Text = (Convert.ToInt32(dr.Rows[0]["SERIAL_NO"]) + 1).ToString();
                 else
                     txtVchNo.Text = "1";
-                //dr.Close();
             }
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                //if (dr != null)
-                //    dr.Close();
             }
 
             txtCheckInVchNo.Focus();
-
             blnformChange = false;
             if (mAction == eAction.ActionInsert)
                 btnPrint.Enabled = false;
             else
-                btnPrint.Enabled = true;
+                btnPrint.Enabled = Convert.ToBoolean(Interaction.IIf(Eprint, true, false));
         }
 
-        private void frmLockerCheckOut_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void frmRoomCheckOut_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter & !DisableSendKeys)
                 SendKeys.Send("{tab}");
@@ -116,19 +112,15 @@ namespace SGMOSOL.SCREENS
                 btnSave_Click(null, null);
         }
 
-        private void frmLockerCheckOut_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void frmRoomCheckOut_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.End & (mAction == eAction.ActionInsert | mAction == eAction.ActionUpdate) & blnformChange)
                 btnSave_Click(null, null);
         }
 
-        private void frmLockerCheckOut_Load(System.Object sender, System.EventArgs e)
+        private void frmRoomCheckOut_Load(System.Object sender, System.EventArgs e)
         {
-            // Me.WindowState = FormWindowState.Maximized
-            // dtpCheckIn.Value = DateTime.Now
-            // dtpCurDate.Value = DateTime.Now
-            // dtpCurTime.Value = DateTime.Now
-            // dtpCheckOut.Value = DateTime.Now
+            dtpCurTime.Value = DateTime.Now;
             cf.setControlsonForm(this, CtrlArr, btnArr);
             cf.SetUserScreenActions(this, UserInfo.UserId, (int)mScreenID, btnArr, null, mBlnEdit);
             CtrlArr.Remove(dtpCurDate);
@@ -145,14 +137,9 @@ namespace SGMOSOL.SCREENS
             CtrlArr.Remove(txtUser);
             CtrlArr.Remove(txtCounter);
 
-            if (mScreenID == eScreenID.LockerCheckOutStar)
+            if (mScreenID == eScreenID.RoomCheckOutStar)
             {
-                // chkYes.Visible = True
-                // lbYes.Visible = True
-                // chkYes.Checked = True
-                // chkYes.Enabled = False
                 this.BackColor = Color.BlanchedAlmond;
-                // dtpCheckIn.Enabled = True
                 txtDays.Enabled = true;
                 txtDays.ReadOnly = false;
                 nudAdvance.ReadOnly = false;
@@ -162,46 +149,63 @@ namespace SGMOSOL.SCREENS
             txtUser.Text = UserInfo.UserName;
             FillCounter();
 
-            //Int32 ctr;
-            //ctr = (MDI.Size.Width - this.Size.Width) / (double)2;
-            //this.Location = new Point(ctr, 0);
             CreateDs();
             if (btnNew.Enabled)
                 btnNew_Click(null, null);
             else
                 cf.subLockForm(true, CtrlArr, false);
+            try
+            {
+                DataTable rstAction = cf.GetUserTotalAction(System.Convert.ToInt32(UserInfo.UserId), (Int64)eScreenID.RoomCheckIn);
+                string strAction = string.Empty;
+                foreach (DataRow drrstAction in rstAction.Rows)
+                {
+                    strAction = Interaction.IIf(strAction == string.Empty, drrstAction["ActionId"], strAction + "," + drrstAction["ActionId"]).ToString();
+                }
+                if (strAction.Contains("8"))
+                {
+                    Eprint = true;
+                    btnPrint.Enabled = true;
+                }
+                else
+                {
+                    Eprint = false;
+                    btnPrint.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void FillCounter()
         {
-            try
+            DataTable dr;
+            dr = cf.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.BhaktaNiwas));
+            if (dr.Rows.Count > 0)
             {
-                DataTable dr;
-                dr = cf.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Locker));
-                if (dr.Rows.Count > 0)
-                {
-                    txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
-                    txtCounter.Tag = dr.Rows[0]["CtrMachId"];
-                    LockerCheckOutDeptID = (int)dr.Rows[0]["DeptId"];
-                    LockerCheckOutDeptName = dr.Rows[0]["DepartmentName"].ToString();
-                    PrintReceiptLocId = Convert.ToInt64(dr.Rows[0]["LocId"]);
-                    LockerCheckOutLocName = dr.Rows[0]["LocName"].ToString();
-                    mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
-                }
-                //dr.Close();
-            }catch(Exception ex) { cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version); }
+                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                RoomCheckOutDeptID = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+                RoomCheckOutDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                RoomCheckOutLocName = dr.Rows[0]["LOC_FNAME"].ToString();
+                RoomCheckInLockID = Convert.ToInt32(dr.Rows[0]["LocId"]);
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
         }
 
         private void FormClear()
         {
             txtVchNo.Text = "";
+            txtName.Text = "";
+            txtPlace.Text = "";
+            txtmobno.Text = "";
             txtVchNo.Tag = null;
             txtDays.Text = "";
-            // txtCheckInVchNo.Text = ""
             nudAdvance.Value = 0;
             nudTotalRent.Value = 0;
             NudRefund.Value = 0;
-            chkLockers.Items.Clear();
+            chkRooms.Items.Clear();
         }
 
         private void btnSave_Click(System.Object sender, System.EventArgs e)
@@ -209,39 +213,109 @@ namespace SGMOSOL.SCREENS
             long lngError = -1;
             if (blnformChange == false)
                 return;
+
+            try
+            {
+                DataTable dr;
+                dr = RoomCheckInDALobj.GetDrRoomCheckInMst(0, "", Convert.ToInt32(txtCheckInVchNo.Text), Convert.ToInt32(txtCounter.Tag), UserInfo.CompanyID, RoomCheckInLockID, RoomCheckOutDeptID, 0, "");
+                if (dr.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dr.Rows[0]["PendRoomCount"]) == 0)
+                    {
+                        MessageBox.Show("No pending Rooms against the Receipt No. " + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        txtCheckInVchNo.Text = "";
+                        txtCheckInVchNo.Focus();
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
             if (fncSave())
             {
                 blnformChange = false;
                 btnNew_Click(null, null);
                 blnformChange = false;
             }
-            setCursor(this, true);
+        }
+        private bool checkChkOutDays()
+        {
+            if (Convert.ToInt64(txtDays.Text) < oldDays)
+            {
+                if (mScreenID == eScreenID.RoomCheckOutBefore)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return true;
         }
 
         private bool fncSave()
         {
             long lngError = -1;
-            LockerCheckOutMst LockerCheckOutMst;
+            RoomCheckOutMst RoomCheckOutMst;
+            DataTable dr;
             Collection coll;
             long lngSerialNo;
             string strErr;
-            bool flag = false;
+            string strcheckinNo;
+            string strchkinRcptno;
+            bool flag = true;
+
             if (IsValidForm() == false)
             {
                 return false;
             }
+
+            strchkinRcptno = txtCheckInVchNo.Text;
+            try
+            {
+                dr = RoomCheckInDALobj.GetDrRoomCheckInMst(0, "", Convert.ToInt32(txtCheckInVchNo.Text), Convert.ToInt32(txtCounter.Tag), UserInfo.CompanyID, RoomCheckInLockID, RoomCheckOutDeptID, 0, "");
+                if (dr.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dr.Rows[0]["PendRoomCount"]) == 0)
+                    {
+                        MessageBox.Show("No pending Rooms against the Receipt No. " + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtCheckInVchNo.Text = "";
+                        txtCheckInVchNo.Focus();
+                        return false;
+                    }
+                    oldDays = Convert.ToInt64(dr.Rows[0]["Days"]);
+                }
+                else
+                {
+                    MessageBox.Show("Receipt No. not found." + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCheckInVchNo.Text = "";
+                    txtCheckInVchNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid Data kindly reload form." + ex.Message, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (checkChkOutDays() == false)
+            {
+                MessageBox.Show("Check Out Days Not Completed for the Reciept No. " + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
             setCursor(this, false);
+            strcheckinNo = txtCheckInVchNo.Text;
             lngSerialNo = Convert.ToInt64(txtVchNo.Text);
-            LockerCheckOutMst = GetCheckOutMst();
+            RoomCheckOutMst = GetCheckOutMst();
             coll = GetCheckOutDetColl();
             if (mAction == eAction.ActionInsert)
             {
-                lngError = LockerCheckOutDALobj.Insert(LockerCheckOutMst, coll, UserInfo.UserName, UserInfo.Machine_Name, lngSerialNo, dtEnteredOn);
+                lngError = RoomCheckOutDALobj.Insert(RoomCheckOutMst, coll, UserInfo.UserName, UserInfo.Machine_Name, lngSerialNo, dtEnteredOn);
                 if (lngError > 0)
                     txtVchNo.Text = lngError.ToString();
             }
             else if (mAction == eAction.ActionUpdate)
-                lngError = LockerCheckOutDALobj.Update(LockerCheckOutMst, coll, mDelColl, UserInfo.UserName, UserInfo.Machine_Name, lngSerialNo);
+                lngError = RoomCheckOutDALobj.Update(RoomCheckOutMst, coll, mDelColl, UserInfo.UserName, UserInfo.Machine_Name, lngSerialNo);
             setCursor(this, true);
             if (lngError < 0)
             {
@@ -260,41 +334,63 @@ namespace SGMOSOL.SCREENS
                 col[0] = "Receipt";
                 col[1] = Conversion.Str(lngSerialNo);
                 MessageBox.Show(cf.GetErrorMessage(col, 7), PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                if (Convert.ToInt32(txtBhaktType.Text) == 4)
+                {
+                    MethodforPrint();
+                    txtCheckInVchNo.Text = "";
+                }
                 setCursor(this, true);
                 flag = true;
-                if (countedDays > oldDays)
-                    lngError = LockerCheckOutDALobj.UpdateDays_Rent(txtCheckInVchNo.Tag, countedDays, nudTotalRent.Value);
-                // If Val(dtpCheckIn.Tag & vbNullString) = 0 Then
                 blnformChange = false;
+                if (NudRefund.Value < nudAdvance.Value | NudRefund.Value > nudAdvance.Value)
+                {
+                    MethodforPrint();
+                    txtCheckInVchNo.Text = "";
+                }
             }
             return flag;
         }
-
-        private LockerCheckOutMst GetCheckOutMst()
+        private void txtDays_TextChanged(System.Object sender, System.EventArgs e)
         {
-            LockerCheckOutMst CheckOutMst = new LockerCheckOutMst();
+            blnformChange = true;
+            if (txtDays.Text != "" & oldDays != 0)
+            {
+                nudTotalRent.Value = Convert.ToDecimal((RoomTotalRent / oldDays) * Convert.ToDouble(txtDays.Text));
+                NudRefund.Value = nudAdvance.Value;
+            }
+        }
+        private RoomCheckOutMst GetCheckOutMst()
+        {
+            RoomCheckOutMst CheckOutMst = new RoomCheckOutMst();
+            DataTable dr;
             CheckOutMst.CheckOutMstId = Convert.ToInt64(txtVchNo.Tag);
             CheckOutMst.ComId = UserInfo.CompanyID;
-            CheckOutMst.LocId = PrintReceiptLocId;
-            CheckOutMst.DeptId = LockerCheckOutDeptID;
+            CheckOutMst.LocId = RoomCheckInLockID;
+            CheckOutMst.DeptId = RoomCheckOutDeptID;
             CheckOutMst.CtrMachId = Convert.ToInt64(txtCounter.Tag);
             CheckOutMst.FyId = UserInfo.fy_id;
-            //CheckOutMst.OutDate = FormatDateToString(dtpCurDate.Value);
             CheckOutMst.OutDate = dtpCurDate.Value;
-            //CheckOutMst.OutTime = Convert.ToDateTime(dtpCurTime.Text).Hour.ToString("00") + ":" + Convert.ToDateTime(dtpCurTime.Text).Minute.ToString("00") + ":00";
             CheckOutMst.OutTime = dtpCurTime.Value;
             CheckOutMst.SerialNo = Convert.ToInt64(txtVchNo.Tag);
             CheckOutMst.CheckInMstId = Convert.ToInt64(txtCheckInVchNo.Tag);
             CheckOutMst.Days = Convert.ToInt32(txtDays.Text);
-            CheckOutMst.NoOfLockers = chkLockers.CheckedItems.Count;
-            CheckOutMst.Advance = Convert.ToDouble(nudAdvance.Value);
-            CheckOutMst.Rent = Convert.ToDouble(nudTotalRent.Value);
-            CheckOutMst.Refund = Convert.ToDouble(NudRefund.Value);
+            CheckOutMst.NoOfRooms = chkRooms.CheckedItems.Count;
+            CheckOutMst.Advance = nudAdvance.Value;
+            CheckOutMst.Rent = nudTotalRent.Value;
+            CheckOutMst.BhaktTypeId = Convert.ToInt32(txtBhaktType.Text);
+            if (CheckOutMst.BhaktTypeId == 4 | CheckOutMst.BhaktTypeId == 5)
+            {
+                CheckOutMst.DonerId = Convert.ToInt32(txtDonerId.Text);
+                CheckOutMst.DnrRoomId = RoomCheckOutDALobj.GetrDonnerRoomId(CheckOutMst.CheckInMstId);
+            }
+
+            CheckOutMst.Refund = NudRefund.Value;
             CheckOutMst.UserId = UserInfo.UserId;
             CheckOutMst.ServerName = UserInfo.serverName;
             CheckOutMst.EnteredBy = UserInfo.UserName;
             CheckOutMst.ModifiedBy = UserInfo.UserName;
-            CheckOutMst.RecordModifiedCount = (Convert.ToInt32(dtpCheckOut.Tag) + 1);
+            CheckOutMst.RecordModifiedCount = Convert.ToInt64(dtpCheckOut.Tag) + 1;
             return CheckOutMst;
         }
 
@@ -302,15 +398,15 @@ namespace SGMOSOL.SCREENS
         private Collection GetCheckOutDetColl()
         {
             Collection coll = new Collection();
-            LockerCheckOutDet CheckOutDet = new LockerCheckOutDet();
-            CheckOutDet.CheckOutMstId = txtVchNo.Tag != null ? (Int64)txtVchNo.Tag : 0;
-            for (var i = 0; i <= chkLockers.Items.Count - 1; i++)
+            RoomCheckOutDet CheckOutDet = new RoomCheckOutDet();
+            CheckOutDet.CheckOutMstId = Convert.ToInt64(txtVchNo.Tag);
+            for (var i = 0; i <= chkRooms.Items.Count - 1; i++)
             {
-                if (chkLockers.GetItemChecked(i))
+                if (chkRooms.GetItemChecked(i))
                 {
-                    CheckOutDet.LockerId = cf.lsbItemData(chkLockers, i);
+                    CheckOutDet.LockerId = cf.lsbItemData(chkRooms, i);
                     CheckOutDet.LockerAvailableStatus = (int)eTokenDetail.StatusYes;
-                    CheckOutDet.LockerRecordModifiedCount = cf.lsbItemData(chkLockers, i) + 1;
+                    CheckOutDet.LockerRecordModifiedCount = Convert.ToInt64(cf.lsbItemName2(chkRooms, i)) + 1;
                     coll.Add(CheckOutDet);
                 }
             }
@@ -327,7 +423,7 @@ namespace SGMOSOL.SCREENS
             }
 
 
-            if (chkLockers.CheckedItems.Count == 0)
+            if (chkRooms.CheckedItems.Count == 0)
             {
                 mStrErrMsg = new string[1];
                 mStrErrMsg[0] = "Lockers";
@@ -340,7 +436,7 @@ namespace SGMOSOL.SCREENS
 
         private string ProcErr(long pErrNum)
         {
-            string ProcErr;
+            string ProcErr = "";
             mStrErrMsg = new string[1];
             mStrErrMsg[0] = "";
             switch (pErrNum)
@@ -383,7 +479,7 @@ namespace SGMOSOL.SCREENS
 
                 case -2627:
                     {
-                        ProcErr = "Locker aready used.";
+                        ProcErr = "Room already used.";
                         break;
                     }
 
@@ -395,7 +491,6 @@ namespace SGMOSOL.SCREENS
             }
             return ProcErr;
         }
-
 
         private void btnSearch_Click(System.Object sender, System.EventArgs e)
         {
@@ -415,7 +510,7 @@ namespace SGMOSOL.SCREENS
             }
 
             setCursor(this, false);
-            frmSearchNew form1 = new frmSearchNew("LOCK_LOCKER_CHECK_OUT_MST_FIND_V",true, eModType.Locker);
+            frmSearchNew form1 = new frmSearchNew("BN_ROOM_CHECK_OUT_MST_T_FIND_V", true, eModType.BhaktaNiwas);
             long lngSearchId;
             form1.mIntCtrMachId = Convert.ToInt32(txtCounter.Tag);
             form1.ShowDialog();
@@ -434,12 +529,12 @@ namespace SGMOSOL.SCREENS
                 {
                     mAction = eAction.ActionUpdate;
                     cf.subLockForm(false, CtrlArr, false);
-                    btnPrint.Enabled = true;
+                    btnPrint.Enabled = Convert.ToBoolean(Interaction.IIf(Eprint, true, false));
                 }
                 else
                 {
                     mAction = eAction.ActionLocked;
-                    chkLockers.Enabled = false;
+                    chkRooms.Enabled = false;
                     cf.subLockForm(true, CtrlArr, false);
                 }
             }
@@ -450,38 +545,39 @@ namespace SGMOSOL.SCREENS
                 return;
             }
             blnformChange = false;
-            btnPrint.Enabled = mBlnEdit;
-            if (btnPrint.Enabled)
-                btnPrint.Enabled = !blnFormLock;
-            btnPrint.Enabled = true;
+            btnSave.Enabled = mBlnEdit;
+            if (btnSave.Enabled)
+                btnSave.Enabled = !blnFormLock;
+            btnSave.Enabled = false;
+            btnPrint.Enabled = Convert.ToBoolean(Interaction.IIf(Eprint, true, false));
             setCursor(this, true);
         }
 
         private bool LoadTransaction(long lngSearchId, ref bool blnFormLock)
         {
-            DataTable dr = new DataTable();
-            LockerCheckOutDet CheckOutDet = new LockerCheckOutDet();
+            DataTable dr;
+            RoomCheckOutDet CheckOutDet = new RoomCheckOutDet();
             int ctr = 0;
             bool blnFlag = false;
             mDelColl = new Collection();
             FormClear();
             try
             {
-                dr = LockerCheckOutDALobj.GetDrLockerCheckOutMst(lngSearchId);
+                dr = RoomCheckOutDALobj.GetDrRoomCheckOutMst(lngSearchId);
                 if (dr.Rows.Count > 0)
                 {
-                    // txtAppNo.Text = dr("AppNo")
                     dtpCheckIn.Value = Convert.ToDateTime(dr.Rows[0]["InDate"]);
                     dtpCheckInTime.Value = Convert.ToDateTime(dr.Rows[0]["InTime"]);
                     txtCheckInVchNo.Text = dr.Rows[0]["InSerialNo"].ToString();
                     txtCheckInVchNo.Tag = dr.Rows[0]["CheckInMstId"];
                     txtDays.Tag = dr.Rows[0]["InDays"];
                     dtpCheckIn.Tag = dr.Rows[0]["InRecordModifiedCount"];
-
-                    NameLockerHolder = dr.Rows[0]["Name"].ToString();
-                    PlaceLockerHolder = dr.Rows[0]["Place"].ToString();
-
-                    txtVchNo.Text = dr.Rows[0]["SerialNo"].ToString();
+                    txtmobno.Text = dr.Rows[0]["MOBILE"].ToString();
+                    NameRoomHolder = dr.Rows[0]["Name"].ToString();
+                    PlaceRoomHolder = dr.Rows[0]["Place"].ToString();
+                    txtName.Text = NameRoomHolder;
+                    txtPlace.Text = PlaceRoomHolder;
+                    txtVchNo.Text = (dr.Rows[0]["SerialNo"]).ToString();
                     txtVchNo.Tag = lngSearchId;
                     dtpCheckOut.Tag = dr.Rows[0]["RecordModifiedCount"];
                     txtDays.Text = dr.Rows[0]["Days"].ToString();
@@ -496,45 +592,36 @@ namespace SGMOSOL.SCREENS
                     NudRefund.Value = Convert.ToDecimal(dr.Rows[0]["Refund"]);
                     dtEnteredOn = Convert.ToDateTime(dr.Rows[0]["EnteredOn"]);
                 }
-                //dr.Close();
 
 
-                dr = LockerCheckOutDALobj.GetDrLockerCheckOutDet(lngSearchId, true, Convert.ToInt64(txtCounter.Tag));
+                dr = RoomCheckOutDALobj.GetDrRoomCheckOutDet(lngSearchId, true, Convert.ToInt64(txtCounter.Tag));
                 mDelColl = new Collection();
-                //while (dr.Read())
-                    foreach (DataRow row in dr.Rows)    
+                CheckOutDet = new RoomCheckOutDet();
+                CheckOutDet.CheckOutMstId = Convert.ToInt64(txtVchNo.Tag);
+                foreach (DataRow drrow in dr.Rows)
                 {
-                    if ((Convert.ToInt32(row["LockerStatus"]) != (int)eTokenDetail.StatusActive || Convert.ToInt32(row["AvailableStatus"]) != (int)eTokenDetail.StatusYes) && Convert.ToInt32(row["LockerCheckOutDetId"]) > 0)
+                    if ((Convert.ToInt32(drrow["RoomStatus"]) != (int)eTokenDetail.StatusActive || Convert.ToInt32(drrow["AvailableStatus"]) != (int)eTokenDetail.StatusYes) && Convert.ToInt32(drrow["RoomCheckOutDetId"]) > 0)
                         blnFormLock = true;
 
-                    if (row["LockerName"].ToString() != "")
-                        chkLockers.Items.Add(new clsItemData(row["LockerName"].ToString(), Convert.ToInt32(row["LockerId"]), row["RecordModifiedCount"].ToString()));
-                    if (Convert.ToInt32(row["LockerCheckOutDetId"]) > 0 && row["LockerName"].ToString() != "")
+                    if (drrow["RoomName"].ToString() != "")
+                        chkRooms.Items.Add(new clsItemData(drrow["RoomName"].ToString(), Convert.ToInt32(drrow["RoomId"]), drrow["RecordModifiedCount"].ToString()));
+                    if (Convert.ToInt32(drrow["RoomCheckOutDetId"]) > 0 && drrow["RoomName"].ToString() != "")
                     {
                         ctr = ctr + 1;
-                        chkLockers.SetItemChecked(ctr - 1, true);
-                        CheckOutDet = new LockerCheckOutDet();
-                        CheckOutDet.CheckOutMstId = (long)txtVchNo.Tag;
-                        CheckOutDet.LockerId = Convert.ToInt32(row["LockerId"]);
+                        chkRooms.SetItemChecked(ctr - 1, true);
+                        CheckOutDet.LockerId = Convert.ToInt32(drrow["RoomId"]);
                         CheckOutDet.LockerAvailableStatus = (int)eTokenDetail.StatusNo;
-                        CheckOutDet.LockerRecordModifiedCount = Convert.ToInt64(row["RecordModifiedCount"]) + 1;
-                        CheckOutDet.CheckOutDetId = Convert.ToInt64(row["LockerCheckOutDetId"]);
-                        CheckOutDet.CheckOutMstId = Convert.ToInt64(row["LockerCheckOutMstId"]);
+                        CheckOutDet.LockerRecordModifiedCount = Convert.ToInt32(drrow["RecordModifiedCount"]) + 1;
+                        CheckOutDet.CheckOutDetId = Convert.ToInt64(drrow["RoomCheckOutDetId"]);
+                        CheckOutDet.CheckOutMstId = Convert.ToInt64(drrow["RoomCheckOutMstId"]);
                         mDelColl.Add(CheckOutDet);
                     }
                 }
-                //dr.Close();
-
-                LockerAdvanceTariff = Math.Round(Convert.ToDouble(nudAdvance.Tag) / Convert.ToDouble(chkLockers.Items.Count) / Convert.ToDouble(txtDays.Tag), 2);
-                LockerRentPerday = Math.Round(Convert.ToDouble(nudTotalRent.Tag) / Convert.ToDouble(chkLockers.Items.Count) / Convert.ToDouble(txtDays.Tag), 2);
 
                 blnFlag = true;
             }
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                //if (dr != null)
-                //    dr.Close();
                 MessageBox.Show("Load Transaction failed.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnNew_Click(null, null);
                 blnFlag = false;
@@ -547,7 +634,7 @@ namespace SGMOSOL.SCREENS
             this.Close();
         }
 
-        private void frmLockerCheckOut_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void frmRoomCheckOut_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DialogResult msg;
             try
@@ -561,7 +648,7 @@ namespace SGMOSOL.SCREENS
                     {
                         try
                         {
-                            if (btnPrint.Enabled == false)
+                            if (btnSave.Enabled == false)
                                 return;
                             if (!fncSave())
                             {
@@ -584,11 +671,9 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
-            // objThread.Abort()
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                MessageBox.Show(ex.Message, PrjMsgBoxTitle);
+                Interaction.MsgBox(ex.Message, MsgBoxStyle.Information, PrjMsgBoxTitle);
             }
         }
 
@@ -597,40 +682,35 @@ namespace SGMOSOL.SCREENS
             double dblAmt = 0;
         }
 
-        private void btnPrint_Click(System.Object sender, System.EventArgs e)
+        private void MethodforPrint()
         {
-            if (Convert.ToInt32(dtpCheckIn.Tag) == 0 | blnformChange)
-                return;
             string strReportName;
-            
+            Form sForm;
             Collection pColl = new Collection();
             setCursor(this, false);
             System.Drawing.Printing.PrintDocument printDoc = new System.Drawing.Printing.PrintDocument();
-            string printD1;
-            // myPrinters.SetDefaultPrinter(System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name1"))
-            // printD1 = printDoc.PrinterSettings.PrinterName
-            // If printDoc.PrinterSettings.PrinterName = printD1 Then
-            strReportName = "LockerCheckOutReceipt.rpt";
-            FillDataInDataset();
 
-            frmReportViewer frm = new frmReportViewer("PRINT", null, null, TempTable1);
-            frm.createReport("LockerCheckOut");
-            //Form sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eReportID.LockerCheckOut, true);
-            //sForm.Text = "Locker Check Out : " + eReportID.LockerCheckOut;
-            //sForm.Show();
-            setCursor(this, true);
-            //sForm.Close();
+            strReportName = "RoomCheckOutReceipt.rpt";
+            FillDataInDataset();
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckOut, true);
+            sForm.Text = "Room Check Out : " + eReportID.RoomCheckOut;
+            sForm.Show();
+            sForm.Close();
         }
 
-        public sealed class myPrinters
+        private void btnPrint_Click(System.Object sender, System.EventArgs e)
         {
-            private myPrinters()
-            {
-            }
-            //[DllImport("winspool.drv", CharSet = CharSet.Auto, SetLastError = true)]
-            //public static bool SetDefaultPrinter(string Name)
-            //{
-            //}
+            string strReportName;
+            Form sForm;
+            Collection pColl = new Collection();
+            setCursor(this, false);
+            System.Drawing.Printing.PrintDocument printDoc = new System.Drawing.Printing.PrintDocument();
+
+            strReportName = "RoomCheckOutReceiptDup.rpt";
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckOut, true);
+            sForm.Text = "Room Check Out : " + eReportID.RoomCheckOut;
+            sForm.Show();
+            sForm.Close();
         }
 
         private void FillDataInDataset()
@@ -638,26 +718,26 @@ namespace SGMOSOL.SCREENS
             Int16 i;
 
             TempTable1.Rows.Clear();
-            //TempTable2.Rows.Clear();
+            TempTable2.Rows.Clear();
 
             MyRow = TempTable1.NewRow();
             MyRow["CHECK_OUT_MST_ID"] = 1;
-            MyRow["LOC_SH_NAME"] = LockerCheckOutLocName;
-            MyRow["DEPT_SH_NAME"] = LockerCheckOutDeptName;
+            MyRow["LOC_SH_NAME"] = RoomCheckOutLocName;
+            MyRow["DEPT_SH_NAME"] = RoomCheckOutDeptName;
             MyRow["COUNTER"] = mStrCounterMachineShortName;
                  
             MyRow["IN_DATE"] = dtpCheckIn.Value;
             MyRow["IN_TIME"] = dtpCheckInTime.Value;
-            MyRow["SERIAL_NO"] = txtVchNo.Text;
+            MyRow["SERIAL_NO"] = (txtVchNo.Text);
             MyRow["APP_NO"] = "0";
                  
-            MyRow["NAME"] = NameLockerHolder;
-            MyRow["PLACE"] = PlaceLockerHolder;
+            MyRow["NAME"] = NameRoomHolder;
+            MyRow["PLACE"] = PlaceRoomHolder;
             MyRow["DAYS"] = txtDays.Text;
                  
-            MyRow["NO_OF_LOCKERS"] = chkLockers.CheckedItems.Count;
+            MyRow["NO_OF_ROOMS"] = chkRooms.CheckedItems.Count;
             MyRow["OUT_DATE"] = dtpCurDate.Value;
-            MyRow["OUT_TIME"] = dtpCurTime.Text;
+            MyRow["OUT_TIME"] = dtpCurTime.Value;
                  
             MyRow["ADVANCE"] = nudAdvance.Value;
             MyRow["RENT"] = nudTotalRent.Value;
@@ -668,28 +748,29 @@ namespace SGMOSOL.SCREENS
             MyRow["MACHINE_NAME"] = UserInfo.Machine_Name;
             MyRow["AMT_IN_WORDS"] = cf.getNumbersInWords(nudAdvance.Value, eCurrencyType.Rupees);
 
+
+            TempTable1.Rows.Add(MyRow);
             string Roomname = "";
-            for (i = 0; i <= chkLockers.Items.Count - 1; i++)
+            for (i = 0; i <= chkRooms.Items.Count - 1; i++)
             {
-                if (chkLockers.GetItemChecked(i))
+                if (chkRooms.GetItemChecked(i))
                 {
                     if (Roomname == "")
-                        Roomname = cf.lsbItemName(chkLockers, i);
+                        Roomname = cf.lsbItemName(chkRooms, i);
                     else
-                        Roomname = Roomname + ", " + cf.lsbItemName(chkLockers, i);
+                        Roomname = Roomname + ", " + cf.lsbItemName(chkRooms, i);
                 }
             }
-            //MyRow = TempTable2.NewRow;
-            //MyRow["CHECK_OUT_MST_ID"] = 1;
-            MyRow["LOCKER_NAME"] = Roomname;
-            TempTable1.Rows.Add(MyRow);
-            //TempTable2.Rows.Add(MyRow);
+            MyRow = TempTable2.NewRow();
+            MyRow["CHECK_OUT_MST_ID"] = 1;
+            MyRow["ROOM_NAME"] = Roomname;
+            TempTable2.Rows.Add(MyRow);
         }
 
         private void CreateDs()
         {
-            TempTable1 = new DataTable("LOCK_LOCKER_CHECK_OUT_MST_T");
-            //TempTable2 = new DataTable("LOCK_LOCKER_CHECK_OUT_DET_T");
+            TempTable1 = new DataTable("BN_ROOM_CHECK_OUT_MST_T");
+            TempTable2 = new DataTable("BN_ROOM_CHECK_OUT_DET_T");
 
             TempTable1.Columns.Add("CHECK_OUT_MST_ID", System.Type.GetType("System.Int64"));
             TempTable1.Columns.Add("LOC_SH_NAME", System.Type.GetType("System.String"));
@@ -705,7 +786,7 @@ namespace SGMOSOL.SCREENS
             TempTable1.Columns.Add("PLACE", System.Type.GetType("System.String"));
             TempTable1.Columns.Add("DAYS", System.Type.GetType("System.Int32"));
 
-            TempTable1.Columns.Add("NO_OF_LOCKERS", System.Type.GetType("System.Int32"));
+            TempTable1.Columns.Add("NO_OF_ROOMS", System.Type.GetType("System.Int32"));
             TempTable1.Columns.Add("OUT_DATE", System.Type.GetType("System.DateTime"));
             TempTable1.Columns.Add("OUT_TIME", System.Type.GetType("System.DateTime"));
 
@@ -718,22 +799,16 @@ namespace SGMOSOL.SCREENS
             TempTable1.Columns.Add("MACHINE_NAME", System.Type.GetType("System.String"));
             TempTable1.Columns.Add("AMT_IN_WORDS", System.Type.GetType("System.String"));
 
-            //TempTable2.Columns.Add("CHECK_OUT_MST_ID", System.Type.GetType("System.Int64"));
-            //TempTable2.Columns.Add("LOCKER_NAME", System.Type.GetType("System.String"));
-            TempTable1.Columns.Add("LOCKER_NAME", System.Type.GetType("System.String"));
+            TempTable2.Columns.Add("CHECK_OUT_MST_ID", System.Type.GetType("System.Int64"));
+            TempTable2.Columns.Add("ROOM_NAME", System.Type.GetType("System.String"));
 
             ds.Tables.Add(TempTable1);
-            //ds.Tables.Add(TempTable2);
+            ds.Tables.Add(TempTable2);
         }
 
         private void txtDays_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            //if (!((e.KeyChar >= "0" & e.KeyChar <= "9") | Asc(e.KeyChar) == 8 | Asc(e.KeyChar) == 46))
-            //    e.Handled = true;
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
         private void txtVchNo_TextChanged(System.Object sender, System.EventArgs e)
@@ -741,17 +816,7 @@ namespace SGMOSOL.SCREENS
             blnformChange = true;
         }
 
-        // Private Sub txtAppNo_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        // blnformChange = True
-        // End Sub
-
-        // Private Sub txtAppNo_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        // If Not ((e.KeyChar >= "0" And e.KeyChar <= "9") Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 46) Then
-        // e.Handled = True
-        // End If
-        // End Sub
-
-        private void chkLockers_SelectedIndexChanged(System.Object sender, System.EventArgs e)
+        private void chkRooms_SelectedIndexChanged(System.Object sender, System.EventArgs e)
         {
         }
 
@@ -763,24 +828,15 @@ namespace SGMOSOL.SCREENS
             return false;
         }
 
-        // Private Sub Label12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label12.Click
-
-        // End Sub
-
         private void btnLoad_Click(System.Object sender, System.EventArgs e)
         {
-            DataTable dr = new DataTable();
-            // Dim strApp As String
+            DataTable dr;
             long lngError = -1;
             string strRcptNo;
-            long strchkinRcptno;
+            string strchkinRcptno;
             long DiffHour;
-
-            long totalrent;
-            // Dim diff As Long
-            // Dim diff1 As System.TimeSpan
-            // Dim date1 As Date
-            // Dim date2 As Date
+            long DiffDays;
+            long RemHor;
 
             if (txtCheckInVchNo.Text == "")
             {
@@ -789,29 +845,23 @@ namespace SGMOSOL.SCREENS
                 ShowValidateError(txtCheckInVchNo, 0, mStrErrMsg, 1);
                 return;
             }
-            // strApp = txtAppNo.Text
             btnNew_Click(null, null);
-
-            strchkinRcptno = Convert.ToInt64(txtCheckInVchNo.Text);
+            strchkinRcptno = txtCheckInVchNo.Text;
             strRcptNo = txtVchNo.Text;
             FormClear();
-            // '''''fncSetDateAndRange(dtpCheckOut)
             cf.fncSysTime(dtpCheckOutTime);
-            // txtAppNo.Text = strApp
             txtVchNo.Text = strRcptNo;
 
 
             try
             {
-                // dr = objDsLockerCheckInMst.GetDrLockerCheckInMst(, , , txtCounter.Tag, UserInfo.CompanyID, UserInfo.LocationID, LockerCheckOutDeptID, , , Val(txtAppNo.Text & vbNullString))
-                dr = LockerCheckOutDALobj.GetDrLockerCheckInMst(0, "", strchkinRcptno, Convert.ToInt64(txtCounter.Tag), UserInfo.CompanyID, PrintReceiptLocId, LockerCheckOutDeptID, 0, "");
+                dr = RoomCheckInDALobj.GetDrRoomCheckInMst(0, "", Convert.ToInt32(strchkinRcptno), Convert.ToInt32(txtCounter.Tag), UserInfo.CompanyID, RoomCheckInLockID, RoomCheckOutDeptID, 0, "");
 
                 if (dr.Rows.Count > 0)
                 {
-                    if (Convert.ToInt64(dr.Rows[0]["PendLockerCount"]) == 0)
+                    if (Convert.ToInt32(dr.Rows[0]["PendRoomCount"]) == 0)
                     {
-                        MessageBox.Show("No pending lockers against the Receipt No. " + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //dr.Close();
+                        MessageBox.Show("No pending Rooms against the Receipt No. " + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtCheckInVchNo.Text = "";
                         txtCheckInVchNo.Focus();
                         return;
@@ -820,133 +870,71 @@ namespace SGMOSOL.SCREENS
                     txtCheckInVchNo.Tag = dr.Rows[0]["CheckInMstId"];
                     dtpCheckIn.Value = Convert.ToDateTime(dr.Rows[0]["InDate"]);
                     dtpCheckInTime.Value = Convert.ToDateTime(dr.Rows[0]["InTime"]);
-                    // dtpCheckOut.MaxDate = Convert.ToDateTime("12/31/9998 00:00:00")
                     dtpCheckOut.MaxDate = Convert.ToDateTime(dr.Rows[0]["MaxDate"]);
                     dtpCheckOut.Value = Convert.ToDateTime(dr.Rows[0]["OutDate"]);
                     dtpCheckOutTime.Value = Convert.ToDateTime(dr.Rows[0]["OutTime"]);
-                    txtCheckInVchNo.Text = dr.Rows[0]["SerialNo"].ToString();
-                    dtpCheckIn.Tag = Convert.ToInt64(dr.Rows[0]["RecordModifiedCount"]);
+                    txtCheckInVchNo.Text = (dr.Rows[0]["SerialNo"]).ToString();
+                    txtmobno.Text = dr.Rows[0]["MOB_NO"].ToString();
+                    dtpCheckIn.Tag = dr.Rows[0]["RecordModifiedCount"];
 
-                    NameLockerHolder = dr.Rows[0]["Name"].ToString();
-                    PlaceLockerHolder = dr.Rows[0]["Place"].ToString();
+                    NameRoomHolder = dr.Rows[0]["Name"].ToString();
+                    PlaceRoomHolder = dr.Rows[0]["Place"].ToString();
+                    txtName.Text = NameRoomHolder;
+                    txtPlace.Text = PlaceRoomHolder;
 
+                    RoomTotalRent = Convert.ToDouble(dr.Rows[0]["Rent"]);
 
-                    // txtDays.Tag = dr("Days")
-
-
-                    txtDays.Text = DateDiff(DateInterval.Day, dtpCheckIn.Value, dtpCurDate.Value);
-                    countedDays = Convert.ToInt64(txtDays.Text);
-
-                    // If txtDays.Text = 0 Then
-                    // txtDays.Text = "1"
-                    // End If
+                    txtBhaktType.Text = dr.Rows[0]["BHAKT_TYPE"].ToString();
+                    if (Convert.ToInt32(txtBhaktType.Text) == 4 || Convert.ToInt32(txtBhaktType.Text) == 5)
+                        txtDonerId.Text = dr.Rows[0]["Donner_Id"].ToString();
                     DiffHour = Convert.ToInt64(dr.Rows[0]["CALC_HOUR"]);
                     if (DiffHour <= (24 * 60))
                         txtDays.Text = 1.ToString();
                     else
                     {
                         txtDays.Text = Math.Ceiling(DiffHour / (double)(24 * 60)).ToString();
-                        if (((DiffHour % (24 * 60)) > 0 & (DiffHour % (24 * 60)) <= (2 * 60)))
-                            txtDays.Text = (Convert.ToInt64(txtDays.Text) - 1).ToString();
+                        if (((DiffHour % (24 * 60)) > 0 & (DiffHour % (24 * 60)) <= (4 * 60)))
+                            txtDays.Text = (Convert.ToInt32(txtDays.Text) - 1).ToString();
                     }
+
+                    countedDays = Convert.ToInt64(txtDays.Text);
 
                     oldDays = Convert.ToInt64(dr.Rows[0]["Days"]);
-                    totalrent = Convert.ToInt64(dr.Rows[0]["Rent"]);
-
-                    if (mScreenID == eScreenID.LockerCheckOutStar)
-                    {
-                        LockerAdvanceTariff = Math.Round(Convert.ToDouble(dr.Rows[0]["Advance"]) / Convert.ToDouble(dr.Rows[0]["NoOfLockers"]) / Convert.ToDouble(dr.Rows[0]["Days"]), 2);
-                        LockerRentPerday = Math.Round(Convert.ToDouble(dr.Rows[0]["Rent"]) / Convert.ToDouble(dr.Rows[0]["NoOfLockers"]) / Convert.ToDouble(dr.Rows[0]["Days"]), 2);
-                        nudTotalRent.Value = Convert.ToDecimal(LockerRentPerday) * Convert.ToDecimal(txtDays.Text) * Convert.ToDecimal(dr.Rows[0]["NoOfLockers"]);
-                    }
-                    else if (mScreenID == eScreenID.LockerCheckOut)
-                    {
-                        if (txtDays.Text != dr.Rows[0]["Days"].ToString())
-                        {
-                            LockerAdvanceTariff = Math.Round(Convert.ToDouble(dr.Rows[0]["Advance"]) / Convert.ToDouble(dr.Rows[0]["NoOfLockers"]) / Convert.ToDouble(txtDays.Text), 2);
-                            LockerRentPerday = Math.Round(Convert.ToDouble(dr.Rows[0]["Rent"]) / Convert.ToDouble(dr.Rows[0]["NoOfLockers"]) / Convert.ToDouble(txtDays.Text), 2);
-                            nudTotalRent.Value = Convert.ToDecimal(dr.Rows[0]["Rent"]);
-                        }
-                        else
-                        {
-                            LockerAdvanceTariff = Math.Round(Convert.ToDouble(dr.Rows[0]["Advance"]) / Convert.ToDouble(dr.Rows[0]["NoOfLockers"]) / Convert.ToDouble(dr.Rows[0]["Days"]), 2);
-                            LockerRentPerday = Math.Round(Convert.ToDouble(dr.Rows[0]["Rent"]) / Convert.ToDouble(dr.Rows[0]["NoOfLockers"]) / Convert.ToDouble(dr.Rows[0]["Days"]), 2);
-                            nudTotalRent.Value = Convert.ToDecimal(dr.Rows[0]["Rent"]);
-                        }
-                    }
+                    nudTotalRent.Value = Convert.ToDecimal((RoomTotalRent / oldDays) * Convert.ToDouble(txtDays.Text));
                     nudAdvance.Value = Convert.ToDecimal(dr.Rows[0]["Advance"]);
-                    NudRefund.Value = Convert.ToDecimal(dr.Rows[0]["Advance"]) + (totalrent - (nudTotalRent.Value));
 
-                    //dr.Close();
-                    dr = LockerCheckOutDALobj.GetDrLockerCheckInDet(Convert.ToInt64(txtCheckInVchNo.Tag));
+                    NudRefund.Value = Convert.ToDecimal(Convert.ToDecimal(dr.Rows[0]["Advance"]) + (Convert.ToDecimal(RoomTotalRent) - (nudTotalRent.Value)));
 
-                    // strSQL.Append("CHECK_OUT_DET_ID AS LockerCheckOutDetId, ")
-                    // strSQL.Append("CHECK_OUT_MST_ID AS LockerCheckOutMstId, ")
-                    // strSQL.Append("L.LOCKER_ID AS LockerId, ")
-                    // strSQL.Append("L.LOCKER_NAME AS LockerName, ")
-                    // strSQL.Append("L.STATUS AS Status, ")
-                    // strSQL.Append("L.AVAILABLE_STATUS AS AvailableStatus,, ")
-                    // strSQL.Append("ISNULL(L.Record_Modified_Count,0) AS RecordModifiedCount ")
 
-                    // While dr.Read
-                    // chkLockers.Items.Add(New OSOL_ADMIN.clsItemData(dr.Item("LockerName"), dr.Item("LockerId"), dr.Item("RecordModifiedCount")))
-                    // End While
+                    dr = RoomCheckInDALobj.GetDrRoomCheckInDet(Convert.ToInt64(txtCheckInVchNo.Tag));
 
-                    cf.FillListBox(chkLockers, dr, "LockerName", "LockerId", "RecordModifiedCount");
-                    for (var i = 0; i <= chkLockers.Items.Count - 1; i++)
-                        chkLockers.SetItemChecked(i, true);
+
+                    cf.FillListBox(chkRooms, dr, "RoomName", "RoomId", "RecordModifiedCount");
+                    for (var i = 0; i <= chkRooms.Items.Count - 1; i++)
+                        chkRooms.SetItemChecked(i, true);
                 }
                 else
                 {
                     MessageBox.Show("Receipt No. not found." + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //dr.Close();
                     txtCheckInVchNo.Text = "";
                     txtCheckInVchNo.Focus();
                 }
             }
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                //if (dr != null)
-                //    dr.Close();
-                MessageBox.Show("Load Check In Details failed.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Load Check In Details failed ." + ex.Message, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        // Private Function GetCheckInDetColl() As Collection
-        // Dim coll As New Collection
-        // Dim CheckInDet As New OSOL_CONNECTION.LockerCheckInDet
-        // CheckInDet.CheckInMstId = Val(txtVchNo.Tag & vbNullString)
-        // For i = 0 To chkLockers.Items.Count - 1
-        // If chkLockers.GetItemChecked(i) Then
-        // CheckInDet.LockerId = lsbItemData(chkLockers, i)
-        // CheckInDet.LockerAvailableStatus = TokenDetail.StatusNo
-        // CheckInDet.LockerRecordModifiedCount = Val(lsbItemName2(chkLockers, i) & vbNullString) + 1
-        // coll.Add(CheckInDet)
-        // End If
-        // Next
-        // GetCheckInDetColl = coll
-        // End Function
-
-
-
-
-
 
         private void txtCheckInVchNo_TextChanged(System.Object sender, System.EventArgs e)
         {
             blnformChange = true;
         }
 
-        private void txtCheckInVchNo_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void dtpCurDate_ValueChanged(System.Object sender, System.EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            //if (!((e.KeyChar >= "0" & e.KeyChar <= "9"] | Asc(e.KeyChar) == 8 | Asc(e.KeyChar) == 46))
-            //    e.Handled = true;
+            if (txtCheckInVchNo.Text != "")
+                btnLoad_Click(null, null);
         }
-
     }
 }

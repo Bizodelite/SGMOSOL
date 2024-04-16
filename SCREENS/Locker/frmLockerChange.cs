@@ -685,7 +685,7 @@ namespace SGMOSOL.SCREENS.Locker
                 foreach (DataRow drrow in dr.Rows)    
                 {
                     ctr = ctr + 1;
-                    chkLockers.Items.Add(new clsItemData(drrow["LockerName"].ToString(), Convert.ToInt32(drrow["LockerId"]), Convert.ToInt64(drrow["RecordModifiedCount"])));
+                    chkLockers.Items.Add(new clsItemData(drrow["LockerName"].ToString(), Convert.ToInt32(drrow["LockerId"]), drrow["RecordModifiedCount"].ToString()));
 
                     if (Convert.ToInt32(drrow["LockerCheckInDetId"] + Constants.vbNullString) > 0)
                     {

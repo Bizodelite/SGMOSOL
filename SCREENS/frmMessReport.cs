@@ -180,9 +180,9 @@ namespace SGMOSOL.DAL.Locker
             if (cboCounter.Items.Count > 0)
             {
                 cboCounter.SelectedIndex = 0;
-                ReportDeptId = cf.cmbItemName2(cboCounter, cboCounter.SelectedIndex);
+                ReportDeptId = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
 
-                LocID = cf.cmbItemName3(cboCounter, cboCounter.SelectedIndex);
+                LocID = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
             }
 
             cboCounter.Enabled = false;

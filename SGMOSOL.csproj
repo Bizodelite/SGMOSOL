@@ -164,6 +164,9 @@
     <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
+    <Reference Include="IDAutomation.LinearBarCode, Version=2012.1.0.0, Culture=neutral, PublicKeyToken=a258b5fb83e8527d">
+      <HintPath>packages\IDAutomation.1.0.0\lib\IDAutomation.LinearBarCode.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExhibitPowerLatest\packages\log4net\log4net.dll</HintPath>
@@ -331,6 +334,7 @@
     <Compile Include="ADMIN\Helper.cs" />
     <Compile Include="ADMIN\SystemModel.cs" />
     <Compile Include="ADMIN\UserInfo.cs" />
+    <Compile Include="BAL\BhaktNiwasBAL.cs" />
     <Compile Include="BAL\BhojnalayPrintReceiptBAL.cs" />
     <Compile Include="BAL\clsItemData.cs" />
     <Compile Include="BAL\DengiReceiptBAL.cs" />
@@ -345,6 +349,14 @@
     </Compile>
     <Compile Include="DAL\Bed System\BedCheckOutDAL.cs" />
     <Compile Include="DAL\Bed System\BedCheckINDAL.cs" />
+    <Compile Include="DAL\BhaktNiwas\RoomCheckOutDAL.cs" />
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckOut.Designer.cs">
+      <DependentUpon>frmRoomCheckOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\BhaktNiwas\RoomCheckInDAL.cs" />
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="Custom User Contols\SessionManager.cs" />
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
@@ -380,6 +392,12 @@
     </Compile>
     <Compile Include="SCREENS\Bed System\FrmBedO.Designer.cs">
       <DependentUpon>FrmBedO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckIn.Designer.cs">
+      <DependentUpon>frmRoomCheckIn.cs</DependentUpon>
     </Compile>
     <Compile Include="SCREENS\frmMessReport.cs">
       <SubType>Form</SubType>
@@ -589,8 +607,14 @@
       <DependentUpon>MDI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="SCREENS\MultiColumnComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomCheckOut.resx">
+      <DependentUpon>frmRoomCheckOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DengiCalculation.rdlc" />
     <EmbeddedResource Include="Reports\crpBedAdvVchr.rdlc" />
@@ -606,6 +630,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\Bed System\FrmBedO.resx">
       <DependentUpon>FrmBedO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomCheckIn.resx">
+      <DependentUpon>frmRoomCheckIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmMessReport.resx">
       <DependentUpon>frmMessReport.cs</DependentUpon>

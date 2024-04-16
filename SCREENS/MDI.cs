@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SGMOSOL.ADMIN.CommonFunctions;
+using SGMOSOL.SCREENS.BhaktNiwas;
 
 namespace SGMOSOL
 {
@@ -47,6 +48,8 @@ namespace SGMOSOL
         frmCalculation frmCalculation;
         CommonFunctions cm;
         SessionManager sessionManager;
+        frmRoomCheckIn frmRoomCheckIn;
+        frmRoomCheckOut frmRoomCheckOut;
 
         public MDI()
         {
@@ -66,6 +69,9 @@ namespace SGMOSOL
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
                 // If login is successful, start the MDI parent form
+                InitAppParam();
+                LoadBedCheckInMaxAmount();
+                LoadRoomCheckInMaxAmount();
                 sessionManager = new SessionManager();
                 sessionManager.StartTimer();
             }
@@ -76,8 +82,8 @@ namespace SGMOSOL
             }
         }
 
-            //InitAppParam();
-            //LoadBedCheckInMaxAmount();
+            //
+            //
             //sessionManager = new SessionManager();
             //sessionManager.StartTimer();
         
@@ -99,6 +105,17 @@ namespace SGMOSOL
             catch (Exception ex)
             {
                 UserInfo.BedCheckInMaxAmount = 0;
+            }
+        }
+        private void LoadRoomCheckInMaxAmount()
+        {
+            try
+            {
+                UserInfo.RoomCheckInMaxAmount = CommonFunctions.getRoomCheckInMaxAmount(); ;
+            }
+            catch (Exception ex)
+            {
+                UserInfo.RoomCheckInMaxAmount = 0;
             }
         }
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -431,6 +448,24 @@ namespace SGMOSOL
             frmBedAdvanceVoucher.MdiParent = this;
             frmBedAdvanceVoucher.WindowState = FormWindowState.Maximized;
             frmBedAdvanceVoucher.Show();
+        }
+
+        private void roomCheckInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomCheckIn = new frmRoomCheckIn();
+            frmRoomCheckIn.StartPosition = FormStartPosition.CenterParent;
+            frmRoomCheckIn.MdiParent = this;
+            frmRoomCheckIn.WindowState = FormWindowState.Maximized;
+            frmRoomCheckIn.Show();
+        }
+
+        private void roomOutTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomCheckOut = new frmRoomCheckOut(eScreenID.RoomCheckOut);
+            frmRoomCheckOut.StartPosition = FormStartPosition.CenterParent;
+            frmRoomCheckOut.MdiParent = this;
+            frmRoomCheckOut.WindowState = FormWindowState.Maximized;
+            frmRoomCheckOut.Show();
         }
     }
 }

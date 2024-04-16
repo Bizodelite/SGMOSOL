@@ -104,6 +104,7 @@
             this.bhojanalayaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.printReceiptToolStripMenuItem,
             this.requirementToAdminToolStripMenuItem});
+            this.bhojanalayaToolStripMenuItem.Enabled = false;
             this.bhojanalayaToolStripMenuItem.Name = "bhojanalayaToolStripMenuItem";
             this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
             this.bhojanalayaToolStripMenuItem.Text = "Bhojanalaya";
@@ -127,6 +128,7 @@
             this.dengiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.totalDengiReportToolStripMenuItem1,
             this.totalDengiReportToolStripMenuItem});
+            this.dengiToolStripMenuItem.Enabled = false;
             this.dengiToolStripMenuItem.Name = "dengiToolStripMenuItem";
             this.dengiToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.dengiToolStripMenuItem.Text = "Dengi";
@@ -161,6 +163,7 @@
             this.moreThan3DayToolStripMenuItem,
             this.addDamagedLockerToolStripMenuItem,
             this.lockerAdvanceVoucherToolStripMenuItem});
+            this.lockerToolStripMenuItem.Enabled = false;
             this.lockerToolStripMenuItem.Name = "lockerToolStripMenuItem";
             this.lockerToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.lockerToolStripMenuItem.Text = "Locker";
@@ -257,6 +260,7 @@
             this.bedCheckOutToolStripMenuItem,
             this.bedOccupiedToolStripMenuItem,
             this.bedAdvanceVoucherToolStripMenuItem});
+            this.bedSystemToolStripMenuItem.Enabled = false;
             this.bedSystemToolStripMenuItem.Name = "bedSystemToolStripMenuItem";
             this.bedSystemToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             this.bedSystemToolStripMenuItem.Text = "Bed System";
@@ -309,21 +313,21 @@
             // changePasswordToolStripMenuItem1
             // 
             this.changePasswordToolStripMenuItem1.Name = "changePasswordToolStripMenuItem1";
-            this.changePasswordToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.changePasswordToolStripMenuItem1.Size = new System.Drawing.Size(207, 26);
             this.changePasswordToolStripMenuItem1.Text = "Change Password";
             this.changePasswordToolStripMenuItem1.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // encryptionToolStripMenuItem2
             // 
             this.encryptionToolStripMenuItem2.Name = "encryptionToolStripMenuItem2";
-            this.encryptionToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.encryptionToolStripMenuItem2.Size = new System.Drawing.Size(207, 26);
             this.encryptionToolStripMenuItem2.Text = "Encryption";
             this.encryptionToolStripMenuItem2.Click += new System.EventHandler(this.encryptionToolStripMenuItem_Click);
             // 
             // fundCalculationToolStripMenuItem
             // 
             this.fundCalculationToolStripMenuItem.Name = "fundCalculationToolStripMenuItem";
-            this.fundCalculationToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fundCalculationToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.fundCalculationToolStripMenuItem.Text = "Fund Calculation";
             this.fundCalculationToolStripMenuItem.Click += new System.EventHandler(this.fundCalculationToolStripMenuItem_Click);
             // 
@@ -354,10 +358,8 @@
             // 
             // calculationFormToolStripMenuItem
             // 
-            //this.calculationFormToolStripMenuItem.Name = "calculationFormToolStripMenuItem";
-            //this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            //this.calculationFormToolStripMenuItem.Text = "Calculation Form";
-            //this.calculationFormToolStripMenuItem.Click += new System.EventHandler(this.calculationFormToolStripMenuItem_Click);
+            this.calculationFormToolStripMenuItem.Name = "calculationFormToolStripMenuItem";
+            this.calculationFormToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             // 
             // encryptionToolStripMenuItem1
             // 

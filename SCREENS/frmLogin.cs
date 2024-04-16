@@ -104,8 +104,8 @@ namespace SGMOSOL.SCREENS
                                         lblmessage.Text = "Please Login Again With New Password.";
                                         return;
                                     }
-                                    //UserInfo.serverName = cm.GetSqlServerInstances();
-                                    UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
+                                    UserInfo.serverName = cm.getServerName();
+                                   // UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
                                     foreach (DataRow row in dtuser.Rows)
                                     {
                                         UserInfo.Counter_Name = row["COUNTER_MACHINE_SHORT_NAME"].ToString();

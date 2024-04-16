@@ -19,6 +19,8 @@ using System.Web.UI.WebControls;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using System.Xml.Linq;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -55,6 +57,7 @@ namespace SGMOSOL.SCREENS
             bhojnalayprintReceiptBAL = new BhojnalayPrintReceiptBAL();
             if (isPrint == false)
             {
+                FillCounter();
                 fillItemCode();
                 fillItemName();
                 createItemTable();
@@ -63,7 +66,24 @@ namespace SGMOSOL.SCREENS
             }
             txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
-           
+
+        }
+        private void FillCounter()
+        {
+            System.Data.DataTable dr;
+            dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Dengi));
+            if (dr.Rows.Count > 0)
+            {
+                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+                UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+              //  PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+               // PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
+               // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
+            //dr.Close();
         }
         private void fillItemCode()
         {
@@ -119,7 +139,7 @@ namespace SGMOSOL.SCREENS
                 txtPrice.Text = price.ToString();
             }
         }
-        
+
 
         //private void cboItemName_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -278,7 +298,7 @@ namespace SGMOSOL.SCREENS
             deleteButtonColumn.HeaderText = "Delete";
             deleteButtonColumn.Text = "Delete";
             deleteButtonColumn.UseColumnTextForButtonValue = true;
-           // dgvItemDetails.Columns.Add(editButtonColumn);
+            // dgvItemDetails.Columns.Add(editButtonColumn);
             dgvItemDetails.Columns.Add(deleteButtonColumn);
         }
 
@@ -374,13 +394,13 @@ namespace SGMOSOL.SCREENS
             bhojnalayModel.Address = txtAddress.Text;
             bhojnalayModel.Taluka = txtTaluka.Text;
             bhojnalayModel.PR_Date = Convert.ToDateTime(dtpPrnRcptDt.Text);
-            bhojnalayModel.DocType = cboDocName.Text;
+            bhojnalayModel.DocType = cboDocName.SelectedValue.ToString();
             bhojnalayModel.DocTypeDetail = txtDocumentName.Text;
             bhojnalayModel.Mobile = txtMobile.Text;
             bhojnalayModel.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
 
             Status = bhojnalayprintReceiptBAL.InsertBhojnalayReceipt(bhojnalayModel);
-            if (Status != 0)
+            if (Status > 0)
             {
                 List<string> itemNameList = new List<string>(bhojnalayModel.ItemName.Split(','));
                 List<int> itemIDs = new List<int>();
@@ -554,6 +574,15 @@ namespace SGMOSOL.SCREENS
             txtDocumentName.Text = "";
             cboDocName.Text = "";
             createItemTable();
+            lblMobile.Text = "";
+            lblAddress.Text = "";
+            lblName.Text = "";
+           // lblQuantity.Text = "0";
+            lblDocDetail.Text = "";
+            lblamouwords.Text = "";
+            lblTaluka.Text = "";
+            txtName.Focus();
+            lblAdd.Text = "";
         }
         public void lockControls()
         {
@@ -590,7 +619,7 @@ namespace SGMOSOL.SCREENS
 
         private void cboDocName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDocName.Text != "Select")
+            if (cboDocName.Text != "Select" && txtDocumentName.Text=="")
             {
                 lblDocDetail.Text = "Please enter Document Detail";
             }
@@ -598,8 +627,13 @@ namespace SGMOSOL.SCREENS
             {
                 lblDocDetail.Text = "";
             }
-            user.SetDocType(cboDocName.Text);
-            user.Show();
+            user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (user != null)
+            {
+                user.SetDocType(cboDocName.Text);
+                // user.Show();
+            }
+
         }
 
         private void txtTotalAmount_TextChanged(object sender, EventArgs e)
@@ -636,7 +670,7 @@ namespace SGMOSOL.SCREENS
                 txtTotalAmount.Text = obj.TotalAmount.ToString();
                 txtTaluka.Text = obj.Taluka;
                 txtDocumentName.Text = obj.DocTypeDetail;
-                cboDocName.Text = obj.DocType;
+                cboDocName.SelectedValue = obj.DocType;
                 txtReceiptno.Text = obj.SerialNo.ToString();
                 txtReceiptno.Tag = obj.PRINT_MST_ID.ToString();
                 // code for creating Item table
@@ -649,7 +683,6 @@ namespace SGMOSOL.SCREENS
                 }
                 lockControls();
                 btnSave.Enabled = false;
-                btnAcknowledge.Enabled = true;
                 btnPrint.Enabled = true;
                 dgvItemDetails.Enabled = false;
             }
@@ -665,20 +698,28 @@ namespace SGMOSOL.SCREENS
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            if (txtName.Text != "")
+            user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (user != null)
             {
-                user.SetText(txtName.Text);
-                user.Show();
+                if (txtName.Text != "")
+                {
+                    user.SetText(txtName.Text);
+                    user.Show();
+                }
             }
         }
 
         private void txtTaluka_TextChanged(object sender, EventArgs e)
         {
-            if (txtTaluka.Text != "")
+            user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (user != null)
             {
-                user.SetTaluka(txtTaluka.Text);
-                user.Show();
-            }
+                if (txtTaluka.Text != "")
+                {
+                    user.SetTaluka(txtTaluka.Text);
+                    user.Show();
+                }
+            }   
         }
 
         private void txtDocumentName_TextChanged(object sender, EventArgs e)
@@ -687,20 +728,32 @@ namespace SGMOSOL.SCREENS
             {
                 txtDocumentName.MaxLength = 12;
             }
-            if (txtDocumentName.Text != "")
+            if (this.Text != "")
             {
-                user.SetDocDetail(txtDocumentName.Text);
-                user.Show();
+                lblDocDetail.Text = "";
             }
+            user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (user != null)
+            {
+                if (txtDocumentName.Text != "")
+                {
+                    user.SetDocDetail(txtDocumentName.Text);
+                    user.Show();
+                }
+            }     
         }
 
         private void txtAddress_TextChanged(object sender, EventArgs e)
         {
-            if (txtAddress.Text != "")
+            user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (user != null)
             {
-                user.SetAddress(txtAddress.Text);
-                user.Show();
-            }
+                if (txtAddress.Text != "")
+                {
+                    user.SetAddress(txtAddress.Text);
+                    user.Show();
+                }
+            }    
 
         }
 
@@ -715,7 +768,7 @@ namespace SGMOSOL.SCREENS
         private void frmBhojnalayaPrintReceipt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.S)
-            { 
+            {
                 btnSave.PerformClick();
             }
             if (e.Control && e.KeyCode == Keys.P)

@@ -260,7 +260,7 @@ namespace SGMOSOL.DAL
 
                             command.Parameters.AddWithValue("@ModifiedBy", UserInfo.UserName);
                             command.Parameters.AddWithValue("@ModifiedOn", obj.dr_Date);
-                            command.Parameters.AddWithValue("@MachineName", UserInfo.Counter_Name);
+                            command.Parameters.AddWithValue("@MachineName", UserInfo.Machine_Name);
                             command.Parameters.AddWithValue("@UserId", UserInfo.UserId);
                             command.Parameters.AddWithValue("@SERVERNAME", UserInfo.serverName);
                             command.Parameters.AddWithValue("@CurrencyType", "Indian Rupees");

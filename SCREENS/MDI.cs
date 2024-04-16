@@ -48,6 +48,7 @@ namespace SGMOSOL
         frmCalculation frmCalculation;
         CommonFunctions cm;
         SessionManager sessionManager;
+        frmDengiBhetvastu frmDengiBhetVastu;
 
         public MDI()
         {
@@ -454,6 +455,24 @@ namespace SGMOSOL
                 frmCalculation.MdiParent = this;
                 frmCalculation.WindowState = FormWindowState.Maximized;
                 frmCalculation.Show();
+            }
+            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (frmuserDengi != null)
+            {
+                frmuserDengi.Close();
+            }
+        }
+
+        private void dengiBhetVastuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDengiBhetVastu = Application.OpenForms.OfType<frmDengiBhetvastu>().FirstOrDefault();
+            if (frmDengiBhetVastu == null)
+            {
+                frmDengiBhetVastu = new frmDengiBhetvastu();
+                frmDengiBhetVastu.StartPosition = FormStartPosition.CenterParent;
+                frmDengiBhetVastu.MdiParent = this;
+                frmDengiBhetVastu.WindowState = FormWindowState.Maximized;
+                frmDengiBhetVastu.Show();
             }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)

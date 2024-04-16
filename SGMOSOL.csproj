@@ -381,6 +381,12 @@
     <Compile Include="SCREENS\Bed System\FrmBedO.Designer.cs">
       <DependentUpon>FrmBedO.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCREENS\frmDengiBhetvastu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmDengiBhetvastu.Designer.cs">
+      <DependentUpon>frmDengiBhetvastu.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\frmMessReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -606,6 +612,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\Bed System\FrmBedO.resx">
       <DependentUpon>FrmBedO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmDengiBhetvastu.resx">
+      <DependentUpon>frmDengiBhetvastu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmMessReport.resx">
       <DependentUpon>frmMessReport.cs</DependentUpon>

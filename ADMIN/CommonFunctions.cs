@@ -673,6 +673,22 @@ namespace SGMOSOL.ADMIN
             }
             return dt;
         }
+        public DataTable getUnit()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetUnit", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return dt;
+        }
 
         public bool IsValidPan(string panNumber)
         {

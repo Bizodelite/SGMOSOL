@@ -74,6 +74,7 @@
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.pctControls = new System.Windows.Forms.PictureBox();
+            this.dengiBhetVastuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -127,6 +128,7 @@
             // 
             this.dengiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.totalDengiReportToolStripMenuItem1,
+            this.dengiBhetVastuToolStripMenuItem,
             this.totalDengiReportToolStripMenuItem});
             this.dengiToolStripMenuItem.Enabled = false;
             this.dengiToolStripMenuItem.Name = "dengiToolStripMenuItem";
@@ -137,14 +139,14 @@
             // totalDengiReportToolStripMenuItem1
             // 
             this.totalDengiReportToolStripMenuItem1.Name = "totalDengiReportToolStripMenuItem1";
-            this.totalDengiReportToolStripMenuItem1.Size = new System.Drawing.Size(218, 26);
+            this.totalDengiReportToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.totalDengiReportToolStripMenuItem1.Text = "Dengi Receipt";
             this.totalDengiReportToolStripMenuItem1.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem1_Click);
             // 
             // totalDengiReportToolStripMenuItem
             // 
             this.totalDengiReportToolStripMenuItem.Name = "totalDengiReportToolStripMenuItem";
-            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.totalDengiReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.totalDengiReportToolStripMenuItem.Text = "Total Dengi Report";
             this.totalDengiReportToolStripMenuItem.Click += new System.EventHandler(this.totalDengiReportToolStripMenuItem_Click_1);
             // 
@@ -399,6 +401,13 @@
             this.pctControls.TabIndex = 33;
             this.pctControls.TabStop = false;
             // 
+            // dengiBhetVastuToolStripMenuItem
+            // 
+            this.dengiBhetVastuToolStripMenuItem.Name = "dengiBhetVastuToolStripMenuItem";
+            this.dengiBhetVastuToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dengiBhetVastuToolStripMenuItem.Text = "Dengi BhetVastu";
+            this.dengiBhetVastuToolStripMenuItem.Click += new System.EventHandler(this.dengiBhetVastuToolStripMenuItem_Click);
+            // 
             // MDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -471,6 +480,7 @@
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem fundCalculationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dengiBhetVastuToolStripMenuItem;
     }
 }
 

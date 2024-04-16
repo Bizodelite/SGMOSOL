@@ -58,7 +58,8 @@ namespace SGMOSOL
 
         private void MDI_Load(object sender, EventArgs e)
         {
-            // Show the login form
+            InitAppParam();
+            LoadBedCheckInMaxAmount();  
             frmLogin loginForm = new frmLogin();
             loginForm.WindowState = FormWindowState.Maximized;
 
@@ -77,9 +78,6 @@ namespace SGMOSOL
             }
             LockUnlock();
         }
-
-        //InitAppParam();
-        //LoadBedCheckInMaxAmount();
         //sessionManager = new SessionManager();
         //sessionManager.StartTimer();
 

@@ -1261,7 +1261,7 @@ namespace SGMOSOL.SCREENS
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
-            this.btnClose.Location = new System.Drawing.Point(815, 10);
+            this.btnClose.Location = new System.Drawing.Point(751, 10);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(133, 57);
@@ -1288,7 +1288,7 @@ namespace SGMOSOL.SCREENS
             this.btnPrint.Enabled = false;
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
-            this.btnPrint.Location = new System.Drawing.Point(691, 10);
+            this.btnPrint.Location = new System.Drawing.Point(627, 10);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(116, 57);
@@ -1302,7 +1302,7 @@ namespace SGMOSOL.SCREENS
             this.btnNew.CausesValidation = false;
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Image = global::SGMOSOL.ResourceMain._new;
-            this.btnNew.Location = new System.Drawing.Point(252, 10);
+            this.btnNew.Location = new System.Drawing.Point(225, 10);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(129, 57);
@@ -1315,7 +1315,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
-            this.btnSave.Location = new System.Drawing.Point(544, 4);
+            this.btnSave.Location = new System.Drawing.Point(487, 10);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 57);
@@ -1328,7 +1328,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcknowledge.Image = global::SGMOSOL.ResourceMain.Edit;
-            this.btnAcknowledge.Location = new System.Drawing.Point(405, 5);
+            this.btnAcknowledge.Location = new System.Drawing.Point(360, 10);
             this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(5);
             this.btnAcknowledge.Name = "btnAcknowledge";
             this.btnAcknowledge.Size = new System.Drawing.Size(124, 57);

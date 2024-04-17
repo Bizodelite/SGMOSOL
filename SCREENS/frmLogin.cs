@@ -40,6 +40,7 @@ namespace SGMOSOL.SCREENS
             UserInfo.module = "Login";
             UserInfo.Machine_Name = System.Environment.MachineName;
             txtUser.Focus();
+            cm.getVersion();
         }
 
        

@@ -28,6 +28,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 using System.Data.Sql;
 using System.Windows;
+using System.Reflection;
 //using System.Web.UI.WebControls;
 
 
@@ -251,6 +252,22 @@ namespace SGMOSOL.ADMIN
             MedicalReceiptEntryBhakt = 10002,
             // Code Added 14/
             DengiAcknowledge = 10006
+        }
+        public void getVersion()
+        {
+            // Get the current assembly
+            Assembly assembly = Assembly.GetExecutingAssembly();
+
+            // Get the assembly version
+            Version version = assembly.GetName().Version;
+
+            // Display the version information
+            Console.WriteLine("Assembly Version: " + version);
+            Console.WriteLine("Major: " + version.Major);
+            Console.WriteLine("Minor: " + version.Minor);
+            Console.WriteLine("Build: " + version.Build);
+            Console.WriteLine("Revision: " + version.Revision);
+            UserInfo.version = version.ToString();
         }
         public enum eBhaktaType
         {

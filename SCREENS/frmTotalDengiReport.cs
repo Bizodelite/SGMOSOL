@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using System.Drawing.Printing;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -18,6 +19,11 @@ namespace SGMOSOL.SCREENS
     {
         DengiReceiptDAL obj = new DengiReceiptDAL();
         CommonFunctions cm = new CommonFunctions();
+        private string mStrCounterMachineShortName;
+        private int PrintReceiptDeptID;
+        private string PrintReceiptDeptName;
+        private string PrintReceiptLocName;
+        private int PrintReceiptLocId;
         public frmTotalDengiReport()
         {
             InitializeComponent();
@@ -26,7 +32,8 @@ namespace SGMOSOL.SCREENS
         private void frmTotalDengiReport_Load(object sender, EventArgs e)
         {
             CenterToParent();
-            txtCounter.Text = UserInfo.Counter_Name;
+            FillCounter();
+           
             txtUserName.Text = UserInfo.UserName;
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
@@ -37,6 +44,24 @@ namespace SGMOSOL.SCREENS
             dtToDate.CustomFormat = "dd/MM/yyyy";
             getTotalAmountByPaymentId();
             this.reportViewer1.RefreshReport();
+        }
+        private void FillCounter()
+        {
+            System.Data.DataTable dr;
+            dr = cm.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Dengi));
+            if (dr.Rows.Count > 0)
+            {
+                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                UserInfo.Counter_Name = txtCounter.Text;
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+                UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+                PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
+            //dr.Close();
         }
 
         private void pnlMaster_Paint(object sender, PaintEventArgs e)

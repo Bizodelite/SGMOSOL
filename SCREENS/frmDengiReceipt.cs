@@ -134,7 +134,6 @@ namespace SGMOSOL.SCREENS
                 flowLayoutPanel1.Location = new System.Drawing.Point(centerX, centerY);
                 userDengi.Show();
                 txtAmount.Focus();
-                txtCounter.Text = UserInfo.Counter_Name;
                 txtUser.Text = UserInfo.UserName;
                 if (isPrint == false)
                 {
@@ -164,6 +163,7 @@ namespace SGMOSOL.SCREENS
             {
                 txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.Counter_Name = txtCounter.Text;
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
                 UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
                 PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();

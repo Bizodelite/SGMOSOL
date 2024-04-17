@@ -459,8 +459,6 @@ namespace SGMOSOL.ADMIN
             // Check if the DateTime is within the valid range for SQL Server's datetime type
             return (dateTime >= SqlDateTime.MinValue.Value) && (dateTime <= SqlDateTime.MaxValue.Value);
         }
-
-
         public string IsPasswordValid(string password)
         {
             StringBuilder sb = new StringBuilder();

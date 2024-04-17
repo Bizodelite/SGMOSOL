@@ -141,15 +141,15 @@ namespace SGMOSOL
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
-            if (frmChnagePassword == null)
-            {
+            //frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
+            //if (frmChnagePassword == null)
+            //{
                 frmChnagePassword = new frmChnagePassword(false);
                 frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
                 frmChnagePassword.MdiParent = this;
                 frmChnagePassword.WindowState = FormWindowState.Maximized;
                 frmChnagePassword.Show();
-            }
+           // }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)
             {

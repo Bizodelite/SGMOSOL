@@ -469,6 +469,7 @@
             // dgvItemDetails
             // 
             this.dgvItemDetails.AllowUserToAddRows = false;
+            this.dgvItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItemDetails.Location = new System.Drawing.Point(28, 332);
             this.dgvItemDetails.Name = "dgvItemDetails";

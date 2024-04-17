@@ -12,9 +12,9 @@ namespace SGMOSOL.BAL
     public class LoginBAL
     {
         loginDAL login = new loginDAL();
-        public string GetPwdDetails(string uid, bool? olduser = null)
+        public string GetPwdDetails(string uid, bool? deskpwd = null)
         {
-            return login.GetPwdDetails(uid, olduser);
+            return login.GetPwdDetails(uid, deskpwd);
         }
         public string GetUserStatus(string uid)
         {

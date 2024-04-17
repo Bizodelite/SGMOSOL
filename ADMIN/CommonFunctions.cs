@@ -28,6 +28,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 using System.Data.Sql;
 using System.Windows;
+//using System.Web.UI.WebControls;
 
 
 
@@ -110,6 +111,13 @@ namespace SGMOSOL.ADMIN
                 strDeCodePassword += (char)(password[ctr] - 50);
             }
             return strDeCodePassword;
+        }
+        public string getDesktopPassword(string userName)
+        {
+            LoginBAL login = new LoginBAL();
+            string strDesktopPassword;
+            strDesktopPassword = login.getDesktopPassword(userName);
+            return strDesktopPassword;
         }
         public enum eScreenID
         {

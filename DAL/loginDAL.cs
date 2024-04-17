@@ -17,11 +17,11 @@ namespace SGMOSOL.DAL
         string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
         CommonFunctions commonFunctions = new CommonFunctions();
 
-        public string GetPwdDetails(string uid, bool? olduser = null)
+        public string GetPwdDetails(string uid, bool? deskpwd = null)
         {
             string pwd = "";
             string query = "";
-            if (olduser == true)
+            if (deskpwd == false)
             {
                 query = "select User_Login_Password from SEC_user_mst_t where User_Login_Name='" + uid + "'";
             }

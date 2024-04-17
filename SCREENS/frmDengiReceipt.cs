@@ -584,7 +584,7 @@ namespace SGMOSOL.SCREENS
                 {
                     lblAmtWords.Text = "Amount in Words : ";
                 }
-                if (int.TryParse(txtAmount.Text, out value) && value >= 500)
+                if (int.TryParse(txtAmount.Text, out value) && value >= 500 && cboDoctype.Text=="Select")
                 {
                     lbldoctype_err.Text = "Please select document type";
                 }

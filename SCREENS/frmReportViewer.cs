@@ -46,8 +46,8 @@ namespace SGMOSOL.SCREENS
             this.flag = flag;
             this.printType = PrintType;
             this.DataTableDT = DT;
-           // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
-           // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
+            // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
+            // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
         }
 
         private void frmReportViewer_Load(object sender, EventArgs e)
@@ -103,9 +103,9 @@ namespace SGMOSOL.SCREENS
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               cm.InsertErrorLog(ex.Message,UserInfo.module, UserInfo.version);
+                cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
 
         }
@@ -134,7 +134,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "DengiReceipt";
-                    printReport(DocumentName,PrinterNames.DengiPrint);
+                    printReport(DocumentName, PrinterNames.DengiPrint);
 
                 }
                 if (flag == "DECLARATION")
@@ -149,7 +149,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "DengiDeclaration";
-                    printReport(DocumentName,PrinterNames.DengiDeclaration);
+                    printReport(DocumentName, PrinterNames.DengiDeclaration);
                 }
             }
             if (form == "Bhojnalaya")
@@ -237,36 +237,34 @@ namespace SGMOSOL.SCREENS
                 printReport(DocumentName, PrinterNames.BhojnalayDec);
             }
         }
-        public void printDeclarationwithoutSave(DataTable dt, string formType=null)
+        public void printDeclarationwithoutSave(DataTable dt, string formType = null)
         {
-            string reportPath = null;
-            string reportFileName = null;
-            string reportsFolder = "Reports";
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            ReportDataSource reportDataSource = null;
-            string DocumentName = null;
-            if (formType == "Dengi")
+            try
             {
+                string reportPath = null;
+                string reportFileName = null;
+                string reportsFolder = "Reports";
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                ReportDataSource reportDataSource = null;
+                string DocumentName = null;
                 reportFileName = "DengiDeclaration.rdlc";
                 DocumentName = "DengiDeclaration";
+
+                reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                reportViewer2.LocalReport.ReportPath = reportPath;
+                reportDataSource = new ReportDataSource("DataSet1", dt);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                DataTable dt1 = (DataTable)reportDataSource.Value;
+                // addCustomField(dt1);
+                reportViewer2.RefreshReport();
+                printReport(DocumentName, PrinterNames.DengiDeclaration);
             }
-            if (formType == "Bhojnalaya")
+            catch (Exception ex)
             {
-                reportFileName = "mess_item_receipt.rdlc";
-                DocumentName = "BhojnalayDeclaration";
+                cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
 
-            reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
-            reportViewer2.LocalReport.ReportPath = reportPath;
-            reportDataSource = new ReportDataSource("DataSet1", dt);
-            reportViewer2.LocalReport.DataSources.Add(reportDataSource);
-            DataTable dt1 = (DataTable)reportDataSource.Value;
-            // addCustomField(dt1);
-            reportViewer2.RefreshReport();
-            
-           printReport(DocumentName, PrinterNames.DengiDeclaration);
 
-            
         }
         public void LockerCheckInReport()
         {
@@ -276,7 +274,7 @@ namespace SGMOSOL.SCREENS
             string reportFileName = null;
             string reportsFolder = "Reports";
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            appDirectory = appDirectory.Replace("bin\\Debug\\","");
+            appDirectory = appDirectory.Replace("bin\\Debug\\", "");
             ReportDataSource reportDataSource = null;
             string DocumentName = null;
             reportViewer2.LocalReport.DataSources.Clear();

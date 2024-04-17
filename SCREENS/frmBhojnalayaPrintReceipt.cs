@@ -21,6 +21,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 using System.Xml.Linq;
 using static SGMOSOL.ADMIN.CommonFunctions;
+using CrystalDecisions.ReportAppServer.DataDefModel;
 
 namespace SGMOSOL.SCREENS
 {
@@ -32,6 +33,13 @@ namespace SGMOSOL.SCREENS
         private DataTable tempItemTable;
         public bool isPrint = false;
         CommonFunctions commonFunctions;
+        DataTable dt;
+        private string mStrCounterMachineShortName;
+        private int PrintReceiptDeptID;
+        private string PrintReceiptDeptName;
+        private string PrintReceiptLocName;
+        private int PrintReceiptLocId;
+        private List<DataRow> filteredItems;
         public frmBhojnalayaPrintReceipt()
         {
             InitializeComponent();
@@ -50,6 +58,7 @@ namespace SGMOSOL.SCREENS
 
         private void frmBhojnalayaPrintReceipt_Load(object sender, EventArgs e)
         {
+            dt = new DataTable();
             user = new frmUserDengi();
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
@@ -81,25 +90,29 @@ namespace SGMOSOL.SCREENS
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
                 UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
-               // PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
-              //  PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
                 UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
-               // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName+"/ "+Application.ProductVersion; 
             }
             //dr.Close();
         }
         private void fillItemCode()
         {
-            DataTable dt = new DataTable();
+            cboItemCode.TextChanged -= cboItemCode_TextChanged;
             dt = bhojnalayprintReceiptBAL.getItemCodeAssignToCounter();
             DataRow newRow = dt.NewRow();
-            newRow["ITEM_CODE"] = "Select";
+            newRow["ITEM_CODE"] = "";
             newRow["ITEM_ID"] = 0;
             dt.Rows.InsertAt(newRow, 0);
             cboItemCode.DataSource = dt;
             cboItemCode.DisplayMember = "ITEM_CODE";
             cboItemCode.ValueMember = "ITEM_ID";
             cboItemCode.SelectedValue = 0;
+            filteredItems = dt.AsEnumerable().ToList();
+            cboItemCode.TextChanged += cboItemCode_TextChanged;
+
         }
         private void fillItemName()
         {
@@ -778,6 +791,25 @@ namespace SGMOSOL.SCREENS
             {
                 btnPrint.PerformClick();
             }
+        }
+
+        private void cboItemCode_TextChanged(object sender, EventArgs e)
+        {
+            // Get the typed text
+            string typedText = cboItemCode.Text;
+
+            // Filter the items based on the typed text
+            var filtered = filteredItems.Where(row =>
+                row.Field<string>("ITEM_CODE").StartsWith(typedText, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            // Update ComboBox's Items collection
+            cboItemCode.BeginUpdate();
+            cboItemCode.Items.Clear();
+            cboItemCode.Items.AddRange(filtered.ToArray());
+            cboItemCode.EndUpdate();
+
+            // Show the dropdown
+            cboItemCode.DroppedDown = true;
         }
     }
 }

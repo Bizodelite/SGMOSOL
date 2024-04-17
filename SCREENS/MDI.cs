@@ -66,7 +66,7 @@ namespace SGMOSOL
             //Show the MDI form if login is successful
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
+               // this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
                 // If login is successful, start the MDI parent form
                 sessionManager = new SessionManager();
                 sessionManager.StartTimer();

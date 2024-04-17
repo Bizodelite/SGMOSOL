@@ -15,6 +15,7 @@ using Microsoft.VisualBasic;
 using System.Xml.Linq;
 using System.Linq;
 using static SGMOSOL.ADMIN.CommonFunctions;
+using System.Collections;
 
 namespace SGMOSOL.SCREENS
 {
@@ -33,6 +34,10 @@ namespace SGMOSOL.SCREENS
         private string PrintReceiptDeptName;
         private string PrintReceiptLocName;
         private int PrintReceiptLocId;
+        private ArrayList CtrlArr = new ArrayList();
+        private ArrayList btnArr = new ArrayList();
+        private bool mBlnEdit = false;
+        private eAction mAction;
         public frmDengiReceipt()
         {
             InitializeComponent();
@@ -122,6 +127,8 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                commonFunctions.setControlsonForm(this, CtrlArr, btnArr);
+                commonFunctions.SetUserScreenActions(this, UserInfo.UserId, (int)eScreenID.DengiReceipt, btnArr, null, mBlnEdit);
                 int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
                 int centerY = (ClientSize.Height - flowLayoutPanel1.Height) / 2;
                 flowLayoutPanel1.Location = new System.Drawing.Point(centerX, centerY);

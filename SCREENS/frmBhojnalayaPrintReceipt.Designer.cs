@@ -56,7 +56,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.btnAcknowledge = new System.Windows.Forms.Button();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -106,7 +105,6 @@
             this.pnlMaster.Controls.Add(this.btnSearch);
             this.pnlMaster.Controls.Add(this.btnSave);
             this.pnlMaster.Controls.Add(this.btnNew);
-            this.pnlMaster.Controls.Add(this.btnAcknowledge);
             this.pnlMaster.Controls.Add(this.lblQuantity);
             this.pnlMaster.Controls.Add(this.txtTotalAmount);
             this.pnlMaster.Controls.Add(this.label13);
@@ -373,7 +371,7 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
-            this.btnClose.Location = new System.Drawing.Point(771, 558);
+            this.btnClose.Location = new System.Drawing.Point(655, 558);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(108, 57);
@@ -387,7 +385,7 @@
             this.btnPrint.Enabled = false;
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
-            this.btnPrint.Location = new System.Drawing.Point(653, 558);
+            this.btnPrint.Location = new System.Drawing.Point(530, 558);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(110, 57);
@@ -413,7 +411,7 @@
             // 
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
-            this.btnSave.Location = new System.Drawing.Point(525, 558);
+            this.btnSave.Location = new System.Drawing.Point(396, 558);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(126, 57);
@@ -435,18 +433,6 @@
             this.btnNew.Text = "&New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnAcknowledge
-            // 
-            this.btnAcknowledge.Enabled = false;
-            this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcknowledge.Location = new System.Drawing.Point(381, 558);
-            this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAcknowledge.Name = "btnAcknowledge";
-            this.btnAcknowledge.Size = new System.Drawing.Size(133, 57);
-            this.btnAcknowledge.TabIndex = 14;
-            this.btnAcknowledge.Text = "&Declaration";
-            this.btnAcknowledge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblQuantity
             // 
@@ -736,7 +722,6 @@
         internal System.Windows.Forms.Button btnSearch;
         internal System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.Button btnNew;
-        internal System.Windows.Forms.Button btnAcknowledge;
         private System.Windows.Forms.TextBox txtDocumentName;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox cboDocName;

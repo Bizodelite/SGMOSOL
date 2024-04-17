@@ -217,7 +217,7 @@ namespace SGMOSOL.DAL
                         command.CommandType = CommandType.StoredProcedure;
                         if (data is dengiReceiptModel obj)
                         {
-                            command.Parameters.AddWithValue("@DR_DATE",obj.dr_Date);
+                            command.Parameters.AddWithValue("@DR_DATE", obj.dr_Date);
                             command.Parameters.AddWithValue("@Com_Id", UserInfo.CompanyID);
                             command.Parameters.AddWithValue("@Loc_Id", UserInfo.Loc_id);
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);
@@ -259,12 +259,8 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@EnteredBy", UserInfo.UserName);
 
                             command.Parameters.AddWithValue("@ModifiedBy", UserInfo.UserName);
-                            DateTime? modifiedOn = obj.ModifiedOn;
-                            if (modifiedOn.HasValue && obj.modifiedby != null)
-                                command.Parameters.AddWithValue("@ModifiedOn", obj.ModifiedOn);
-                            else
-                                command.Parameters.AddWithValue("@ModifiedOn", System.DateTime.Now.ToString());
-                            command.Parameters.AddWithValue("@MachineName", UserInfo.Counter_Name);
+                            command.Parameters.AddWithValue("@ModifiedOn", obj.dr_Date);
+                            command.Parameters.AddWithValue("@MachineName", UserInfo.Machine_Name);
                             command.Parameters.AddWithValue("@UserId", UserInfo.UserId);
                             command.Parameters.AddWithValue("@SERVERNAME", UserInfo.serverName);
                             command.Parameters.AddWithValue("@CurrencyType", "Indian Rupees");

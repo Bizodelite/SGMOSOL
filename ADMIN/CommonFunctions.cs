@@ -17,6 +17,7 @@ using System.IO;
 using System.Windows.Input;
 using SGMOSOL.BAL;
 using System.Collections;
+using System.Configuration;
 using static SGMOSOL.ADMIN.CommonFunctions;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
 using System.Security.Cryptography.X509Certificates;
@@ -27,6 +28,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 using System.Data.Sql;
 using System.Windows;
+//using System.Web.UI.WebControls;
 
 
 
@@ -109,6 +111,13 @@ namespace SGMOSOL.ADMIN
                 strDeCodePassword += (char)(password[ctr] - 50);
             }
             return strDeCodePassword;
+        }
+        public string getDesktopPassword(string userName)
+        {
+            LoginBAL login = new LoginBAL();
+            string strDesktopPassword;
+            strDesktopPassword = login.getDesktopPassword(userName);
+            return strDesktopPassword;
         }
         public enum eScreenID
         {
@@ -458,8 +467,6 @@ namespace SGMOSOL.ADMIN
             // Check if the DateTime is within the valid range for SQL Server's datetime type
             return (dateTime >= SqlDateTime.MinValue.Value) && (dateTime <= SqlDateTime.MaxValue.Value);
         }
-
-
         public string IsPasswordValid(string password)
         {
             StringBuilder sb = new StringBuilder();
@@ -1011,6 +1018,35 @@ namespace SGMOSOL.ADMIN
             }
             return mReader;
         }
+
+        public System.Data.DataTable CheckModuleAccess(int intUserId, string strHddModelNo, string strHddSerialNo, string strMacId, int mod_type, int CtrMachId = 0)
+        {
+            System.Data.DataTable mReader = new DataTable();
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetUserCounterMachineDetails", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+                // Add parameters
+                command.Parameters.AddWithValue("@UserId", intUserId);
+                command.Parameters.AddWithValue("@HddModelNo", strHddModelNo);
+                command.Parameters.AddWithValue("@HddSerialNo", (object)strHddSerialNo ?? DBNull.Value);
+                command.Parameters.AddWithValue("@MacId", (object)strMacId ?? DBNull.Value);
+                command.Parameters.AddWithValue("@ModType", mod_type);
+                command.Parameters.AddWithValue("@CtrMachId", CtrMachId);
+                mReader = clsConnection.ExecuteReader(command);
+                //if (mReader.Rows.Count == 0)
+                //{
+                //    mReader.Rows.Add(new Object[] { "", "", 0, 0, "", "", "", 0 });
+                //}
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return mReader;
+        }
+
         public static void setCursor(Form Frm, bool mouDefault = true)
         {
             if (mouDefault)
@@ -2211,28 +2247,26 @@ namespace SGMOSOL.ADMIN
             }
             return 0;
         }
-        public string GetSqlServerInstances()
+        public string getServerName()
         {
-            DataTable dataTable = SqlDataSourceEnumerator.Instance.GetDataSources();
             string strServerName = "";
-            foreach (DataRow row in dataTable.Rows)
+            try
             {
-                string serverName = row["ServerName"].ToString();
-                string instanceName = row["InstanceName"].ToString();
-
-                if (string.IsNullOrEmpty(instanceName))
-                {
-                    strServerName = serverName;
-                }
-                else
-                {
-                    strServerName = serverName + "\\" + instanceName;
-                }
+                string connectionString = Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
+                strServerName = GetSqlServerName(connectionString);
+            }
+            catch (Exception ex)
+            {
+                InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
             return strServerName;
         }
+        static string GetSqlServerName(string connectionString)
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
+            return builder.DataSource;
+        }
     }
-
 }
 
 

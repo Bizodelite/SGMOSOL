@@ -385,9 +385,9 @@ namespace SGMOSOL.SCREENS.Locker
                 CheckInDet.CheckInMstId = Convert.ToInt64(txtVchNo.Tag + Constants.vbNullString);
                 DataTable dr;
                 dr = objDsLockerChange.FindLocker(CheckInDet.CheckInMstId);
-                while (dr != null && dr.Rows.Count > 0)
+                foreach (DataRow row in dr.Rows)
                 {
-                    CheckInDet.LockerId = Convert.ToInt32(dr.Rows[0]["LOCKER_ID"]);
+                    CheckInDet.LockerId = Convert.ToInt32(row["LOCKER_ID"]);
                     CheckInDet.LockerAvailableStatus = (int)eTokenDetail.StatusYes;
                     coll.Add(CheckInDet);
                 }

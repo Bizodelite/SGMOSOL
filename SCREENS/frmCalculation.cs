@@ -161,6 +161,7 @@ namespace SGMOSOL.SCREENS
                     }
                     txtTotalAmount.Text = getTotalAmount();
                     clear();
+                    lblAlertMsg.Text = "";
                 }
                 else
                 {
@@ -281,6 +282,10 @@ namespace SGMOSOL.SCREENS
             {
                 lblAlertMsg.Text = "Quantity Can not 0 !!!";
             }
+            if (dgvItemDetails.Rows.Count == 0)
+            {
+                lblAlertMsg.Text = "Please insert atleast one row to get report";
+            }
             else
             {
                 lblAlertMsg.Text = "";
@@ -310,7 +315,7 @@ namespace SGMOSOL.SCREENS
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(reportDataSource);
                 this.reportViewer1.RefreshReport();
-               // printReport("TotalFundReport");
+                // printReport("TotalFundReport");
             }
         }
         public void printReport(string docName)

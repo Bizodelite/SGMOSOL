@@ -21,7 +21,7 @@ namespace SGMOSOL.SCREENS
         LoginBAL login;
         CommonFunctions cm;
         public int Mach_ID;
-        bool oldUser;
+        bool deskpwd;
         public frmLogin()
         {
             login = new LoginBAL();
@@ -42,12 +42,7 @@ namespace SGMOSOL.SCREENS
             txtUser.Focus();
         }
 
-        public string getDesktopPassword(string userName)
-        {
-            string strDesktopPassword;
-            strDesktopPassword = login.getDesktopPassword(userName);
-            return strDesktopPassword;
-        }
+       
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string strValue = CommonFunctions.Encrypt(txtpwd.Text, true);
@@ -65,7 +60,7 @@ namespace SGMOSOL.SCREENS
             string isPwd = null;
             string Status = null;
             int activeUser = 0;
-
+            string strDesktopPwd = null;
             int uID = 0;
             DataTable dt = new DataTable();
             DataTable dtuser = new DataTable();
@@ -75,13 +70,17 @@ namespace SGMOSOL.SCREENS
                 uID = login.getUserId(isUser);
                 UserInfo.UserId = uID;
                 long LogID = cm.InsertUpdateLog(0, UserInfo.UserId, 0, 0, false, "INSERT");
-                if (getDesktopPassword(isUser) == "")
+                strDesktopPwd = cm.getDesktopPassword(isUser);
+                if (strDesktopPwd == "")
                 {
                     lblmessage.Text = "Please reset your password!!!";
-                    oldUser = true;
+                    deskpwd = false;
                     return;
                 }
-                isPwd = CommonFunctions.Decrypt(login.GetPwdDetails(isUser), true);
+                else {
+                    deskpwd = true;
+                }
+                isPwd = CommonFunctions.Decrypt(login.GetPwdDetails(isUser,deskpwd), true);
                 if (isPwd == txtpwd.Text)
                 {
                     if (login.CheckDateTime())
@@ -93,7 +92,6 @@ namespace SGMOSOL.SCREENS
                             dtActiveUser = login.GetLoggedInUser(uID);
                             if (dtActiveUser.Rows.Count == 0)
                             {
-
                                 dtuser = cm.getUserAllDetails(UserInfo.MachineId, uID);
                                 if (dtuser.Rows.Count > 0)
                                 {
@@ -104,8 +102,8 @@ namespace SGMOSOL.SCREENS
                                         lblmessage.Text = "Please Login Again With New Password.";
                                         return;
                                     }
-                                    //UserInfo.serverName = cm.GetSqlServerInstances();
-                                    UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
+                                    UserInfo.serverName = cm.getServerName();
+                                   // UserInfo.serverName = CommonFunctions.Decrypt(System.Configuration.ConfigurationManager.AppSettings["SERVER"].ToString(), true);
                                     foreach (DataRow row in dtuser.Rows)
                                     {
                                         UserInfo.Counter_Name = row["COUNTER_MACHINE_SHORT_NAME"].ToString();
@@ -200,7 +198,7 @@ namespace SGMOSOL.SCREENS
                 else
                 {
                     UserInfo.UserName = isUser;
-                    frmChnagePassword frmchnagepassword = new frmChnagePassword(oldUser);
+                    frmChnagePassword frmchnagepassword = new frmChnagePassword(deskpwd,"Reset");
                     frmchnagepassword.Show();
                     // this.Close();
                 }
@@ -212,5 +210,9 @@ namespace SGMOSOL.SCREENS
             this.Close();
         }
 
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          //  Application.Exit();
+        }
     }
 }

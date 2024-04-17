@@ -20,14 +20,19 @@ namespace SGMOSOL.SCREENS
     {
         LoginBAL login;
         CommonFunctions commonFunctions;
-        bool OldUser = false;
-        public frmChnagePassword(bool oldUser = false)
+        bool deskpwd = false;
+        string strformType = "";
+        public static string SystemHDDModelNo;
+        public static string SystemHDDSerialNo;
+        public static string SystemMacID;
+        public frmChnagePassword(bool deskpwd = false, string formType = null)
         {
             InitializeComponent();
             login = new LoginBAL();
             commonFunctions = new CommonFunctions();
-            OldUser = oldUser;
+            deskpwd = deskpwd;
             this.AcceptButton = btnchange;
+            strformType = formType;
         }
 
         private void btnchange_Click(object sender, EventArgs e)
@@ -38,59 +43,55 @@ namespace SGMOSOL.SCREENS
             DataTable dtuser = new DataTable();
             uID = login.getUserId(txtUserName.Text.Trim());
             dtuser = commonFunctions.getUserAllDetails(UserInfo.MachineId, uID);
-            
-            foreach (DataRow row in dtuser.Rows)
+            if (dtuser.Rows.Count > 0)
             {
-              UserInfo.ctrMachID = Convert.ToInt32(row["CTR_MACH_ID"]);
-            }
-            if (lbloldpwderror.Text == "")
-            {
-                isError = commonFunctions.IsPasswordValid(txtNewPassword.Text);
-                if (isError == "")
+                if (lbloldpwderror.Text == "")
                 {
-                    string newPassword = CommonFunctions.Encrypt(txtNewPassword.Text, true);
-                    lblError.Text = "";
-                    if (txtOldPassword.Text != txtNewPassword.Text)
+                    isError = commonFunctions.IsPasswordValid(txtNewPassword.Text);
+                    if (isError == "")
                     {
-                        DataTable dtckMachineAccess = new DataTable();
-                        dtckMachineAccess = login.chkmachneAccess(UserInfo.UserId);
-                        if (dtckMachineAccess.Rows.Count > 0)
+                        string newPassword = CommonFunctions.Encrypt(txtNewPassword.Text, true);
+                        lblError.Text = "";
+                        if (txtOldPassword.Text != txtNewPassword.Text)
                         {
+
                             int status = login.updatePassword(txtUserName.Text, CommonFunctions.Encrypt(txtNewPassword.Text, true));
                             if (status == 1)
                             {
                                 status = login.InsertUser_PassWord_Logs(txtNewPassword.Text);
-                                if (status == 0)
+                                //MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
+                                if (strformType == "Reset")
                                 {
-                                    MessageBox.Show("Password Updated Successfully!!!");
-                                    MDI mdiParentForm = Application.OpenForms.OfType<MDI>().FirstOrDefault();
-
-                                    //if (mdiParentForm != null)
-                                    //{
+                                    MessageBox.Show("Password Updated Successfully!!! Please Login with new password!!!");
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Password Updated Successfully!!! Please Login with new password!!!");
                                     this.Close();
-                                    //}
-                                    //else
-                                    //{
-                                    //    MDI home = new MDI();
-                                    //    home.Show();
-                                    //}
+                                    LoginBAL loginBAL = new LoginBAL();
+                                    // loginBAL.updateUser_Login_Details();
+                                    loginBAL.DeleteUser_Login_details();
+                                    frmLogin login = new frmLogin();
+                                    login.WindowState = FormWindowState.Maximized;
+                                    login.ShowDialog();
                                 }
                             }
                         }
                         else
                         {
-                            MessageBox.Show("You dont have access for this machine");
+                            MessageBox.Show("Password can not be same as last password !!!");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Password can not be same as last password !!!");
+                        lblError.Text = isError;
                     }
                 }
-                else
-                {
-                    lblError.Text = isError;
-                }
+            }
+            else
+            {
+                MessageBox.Show("You dont have access for this machine");
             }
         }
 
@@ -111,14 +112,17 @@ namespace SGMOSOL.SCREENS
         private void txtOldPassword_TextChanged(object sender, EventArgs e)
         {
             string lastPassword = "";
+            string strDesktopPwd = "";
 
-            if (OldUser == true)
+            strDesktopPwd = commonFunctions.getDesktopPassword(txtUserName.Text);
+            if (strDesktopPwd == "")
             {
-                lastPassword = login.GetPwdDetails(txtUserName.Text, true);
+                lastPassword = login.GetPwdDetails(txtUserName.Text, false);
             }
+           
             else
             {
-                lastPassword = CommonFunctions.Decrypt(login.GetPwdDetails(txtUserName.Text, false), true);
+                lastPassword = CommonFunctions.Decrypt(login.GetPwdDetails(txtUserName.Text, true),true);
             }
 
 

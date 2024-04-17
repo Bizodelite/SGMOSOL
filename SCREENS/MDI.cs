@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SGMOSOL.ADMIN.CommonFunctions;
+using SGMOSOL.DAL;
 
 namespace SGMOSOL
 {
@@ -57,7 +58,8 @@ namespace SGMOSOL
 
         private void MDI_Load(object sender, EventArgs e)
         {
-            // Show the login form
+            InitAppParam();
+            LoadBedCheckInMaxAmount();  
             frmLogin loginForm = new frmLogin();
             loginForm.WindowState = FormWindowState.Maximized;
 
@@ -74,13 +76,11 @@ namespace SGMOSOL
                 // If login fails or the login form is closed, exit the application
                 Application.Exit();
             }
+            LockUnlock();
         }
+        //sessionManager = new SessionManager();
+        //sessionManager.StartTimer();
 
-            //InitAppParam();
-            //LoadBedCheckInMaxAmount();
-            //sessionManager = new SessionManager();
-            //sessionManager.StartTimer();
-        
         public void InitAppParam()
         {
             //UserInfo.Rounding = "N";
@@ -88,7 +88,7 @@ namespace SGMOSOL
             //UserInfo.MaxRowsOfFindGrid = 300;
             //UserInfo.DengiAlertAmt = 5000;
             //UserInfo.InstrumentDateDays = 30;
-            UserInfo.ReportPath = Application.StartupPath.Replace("bin\\Debug","") + "Reports\\";
+            UserInfo.ReportPath = Application.StartupPath.Replace("bin\\Debug", "") + "Reports\\";
         }
         private void LoadBedCheckInMaxAmount()
         {
@@ -101,23 +101,55 @@ namespace SGMOSOL
                 UserInfo.BedCheckInMaxAmount = 0;
             }
         }
+        public void LockUnlock()
+        {
+            if (checkModuleAccess(Convert.ToInt32(eModType.Dengi)))
+            {
+                dengiToolStripMenuItem.Enabled = true;
+            }
+            if (checkModuleAccess(Convert.ToInt32(eModType.Bhojnalay)))
+            {
+                bhojanalayaToolStripMenuItem.Enabled = true;
+            }
+            if (checkModuleAccess(Convert.ToInt32(eModType.Locker)))
+            {
+                lockerToolStripMenuItem.Enabled = true;
+            }
+            if (checkModuleAccess(Convert.ToInt32(eModType.BedSystem)))
+            {
+                bedSystemToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        public bool checkModuleAccess(int mod_type)
+        {
+            bool isAccess = false;
+            System.Data.DataTable dr;
+            dr = cm.CheckModuleAccess(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(mod_type));
+            if (dr.Rows.Count > 0)
+            {
+                isAccess = true;
+            }
+            return isAccess;
+        }
+
         private void dengiToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            
+
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
-            if (frmChnagePassword == null)
-            {
+            //frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
+            //if (frmChnagePassword == null)
+            //{
                 frmChnagePassword = new frmChnagePassword(false);
                 frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
                 frmChnagePassword.MdiParent = this;
                 frmChnagePassword.WindowState = FormWindowState.Maximized;
                 frmChnagePassword.Show();
-            }
+           // }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)
             {
@@ -135,12 +167,12 @@ namespace SGMOSOL
                 frmbhojnalayaPrintReceipt.MdiParent = this;
                 frmbhojnalayaPrintReceipt.WindowState = FormWindowState.Maximized;
                 frmbhojnalayaPrintReceipt.Show();
-            }  
+            }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi == null)
             {
-               // frmuserDengi = new frmUserDengi();
-               // frmuserDengi.WindowState = FormWindowState.Minimized;
+                frmuserDengi = new frmUserDengi();
+                frmuserDengi.WindowState = FormWindowState.Minimized;
                 frmuserDengi.Show();
             }
         }
@@ -150,11 +182,10 @@ namespace SGMOSOL
             LoginBAL loginBAL = new LoginBAL();
             loginBAL.updateUser_Login_Details();
             loginBAL.DeleteUser_Login_details();
-            this.MDI_Load(null,null);
-
+            this.MDI_Load(null, null);
         }
 
-       
+
         private void MDI_FormClosing(object sender, FormClosingEventArgs e)
         {
             LoginBAL loginBAL = new LoginBAL();
@@ -188,7 +219,7 @@ namespace SGMOSOL
 
         private void totalDengiReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void totalDengiReportToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -205,11 +236,11 @@ namespace SGMOSOL
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi == null)
             {
-               // frmuserDengi = new frmUserDengi();
-               // frmuserDengi.WindowState = FormWindowState.Minimized;
+                // frmuserDengi = new frmUserDengi();
+                // frmuserDengi.WindowState = FormWindowState.Minimized;
                 frmuserDengi.Show();
             }
-           
+
         }
 
         private void totalDengiReportToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -223,7 +254,7 @@ namespace SGMOSOL
 
         private void requirementToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmReqToAdmin frm=new frmReqToAdmin();
+            frmReqToAdmin frm = new frmReqToAdmin();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;

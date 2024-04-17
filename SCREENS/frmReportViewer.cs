@@ -34,8 +34,8 @@ namespace SGMOSOL.SCREENS
         {
             DengiDeclaration,
             DengiPrint,
-            BHDeclaration,
-            BHPrint,
+            BhojnalayReceipt,
+            BhojnalayDec,
             Locker
         }
 
@@ -69,11 +69,14 @@ namespace SGMOSOL.SCREENS
                 {
                     printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
                 }
-                else
+                if (PrinterType == PrinterNames.BhojnalayReceipt)
                 {
-                    printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayReceipt"].ToString();
                 }
-
+                if (PrinterType == PrinterNames.BhojnalayDec)
+                {
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayDec"].ToString();
+                }
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
                 {
@@ -214,7 +217,7 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
-                    printReport(DocumentName, PrinterNames.BHPrint);
+                    printReport(DocumentName, PrinterNames.BhojnalayReceipt);
                 }
 
             }
@@ -231,10 +234,10 @@ namespace SGMOSOL.SCREENS
                 reportViewer2.RefreshReport();
                 DocumentName = "BhojnalayDeclaration" +
                     "";
-                printReport(DocumentName, PrinterNames.BHDeclaration);
+                printReport(DocumentName, PrinterNames.BhojnalayDec);
             }
         }
-        public void printDeclarationwithoutSave(DataTable dt)
+        public void printDeclarationwithoutSave(DataTable dt, string formType=null)
         {
             string reportPath = null;
             string reportFileName = null;
@@ -242,7 +245,17 @@ namespace SGMOSOL.SCREENS
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             ReportDataSource reportDataSource = null;
             string DocumentName = null;
-            reportFileName = "DengiDeclaration.rdlc";
+            if (formType == "Dengi")
+            {
+                reportFileName = "DengiDeclaration.rdlc";
+                DocumentName = "DengiDeclaration";
+            }
+            if (formType == "Bhojnalaya")
+            {
+                reportFileName = "mess_item_receipt.rdlc";
+                DocumentName = "BhojnalayDeclaration";
+            }
+
             reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
             reportViewer2.LocalReport.ReportPath = reportPath;
             reportDataSource = new ReportDataSource("DataSet1", dt);
@@ -250,8 +263,10 @@ namespace SGMOSOL.SCREENS
             DataTable dt1 = (DataTable)reportDataSource.Value;
             // addCustomField(dt1);
             reportViewer2.RefreshReport();
-            DocumentName = "DengiDeclaration";
+            
            printReport(DocumentName, PrinterNames.DengiDeclaration);
+
+            
         }
         public void LockerCheckInReport()
         {

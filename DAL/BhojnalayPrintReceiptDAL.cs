@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SGMOSOL.DataSet;
+using System.Windows.Forms;
 
 namespace SGMOSOL.DAL
 {
@@ -150,7 +151,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@CHANGE", 0);
                             command.Parameters.AddWithValue("@REMARKS", null);
                             command.Parameters.AddWithValue("@ENTERED_BY", UserInfo.UserName);
-                            command.Parameters.AddWithValue("@MODIFIED_BY", "");
+                            command.Parameters.AddWithValue("@MODIFIED_BY", UserInfo.UserName);
                             command.Parameters.AddWithValue("@MACHINE_NAME", UserInfo.Machine_Name);
                             command.Parameters.AddWithValue("@SERVER_NAME", UserInfo.serverName);
                             command.Parameters.AddWithValue("@ITEM_NAME", obj.ItemName);
@@ -163,8 +164,16 @@ namespace SGMOSOL.DAL
                             SqlParameter idParam = new SqlParameter("@SUCCEED", SqlDbType.Int);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);
-                            command.ExecuteNonQuery();
-                            status = Convert.ToInt32(command.Parameters["@SUCCEED"].Value);
+                            int rowsAffected = command.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                status = Convert.ToInt32(command.Parameters["@SUCCEED"].Value);
+                            }
+                            else
+                            {
+                                status = rowsAffected;
+                                MessageBox.Show("Can not insert this record due to date mismatch!!! Please check date.");
+                            }
                         }
                     }
                 }
@@ -290,6 +299,7 @@ namespace SGMOSOL.DAL
                         command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
                         command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
                         command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                        command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
                         using (SqlDataAdapter da = new SqlDataAdapter(command))
                         {
                             da.Fill(dt);

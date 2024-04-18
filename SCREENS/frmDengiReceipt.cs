@@ -587,7 +587,7 @@ namespace SGMOSOL.SCREENS
                 {
                     lblAmtWords.Text = "Amount in Words : ";
                 }
-                if (int.TryParse(txtAmount.Text, out value) && value >= 500 && cboDoctype.Text=="Select")
+                if (int.TryParse(txtAmount.Text, out value) && value >= 500 && cboDoctype.Text == "Select")
                 {
                     lbldoctype_err.Text = "Please select document type";
                 }
@@ -1071,9 +1071,9 @@ namespace SGMOSOL.SCREENS
                     cboPaymentType.SelectedValue = obj.paymentTypeId;
                     cboGotra.SelectedValue = obj.gotraId;
                     dtpPrnRcptDt.Text = obj.dr_Date.ToString();
-                    if (obj.Doc_type != null)
+                    if (obj.Doc_type != null && obj.Doc_type != "")
                         cboDoctype.SelectedValue = obj.Doc_type.ToString();
-                    if (obj.Doc_Detail != null)
+                    if (obj.Doc_Detail != null && obj.Doc_Detail != "")
                         txtdocDetail.Text = obj.Doc_Detail.ToString();
                     if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)
                     {
@@ -1144,7 +1144,7 @@ namespace SGMOSOL.SCREENS
         }
         private void frmDengiReceipt_KeyPress(object sender, KeyPressEventArgs e)
         {
-           // sessionManager.ResetSession();
+            // sessionManager.ResetSession();
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {

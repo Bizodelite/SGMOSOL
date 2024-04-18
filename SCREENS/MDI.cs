@@ -77,12 +77,13 @@ namespace SGMOSOL
             {
                 this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
                 // If login is successful, start the MDI parent form
-                sessionManager = new SessionManager(GetActiveChildForm());
-                sessionManager.StartTimer();
+               // sessionManager = new SessionManager(GetActiveChildForm());
+                //sessionManager.StartTimer();
             }
             else
             {
-                Application.Exit();
+                // Application.Exit();
+                this.Close();
             }
             LockUnlock();
 

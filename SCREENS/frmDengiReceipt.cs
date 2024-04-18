@@ -1144,7 +1144,7 @@ namespace SGMOSOL.SCREENS
         }
         private void frmDengiReceipt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            sessionManager.ResetSession();
+           // sessionManager.ResetSession();
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {

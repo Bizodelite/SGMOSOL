@@ -289,7 +289,6 @@ namespace SGMOSOL.DAL
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     adapter.Fill(dt);
                     connection.Close();
-
                 }
             }
             return dt;

@@ -53,7 +53,7 @@ namespace SGMOSOL.Custom_User_Contols
                 {
                     MDIForm.Close();
                 }
-                frmLogin login = new frmLogin();
+                MDI login = new MDI();
                 login.WindowState = FormWindowState.Maximized;
                 login.ShowDialog();
             }

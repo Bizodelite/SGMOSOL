@@ -70,7 +70,7 @@ namespace SGMOSOL.SCREENS
                                     MessageBox.Show("Password Updated Successfully!!! Please Login with new password!!!");
                                     this.Close();
                                     LoginBAL loginBAL = new LoginBAL();
-                                    // loginBAL.updateUser_Login_Details();
+                                    loginBAL.updateUser_Login_Details();
                                     loginBAL.DeleteUser_Login_details();
                                     frmLogin login = new frmLogin();
                                     login.WindowState = FormWindowState.Maximized;

@@ -357,6 +357,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReportViewer.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SCREENS\Bed System\dgScanPrievew.cs">
       <SubType>Form</SubType>
     </Compile>

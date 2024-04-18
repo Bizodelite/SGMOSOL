@@ -626,6 +626,7 @@ namespace SGMOSOL.ADMIN
                 command.Parameters.AddWithValue("@CounterId", CounterId);
                 command.Parameters.AddWithValue("@IsSuccess", IsSuccess);
                 command.Parameters.AddWithValue("@Type", Type);
+                command.Parameters.AddWithValue("@Version", UserInfo.version);
                 return clsConnection.ExecuteScalar(command);
             }
             catch (Exception ex)

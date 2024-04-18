@@ -40,14 +40,14 @@ namespace SGMOSOL.SCREENS
             UserInfo.module = "Login";
             UserInfo.Machine_Name = System.Environment.MachineName;
             txtUser.Focus();
-            cm.getVersion();
+           // cm.getVersion();
         }
 
        
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string strValue = CommonFunctions.Encrypt(txtpwd.Text, true);
-            string strValue1 = CommonFunctions.Decrypt(txtpwd.Text, true);
+           // string strValue = CommonFunctions.Encrypt(txtpwd.Text, true);
+           // string strValue1 = CommonFunctions.Decrypt(txtpwd.Text, true);
             getauthentication();
             InitOnServer();
         }
@@ -144,8 +144,8 @@ namespace SGMOSOL.SCREENS
                             login.InsertUser_Login_details();
                             this.DialogResult = DialogResult.OK;
                             // this.Close();
-                            //MDI home = new MDI();
-                            //home.Show();
+                          //  MDI home = new MDI();
+                           // home.Show();
                             //this.Hide();
                         }
                         else

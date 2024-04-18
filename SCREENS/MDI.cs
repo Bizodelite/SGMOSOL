@@ -55,31 +55,38 @@ namespace SGMOSOL
             WindowState = FormWindowState.Maximized;
             cm = new CommonFunctions();
         }
+        private Form GetActiveChildForm()
+        {
+            if (this.ActiveMdiChild != null)
+            {
+                return this.ActiveMdiChild;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         private void MDI_Load(object sender, EventArgs e)
         {
             InitAppParam();
-            LoadBedCheckInMaxAmount();  
+            LoadBedCheckInMaxAmount();
             frmLogin loginForm = new frmLogin();
             loginForm.WindowState = FormWindowState.Maximized;
-
-            //Show the MDI form if login is successful
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
                 this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
                 // If login is successful, start the MDI parent form
-                sessionManager = new SessionManager();
+                sessionManager = new SessionManager(GetActiveChildForm());
                 sessionManager.StartTimer();
             }
             else
             {
-                // If login fails or the login form is closed, exit the application
                 Application.Exit();
             }
             LockUnlock();
+
         }
-        //sessionManager = new SessionManager();
-        //sessionManager.StartTimer();
 
         public void InitAppParam()
         {
@@ -144,12 +151,12 @@ namespace SGMOSOL
             //frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
             //if (frmChnagePassword == null)
             //{
-                frmChnagePassword = new frmChnagePassword(false);
-                frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
-                frmChnagePassword.MdiParent = this;
-                frmChnagePassword.WindowState = FormWindowState.Maximized;
-                frmChnagePassword.Show();
-           // }
+            frmChnagePassword = new frmChnagePassword(false);
+            frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
+            frmChnagePassword.MdiParent = this;
+            frmChnagePassword.WindowState = FormWindowState.Maximized;
+            frmChnagePassword.Show();
+            // }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)
             {
@@ -263,22 +270,29 @@ namespace SGMOSOL
 
         private void MDI_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             sessionManager.ResetSession();
+
         }
 
         private void MDI_KeyDown(object sender, KeyEventArgs e)
         {
+
             sessionManager.ResetSession();
+
         }
 
         private void MDI_MouseMove(object sender, MouseEventArgs e)
         {
             sessionManager.ResetSession();
+
         }
 
         private void MDI_MouseClick(object sender, MouseEventArgs e)
         {
+
             sessionManager.ResetSession();
+
         }
         private void lockerCheckINToolStripMenuItem_Click(object sender, EventArgs e)
         {

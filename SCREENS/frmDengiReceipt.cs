@@ -38,6 +38,7 @@ namespace SGMOSOL.SCREENS
         private ArrayList btnArr = new ArrayList();
         private bool mBlnEdit = false;
         private eAction mAction;
+        private SessionManager sessionManager;
         public frmDengiReceipt()
         {
             InitializeComponent();
@@ -148,6 +149,8 @@ namespace SGMOSOL.SCREENS
                     showPanel();
                     getDengiNo();
                 }
+                sessionManager = new SessionManager(this);
+                sessionManager.StartTimer();
             }
             catch (Exception ex)
             {
@@ -1141,7 +1144,7 @@ namespace SGMOSOL.SCREENS
         }
         private void frmDengiReceipt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // btnSave.PerformClick();
+            sessionManager.ResetSession();
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
@@ -1512,6 +1515,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                sessionManager.ResetSession();
                 dengiReceiptDAL = new DengiReceiptDAL();
                 DataTable dt = new DataTable();
                 if (e.Control && e.KeyCode == Keys.P)

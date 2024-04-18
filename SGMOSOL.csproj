@@ -613,6 +613,9 @@
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RoomCheckInNew.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomCheckOut.resx">
       <DependentUpon>frmRoomCheckOut.cs</DependentUpon>
     </EmbeddedResource>

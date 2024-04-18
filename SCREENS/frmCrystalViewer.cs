@@ -121,20 +121,19 @@ namespace SGMOSOL.SCREENS
         }
         public void addCustomField(DataTable dt)
         {
-            if (dt.Columns.Contains("AMOUNT"))
+            foreach (DataRow row in dt.Rows)
             {
-                foreach (DataRow row in dt.Rows)
+                if (dt.Columns.Contains("AMOUNT"))
                 {
                     double amount = Convert.ToDouble(row["AMOUNT"]);
                     row["AMOUNT_IN_WORDS"] = cm.words(Convert.ToInt32(amount));
+                }
+                if (dt.Columns.Contains("REPORT_TYPE"))
+                {
                     if (sprintType == "D")
-                    {
                         row["REPORT_TYPE"] = "Duplicate";
-                    }
                     else
-                    {
                         row["REPORT_TYPE"] = "ND";
-                    }
                 }
             }
         }
@@ -144,7 +143,6 @@ namespace SGMOSOL.SCREENS
                 this.Close();
         }
     }
-
-
 }
+
 

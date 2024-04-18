@@ -574,6 +574,8 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             sForm.Show();
             System.Threading.Thread.Sleep(450);
             sForm.Close();
+
+            setCursor(this, true);
         }
         public static string val1 = "";
         public string GenerateRandomString(int iLength)
@@ -1277,12 +1279,14 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             // System.Threading.Thread.Sleep(850)
             // sForm.Close()
 
-            strReportName = "RoomCheckInNewD.rdlc";
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+            strReportName = "RoomCheckInNew.rdlc";
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true, false, false,"","D");
             sForm.Text = "Room Check IN : " + eReportID.RoomCheckIn1;
             sForm.Show();
             System.Threading.Thread.Sleep(850);
             sForm.Close();
+
+            setCursor(this, true);
         }
 
         //public sealed class myPrinters
@@ -1308,8 +1312,8 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             MyRow["DEPT_SH_NAME"] = RoomCheckInDeptName;
             MyRow["COUNTER"] = mStrCounterMachineShortName;
 
-            MyRow["IN_DATE"] = dtpCheckIn.Value;
-            MyRow["IN_TIME"] = dtpCheckInTime.Text;
+            MyRow["IN_DATE"] = dtpCheckIn.Value.ToString("dd/MM/yyyy");
+            MyRow["IN_TIME"] = dtpCheckInTime.Value.ToString("hh:mm:ss tt");
             MyRow["SERIAL_NO"] = txtVchNo.Text;
             MyRow["APP_NO"] = txtAppNo.Text;
             MyRow["SublocationNm"] = cboSublocation.Text;
@@ -1453,6 +1457,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             TempTable1.Columns.Add("SERVER_NAME", System.Type.GetType("System.String"));
             TempTable1.Columns.Add("MACHINE_NAME", System.Type.GetType("System.String"));
             TempTable1.Columns.Add("AMT_IN_WORDS", System.Type.GetType("System.String"));
+            TempTable1.Columns.Add("REPORT_TYPE", System.Type.GetType("System.String"));
 
             TempTable2.Columns.Add("CHECK_IN_MST_ID", System.Type.GetType("System.Int64"));
             TempTable2.Columns.Add("ROOM_NAME", System.Type.GetType("System.String"));

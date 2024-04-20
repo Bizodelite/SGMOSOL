@@ -53,6 +53,12 @@ namespace SGMOSOL.Custom_User_Contols
                 {
                     MDIForm.Close();
                 }
+                //frmUserDengi userDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+                //if (userDengi != null)
+                //{
+                //    userDengi.Close();
+                //}
+
                 MDI login = new MDI();
                 login.WindowState = FormWindowState.Maximized;
                 login.ShowDialog();

@@ -46,7 +46,15 @@ namespace SGMOSOL.SCREENS
             this.KeyDown -= frmDengiReceipt_KeyDown;
             this.KeyDown += new KeyEventHandler(frmDengiReceipt_KeyDown);
             this.KeyPreview = true;
-            userDengi = new frmUserDengi();
+            userDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (userDengi == null)
+            {
+                userDengi = new frmUserDengi();
+            }
+            else
+            {
+
+            }
             this.commonFunctions = new CommonFunctions();
             dt = new DataTable();
             txtname.TextChanged += txtname_TextChanged;
@@ -164,7 +172,7 @@ namespace SGMOSOL.SCREENS
             dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Dengi));
             if (dr.Rows.Count > 0)
             {
-                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Text = dr.Rows[0]["CounterMachineShortName"].ToString();
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
                 UserInfo.Counter_Name = txtCounter.Text;
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
@@ -173,6 +181,7 @@ namespace SGMOSOL.SCREENS
                 PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
                 UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
                 mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName + " /" + UserInfo.version; ;
             }
             //dr.Close();
         }
@@ -448,7 +457,7 @@ namespace SGMOSOL.SCREENS
             txtChqNo.Enabled = true;
             txtDDBankName.Enabled = true;
             txtDDNo.Enabled = true;
-            txtdocDetail.Enabled = true;
+            //  txtdocDetail.Enabled = true;
             txtInvoice.Enabled = true;
             txtmob.Enabled = true;
             txtname.Enabled = true;
@@ -529,6 +538,10 @@ namespace SGMOSOL.SCREENS
             lblPincode.Text = "";
             dtpPrnRcptDt.Enabled = false;
             cboDoctype.SelectedValue = 0;
+            txtdocDetail.Enabled = false;
+            txtdocDetail.Text = "";
+            lblDistrict.Text = "";
+            imgVideo.Image = null;
         }
         private void txtname_TextChanged(object sender, EventArgs e)
         {
@@ -1379,6 +1392,14 @@ namespace SGMOSOL.SCREENS
                 frmSearch = new frmSearchDengi();
                 frmSearch.Show();
             }
+            else
+            {
+                frmSearch.BringToFront();
+                if (frmSearch.WindowState == FormWindowState.Minimized)
+                {
+                    frmSearch.WindowState = FormWindowState.Normal;
+                }
+            }
         }
         private void btnScan_Click(object sender, EventArgs e)
         {
@@ -1647,6 +1668,24 @@ namespace SGMOSOL.SCREENS
                 imgVideo.Image = null;
                 imgVideo.BackgroundImage = null;
             }
+        }
+
+        private void frmDengiReceipt_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.OfType<frmUserDengi>().Any())
+            {
+                Application.OpenForms.OfType<frmUserDengi>().First().Close();
+            }
+        }
+
+        private void frmDengiReceipt_MouseClick(object sender, MouseEventArgs e)
+        {
+            sessionManager.ResetSession();
+        }
+
+        private void chkScanDoc_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

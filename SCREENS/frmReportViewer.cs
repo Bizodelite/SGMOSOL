@@ -105,64 +105,71 @@ namespace SGMOSOL.SCREENS
             }
             catch (Exception ex)
             {
-                cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                cm.InsertErrorLog(ex.Message, "while printing receipt", UserInfo.version);
             }
 
         }
         public void createReport(string form)
         {
-            if (form == "Dengi")
+            try
             {
-                da = new DengiReceiptDAL();
-                DataTable dt = new DataTable();
-                string reportPath = null;
-                string reportFileName = null;
-                string reportsFolder = "Reports";
-                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                ReportDataSource reportDataSource = null;
-                string DocumentName = null;
-                reportViewer2.LocalReport.DataSources.Clear();
-                if (flag == "PRINT")
+                if (form == "Dengi")
                 {
-                    dt = da.getDengiReceiptDataForReport(receiptID);
-                    reportFileName = "DengiReceipt.rdlc";
-                    reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
-                    reportViewer2.LocalReport.ReportPath = reportPath;
-                    reportDataSource = new ReportDataSource("DataSet1", dt);
-                    reportViewer2.LocalReport.DataSources.Add(reportDataSource);
-                    DataTable dt1 = (DataTable)reportDataSource.Value;
-                    addCustomField(dt1);
-                    reportViewer2.RefreshReport();
-                    DocumentName = "DengiReceipt";
-                    printReport(DocumentName, PrinterNames.DengiPrint);
+                    da = new DengiReceiptDAL();
+                    DataTable dt = new DataTable();
+                    string reportPath = null;
+                    string reportFileName = null;
+                    string reportsFolder = "Reports";
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    ReportDataSource reportDataSource = null;
+                    string DocumentName = null;
+                    reportViewer2.LocalReport.DataSources.Clear();
+                    if (flag == "PRINT")
+                    {
+                        dt = da.getDengiReceiptDataForReport(receiptID);
+                        reportFileName = "DengiReceipt.rdlc";
+                        reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                        reportViewer2.LocalReport.ReportPath = reportPath;
+                        reportDataSource = new ReportDataSource("DataSet1", dt);
+                        reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                        DataTable dt1 = (DataTable)reportDataSource.Value;
+                        addCustomField(dt1);
+                        reportViewer2.RefreshReport();
+                        DocumentName = "DengiReceipt";
+                        printReport(DocumentName, PrinterNames.DengiPrint);
 
+                    }
+                    if (flag == "DECLARATION")
+                    {
+                        dt = da.getDengiReceiptDataForReport(receiptID);
+                        reportFileName = "DengiDeclaration.rdlc";
+                        reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                        reportViewer2.LocalReport.ReportPath = reportPath;
+                        reportDataSource = new ReportDataSource("DataSet1", dt);
+                        reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                        DataTable dt1 = (DataTable)reportDataSource.Value;
+                        addCustomField(dt1);
+                        reportViewer2.RefreshReport();
+                        DocumentName = "DengiDeclaration";
+                        printReport(DocumentName, PrinterNames.DengiDeclaration);
+                    }
                 }
-                if (flag == "DECLARATION")
+                if (form == "Bhojnalaya")
                 {
-                    dt = da.getDengiReceiptDataForReport(receiptID);
-                    reportFileName = "DengiDeclaration.rdlc";
-                    reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
-                    reportViewer2.LocalReport.ReportPath = reportPath;
-                    reportDataSource = new ReportDataSource("DataSet1", dt);
-                    reportViewer2.LocalReport.DataSources.Add(reportDataSource);
-                    DataTable dt1 = (DataTable)reportDataSource.Value;
-                    addCustomField(dt1);
-                    reportViewer2.RefreshReport();
-                    DocumentName = "DengiDeclaration";
-                    printReport(DocumentName, PrinterNames.DengiDeclaration);
+                    createBhojnalayRepoort();
+                }
+                if (form == "LockerCheckIN")
+                {
+                    LockerCheckInReport();
+                }
+                if (form == "LockerCheckOut")
+                {
+                    LockerCheckOutReport();
                 }
             }
-            if (form == "Bhojnalaya")
+            catch (Exception ex)
             {
-                createBhojnalayRepoort();
-            }
-            if (form == "LockerCheckIN")
-            {
-                LockerCheckInReport();
-            }
-            if (form == "LockerCheckOut")
-            {
-                LockerCheckOutReport();
+                cm.InsertErrorLog(ex.Message, "While creating receipt", UserInfo.version);
             }
         }
 

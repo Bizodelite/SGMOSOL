@@ -119,7 +119,7 @@ namespace SGMOSOL.SCREENS
             // btnconvert
             // 
             this.btnconvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnconvert.Location = new System.Drawing.Point(1347, 766);
+            this.btnconvert.Location = new System.Drawing.Point(1139, 805);
             this.btnconvert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnconvert.Name = "btnconvert";
             this.btnconvert.Size = new System.Drawing.Size(193, 41);
@@ -201,7 +201,7 @@ namespace SGMOSOL.SCREENS
             this.pnlAddress.Controls.Add(this.lblAddress1);
             this.pnlAddress.Controls.Add(this.lblAddress);
             this.pnlAddress.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlAddress.Location = new System.Drawing.Point(19, 594);
+            this.pnlAddress.Location = new System.Drawing.Point(19, 595);
             this.pnlAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlAddress.Name = "pnlAddress";
             this.pnlAddress.Size = new System.Drawing.Size(1312, 82);
@@ -209,12 +209,11 @@ namespace SGMOSOL.SCREENS
             // 
             // lblAddress1
             // 
-            this.lblAddress1.AutoSize = true;
             this.lblAddress1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddress1.ForeColor = System.Drawing.Color.DarkBlue;
             this.lblAddress1.Location = new System.Drawing.Point(3, 0);
             this.lblAddress1.Name = "lblAddress1";
-            this.lblAddress1.Size = new System.Drawing.Size(176, 31);
+            this.lblAddress1.Size = new System.Drawing.Size(350, 31);
             this.lblAddress1.TabIndex = 2;
             this.lblAddress1.Text = "Address(पत्ता)";
             // 
@@ -222,7 +221,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(185, 0);
+            this.lblAddress.Location = new System.Drawing.Point(359, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(0, 51);
             this.lblAddress.TabIndex = 3;
@@ -307,12 +306,11 @@ namespace SGMOSOL.SCREENS
             // 
             // lblPincode1
             // 
-            this.lblPincode1.AutoSize = true;
             this.lblPincode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPincode1.ForeColor = System.Drawing.Color.DarkBlue;
             this.lblPincode1.Location = new System.Drawing.Point(3, 0);
             this.lblPincode1.Name = "lblPincode1";
-            this.lblPincode1.Size = new System.Drawing.Size(228, 31);
+            this.lblPincode1.Size = new System.Drawing.Size(230, 31);
             this.lblPincode1.TabIndex = 1;
             this.lblPincode1.Text = "Pincode (पिन कोड)";
             this.lblPincode1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -321,7 +319,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblPincode.AutoSize = true;
             this.lblPincode.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPincode.Location = new System.Drawing.Point(237, 0);
+            this.lblPincode.Location = new System.Drawing.Point(239, 0);
             this.lblPincode.Name = "lblPincode";
             this.lblPincode.Size = new System.Drawing.Size(0, 51);
             this.lblPincode.TabIndex = 2;
@@ -340,12 +338,11 @@ namespace SGMOSOL.SCREENS
             // 
             // lblTaluka1
             // 
-            this.lblTaluka1.AutoSize = true;
             this.lblTaluka1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTaluka1.ForeColor = System.Drawing.Color.DarkBlue;
             this.lblTaluka1.Location = new System.Drawing.Point(3, 0);
             this.lblTaluka1.Name = "lblTaluka1";
-            this.lblTaluka1.Size = new System.Drawing.Size(191, 31);
+            this.lblTaluka1.Size = new System.Drawing.Size(195, 31);
             this.lblTaluka1.TabIndex = 1;
             this.lblTaluka1.Text = "Taluka (तालुका)";
             this.lblTaluka1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -354,7 +351,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblTaluka.AutoSize = true;
             this.lblTaluka.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTaluka.Location = new System.Drawing.Point(200, 0);
+            this.lblTaluka.Location = new System.Drawing.Point(204, 0);
             this.lblTaluka.Name = "lblTaluka";
             this.lblTaluka.Size = new System.Drawing.Size(0, 51);
             this.lblTaluka.TabIndex = 2;
@@ -590,7 +587,7 @@ namespace SGMOSOL.SCREENS
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(1363, 750);
+            this.ClientSize = new System.Drawing.Size(1371, 837);
             this.Controls.Add(this.pnlGotra);
             this.Controls.Add(this.pnlAmount);
             this.Controls.Add(this.pnlMobile);
@@ -612,6 +609,7 @@ namespace SGMOSOL.SCREENS
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Dengi Receipt";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUserDengi_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmUserDengi_FormClosed);
             this.Load += new System.EventHandler(this.frmUserDengi_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

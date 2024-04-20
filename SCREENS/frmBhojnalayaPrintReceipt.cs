@@ -32,6 +32,11 @@ namespace SGMOSOL.SCREENS
         private DataTable tempItemTable;
         public bool isPrint = false;
         CommonFunctions commonFunctions;
+        private string mStrCounterMachineShortName;
+        private int PrintReceiptDeptID;
+        private string PrintReceiptDeptName;
+        private string PrintReceiptLocName;
+        private int PrintReceiptLocId;
         public frmBhojnalayaPrintReceipt()
         {
             InitializeComponent();
@@ -39,10 +44,12 @@ namespace SGMOSOL.SCREENS
             txtName.Focus();
             this.KeyDown += new KeyEventHandler(frmBhojnalayaPrintReceipt_KeyDown);
             this.KeyPreview = true;
-
-            // cboItemCode.SelectedIndexChanged += cboItemCode_SelectedIndexChanged;
+            user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (user == null)
+            {
+                user = new frmUserDengi();
+            }
         }
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -65,7 +72,6 @@ namespace SGMOSOL.SCREENS
                 fillDocumentType();
                 txtReceiptno.Text = bhojnalayprintReceiptBAL.getMasterReceiptNumber().ToString();
             }
-            txtCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
 
         }
@@ -75,14 +81,16 @@ namespace SGMOSOL.SCREENS
             dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Bhojnalay));
             if (dr.Rows.Count > 0)
             {
-                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Text = dr.Rows[0]["CounterMachineShortName"].ToString();
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
                 UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
-              //  PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
-               // PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Counter_Name = txtCounter.Text;
+                PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
                 UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
-               // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName+ " /"+UserInfo.version;
             }
             //dr.Close();
         }

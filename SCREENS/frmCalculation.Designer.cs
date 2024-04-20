@@ -46,13 +46,13 @@
             this.Label9 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
-            this.txtCounter = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.lblCurrency = new System.Windows.Forms.Label();
             this.lblQuntity = new System.Windows.Forms.Label();
             this.lblAmountInWords = new System.Windows.Forms.Label();
             this.lblAlertMsg = new System.Windows.Forms.Label();
+            this.cboCounter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemDetails)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -208,11 +208,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cboCounter);
             this.panel1.Controls.Add(this.dtpPrnRcptDt);
             this.panel1.Controls.Add(this.Label9);
             this.panel1.Controls.Add(this.Label5);
             this.panel1.Controls.Add(this.txtUser);
-            this.panel1.Controls.Add(this.txtCounter);
             this.panel1.Controls.Add(this.Label2);
             this.panel1.Location = new System.Drawing.Point(108, 38);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -270,18 +270,6 @@
             this.txtUser.Size = new System.Drawing.Size(147, 22);
             this.txtUser.TabIndex = 11;
             this.txtUser.TabStop = false;
-            // 
-            // txtCounter
-            // 
-            this.txtCounter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.txtCounter.Enabled = false;
-            this.txtCounter.Location = new System.Drawing.Point(131, 23);
-            this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCounter.Name = "txtCounter";
-            this.txtCounter.ReadOnly = true;
-            this.txtCounter.Size = new System.Drawing.Size(127, 22);
-            this.txtCounter.TabIndex = 9;
-            this.txtCounter.TabStop = false;
             // 
             // Label2
             // 
@@ -341,6 +329,14 @@
             this.lblAlertMsg.TabIndex = 53;
             this.lblAlertMsg.Text = "Alert Message";
             // 
+            // cboCounter
+            // 
+            this.cboCounter.FormattingEnabled = true;
+            this.cboCounter.Location = new System.Drawing.Point(122, 24);
+            this.cboCounter.Name = "cboCounter";
+            this.cboCounter.Size = new System.Drawing.Size(121, 24);
+            this.cboCounter.TabIndex = 14;
+            // 
             // frmCalculation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -398,12 +394,12 @@
         internal System.Windows.Forms.Label Label9;
         internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.TextBox txtUser;
-        internal System.Windows.Forms.TextBox txtCounter;
         internal System.Windows.Forms.Label Label2;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.Label lblCurrency;
         private System.Windows.Forms.Label lblQuntity;
         private System.Windows.Forms.Label lblAmountInWords;
         private System.Windows.Forms.Label lblAlertMsg;
+        private System.Windows.Forms.ComboBox cboCounter;
     }
 }

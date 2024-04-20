@@ -1,4 +1,5 @@
 ﻿using SGMOSOL.ADMIN;
+using SGMOSOL.Custom_User_Contols;
 using SGMOSOL.DAL;
 using SGMOSOL.DataModel;
 using System;
@@ -19,10 +20,13 @@ namespace SGMOSOL.SCREENS
         DengiReceiptDAL frmData;
         frmDengiReceipt frmDengi;
         CommonFunctions cm;
+        SessionManager sessionManager;
         public frmSearchDengi()
         {
             InitializeComponent();
             // frmDengi = new frmDengiReceipt();
+            this.MouseClick += frmSearchDengi_MouseClick;
+            this.KeyDown += frmSearchDengi_KeyDown;
         }
 
         private void frmSearchDengi_Load(object sender, EventArgs e)
@@ -33,6 +37,8 @@ namespace SGMOSOL.SCREENS
             dtFromDate.CustomFormat = "dd/MM/yyyy";
             dtToDate.Format = DateTimePickerFormat.Custom;
             dtToDate.CustomFormat = "dd/MM/yyyy";
+           // sessionManager = new SessionManager(this);
+           // sessionManager.StartTimer();
         }
         private void fillDengiReceipt()
         {
@@ -139,7 +145,7 @@ namespace SGMOSOL.SCREENS
                     {
                         frmDengi.isPrint = true;
                         frmDengi.getAllData(dengimodel);
-                        this.Close();
+                       // this.Close();
                     }
                 }
 
@@ -191,6 +197,33 @@ namespace SGMOSOL.SCREENS
             {
                 lblmobile.Text = "Please enter a valid 10-digit mobile number.";
             }
+        }
+
+        private void dgvDengiReceipt_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged == DataGridViewElementStates.Selected)
+            {
+                // Calculate total amount up to the selected row
+                decimal totalAmount = 0;
+                foreach (DataGridViewRow row in dgvDengiReceipt.SelectedRows)
+                {
+                    // Assuming "Amount" column is of type decimal
+                    totalAmount += Convert.ToDecimal(row.Cells["Amount"].Value);
+                }
+                txttotalAMount.Text = totalAmount.ToString();
+                lblAmountInwords.Text = cm.words(Convert.ToDouble(totalAmount));
+                
+            }
+        }
+
+        private void frmSearchDengi_MouseClick(object sender, MouseEventArgs e)
+        {
+          //  sessionManager.ResetSession();
+        }
+
+        private void frmSearchDengi_KeyDown(object sender, KeyEventArgs e)
+        {
+           // sessionManager.ResetSession();
         }
     }
 }

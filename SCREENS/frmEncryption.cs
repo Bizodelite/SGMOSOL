@@ -48,5 +48,17 @@ namespace SGMOSOL.SCREENS
             txtEncrypt.Text = "";
             Clipboard.Clear();
         }
+
+        private void btnDec_Click(object sender, EventArgs e)
+        {
+            string strDecrypt = CommonFunctions.Decrypt(txtDecrypt.Text, true);
+            lblDecrypted.Text = strDecrypt;
+        }
+
+        private void btncpydec_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblDecrypted.Text);
+            btncpydec.Text = "Copied";
+        } 
     }
 }

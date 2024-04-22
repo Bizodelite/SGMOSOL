@@ -155,7 +155,7 @@ namespace SGMOSOL.BAL
         {
             public Int32 LockerId { get; set; }
             public string Reason { get; set; }
-            public string sDate { get; set; }
+            public DateTime sDate { get; set; }
         }
 
     }

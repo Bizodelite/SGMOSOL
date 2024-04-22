@@ -151,7 +151,7 @@ namespace SGMOSOL.SCREENS
             dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Bhojnalay));
             if (dr.Rows.Count > 0)
             {
-                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                UserInfo.Counter_Name = dr.Rows[0]["CounterMachineTitle"].ToString();
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
                 UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
@@ -167,10 +167,6 @@ namespace SGMOSOL.SCREENS
         {
             cboItemCode.TextChanged -= cboItemCode_TextChanged;
             dt = bhojnalayprintReceiptBAL.getItemCodeAssignToCounter();
-            DataRow newRow = dt.NewRow();
-            newRow["ITEM_CODE"] = "";
-            newRow["ITEM_ID"] = 0;
-            dt.Rows.InsertAt(newRow, 0);
             cboItemCode.DataSource = dt;
             cboItemCode.DisplayMember = "ITEM_CODE";
             cboItemCode.ValueMember = "ITEM_ID";
@@ -178,7 +174,6 @@ namespace SGMOSOL.SCREENS
             cboItemCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cboItemCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
             UpdateSuggestions();
-
         }
         private void UpdateSuggestions()
         {
@@ -241,7 +236,7 @@ namespace SGMOSOL.SCREENS
                 txtAmount.Text = amount.ToString();
                 if (Convert.ToInt32(txtQuantity.Text) > 99)
                 {
-                    lblQuantity.Text = "Quantity should not greater that 99";
+                    lblQuantity.Text = "Quantity should not greater than 99";
                 }
             }
         }
@@ -281,10 +276,10 @@ namespace SGMOSOL.SCREENS
                             int currentQuantity = Convert.ToInt32(row["Quantity"]);
                             int currentAmount = Convert.ToInt32(row["Amount"]);
                             row["Price"] = Convert.ToDecimal(txtPrice.Text);
-                            //row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
-                            row["Quantity"] = currentQuantity;
-                            // row["Amount"] = Convert.ToDecimal(txtAmount.Text) + currentAmount;
-                            row["Amount"] = currentAmount;
+                            // row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
+                             row["Quantity"] = Convert.ToInt32(txtQuantity.Text);
+                            row["Amount"] = Convert.ToDecimal(txtAmount.Text) ;
+                           // row["Amount"] = currentAmount;
                         }
                     }
                     else
@@ -677,6 +672,8 @@ namespace SGMOSOL.SCREENS
             lblTaluka.Text = "";
             txtName.Focus();
             lblAdd.Text = "";
+            txtTotalAmount.Text = "";
+            txtPrice.Text = "0";
         }
         public void lockControls()
         {
@@ -862,6 +859,7 @@ namespace SGMOSOL.SCREENS
 
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
+            bool itemFound = false;
             if (e.KeyCode == Keys.Enter)
             {
 
@@ -881,8 +879,15 @@ namespace SGMOSOL.SCREENS
                         {
                             // Remove the row from the DataGridView
                             dgvItemDetails.Rows.Remove(row);
+                            txtTotalAmount.Text = getTotalAmount();
+                            itemFound = true;
+                            clear();
                             break;
                         }
+                    }
+                    if (itemFound == false)
+                    {
+                        MessageBox.Show("Item not found");
                     }
                 }
             }

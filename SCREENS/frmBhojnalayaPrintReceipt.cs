@@ -52,6 +52,7 @@ namespace SGMOSOL.SCREENS
             if (user == null)
             {
                 user = new frmUserDengi();
+                user.Show();
             }
         }
         private void panel2_Paint(object sender, PaintEventArgs e)

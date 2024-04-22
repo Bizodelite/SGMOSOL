@@ -15,6 +15,7 @@ using Microsoft.Identity.Client;
 using SGMOSOL.ADMIN;
 using System.Diagnostics;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
+using System.IO;
 
 
 
@@ -61,6 +62,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                cm.AppendToFile("Printing Report Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 string printerName = null;
                 if (PrinterType == PrinterNames.DengiDeclaration)
                 {
@@ -130,6 +132,7 @@ namespace SGMOSOL.SCREENS
                     {
                         dt = da.getDengiReceiptDataForReport(receiptID);
                         reportFileName = "DengiReceipt.rdlc";
+                   
                         reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
                         reportViewer2.LocalReport.ReportPath = reportPath;
                         reportDataSource = new ReportDataSource("DataSet1", dt);
@@ -141,6 +144,7 @@ namespace SGMOSOL.SCREENS
                         foreach (DataRow row in dt1.Rows)
                         {
                             strSerialNumberPrint = row["SERIAL_NO"].ToString();
+                            cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
                         }
                         MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
                         printReport(DocumentName, PrinterNames.DengiPrint);

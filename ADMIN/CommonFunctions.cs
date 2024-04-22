@@ -25,7 +25,6 @@ using Microsoft.VisualBasic;
 using System.Resources;
 using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 using System.Data.Sql;
 using System.Windows;
 using System.Reflection;
@@ -320,6 +319,7 @@ namespace SGMOSOL.ADMIN
             }
             return dt;
         }
+
         public DataTable getStateById(int countryId)
         {
             dt = new DataTable();
@@ -697,6 +697,24 @@ namespace SGMOSOL.ADMIN
             }
             return dt;
         }
+
+        public void AppendToFile(string text)
+        {
+            try
+            {
+                // Append the text to the file
+                using (StreamWriter writer = File.AppendText("D:\\OdeliteNewProject_09\\PrintLog.txt"))
+                {
+                    writer.WriteLine(text);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions, such as file not found or permissions issues
+                Console.WriteLine("Error writing to file: " + ex.Message);
+            }
+        }
+
 
         public bool IsValidPan(string panNumber)
         {
@@ -2660,7 +2678,7 @@ namespace SGMOSOL.ADMIN
 
             return mReader;
         }
-        public System.Data.DataSet GetDsProductMenu(int intUserId = 0,int Status = 3)
+        public System.Data.DataSet GetDsProductMenu(int intUserId = 0, int Status = 3)
         {
             System.Data.DataSet ds = new System.Data.DataSet();
             try

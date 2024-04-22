@@ -277,13 +277,13 @@ namespace SGMOSOL.ADMIN
         }
         public enum ePrintReceipt
         {
-            ProductN,
-            ProductC,
-            Advance,
-            Nidhi,
-            Qty,
-            TotAdv,
-            TotNidhi
+            ProductN = 0,
+            ProductC = 1,
+            Advance = 2,
+            Nidhi = 3,
+            Qty = 4,
+            TotAdv = 5,
+            TotNidhi = 6
         }
         //public enum eEntryGate
         //{
@@ -994,7 +994,7 @@ namespace SGMOSOL.ADMIN
                         else if (Name2 == "")
                             lsb.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[lsbIndex])));
                         else
-                            lsb.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[lsbIndex]), Convert.ToInt64(myReaderitem[Name2])));
+                            lsb.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[lsbIndex]), myReaderitem[Name2].ToString()));
                         i++;
                     }
                     //withBlock.Close();
@@ -1107,7 +1107,7 @@ namespace SGMOSOL.ADMIN
             }
         }
 
-        public long lsbItemName2(ListBox lsb, int intIndex)
+        public string lsbItemName2(ListBox lsb, int intIndex)
         {
             try
             {
@@ -1118,7 +1118,7 @@ namespace SGMOSOL.ADMIN
             catch (Exception ex)
             {
                 InsertErrorLog("lsbItemName : " + lsb.Name + ex.ToString(), UserInfo.module, UserInfo.version);
-                return -1;
+                return "";
             }
         }
         public string GetErrorMessage(string[] colAray, long Message_Id)
@@ -1204,101 +1204,136 @@ namespace SGMOSOL.ADMIN
                 InsertErrorLog("LockUnLockGrid : " + ex.ToString(), UserInfo.module, UserInfo.version);
             }
         }
-        public string getNumbersInWords(decimal Numbers, eCurrencyType WhichCurrency = eCurrencyType.Rupees, bool blnInMillion = false)
+        public string getNumbersInWords(string Numbers, eCurrencyType WhichCurrency = eCurrencyType.Rupees, bool blnInMillion = false)
         {
-            string getNumbersInWords = "";
             string strNumerals = "";
             string strDecimals = "";
             string strIntPart = "";
             string strDecPart = "";
             int intDecPos = 0;
             string strAnd = "";
+
             WhichCurrency = eCurrencyType.Rupees;
 
-            intDecPos = Numbers.ToString().IndexOf(".");
+            intDecPos = Numbers.IndexOf(".");
 
             if (intDecPos > 0)
             {
-                strIntPart = Numbers.ToString().Substring(1, intDecPos - 1);
-                strDecPart = Numbers.ToString().Substring(intDecPos + 1, 2);
+                strIntPart = Numbers.Substring(0, intDecPos);
+                strDecPart = Numbers.Substring(intDecPos + 1, 2);
                 if (strDecPart.Length == 1)
-                    strDecPart = strDecPart + "0";
+                {
+                    strDecPart += "0";
+                }
             }
             else
-                strIntPart = Numbers.ToString().Substring(Numbers.ToString().Length);
-
-            if ((WhichCurrency == eCurrencyType.Rupees | WhichCurrency == eCurrencyType.Dollars) & blnInMillion == false)
             {
-                if (strIntPart != "" && Convert.ToDouble(strIntPart) != 0)
+                strIntPart = Numbers.Substring(0);
+            }
+
+            if ((WhichCurrency == eCurrencyType.Rupees || WhichCurrency == eCurrencyType.Dollars) && !blnInMillion)
+            {
+                if (Convert.ToInt32(strIntPart) != 0)
                 {
                     strNumerals = NumToWordInRupees(Convert.ToDouble(strIntPart));
                     if (strNumerals == "Error")
                     {
+                        // Handle error
                     }
                     else
-                        // strNumerals = "Rupees " & NumToWordInRupees(Val(strIntPart))
-                        strNumerals = NumToWordInRupees(Convert.ToDouble(strIntPart));
+                    {
+                        strNumerals = NumToWordInRupees(Convert.ToInt32(strIntPart));
+                    }
                 }
 
-                if (strDecPart != "" && Convert.ToDouble(strDecPart) != 0)
+                if (strDecPart != "" && Convert.ToInt32(strDecPart) != 0)
                 {
                     if (strDecimals == "Error")
                     {
+                        // Handle error
                     }
-                    else if (WhichCurrency == eCurrencyType.Rupees)
-                        strDecimals = NumToWordInRupees(Convert.ToDouble(strDecPart)) + " Paise";
                     else
-                        strDecimals = NumToWordInDollars(Convert.ToDouble(strDecPart)) + " Cents";
+                    {
+                        if (WhichCurrency == eCurrencyType.Rupees)
+                        {
+                            strDecimals = NumToWordInRupees(Convert.ToInt32(strDecPart)) + " Paise";
+                        }
+                        else
+                        {
+                            strDecimals = NumToWordInDollars(Convert.ToInt32(strDecPart)) + " Cents";
+                        }
+                    }
                 }
 
-                if (strNumerals != "" & strDecimals != "")
-                    strAnd = " And ";
-
-                if (strNumerals == "" & strDecimals == "" & strAnd == "")
-                    getNumbersInWords = "Rupees " + " Zero ";
-                else if (strNumerals == "Error" | strDecimals == "Error")
-                    getNumbersInWords = "Invalid Number";
-                else
-                    getNumbersInWords = strNumerals + strAnd + strDecimals + " Only.";
-            }
-            else if (WhichCurrency == eCurrencyType.Dollars & blnInMillion == true)
-            {
-                if (Convert.ToDouble(strIntPart) != 0)
+                if (!string.IsNullOrEmpty(strNumerals) && !string.IsNullOrEmpty(strDecimals))
                 {
-                    strNumerals = NumToWordInDollars(Convert.ToDouble(strIntPart));
+                    strAnd = " And ";
+                }
+
+                if (string.IsNullOrEmpty(strNumerals) && string.IsNullOrEmpty(strDecimals) && string.IsNullOrEmpty(strAnd))
+                {
+                    return "Rupees Zero";
+                }
+                else if (strNumerals == "Error" || strDecimals == "Error")
+                {
+                    return "Invalid Number";
+                }
+                else
+                {
+                    return strNumerals + strAnd + strDecimals + " Only.";
+                }
+            }
+            else if (WhichCurrency == eCurrencyType.Dollars && blnInMillion)
+            {
+                if (Convert.ToInt32(strIntPart) != 0)
+                {
+                    strNumerals = NumToWordInDollars(Convert.ToInt32(strIntPart));
                     if (strNumerals == "Error")
                     {
+                        // Handle error
                     }
                     else
-                        // strNumerals = "Dollars " & NumToWordInDollars(Val(strIntPart))
-                        strNumerals = NumToWordInDollars(Convert.ToDouble(strIntPart));
+                    {
+                        strNumerals = NumToWordInDollars(Convert.ToInt32(strIntPart));
+                    }
                 }
 
-                if (Convert.ToDouble(strDecPart) != 0)
+                if (Convert.ToInt32(strDecPart) != 0)
                 {
                     if (strDecimals == "Error")
                     {
+                        // Handle error
                     }
                     else
-                        strDecimals = NumToWordInDollars(Convert.ToDouble(strDecPart)) + " Cents";
+                    {
+                        strDecimals = NumToWordInDollars(Convert.ToInt32(strDecPart)) + " Cents";
+                    }
                 }
 
-                if (strNumerals != "" & strDecimals != "")
+                if (!string.IsNullOrEmpty(strNumerals) && !string.IsNullOrEmpty(strDecimals))
+                {
                     strAnd = " And ";
+                }
 
-                if (strNumerals == "" & strDecimals == "" & strAnd == "")
-                    getNumbersInWords = "Dollars " + " Zero ";
-                else if (strNumerals == "Error" | strDecimals == "Error")
-                    getNumbersInWords = "Invalid Number";
+                if (string.IsNullOrEmpty(strNumerals) && string.IsNullOrEmpty(strDecimals) && string.IsNullOrEmpty(strAnd))
+                {
+                    return "Dollars Zero";
+                }
+                else if (strNumerals == "Error" || strDecimals == "Error")
+                {
+                    return "Invalid Number";
+                }
                 else
-                    getNumbersInWords = strNumerals + strAnd + strDecimals + " Only.";
+                {
+                    return strNumerals + strAnd + strDecimals + " Only.";
+                }
             }
 
-            return getNumbersInWords;
+            return "";
         }
-        private string NumToWordInRupees(double numstr)
+
+        private static string NumToWordInRupees(double numstr)
         {
-            string NumToWordInRupee = "";
             string tempStr = "";
             string newstr = "";
 
@@ -1319,231 +1354,165 @@ namespace SGMOSOL.ADMIN
 
             if (numstr >= Math.Pow(10, 7))
             {
-                newstr = NumToWordInRupees((numstr / Math.Pow(10, 7)));
-                numstr = Math.Round(((numstr / Math.Pow(10, 7)) - (numstr / Math.Pow(10, 7))) * Math.Pow(10, 7), 0);
+                newstr = NumToWordInRupees(Math.Truncate(numstr / Math.Pow(10, 7)));
+                numstr = Math.Round(((numstr / Math.Pow(10, 7)) - Math.Truncate(numstr / Math.Pow(10, 7))) * Math.Pow(10, 7), 0);
                 if (newstr.Trim() == "One")
-                    tempStr = tempStr + newstr + "Crore ";
+                {
+                    tempStr += newstr + " Crore ";
+                }
                 else
-                    tempStr = tempStr + newstr + "Crores, ";
+                {
+                    tempStr += newstr + " Crores, ";
+                }
             }
 
             if (numstr >= Math.Pow(10, 5))
             {
-                newstr = NumToWordInRupees((numstr / Math.Pow(10, 5)));
-                numstr = Math.Round(((numstr / Math.Pow(10, 5)) - (numstr / Math.Pow(10, 5))) * Math.Pow(10, 5), 0);
+                newstr = NumToWordInRupees(Math.Truncate(numstr / Math.Pow(10, 5)));
+                numstr = Math.Round(((numstr / Math.Pow(10, 5)) - Math.Truncate(numstr / Math.Pow(10, 5))) * Math.Pow(10, 5), 0);
                 if (newstr.Trim() == "One")
-                    tempStr = tempStr + newstr + "Lakh ";
+                {
+                    tempStr += newstr + " Lakh ";
+                }
                 else
-                    tempStr = tempStr + newstr + "Lakhs, ";
+                {
+                    tempStr += newstr + " Lakhs, ";
+                }
             }
 
             if (numstr >= Math.Pow(10, 3))
             {
-                newstr = NumToWordInRupees((numstr / Math.Pow(10, 3)));
-                numstr = Math.Round(((numstr / Math.Pow(10, 3)) - (numstr / Math.Pow(10, 3))) * Math.Pow(10, 3), 0);
+                newstr = NumToWordInRupees(Math.Truncate(numstr / Math.Pow(10, 3)));
+                numstr = Math.Round(((numstr / Math.Pow(10, 3)) - Math.Truncate(numstr / Math.Pow(10, 3))) * Math.Pow(10, 3), 0);
                 if (numstr == 0)
-                    tempStr = tempStr + newstr + "Thousand ";
+                {
+                    tempStr += newstr + " Thousand ";
+                }
                 else
-                    tempStr = tempStr + newstr + "Thousand ";
+                {
+                    tempStr += newstr + " Thousand ";
+                }
             }
 
             if (numstr >= Math.Pow(10, 2))
             {
-                newstr = NumToWordInRupees((numstr / Math.Pow(10, 2)));
-                numstr = Math.Round(((numstr / Math.Pow(10, 2)) - (numstr / Math.Pow(10, 2))) * Math.Pow(10, 2), 0);
+                newstr = NumToWordInRupees(Math.Truncate(numstr / Math.Pow(10, 2)));
+                numstr = Math.Round(((numstr / Math.Pow(10, 2)) - Math.Truncate(numstr / Math.Pow(10, 2))) * Math.Pow(10, 2), 0);
                 if (numstr == 0)
-                    tempStr = tempStr + newstr + "Hundred ";
+                {
+                    tempStr += newstr + " Hundred ";
+                }
                 else
-                    // tempstr = tempstr & newstr & "Hundred And "
-                    tempStr = tempStr + newstr + "Hundred ";
+                {
+                    tempStr += newstr + " Hundred ";
+                }
             }
 
             if (numstr >= 20)
             {
-                switch (Convert.ToInt32(numstr / (double)10))
+                switch ((int)Math.Truncate(numstr / 10))
                 {
                     case 2:
-                        {
-                            tempStr = tempStr + "Twenty ";
-                            break;
-                        }
-
+                        tempStr += "Twenty ";
+                        break;
                     case 3:
-                        {
-                            tempStr = tempStr + "Thirty ";
-                            break;
-                        }
-
+                        tempStr += "Thirty ";
+                        break;
                     case 4:
-                        {
-                            tempStr = tempStr + "Forty ";
-                            break;
-                        }
-
+                        tempStr += "Forty ";
+                        break;
                     case 5:
-                        {
-                            tempStr = tempStr + "Fifty ";
-                            break;
-                        }
-
+                        tempStr += "Fifty ";
+                        break;
                     case 6:
-                        {
-                            tempStr = tempStr + "Sixty ";
-                            break;
-                        }
-
+                        tempStr += "Sixty ";
+                        break;
                     case 7:
-                        {
-                            tempStr = tempStr + "Seventy ";
-                            break;
-                        }
-
+                        tempStr += "Seventy ";
+                        break;
                     case 8:
-                        {
-                            tempStr = tempStr + "Eighty ";
-                            break;
-                        }
-
+                        tempStr += "Eighty ";
+                        break;
                     case 9:
-                        {
-                            tempStr = tempStr + "Ninety ";
-                            break;
-                        }
+                        tempStr += "Ninety ";
+                        break;
                 }
-                numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+                numstr = (((numstr / 10) - Math.Truncate(numstr / 10)) * 10);
             }
 
-            if (numstr > 0)
+            if (Convert.ToInt32(numstr) > 0)
             {
-                switch (numstr)
+                switch (Convert.ToInt32(numstr))
                 {
                     case 1:
-                        {
-                            tempStr = tempStr + "One ";
-                            break;
-                        }
-
+                        tempStr += "One ";
+                        break;
                     case 2:
-                        {
-                            tempStr = tempStr + "Two ";
-                            break;
-                        }
-
+                        tempStr += "Two ";
+                        break;
                     case 3:
-                        {
-                            tempStr = tempStr + "Three ";
-                            break;
-                        }
-
+                        tempStr += "Three ";
+                        break;
                     case 4:
-                        {
-                            tempStr = tempStr + "Four ";
-                            break;
-                        }
-
+                        tempStr += "Four ";
+                        break;
                     case 5:
-                        {
-                            tempStr = tempStr + "Five ";
-                            break;
-                        }
-
+                        tempStr += "Five ";
+                        break;
                     case 6:
-                        {
-                            tempStr = tempStr + "Six ";
-                            break;
-                        }
-
+                        tempStr += "Six ";
+                        break;
                     case 7:
-                        {
-                            tempStr = tempStr + "Seven ";
-                            break;
-                        }
-
+                        tempStr += "Seven ";
+                        break;
                     case 8:
-                        {
-                            tempStr = tempStr + "Eight ";
-                            break;
-                        }
-
+                        tempStr += "Eight ";
+                        break;
                     case 9:
-                        {
-                            tempStr = tempStr + "Nine ";
-                            break;
-                        }
-
+                        tempStr += "Nine ";
+                        break;
                     case 10:
-                        {
-                            tempStr = tempStr + "Ten ";
-                            break;
-                        }
-
+                        tempStr += "Ten ";
+                        break;
                     case 11:
-                        {
-                            tempStr = tempStr + "Eleven ";
-                            break;
-                        }
-
+                        tempStr += "Eleven ";
+                        break;
                     case 12:
-                        {
-                            tempStr = tempStr + "Twelve ";
-                            break;
-                        }
-
+                        tempStr += "Twelve ";
+                        break;
                     case 13:
-                        {
-                            tempStr = tempStr + "Thirteen ";
-                            break;
-                        }
-
+                        tempStr += "Thirteen ";
+                        break;
                     case 14:
-                        {
-                            tempStr = tempStr + "Fourteen ";
-                            break;
-                        }
-
+                        tempStr += "Fourteen ";
+                        break;
                     case 15:
-                        {
-                            tempStr = tempStr + "Fifteen ";
-                            break;
-                        }
-
+                        tempStr += "Fifteen ";
+                        break;
                     case 16:
-                        {
-                            tempStr = tempStr + "Sixteen ";
-                            break;
-                        }
-
+                        tempStr += "Sixteen ";
+                        break;
                     case 17:
-                        {
-                            tempStr = tempStr + "Seventeen ";
-                            break;
-                        }
-
+                        tempStr += "Seventeen ";
+                        break;
                     case 18:
-                        {
-                            tempStr = tempStr + "Eighteen ";
-                            break;
-                        }
-
+                        tempStr += "Eighteen ";
+                        break;
                     case 19:
-                        {
-                            tempStr = tempStr + "Nineteen ";
-                            break;
-                        }
+                        tempStr += "Nineteen ";
+                        break;
                 }
-                // tempStr = tempStr & "Rupees"
-                numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+                // tempStr += "Rupees";
+                numstr = (((numstr / 10) - Math.Truncate(numstr / 10)) * 10);
             }
 
-            NumToWordInRupee = tempStr;
-            return NumToWordInRupee;
+            return tempStr;
         }
 
-        private string NumToWordInDollars(double numstr)
+        private static string NumToWordInDollars(double numstr)
         {
-            string NumToWordInDollar = "";
             string tempStr = "";
-            string newstr;
+            string newstr = "";
 
             if (numstr == 0)
             {
@@ -1562,224 +1531,735 @@ namespace SGMOSOL.ADMIN
 
             if (numstr >= Math.Pow(10, 9))
             {
-                newstr = NumToWordInDollars((numstr / Math.Pow(10, 9)));
-                numstr = ((numstr / Math.Pow(10, 9)) - (numstr / Math.Pow(10, 9))) * Math.Pow(10, 9);
+                newstr = NumToWordInDollars(Math.Truncate(numstr / Math.Pow(10, 9)));
+                numstr = ((numstr / Math.Pow(10, 9)) - Math.Truncate(numstr / Math.Pow(10, 9))) * Math.Pow(10, 9);
                 if (newstr.Trim() == "One")
-                    tempStr = tempStr + newstr + "Billion ";
+                {
+                    tempStr += newstr + "Billion ";
+                }
                 else
-                    tempStr = tempStr + newstr + "Billion, ";
+                {
+                    tempStr += newstr + "Billion, ";
+                }
             }
 
             if (numstr >= Math.Pow(10, 6))
             {
-                newstr = NumToWordInDollars((numstr / Math.Pow(10, 6)));
-                numstr = ((numstr / Math.Pow(10, 6)) - (numstr / Math.Pow(10, 6))) * Math.Pow(10, 6);
+                newstr = NumToWordInDollars(Math.Truncate(numstr / Math.Pow(10, 6)));
+                numstr = ((numstr / Math.Pow(10, 6)) - Math.Truncate(numstr / Math.Pow(10, 6))) * Math.Pow(10, 6);
                 if (newstr.Trim() == "One")
-                    tempStr = tempStr + newstr + "Million ";
+                {
+                    tempStr += newstr + "Million ";
+                }
                 else
-                    tempStr = tempStr + newstr + "Million, ";
+                {
+                    tempStr += newstr + "Million, ";
+                }
             }
 
             if (numstr >= Math.Pow(10, 3))
             {
-                newstr = NumToWordInDollars((numstr / Math.Pow(10, 3)));
-                numstr = ((numstr / Math.Pow(10, 3)) - (numstr / Math.Pow(10, 3))) * Math.Pow(10, 3);
+                newstr = NumToWordInDollars(Math.Truncate(numstr / Math.Pow(10, 3)));
+                numstr = ((numstr / Math.Pow(10, 3)) - Math.Truncate(numstr / Math.Pow(10, 3))) * Math.Pow(10, 3);
                 if (numstr == 0)
-                    tempStr = tempStr + newstr + "Thousand ";
+                {
+                    tempStr += newstr + "Thousand ";
+                }
                 else
-                    tempStr = tempStr + newstr + "Thousand, ";
+                {
+                    tempStr += newstr + "Thousand, ";
+                }
             }
 
             if (numstr >= Math.Pow(10, 2))
             {
-                newstr = NumToWordInDollars((numstr / Math.Pow(10, 2)));
-                numstr = ((numstr / Math.Pow(10, 2)) - (numstr / Math.Pow(10, 2))) * Math.Pow(10, 2);
+                newstr = NumToWordInDollars(Math.Truncate(numstr / Math.Pow(10, 2)));
+                numstr = ((numstr / Math.Pow(10, 2)) - Math.Truncate(numstr / Math.Pow(10, 2))) * Math.Pow(10, 2);
                 if (numstr == 0)
-                    tempStr = tempStr + newstr + "Hundred ";
+                {
+                    tempStr += newstr + "Hundred ";
+                }
                 else
-                    // tempstr = tempstr & newstr & "Hundred And "
-                    tempStr = tempStr + newstr + "Hundred ";
+                {
+                    tempStr += newstr + "Hundred ";
+                }
             }
 
             if (numstr >= 20)
             {
-                switch (numstr / (double)10)
+                switch ((int)Math.Truncate(numstr / 10))
                 {
                     case 2:
-                        {
-                            tempStr = tempStr + "Twenty ";
-                            break;
-                        }
-
+                        tempStr += "Twenty ";
+                        break;
                     case 3:
-                        {
-                            tempStr = tempStr + "Thirty ";
-                            break;
-                        }
-
+                        tempStr += "Thirty ";
+                        break;
                     case 4:
-                        {
-                            tempStr = tempStr + "Forty ";
-                            break;
-                        }
-
+                        tempStr += "Forty ";
+                        break;
                     case 5:
-                        {
-                            tempStr = tempStr + "Fifty ";
-                            break;
-                        }
-
+                        tempStr += "Fifty ";
+                        break;
                     case 6:
-                        {
-                            tempStr = tempStr + "Sixty ";
-                            break;
-                        }
-
+                        tempStr += "Sixty ";
+                        break;
                     case 7:
-                        {
-                            tempStr = tempStr + "Seventy ";
-                            break;
-                        }
-
+                        tempStr += "Seventy ";
+                        break;
                     case 8:
-                        {
-                            tempStr = tempStr + "Eighty ";
-                            break;
-                        }
-
+                        tempStr += "Eighty ";
+                        break;
                     case 9:
-                        {
-                            tempStr = tempStr + "Ninety ";
-                            break;
-                        }
+                        tempStr += "Ninety ";
+                        break;
                 }
-                numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+                numstr = (((numstr / 10) - Math.Truncate(numstr / 10)) * 10);
             }
 
             if (numstr > 0)
             {
-                switch (numstr)
+                switch ((int)numstr)
                 {
                     case 1:
-                        {
-                            tempStr = tempStr + "One ";
-                            break;
-                        }
-
+                        tempStr += "One ";
+                        break;
                     case 2:
-                        {
-                            tempStr = tempStr + "Two ";
-                            break;
-                        }
-
+                        tempStr += "Two ";
+                        break;
                     case 3:
-                        {
-                            tempStr = tempStr + "Three ";
-                            break;
-                        }
-
+                        tempStr += "Three ";
+                        break;
                     case 4:
-                        {
-                            tempStr = tempStr + "Four ";
-                            break;
-                        }
-
+                        tempStr += "Four ";
+                        break;
                     case 5:
-                        {
-                            tempStr = tempStr + "Five ";
-                            break;
-                        }
-
+                        tempStr += "Five ";
+                        break;
                     case 6:
-                        {
-                            tempStr = tempStr + "Six ";
-                            break;
-                        }
-
+                        tempStr += "Six ";
+                        break;
                     case 7:
-                        {
-                            tempStr = tempStr + "Seven ";
-                            break;
-                        }
-
+                        tempStr += "Seven ";
+                        break;
                     case 8:
-                        {
-                            tempStr = tempStr + "Eight ";
-                            break;
-                        }
-
+                        tempStr += "Eight ";
+                        break;
                     case 9:
-                        {
-                            tempStr = tempStr + "Nine ";
-                            break;
-                        }
-
+                        tempStr += "Nine ";
+                        break;
                     case 10:
-                        {
-                            tempStr = tempStr + "Ten ";
-                            break;
-                        }
-
+                        tempStr += "Ten ";
+                        break;
                     case 11:
-                        {
-                            tempStr = tempStr + "Eleven ";
-                            break;
-                        }
-
+                        tempStr += "Eleven ";
+                        break;
                     case 12:
-                        {
-                            tempStr = tempStr + "Twelve ";
-                            break;
-                        }
-
+                        tempStr += "Twelve ";
+                        break;
                     case 13:
-                        {
-                            tempStr = tempStr + "Thirteen ";
-                            break;
-                        }
-
+                        tempStr += "Thirteen ";
+                        break;
                     case 14:
-                        {
-                            tempStr = tempStr + "Fourteen ";
-                            break;
-                        }
-
+                        tempStr += "Fourteen ";
+                        break;
                     case 15:
-                        {
-                            tempStr = tempStr + "Fifteen ";
-                            break;
-                        }
-
+                        tempStr += "Fifteen ";
+                        break;
                     case 16:
-                        {
-                            tempStr = tempStr + "Sixteen ";
-                            break;
-                        }
-
+                        tempStr += "Sixteen ";
+                        break;
                     case 17:
-                        {
-                            tempStr = tempStr + "Seventeen ";
-                            break;
-                        }
-
+                        tempStr += "Seventeen ";
+                        break;
                     case 18:
-                        {
-                            tempStr = tempStr + "Eighteen ";
-                            break;
-                        }
-
+                        tempStr += "Eighteen ";
+                        break;
                     case 19:
-                        {
-                            tempStr = tempStr + "Nineteen ";
-                            break;
-                        }
+                        tempStr += "Nineteen ";
+                        break;
                 }
-                numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+                numstr = (((numstr / 10) - Math.Truncate(numstr / 10)) * 10);
             }
 
-            NumToWordInDollar = tempStr;
-            return NumToWordInDollar;
+            return tempStr;
         }
+        //public string getNumbersInWords(decimal Numbers, eCurrencyType WhichCurrency = eCurrencyType.Rupees, bool blnInMillion = false)
+        //{
+        //    string getNumbersInWords = "";
+        //    string strNumerals = "";
+        //    string strDecimals = "";
+        //    string strIntPart = "";
+        //    string strDecPart = "";
+        //    int intDecPos = 0;
+        //    string strAnd = "";
+        //    WhichCurrency = eCurrencyType.Rupees;
+
+        //    intDecPos = Numbers.ToString().IndexOf(".");
+
+        //    if (intDecPos > 0)
+        //    {
+        //        strIntPart = Numbers.ToString().Substring(1, intDecPos - 1);
+        //        strDecPart = Numbers.ToString().Substring(intDecPos + 1, 2);
+        //        if (strDecPart.Length == 1)
+        //            strDecPart = strDecPart + "0";
+        //    }
+        //    else
+        //        strIntPart = Numbers.ToString().Substring(Numbers.ToString().Length);
+
+        //    if ((WhichCurrency == eCurrencyType.Rupees | WhichCurrency == eCurrencyType.Dollars) & blnInMillion == false)
+        //    {
+        //        if (strIntPart != "" && Convert.ToDouble(strIntPart) != 0)
+        //        {
+        //            strNumerals = NumToWordInRupees(Convert.ToDouble(strIntPart));
+        //            if (strNumerals == "Error")
+        //            {
+        //            }
+        //            else
+        //                // strNumerals = "Rupees " & NumToWordInRupees(Val(strIntPart))
+        //                strNumerals = NumToWordInRupees(Convert.ToDouble(strIntPart));
+        //        }
+
+        //        if (strDecPart != "" && Convert.ToDouble(strDecPart) != 0)
+        //        {
+        //            if (strDecimals == "Error")
+        //            {
+        //            }
+        //            else if (WhichCurrency == eCurrencyType.Rupees)
+        //                strDecimals = NumToWordInRupees(Convert.ToDouble(strDecPart)) + " Paise";
+        //            else
+        //                strDecimals = NumToWordInDollars(Convert.ToDouble(strDecPart)) + " Cents";
+        //        }
+
+        //        if (strNumerals != "" & strDecimals != "")
+        //            strAnd = " And ";
+
+        //        if (strNumerals == "" & strDecimals == "" & strAnd == "")
+        //            getNumbersInWords = "Rupees " + " Zero ";
+        //        else if (strNumerals == "Error" | strDecimals == "Error")
+        //            getNumbersInWords = "Invalid Number";
+        //        else
+        //            getNumbersInWords = strNumerals + strAnd + strDecimals + " Only.";
+        //    }
+        //    else if (WhichCurrency == eCurrencyType.Dollars & blnInMillion == true)
+        //    {
+        //        if (Convert.ToDouble(strIntPart) != 0)
+        //        {
+        //            strNumerals = NumToWordInDollars(Convert.ToDouble(strIntPart));
+        //            if (strNumerals == "Error")
+        //            {
+        //            }
+        //            else
+        //                // strNumerals = "Dollars " & NumToWordInDollars(Val(strIntPart))
+        //                strNumerals = NumToWordInDollars(Convert.ToDouble(strIntPart));
+        //        }
+
+        //        if (Convert.ToDouble(strDecPart) != 0)
+        //        {
+        //            if (strDecimals == "Error")
+        //            {
+        //            }
+        //            else
+        //                strDecimals = NumToWordInDollars(Convert.ToDouble(strDecPart)) + " Cents";
+        //        }
+
+        //        if (strNumerals != "" & strDecimals != "")
+        //            strAnd = " And ";
+
+        //        if (strNumerals == "" & strDecimals == "" & strAnd == "")
+        //            getNumbersInWords = "Dollars " + " Zero ";
+        //        else if (strNumerals == "Error" | strDecimals == "Error")
+        //            getNumbersInWords = "Invalid Number";
+        //        else
+        //            getNumbersInWords = strNumerals + strAnd + strDecimals + " Only.";
+        //    }
+
+        //    return getNumbersInWords;
+        //}
+        //private string NumToWordInRupees(double numstr)
+        //{
+        //    string NumToWordInRupee = "";
+        //    string tempStr = "";
+        //    string newstr = "";
+
+        //    if (numstr == 0)
+        //    {
+        //        return "Zero";
+        //    }
+
+        //    if (numstr < 0)
+        //    {
+        //        return "Error";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 11))
+        //    {
+        //        return "Error";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 7))
+        //    {
+        //        newstr = NumToWordInRupees((numstr / Math.Pow(10, 7)));
+        //        numstr = Math.Round(((numstr / Math.Pow(10, 7)) - (numstr / Math.Pow(10, 7))) * Math.Pow(10, 7), 0);
+        //        if (newstr.Trim() == "One")
+        //            tempStr = tempStr + newstr + "Crore ";
+        //        else
+        //            tempStr = tempStr + newstr + "Crores, ";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 5))
+        //    {
+        //        newstr = NumToWordInRupees((numstr / Math.Pow(10, 5)));
+        //        numstr = Math.Round(((numstr / Math.Pow(10, 5)) - (numstr / Math.Pow(10, 5))) * Math.Pow(10, 5), 0);
+        //        if (newstr.Trim() == "One")
+        //            tempStr = tempStr + newstr + "Lakh ";
+        //        else
+        //            tempStr = tempStr + newstr + "Lakhs, ";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 3))
+        //    {
+        //        newstr = NumToWordInRupees((numstr / Math.Pow(10, 3)));
+        //        numstr = Math.Round(((numstr / Math.Pow(10, 3)) - (numstr / Math.Pow(10, 3))) * Math.Pow(10, 3), 0);
+        //        if (numstr == 0)
+        //            tempStr = tempStr + newstr + "Thousand ";
+        //        else
+        //            tempStr = tempStr + newstr + "Thousand ";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 2))
+        //    {
+        //        newstr = NumToWordInRupees((numstr / Math.Pow(10, 2)));
+        //        numstr = Math.Round(((numstr / Math.Pow(10, 2)) - (numstr / Math.Pow(10, 2))) * Math.Pow(10, 2), 0);
+        //        if (numstr == 0)
+        //            tempStr = tempStr + newstr + "Hundred ";
+        //        else
+        //            // tempstr = tempstr & newstr & "Hundred And "
+        //            tempStr = tempStr + newstr + "Hundred ";
+        //    }
+
+        //    if (numstr >= 20)
+        //    {
+        //        switch (Convert.ToInt32(numstr / (double)10))
+        //        {
+        //            case 2:
+        //                {
+        //                    tempStr = tempStr + "Twenty ";
+        //                    break;
+        //                }
+
+        //            case 3:
+        //                {
+        //                    tempStr = tempStr + "Thirty ";
+        //                    break;
+        //                }
+
+        //            case 4:
+        //                {
+        //                    tempStr = tempStr + "Forty ";
+        //                    break;
+        //                }
+
+        //            case 5:
+        //                {
+        //                    tempStr = tempStr + "Fifty ";
+        //                    break;
+        //                }
+
+        //            case 6:
+        //                {
+        //                    tempStr = tempStr + "Sixty ";
+        //                    break;
+        //                }
+
+        //            case 7:
+        //                {
+        //                    tempStr = tempStr + "Seventy ";
+        //                    break;
+        //                }
+
+        //            case 8:
+        //                {
+        //                    tempStr = tempStr + "Eighty ";
+        //                    break;
+        //                }
+
+        //            case 9:
+        //                {
+        //                    tempStr = tempStr + "Ninety ";
+        //                    break;
+        //                }
+        //        }
+        //        numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+        //    }
+
+        //    if (numstr > 0)
+        //    {
+        //        switch (numstr)
+        //        {
+        //            case 1:
+        //                {
+        //                    tempStr = tempStr + "One ";
+        //                    break;
+        //                }
+
+        //            case 2:
+        //                {
+        //                    tempStr = tempStr + "Two ";
+        //                    break;
+        //                }
+
+        //            case 3:
+        //                {
+        //                    tempStr = tempStr + "Three ";
+        //                    break;
+        //                }
+
+        //            case 4:
+        //                {
+        //                    tempStr = tempStr + "Four ";
+        //                    break;
+        //                }
+
+        //            case 5:
+        //                {
+        //                    tempStr = tempStr + "Five ";
+        //                    break;
+        //                }
+
+        //            case 6:
+        //                {
+        //                    tempStr = tempStr + "Six ";
+        //                    break;
+        //                }
+
+        //            case 7:
+        //                {
+        //                    tempStr = tempStr + "Seven ";
+        //                    break;
+        //                }
+
+        //            case 8:
+        //                {
+        //                    tempStr = tempStr + "Eight ";
+        //                    break;
+        //                }
+
+        //            case 9:
+        //                {
+        //                    tempStr = tempStr + "Nine ";
+        //                    break;
+        //                }
+
+        //            case 10:
+        //                {
+        //                    tempStr = tempStr + "Ten ";
+        //                    break;
+        //                }
+
+        //            case 11:
+        //                {
+        //                    tempStr = tempStr + "Eleven ";
+        //                    break;
+        //                }
+
+        //            case 12:
+        //                {
+        //                    tempStr = tempStr + "Twelve ";
+        //                    break;
+        //                }
+
+        //            case 13:
+        //                {
+        //                    tempStr = tempStr + "Thirteen ";
+        //                    break;
+        //                }
+
+        //            case 14:
+        //                {
+        //                    tempStr = tempStr + "Fourteen ";
+        //                    break;
+        //                }
+
+        //            case 15:
+        //                {
+        //                    tempStr = tempStr + "Fifteen ";
+        //                    break;
+        //                }
+
+        //            case 16:
+        //                {
+        //                    tempStr = tempStr + "Sixteen ";
+        //                    break;
+        //                }
+
+        //            case 17:
+        //                {
+        //                    tempStr = tempStr + "Seventeen ";
+        //                    break;
+        //                }
+
+        //            case 18:
+        //                {
+        //                    tempStr = tempStr + "Eighteen ";
+        //                    break;
+        //                }
+
+        //            case 19:
+        //                {
+        //                    tempStr = tempStr + "Nineteen ";
+        //                    break;
+        //                }
+        //        }
+        //        // tempStr = tempStr & "Rupees"
+        //        numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+        //    }
+
+        //    NumToWordInRupee = tempStr;
+        //    return NumToWordInRupee;
+        //}
+
+        //private string NumToWordInDollars(double numstr)
+        //{
+        //    string NumToWordInDollar = "";
+        //    string tempStr = "";
+        //    string newstr;
+
+        //    if (numstr == 0)
+        //    {
+        //        return "Zero";
+        //    }
+
+        //    if (numstr < 0)
+        //    {
+        //        return "Error";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 11))
+        //    {
+        //        return "Error";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 9))
+        //    {
+        //        newstr = NumToWordInDollars((numstr / Math.Pow(10, 9)));
+        //        numstr = ((numstr / Math.Pow(10, 9)) - (numstr / Math.Pow(10, 9))) * Math.Pow(10, 9);
+        //        if (newstr.Trim() == "One")
+        //            tempStr = tempStr + newstr + "Billion ";
+        //        else
+        //            tempStr = tempStr + newstr + "Billion, ";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 6))
+        //    {
+        //        newstr = NumToWordInDollars((numstr / Math.Pow(10, 6)));
+        //        numstr = ((numstr / Math.Pow(10, 6)) - (numstr / Math.Pow(10, 6))) * Math.Pow(10, 6);
+        //        if (newstr.Trim() == "One")
+        //            tempStr = tempStr + newstr + "Million ";
+        //        else
+        //            tempStr = tempStr + newstr + "Million, ";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 3))
+        //    {
+        //        newstr = NumToWordInDollars((numstr / Math.Pow(10, 3)));
+        //        numstr = ((numstr / Math.Pow(10, 3)) - (numstr / Math.Pow(10, 3))) * Math.Pow(10, 3);
+        //        if (numstr == 0)
+        //            tempStr = tempStr + newstr + "Thousand ";
+        //        else
+        //            tempStr = tempStr + newstr + "Thousand, ";
+        //    }
+
+        //    if (numstr >= Math.Pow(10, 2))
+        //    {
+        //        newstr = NumToWordInDollars((numstr / Math.Pow(10, 2)));
+        //        numstr = ((numstr / Math.Pow(10, 2)) - (numstr / Math.Pow(10, 2))) * Math.Pow(10, 2);
+        //        if (numstr == 0)
+        //            tempStr = tempStr + newstr + "Hundred ";
+        //        else
+        //            // tempstr = tempstr & newstr & "Hundred And "
+        //            tempStr = tempStr + newstr + "Hundred ";
+        //    }
+
+        //    if (numstr >= 20)
+        //    {
+        //        switch (numstr / (double)10)
+        //        {
+        //            case 2:
+        //                {
+        //                    tempStr = tempStr + "Twenty ";
+        //                    break;
+        //                }
+
+        //            case 3:
+        //                {
+        //                    tempStr = tempStr + "Thirty ";
+        //                    break;
+        //                }
+
+        //            case 4:
+        //                {
+        //                    tempStr = tempStr + "Forty ";
+        //                    break;
+        //                }
+
+        //            case 5:
+        //                {
+        //                    tempStr = tempStr + "Fifty ";
+        //                    break;
+        //                }
+
+        //            case 6:
+        //                {
+        //                    tempStr = tempStr + "Sixty ";
+        //                    break;
+        //                }
+
+        //            case 7:
+        //                {
+        //                    tempStr = tempStr + "Seventy ";
+        //                    break;
+        //                }
+
+        //            case 8:
+        //                {
+        //                    tempStr = tempStr + "Eighty ";
+        //                    break;
+        //                }
+
+        //            case 9:
+        //                {
+        //                    tempStr = tempStr + "Ninety ";
+        //                    break;
+        //                }
+        //        }
+        //        numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+        //    }
+
+        //    if (numstr > 0)
+        //    {
+        //        switch (numstr)
+        //        {
+        //            case 1:
+        //                {
+        //                    tempStr = tempStr + "One ";
+        //                    break;
+        //                }
+
+        //            case 2:
+        //                {
+        //                    tempStr = tempStr + "Two ";
+        //                    break;
+        //                }
+
+        //            case 3:
+        //                {
+        //                    tempStr = tempStr + "Three ";
+        //                    break;
+        //                }
+
+        //            case 4:
+        //                {
+        //                    tempStr = tempStr + "Four ";
+        //                    break;
+        //                }
+
+        //            case 5:
+        //                {
+        //                    tempStr = tempStr + "Five ";
+        //                    break;
+        //                }
+
+        //            case 6:
+        //                {
+        //                    tempStr = tempStr + "Six ";
+        //                    break;
+        //                }
+
+        //            case 7:
+        //                {
+        //                    tempStr = tempStr + "Seven ";
+        //                    break;
+        //                }
+
+        //            case 8:
+        //                {
+        //                    tempStr = tempStr + "Eight ";
+        //                    break;
+        //                }
+
+        //            case 9:
+        //                {
+        //                    tempStr = tempStr + "Nine ";
+        //                    break;
+        //                }
+
+        //            case 10:
+        //                {
+        //                    tempStr = tempStr + "Ten ";
+        //                    break;
+        //                }
+
+        //            case 11:
+        //                {
+        //                    tempStr = tempStr + "Eleven ";
+        //                    break;
+        //                }
+
+        //            case 12:
+        //                {
+        //                    tempStr = tempStr + "Twelve ";
+        //                    break;
+        //                }
+
+        //            case 13:
+        //                {
+        //                    tempStr = tempStr + "Thirteen ";
+        //                    break;
+        //                }
+
+        //            case 14:
+        //                {
+        //                    tempStr = tempStr + "Fourteen ";
+        //                    break;
+        //                }
+
+        //            case 15:
+        //                {
+        //                    tempStr = tempStr + "Fifteen ";
+        //                    break;
+        //                }
+
+        //            case 16:
+        //                {
+        //                    tempStr = tempStr + "Sixteen ";
+        //                    break;
+        //                }
+
+        //            case 17:
+        //                {
+        //                    tempStr = tempStr + "Seventeen ";
+        //                    break;
+        //                }
+
+        //            case 18:
+        //                {
+        //                    tempStr = tempStr + "Eighteen ";
+        //                    break;
+        //                }
+
+        //            case 19:
+        //                {
+        //                    tempStr = tempStr + "Nineteen ";
+        //                    break;
+        //                }
+        //        }
+        //        numstr = ((numstr / (double)10) - (numstr / (double)10)) * 10;
+        //    }
+
+        //    NumToWordInDollar = tempStr;
+        //    return NumToWordInDollar;
+        //}
         public void subLockForm(bool EnaDis, ArrayList objCtl, bool GridColor = false)
         {
             short sIndex;
@@ -2009,9 +2489,9 @@ namespace SGMOSOL.ADMIN
                         else if (Name2 == "")
                             cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex])));
                         else if (Name3 == "")
-                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), Convert.ToInt64(myReaderitem[Name2])));
+                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), myReaderitem[Name2].ToString()));
                         else
-                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), Convert.ToInt64(myReaderitem[Name2]), myReaderitem[Name3].ToString()));
+                            cbo.Items.Add(new clsItemData(withBlock.Rows[i][cboAttribute].ToString(), Convert.ToInt32(myReaderitem[cboIndex]), myReaderitem[Name2].ToString(), myReaderitem[Name3].ToString()));
                         i++;
                     }
                 }
@@ -2062,7 +2542,7 @@ namespace SGMOSOL.ADMIN
                 return null;
             }
         }
-        public long cmbItemName2(System.Windows.Forms.ComboBox cbo, int intIndex)
+        public string cmbItemName2(System.Windows.Forms.ComboBox cbo, int intIndex)
         {
             try
             {
@@ -2073,7 +2553,7 @@ namespace SGMOSOL.ADMIN
             catch (Exception ex)
             {
                 SetError("cmbItemdata2 : " + cbo.Name + Constants.vbCrLf + ex.ToString());
-                return 0;
+                return "";
             }
         }
 
@@ -2148,7 +2628,7 @@ namespace SGMOSOL.ADMIN
                     else if (Name2 == "")
                         cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex])));
                     else
-                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), Convert.ToInt64(dvRow[Name2])));
+                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), dvRow[Name2].ToString()));
                 }
                 cbo.EndUpdate();
             }
@@ -2180,7 +2660,7 @@ namespace SGMOSOL.ADMIN
 
             return mReader;
         }
-        public System.Data.DataSet GetDsProductMenu(int intUserId = 0)
+        public System.Data.DataSet GetDsProductMenu(int intUserId = 0,int Status = 3)
         {
             System.Data.DataSet ds = new System.Data.DataSet();
             try
@@ -2188,6 +2668,7 @@ namespace SGMOSOL.ADMIN
                 SqlCommand cmd = new SqlCommand("SP_GetProductMenu", clsConnection.GetConnection());
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@intUserId", intUserId);
+                cmd.Parameters.AddWithValue("@ACTIVE", Status);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
             }
@@ -2219,7 +2700,7 @@ namespace SGMOSOL.ADMIN
                     else if (Name2 == "")
                         cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex])));
                     else
-                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), Convert.ToInt64(dvRow[Name2])));
+                        cbo.Items.Add(new clsItemData(dvRow[cboAttribute].ToString(), Convert.ToInt32(dvRow[cboIndex]), dvRow[Name2].ToString()));
                 }
                 cbo.EndUpdate();
             }
@@ -2247,7 +2728,7 @@ namespace SGMOSOL.ADMIN
             }
             return sysTime;
         }
-        public static decimal getBedCheckInMaxAmount()
+        public static void getBedCheckInMaxAmount()
         {
             try
             {
@@ -2256,14 +2737,14 @@ namespace SGMOSOL.ADMIN
                 DataTable dr = clsConnection.ExecuteReader(command);
                 if (dr.Rows.Count > 0)
                 {
-                    return Convert.ToDecimal(dr.Rows[0]["Max_Amount"]);
+                    UserInfo.BedCheckInMaxAmount = Convert.ToDecimal(dr.Rows[0]["Max_Amount"]);
                 }
             }
             catch (Exception ex)
             {
+                UserInfo.BedCheckInMaxAmount = 0;
                 clsConnection.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
-            return 0;
         }
         public string getServerName()
         {

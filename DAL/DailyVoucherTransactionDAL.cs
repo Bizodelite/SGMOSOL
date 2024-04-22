@@ -174,7 +174,7 @@ namespace SGMOSOL.DAL
             {
                 lngErrNum = -91;
             }
-                return dr;
+            return dr;
         }
 
         public DataTable GetDrDailyVoucherLocker(string strDate, Int64 intLocId, Int64 intFyId, Int16 intModType, int toSerialNo)
@@ -196,7 +196,7 @@ namespace SGMOSOL.DAL
             {
                 lngErrNum = -91;
             }
-                return dr;
+            return dr;
         }
 
         public DataTable GetDrDailyVoucherDengi(string strDate, Int64 intLocId, Int64 intFyId, Int16 intModType, int toSerialNo)
@@ -218,7 +218,7 @@ namespace SGMOSOL.DAL
             {
                 lngErrNum = -91;
             }
-                return dr;
+            return dr;
         }
 
         public DataTable GetDrDailyVoucherEntryGate(string strDate, Int64 intLocId, int intFyId, Int16 intModType, int toSerialNo)
@@ -240,7 +240,7 @@ namespace SGMOSOL.DAL
             {
                 lngErrNum = -91;
             }
-                return dr;
+            return dr;
         }
 
         public DataTable GetDrDailyVoucherMedical(string strDate, Int64 intCtrMachId, int intFyId, Int16 intModType, int toSerialNo)
@@ -262,7 +262,7 @@ namespace SGMOSOL.DAL
             {
                 lngErrNum = -91;
             }
-                return dr;
+            return dr;
         }
 
         public long InsertMst(Collection coll, string strUserName, string strMachineName, Int64 intCtrMachId, Int64 LocId, Int64 DeptId, int intUserId, int intCompanyId, int intFyId, Int16 intModId, string intCounterName, string strToDate, Int16 IsExcel
@@ -366,7 +366,7 @@ namespace SGMOSOL.DAL
             {
                 lngErrNum = -91;
             }
-                return dr;
+            return dr;
         }
 
         public long UpdateStatusDailyVoucher(Int64 DailyVou_ID)

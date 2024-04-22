@@ -133,7 +133,7 @@ namespace SGMOSOL.SCREENS
             if (cboCounter.Items.Count > 0)
             {
                 cboCounter.SelectedIndex = 0;
-                ReportDeptId = cf.cmbItemName2(cboCounter, cboCounter.SelectedIndex);
+                ReportDeptId = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
 
                 LocID = cf.cmbItemName3(cboCounter, cboCounter.SelectedIndex);
             }
@@ -204,13 +204,6 @@ namespace SGMOSOL.SCREENS
                 }
             }
 
-
-            // strFromDate = FormatDateToString(dtpFromDt.Value)
-
-            // strFromTime = (dtpFromTime.Text)
-            // strToTime = (dtpToTime.Text)
-            // payTypeid = cmbItemdata(cboPaymentType, cboPaymentType.SelectedIndex)
-
             intCtrMachId = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
             intCtrMachName = cboCounter.Text;
             if (mScreenId == eScreenID.DailyVoucherEntryBhojnalay | mScreenId == eScreenID.DailyVoucherEntryGame | mScreenId == eScreenID.DailyVoucherEntryToyTrain)
@@ -220,7 +213,6 @@ namespace SGMOSOL.SCREENS
 
             var withBlock = FpSpreadPendingDetails;
             withBlock.RowCount = 0;
-            //while (drpend.Read())
             foreach (DataRow drpendrow in drpend.Rows)
             {
                 withBlock.RowCount = withBlock.RowCount + 1;
@@ -230,10 +222,8 @@ namespace SGMOSOL.SCREENS
                 withBlock.Rows[withBlock.RowCount - 1].Cells[3].Value = drpendrow["TotalAmount"];
                 withBlock.Rows[withBlock.RowCount - 1].Cells[4].Value = drpendrow["TotalReceipt"];
                 withBlock.Rows[withBlock.RowCount - 1].Cells[5].Value = drpendrow["StatusName"];
-                // .Cells(.RowCount - 1, DayStkAcc.Status).Tag = 76
                 mDelColl.Add(DayStkAccDet);
             }
-            //drpend.Close();
 
             if (mScreenId == eScreenID.DailyVoucherEntryBed)
                 dr = mClsDailyVoucher.GetDrDailyVoucherBed(strToDate, LocID, UserInfo.fy_id, MOD_TYPE, Convert.ToInt32(nudToSerialNo.Text));
@@ -256,15 +246,12 @@ namespace SGMOSOL.SCREENS
 
                 withBlock = fpsDailyTrans;
                 withBlock.RowCount = 0;
-                //while (dr.Read())
                 foreach (DataRow dritem in dr.Rows)
                 {
                     lblLocationName.Text = dritem["LOCATION_NAME"].ToString();
                     withBlock.RowCount = withBlock.RowCount + 1;
                     withBlock.Rows[withBlock.RowCount - 1].Cells[0].Value = dritem["FROM_DATE"];
-                    //withBlock.Rows[withBlock.RowCount - 1].Cells[(int)eEntryGate.fDate].Text = dr("FROM_DATE");
                     withBlock.Rows[withBlock.RowCount - 1].Cells[1].Value = dritem["TO_DATE"];
-                    //withBlock.Rows[withBlock.RowCount - 1].Cells[(int)eEntryGate.tDate].Text = dr("TO_DATE");
                     withBlock.Rows[withBlock.RowCount - 1].Cells[2].Value = dritem["FIRST_RECEIPT_NO"];
                     withBlock.Rows[withBlock.RowCount - 1].Cells[3].Value = dritem["LAST_RECEIPT_NO"];
                     withBlock.Rows[withBlock.RowCount - 1].Cells[4].Value = dritem["TOTAL_AMOUNT"];
@@ -291,11 +278,6 @@ namespace SGMOSOL.SCREENS
             Collection coll;
             long lngError = -1;
             int rowcount;
-            // If fpsStockDet.Sheets(0).RowCount > 0 Then
-            // MessageBox.Show("Please firest Clear The Pending Transaction.")
-            // Exit Sub
-            // End If
-
 
             rowcount = fpsDailyTrans.RowCount;
             if (rowcount <= 0)
@@ -345,7 +327,6 @@ namespace SGMOSOL.SCREENS
         private void rbSerialNo_Click(object sender, System.EventArgs e)
         {
             dtpToDt.Visible = false;
-            // dtpToDt.Text = ""
             nudToSerialNo.Visible = true;
             lblToDate.Visible = false;
             lblSerialNo.Visible = true;
@@ -354,8 +335,8 @@ namespace SGMOSOL.SCREENS
 
         private void rbSerialNo_CheckedChanged(System.Object sender, System.EventArgs e)
         {
-        }
 
+        }
 
         private void Button1_Click(System.Object sender, System.EventArgs e)
         {
@@ -393,29 +374,6 @@ namespace SGMOSOL.SCREENS
             intCtrMachId = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
             intCtrMachName = cboCounter.Text;
 
-            // If mScreenId = eScreenID.DailyVoucherEntryBhojnalay Or mScreenId = eScreenID.DailyVoucherEntryGame Or mScreenId = eScreenID.DailyVoucherEntryToyTrain Then
-            // drpend = mClsDailyVoucher.GetDrPendingTransactionByCTR_MAC_ID(strToDate, intCtrMachId, LocID, UserInfo.fy_id, MOD_TYPE)
-            // Else
-            // drpend = mClsDailyVoucher.GetDrPendingTransaction(strToDate, intCtrMachId, LocID, UserInfo.fy_id, MOD_TYPE)
-            // End If
-
-            // With FpSpreadPendingDetails.Sheets(0)
-            // .RowCount = 0
-            // While drpend.Read()
-            // .RowCount = .RowCount + 1
-            // .Cells(.RowCount - 1, EntryGate.fDate).Value = drpend("ToDate")
-            // .Cells(.RowCount - 1, EntryGate.fDate).Text = drpend("ToDate")
-            // .Cells(.RowCount - 1, EntryGate.MinSerial).Value = drpend("MinSerialNo")
-            // .Cells(.RowCount - 1, EntryGate.MaxSerial).Value = drpend("MaxSerialNo")
-            // .Cells(.RowCount - 1, EntryGate.TatalAmount).Value = drpend("TotalAmount")
-            // .Cells(.RowCount - 1, EntryGate.TatalTransCount).Value = drpend("TotalReceipt")
-            // .Cells(.RowCount - 1, EntryGate.Status).Text = drpend("StatusName")
-            // '.Cells(.RowCount - 1, DayStkAcc.Status).Tag = 76
-            // mDelColl.Add(DayStkAccDet)
-            // End While
-            // drpend.Close()
-            // End With
-
             if (mScreenId == eScreenID.DailyVoucherEntryBed)
                 dr = mClsDailyVoucher.GetDrDailyVoucherBed(strToDate, LocID, UserInfo.fy_id, MOD_TYPE, Convert.ToInt32(nudToSerialNo.Text));
             else if (mScreenId == eScreenID.DailyVoucherEntryBhaktniwas)
@@ -435,35 +393,12 @@ namespace SGMOSOL.SCREENS
             else if (mScreenId == eScreenID.DailyVoucherEntryMedical)
                 dr = mClsDailyVoucher.GetDrDailyVoucherMedical(strToDate, intCtrMachId, UserInfo.fy_id, MOD_TYPE, Convert.ToInt32(nudToSerialNo.Text));
 
-            // mClsDailyVoucher.GetDrExcelDownloadWithData(strToDate, intCtrMachId, LocID, UserInfo.fy_id, MOD_TYPE, nudToSerialNo.Text)
-
-
-            // If dr.Read()() Then
-            // If dr.IsDBNull(0) Then
-            // 'Dim officeexcel As Excel.Application
-            // 'officeexcel = CreateObject("Excel.Application")
-            // 'Dim workbook As Object = officeexcel.Workbooks.Add("E:\Santosh\BackUp_Latest\OSOL\DailyVoucherXcel\DailyVoucherOSOLExcelUpload.xlsx")
-            // 'officeexcel.Visible = False
-            // MessageBox.Show("Sorry Excel Could not Download !!!!!")
-            // 'Return
-            // End If
-
-            // Else
-            // If Not dr.HasRows < 0 Then
-            // End If
-
-            // Dim officeexcel As Excel.Application
-            // officeexcel = CreateObject("Excel.Application")
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            // replace \bin\Debug\ the part of the path you dont want  with part you do want
             string path1 = path.Replace(@"\bin\Debug\", @"\DailyVoucherXcel\DailyVoucherOSOLExcelUpload.xlsx");
             Excel.Application officeexcel;
             officeexcel = (Excel.Application)Interaction.CreateObject("Excel.Application");
             object workbook = officeexcel.Workbooks.Add(path1);
 
-            // Dim d As String (AppDomain.CurrentDomain.BaseDirectory + "DailyVoucherXcel\DailyVoucherOSOLExcelUpload.xlsx")
-            // Dim workbook As Object = officeexcel.Workbooks.Add("\DailyVoucherXcel\DailyVoucherOSOLExcelUpload.xlsx")
-            // Dim workbook As Object = officeexcel.Workbooks.Add("E:\Santosh\BackUp_Latest\OSOL\DailyVoucherXcel\DailyVoucherOSOLExcelUpload.xlsx")
             officeexcel.Visible = true;
 
 
@@ -473,16 +408,10 @@ namespace SGMOSOL.SCREENS
                 withBlock.RowCount = 0;
                 foreach (DataRow drRow in dr.Rows)
                 {
-
-                //}
-                //while (dr.Read())
-                //{
                     lblLocationName.Text = drRow["LOCATION_NAME"].ToString();
                     withBlock.RowCount = withBlock.RowCount + 1;
-                    // .Range("A" + (i + 3).ToString).Value = dr("FROM_DATE")
                     withBlock.Rows[withBlock.RowCount - 1].Cells[0].Value = drRow["FROM_DATE"];
                     withBlock.Rows[withBlock.RowCount - 1].Cells[1].Value = drRow["TO_DATE"];
-                    //withBlock.Rows[withBlock.RowCount - 1].Cells[(int)eEntryGate.tDate].Text = dr("TO_DATE");
                     withBlock.Rows[withBlock.RowCount - 1].Cells[2].Value = drRow["FIRST_RECEIPT_NO"];
                     withBlock.Rows[withBlock.RowCount - 1].Cells[3].Value = drRow["LAST_RECEIPT_NO"];
                     withBlock.Rows[withBlock.RowCount - 1].Cells[4].Value = drRow["TOTAL_AMOUNT"];
@@ -491,29 +420,14 @@ namespace SGMOSOL.SCREENS
                     withBlock.Rows[withBlock.RowCount - 1].Cells[6].Tag = 76;
                     mDelColl.Add(DayStkAccDet);
                 }
-                //dr.Close();
             }
 
 
             coll = GetPrnRcptDtDetColl();
             lngError = mClsDailyVoucher.InsertMst(coll, UserInfo.UserName, UserInfo.Machine_Name, intCtrMachId, LocID, ReportDeptId, UserInfo.UserId, UserInfo.CompanyID, UserInfo.fy_id, MOD_TYPE, intCtrMachName, FormatDateToString(dtpToDt.Value), 1);
             if (lngError >= 0)
-                // If mScreenId = eScreenID.DailyVoucherEntryDengi Or mScreenId = eScreenID.DailyVoucherEntryEntryGate Or mScreenId = eScreenID.DailyVoucherEntryBhaktniwas Then
-
-                // dr = mClsDailyVoucher.GetDrDailyVoucherData_Den(lngError)
-                // ' If dr.Read() Then
-                // 'DengiId = dr("DailyVoucherMstId")
-                // ' End If
-                // 'dr.Close()
-
-                // Else
                 dr = mClsDailyVoucher.GetDrDailyVoucherData(lngError);
-            // End If
-
-
-
-
-            //while (dr.Read())
+            
             foreach (DataRow dritem in dr.Rows)
             {
                 var i = 0;
@@ -562,8 +476,6 @@ namespace SGMOSOL.SCREENS
                     withBlock.Range["AN" + (i + 2).ToString()].Value = dritem["COUNTRY"];
                 }
             }
-            //dr.Close();
-            // Next
             officeexcel = null/* TODO Change to default(_) if this is not a reference type */;
             // officeexcel.Close()
             workbook = null;

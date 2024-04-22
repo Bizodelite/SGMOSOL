@@ -350,7 +350,7 @@ namespace SGMOSOL.SCREENS.Locker
                 {
                     CheckInDet.LockerId = cf.lsbItemData(chkLockers, i);
                     CheckInDet.LockerAvailableStatus = (int)eTokenDetail.StatusNo;
-                    CheckInDet.LockerRecordModifiedCount = Convert.ToInt64(cf.lsbItemName2(chkLockers, i) + Constants.vbNullString) + 1;
+                    CheckInDet.LockerRecordModifiedCount = cf.lsbItemData(chkLockers, i) + 1;
                     coll.Add(CheckInDet);
                 }
             }
@@ -685,7 +685,7 @@ namespace SGMOSOL.SCREENS.Locker
                 foreach (DataRow drrow in dr.Rows)    
                 {
                     ctr = ctr + 1;
-                    chkLockers.Items.Add(new clsItemData(drrow["LockerName"].ToString(), Convert.ToInt32(drrow["LockerId"]), Convert.ToInt64(drrow["RecordModifiedCount"])));
+                    chkLockers.Items.Add(new clsItemData(drrow["LockerName"].ToString(), Convert.ToInt32(drrow["LockerId"]), drrow["RecordModifiedCount"].ToString()));
 
                     if (Convert.ToInt32(drrow["LockerCheckInDetId"] + Constants.vbNullString) > 0)
                     {
@@ -858,7 +858,7 @@ namespace SGMOSOL.SCREENS.Locker
             MyRow["MACHINE_NAME"] = UserInfo.Machine_Name;
             total_val = (nudAdvance.Value + nudRent.Value);
             if (total_val > 0)
-                MyRow["AMT_IN_WORDS"] = cf.getNumbersInWords(total_val, eCurrencyType.Rupees);
+                MyRow["AMT_IN_WORDS"] = cf.getNumbersInWords(total_val.ToString(), eCurrencyType.Rupees);
             else
                 MyRow["AMT_IN_WORDS"] = " -- ";
 

@@ -590,6 +590,11 @@
       <DependentUpon>MDI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Reports\BedCheckInDengi1Dup.rdlc" />
+    <EmbeddedResource Include="Reports\BedPrintReceiptCheckOut.rdlc" />
+    <EmbeddedResource Include="Reports\BedCheckInDengi1.rdlc" />
+    <EmbeddedResource Include="Reports\BedPrintReceiptDup1.rdlc" />
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -726,7 +731,7 @@
     <None Include="DataSet\DataSetReportViewer.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetReportViewer.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataSetReportViewer1.Designer.cs</LastGenOutput>
     </None>
     <None Include="DataSet\DataSetReportViewer.xss">
       <DependentUpon>DataSetReportViewer.xsd</DependentUpon>

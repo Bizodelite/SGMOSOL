@@ -67,7 +67,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.cboItemCode = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTaluka = new System.Windows.Forms.TextBox();
@@ -116,7 +115,6 @@
             this.pnlMaster.Controls.Add(this.label11);
             this.pnlMaster.Controls.Add(this.label10);
             this.pnlMaster.Controls.Add(this.txtPrice);
-            this.pnlMaster.Controls.Add(this.label8);
             this.pnlMaster.Controls.Add(this.cboItemCode);
             this.pnlMaster.Controls.Add(this.label7);
             this.pnlMaster.Controls.Add(this.txtTaluka);
@@ -136,10 +134,11 @@
             // 
             // txtitemName
             // 
-            this.txtitemName.Location = new System.Drawing.Point(347, 290);
+            this.txtitemName.BackColor = System.Drawing.Color.Yellow;
+            this.txtitemName.Location = new System.Drawing.Point(278, 289);
             this.txtitemName.Name = "txtitemName";
             this.txtitemName.ReadOnly = true;
-            this.txtitemName.Size = new System.Drawing.Size(151, 24);
+            this.txtitemName.Size = new System.Drawing.Size(243, 24);
             this.txtitemName.TabIndex = 46;
             // 
             // lblAdd
@@ -186,9 +185,9 @@
             // 
             // txtReceiptno
             // 
-            this.txtReceiptno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtReceiptno.BackColor = System.Drawing.Color.Ivory;
             this.txtReceiptno.Enabled = false;
-            this.txtReceiptno.Location = new System.Drawing.Point(833, 25);
+            this.txtReceiptno.Location = new System.Drawing.Point(759, 23);
             this.txtReceiptno.Margin = new System.Windows.Forms.Padding(4);
             this.txtReceiptno.Name = "txtReceiptno";
             this.txtReceiptno.ReadOnly = true;
@@ -201,7 +200,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(710, 24);
+            this.label14.Location = new System.Drawing.Point(631, 24);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(115, 23);
@@ -215,7 +214,7 @@
             this.dtpPrnRcptDt.CustomFormat = "dd/MM/yyyy";
             this.dtpPrnRcptDt.Enabled = false;
             this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrnRcptDt.Location = new System.Drawing.Point(1078, 26);
+            this.dtpPrnRcptDt.Location = new System.Drawing.Point(975, 24);
             this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
             this.dtpPrnRcptDt.Size = new System.Drawing.Size(132, 24);
@@ -227,7 +226,7 @@
             this.Label9.AutoSize = true;
             this.Label9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label9.ForeColor = System.Drawing.Color.Black;
-            this.Label9.Location = new System.Drawing.Point(1012, 25);
+            this.Label9.Location = new System.Drawing.Point(920, 24);
             this.Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label9.Name = "Label9";
             this.Label9.Size = new System.Drawing.Size(54, 23);
@@ -239,7 +238,7 @@
             // 
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(349, 20);
+            this.Label5.Location = new System.Drawing.Point(303, 21);
             this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(53, 23);
@@ -249,9 +248,9 @@
             // 
             // txtUser
             // 
-            this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtUser.BackColor = System.Drawing.Color.Ivory;
             this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(410, 18);
+            this.txtUser.Location = new System.Drawing.Point(364, 23);
             this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
@@ -261,7 +260,7 @@
             // 
             // txtCounter
             // 
-            this.txtCounter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtCounter.BackColor = System.Drawing.Color.Ivory;
             this.txtCounter.Enabled = false;
             this.txtCounter.Location = new System.Drawing.Point(121, 20);
             this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
@@ -483,7 +482,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(1047, 269);
+            this.btnAdd.Location = new System.Drawing.Point(1160, 268);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(112, 42);
             this.btnAdd.TabIndex = 10;
@@ -496,11 +495,11 @@
             // 
             this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtAmount.Enabled = false;
-            this.txtAmount.Location = new System.Drawing.Point(913, 283);
+            this.txtAmount.Location = new System.Drawing.Point(984, 286);
             this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.ReadOnly = true;
-            this.txtAmount.Size = new System.Drawing.Size(127, 24);
+            this.txtAmount.Size = new System.Drawing.Size(165, 24);
             this.txtAmount.TabIndex = 10;
             this.txtAmount.TabStop = false;
             // 
@@ -508,7 +507,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(841, 286);
+            this.label12.Location = new System.Drawing.Point(912, 289);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 18);
             this.label12.TabIndex = 27;
@@ -517,7 +516,7 @@
             // txtQuantity
             // 
             this.txtQuantity.BackColor = System.Drawing.Color.MistyRose;
-            this.txtQuantity.Location = new System.Drawing.Point(755, 287);
+            this.txtQuantity.Location = new System.Drawing.Point(814, 287);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(79, 24);
@@ -530,7 +529,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(678, 290);
+            this.label11.Location = new System.Drawing.Point(728, 289);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 18);
             this.label11.TabIndex = 25;
@@ -540,7 +539,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(504, 290);
+            this.label10.Location = new System.Drawing.Point(527, 292);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 18);
             this.label10.TabIndex = 24;
@@ -550,7 +549,7 @@
             // 
             this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtPrice.Enabled = false;
-            this.txtPrice.Location = new System.Drawing.Point(558, 286);
+            this.txtPrice.Location = new System.Drawing.Point(605, 289);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ReadOnly = true;
@@ -558,24 +557,15 @@
             this.txtPrice.TabIndex = 8;
             this.txtPrice.TabStop = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(252, 293);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 18);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Item Name";
-            // 
             // cboItemCode
             // 
             this.cboItemCode.FormattingEnabled = true;
-            this.cboItemCode.Location = new System.Drawing.Point(126, 289);
+            this.cboItemCode.Location = new System.Drawing.Point(122, 289);
             this.cboItemCode.Name = "cboItemCode";
-            this.cboItemCode.Size = new System.Drawing.Size(121, 26);
+            this.cboItemCode.Size = new System.Drawing.Size(146, 26);
             this.cboItemCode.TabIndex = 7;
             this.cboItemCode.SelectedIndexChanged += new System.EventHandler(this.cboItemCode_SelectedIndexChanged);
+            this.cboItemCode.TextChanged += new System.EventHandler(this.cboItemCode_TextChanged);
             // 
             // label7
             // 
@@ -708,7 +698,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         internal System.Windows.Forms.TextBox txtPrice;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboItemCode;
         internal System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label label12;

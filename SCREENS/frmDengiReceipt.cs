@@ -16,6 +16,8 @@ using System.Xml.Linq;
 using System.Linq;
 using static SGMOSOL.ADMIN.CommonFunctions;
 using System.Collections;
+using System.Drawing;
+using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 
 namespace SGMOSOL.SCREENS
 {
@@ -951,6 +953,7 @@ namespace SGMOSOL.SCREENS
                             getDengiNo();
                             unLockControls();
                             string receptID = status.ToString();
+                        
                             frmReportViewer report = new frmReportViewer("PRINT", receptID);
                             report.createReport("Dengi");
                             //report.Show();
@@ -1423,6 +1426,8 @@ namespace SGMOSOL.SCREENS
 
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+                lblScanner.Text = "Scanning !!! Please Wait...";
                 WIA.DeviceManager DeviceManager1 = new WIA.DeviceManager();//= Interaction.CreateObject("WIA.DeviceManager");
                 int i = 0;
                 mydevice = CommonDialogBox.ShowSelectDevice(WIA.WiaDeviceType.ScannerDeviceType, true, false);
@@ -1433,6 +1438,8 @@ namespace SGMOSOL.SCREENS
                     if (Information.IsNothing(Scanner))
                     {
                         Interaction.MsgBox("Could not connect to scanner please check attached Properly.");
+                        Cursor.Current = Cursors.Default;
+                        lblScanner.Text = "";
                         return;
                     }
                     else
@@ -1458,6 +1465,7 @@ namespace SGMOSOL.SCREENS
                             if (File.Exists(F1))
                                 FileSystem.Kill(F1);
                             F.SaveFile(F1);
+                            lblScanner.Text = "Successfully scanned" + F1;
                             txtScan.Text = s;
                         }
                         catch (Exception ex)
@@ -1470,7 +1478,11 @@ namespace SGMOSOL.SCREENS
                         }
                 }
                 else
+                {
                     Interaction.MsgBox("Scanner is not attached checked it");
+                    Cursor.Current = Cursors.Default;
+                    lblScanner.Text = ""; ;
+                }
 
                 imgVideo.ImageLocation = F1;
                 DeviceManager1 = null;

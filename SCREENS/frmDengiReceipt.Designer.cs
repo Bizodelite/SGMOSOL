@@ -123,6 +123,7 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge = new System.Windows.Forms.Button();
             this.chkScanDoc = new System.Windows.Forms.CheckBox();
             this.chkDeclaration = new System.Windows.Forms.CheckBox();
+            this.lblScanner = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlMaster.SuspendLayout();
             this.pnlDDDtl.SuspendLayout();
@@ -824,6 +825,7 @@ namespace SGMOSOL.SCREENS
             // pnlDetail
             // 
             this.pnlDetail.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlDetail.Controls.Add(this.lblScanner);
             this.pnlDetail.Controls.Add(this.lblDistrict);
             this.pnlDetail.Controls.Add(this.lblTaluka);
             this.pnlDetail.Controls.Add(this.lblName);
@@ -1346,6 +1348,16 @@ namespace SGMOSOL.SCREENS
             this.chkDeclaration.UseVisualStyleBackColor = true;
             this.chkDeclaration.Visible = false;
             // 
+            // lblScanner
+            // 
+            this.lblScanner.AutoSize = true;
+            this.lblScanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanner.ForeColor = System.Drawing.Color.OliveDrab;
+            this.lblScanner.Location = new System.Drawing.Point(1080, 217);
+            this.lblScanner.Name = "lblScanner";
+            this.lblScanner.Size = new System.Drawing.Size(0, 16);
+            this.lblScanner.TabIndex = 168;
+            // 
             // frmDengiReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1477,5 +1489,6 @@ namespace SGMOSOL.SCREENS
         internal System.Windows.Forms.ComboBox cboDoctype;
         internal System.Windows.Forms.DateTimePicker dtChqDt;
         private System.Windows.Forms.DateTimePicker dtDDdate;
+        private System.Windows.Forms.Label lblScanner;
     }
 }

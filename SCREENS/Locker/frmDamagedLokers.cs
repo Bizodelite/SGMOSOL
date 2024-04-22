@@ -186,7 +186,7 @@ namespace SGMOSOL.SCREENS.Locker
             
             objDmLkrs.LockerId = cf.lsbItemData(LockerListBox, i);
             objDmLkrs.Reason = txtReason.Text;
-            objDmLkrs.sDate = FormatDateToString(dtpDate.Value);
+            objDmLkrs.sDate = dtpDate.Value;
 
             return objDmLkrs;
         }

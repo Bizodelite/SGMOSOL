@@ -1684,6 +1684,7 @@ namespace SGMOSOL.SCREENS
                 txtScan.Text = "";
                 imgVideo.Image = null;
                 imgVideo.BackgroundImage = null;
+                lblScanner.Text = "";
             }
         }
 

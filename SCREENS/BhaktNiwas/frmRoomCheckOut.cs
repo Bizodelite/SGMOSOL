@@ -63,6 +63,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
         private bool Eprint;
         CommonFunctions cf;
         RoomCheckOutDAL RoomCheckOutDALobj;
+        RoomMasterDAL objDsRoomMst = new RoomMasterDAL();
         public frmRoomCheckOut(eScreenID ScreenID)
         {
             InitializeComponent();
@@ -210,7 +211,6 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
 
         private void btnSave_Click(System.Object sender, System.EventArgs e)
         {
-            long lngError = -1;
             if (blnformChange == false)
                 return;
 
@@ -382,7 +382,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             if (CheckOutMst.BhaktTypeId == 4 | CheckOutMst.BhaktTypeId == 5)
             {
                 CheckOutMst.DonerId = Convert.ToInt32(txtDonerId.Text);
-                CheckOutMst.DnrRoomId = RoomCheckOutDALobj.GetrDonnerRoomId(CheckOutMst.CheckInMstId);
+                CheckOutMst.DnrRoomId = objDsRoomMst.GetrDonnerRoomId(CheckOutMst.CheckInMstId);
             }
 
             CheckOutMst.Refund = NudRefund.Value;

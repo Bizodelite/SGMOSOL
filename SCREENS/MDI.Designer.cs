@@ -62,16 +62,6 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bhaktNiwasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomCheckInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.calculationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.encryptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.pctControls = new System.Windows.Forms.PictureBox();
             this.roomOutTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.occupiedRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomChangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +75,16 @@
             this.roomInTimeOnlineNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.availableRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calculationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.pctControls = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctControls)).BeginInit();
             this.SuspendLayout();
@@ -342,6 +342,95 @@
             this.roomCheckInToolStripMenuItem.Text = "Room In Time";
             this.roomCheckInToolStripMenuItem.Click += new System.EventHandler(this.roomCheckInToolStripMenuItem_Click);
             // 
+            // roomOutTimeToolStripMenuItem
+            // 
+            this.roomOutTimeToolStripMenuItem.Name = "roomOutTimeToolStripMenuItem";
+            this.roomOutTimeToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomOutTimeToolStripMenuItem.Text = "Room Out Time";
+            this.roomOutTimeToolStripMenuItem.Click += new System.EventHandler(this.roomOutTimeToolStripMenuItem_Click);
+            // 
+            // occupiedRoomsToolStripMenuItem
+            // 
+            this.occupiedRoomsToolStripMenuItem.Name = "occupiedRoomsToolStripMenuItem";
+            this.occupiedRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.occupiedRoomsToolStripMenuItem.Text = "Occupied Rooms";
+            this.occupiedRoomsToolStripMenuItem.Click += new System.EventHandler(this.occupiedRoomsToolStripMenuItem_Click);
+            // 
+            // roomChangeToolStripMenuItem
+            // 
+            this.roomChangeToolStripMenuItem.Name = "roomChangeToolStripMenuItem";
+            this.roomChangeToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomChangeToolStripMenuItem.Text = "Room Change";
+            this.roomChangeToolStripMenuItem.Click += new System.EventHandler(this.roomChangeToolStripMenuItem_Click);
+            // 
+            // dailyVoucherEntryBhaktNiwasToolStripMenuItem
+            // 
+            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Name = "dailyVoucherEntryBhaktNiwasToolStripMenuItem";
+            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Text = "Daily Voucher Entry BhaktNiwas";
+            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Click += new System.EventHandler(this.dailyVoucherEntryBhaktNiwasToolStripMenuItem_Click);
+            // 
+            // roomOutOfOrderToolStripMenuItem
+            // 
+            this.roomOutOfOrderToolStripMenuItem.Name = "roomOutOfOrderToolStripMenuItem";
+            this.roomOutOfOrderToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomOutOfOrderToolStripMenuItem.Text = "Room Out Of Order";
+            this.roomOutOfOrderToolStripMenuItem.Click += new System.EventHandler(this.roomOutOfOrderToolStripMenuItem_Click);
+            // 
+            // addDamagedRoomsToolStripMenuItem
+            // 
+            this.addDamagedRoomsToolStripMenuItem.Name = "addDamagedRoomsToolStripMenuItem";
+            this.addDamagedRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.addDamagedRoomsToolStripMenuItem.Text = "Add Damaged Room";
+            this.addDamagedRoomsToolStripMenuItem.Click += new System.EventHandler(this.addDamagedRoomsToolStripMenuItem_Click);
+            // 
+            // roomOutTimeBeforeToolStripMenuItem
+            // 
+            this.roomOutTimeBeforeToolStripMenuItem.Name = "roomOutTimeBeforeToolStripMenuItem";
+            this.roomOutTimeBeforeToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomOutTimeBeforeToolStripMenuItem.Text = "Room Out Time Before";
+            this.roomOutTimeBeforeToolStripMenuItem.Click += new System.EventHandler(this.roomOutTimeBeforeToolStripMenuItem_Click);
+            // 
+            // roomOutTimeWarningToolStripMenuItem
+            // 
+            this.roomOutTimeWarningToolStripMenuItem.Name = "roomOutTimeWarningToolStripMenuItem";
+            this.roomOutTimeWarningToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomOutTimeWarningToolStripMenuItem.Text = "Room Out Time Warning";
+            this.roomOutTimeWarningToolStripMenuItem.Click += new System.EventHandler(this.roomOutTimeWarningToolStripMenuItem_Click);
+            // 
+            // moreThan3DaysToolStripMenuItem
+            // 
+            this.moreThan3DaysToolStripMenuItem.Name = "moreThan3DaysToolStripMenuItem";
+            this.moreThan3DaysToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.moreThan3DaysToolStripMenuItem.Text = "More than 3 Days";
+            this.moreThan3DaysToolStripMenuItem.Click += new System.EventHandler(this.moreThan3DaysToolStripMenuItem_Click);
+            // 
+            // roomLockedToolStripMenuItem
+            // 
+            this.roomLockedToolStripMenuItem.Name = "roomLockedToolStripMenuItem";
+            this.roomLockedToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomLockedToolStripMenuItem.Text = "Room Locked";
+            this.roomLockedToolStripMenuItem.Click += new System.EventHandler(this.roomLockedToolStripMenuItem_Click);
+            // 
+            // roomInTimeOnlineNewToolStripMenuItem
+            // 
+            this.roomInTimeOnlineNewToolStripMenuItem.Name = "roomInTimeOnlineNewToolStripMenuItem";
+            this.roomInTimeOnlineNewToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomInTimeOnlineNewToolStripMenuItem.Text = "Room In Time (Online New)";
+            this.roomInTimeOnlineNewToolStripMenuItem.Click += new System.EventHandler(this.roomInTimeOnlineNewToolStripMenuItem_Click);
+            // 
+            // roomExtendToolStripMenuItem
+            // 
+            this.roomExtendToolStripMenuItem.Name = "roomExtendToolStripMenuItem";
+            this.roomExtendToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.roomExtendToolStripMenuItem.Text = "Room Extend";
+            // 
+            // availableRoomsToolStripMenuItem
+            // 
+            this.availableRoomsToolStripMenuItem.Name = "availableRoomsToolStripMenuItem";
+            this.availableRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.availableRoomsToolStripMenuItem.Text = "Available Rooms";
+            // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -404,85 +493,6 @@
             this.pctControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctControls.TabIndex = 33;
             this.pctControls.TabStop = false;
-            // 
-            // roomOutTimeToolStripMenuItem
-            // 
-            this.roomOutTimeToolStripMenuItem.Name = "roomOutTimeToolStripMenuItem";
-            this.roomOutTimeToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomOutTimeToolStripMenuItem.Text = "Room Out Time";
-            this.roomOutTimeToolStripMenuItem.Click += new System.EventHandler(this.roomOutTimeToolStripMenuItem_Click);
-            // 
-            // occupiedRoomsToolStripMenuItem
-            // 
-            this.occupiedRoomsToolStripMenuItem.Name = "occupiedRoomsToolStripMenuItem";
-            this.occupiedRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.occupiedRoomsToolStripMenuItem.Text = "Occupied Rooms";
-            // 
-            // roomChangeToolStripMenuItem
-            // 
-            this.roomChangeToolStripMenuItem.Name = "roomChangeToolStripMenuItem";
-            this.roomChangeToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomChangeToolStripMenuItem.Text = "Room Change";
-            // 
-            // dailyVoucherEntryBhaktNiwasToolStripMenuItem
-            // 
-            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Name = "dailyVoucherEntryBhaktNiwasToolStripMenuItem";
-            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.dailyVoucherEntryBhaktNiwasToolStripMenuItem.Text = "Daily Voucher Entry BhaktNiwas";
-            // 
-            // roomOutOfOrderToolStripMenuItem
-            // 
-            this.roomOutOfOrderToolStripMenuItem.Name = "roomOutOfOrderToolStripMenuItem";
-            this.roomOutOfOrderToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomOutOfOrderToolStripMenuItem.Text = "Room Out Of Order";
-            // 
-            // addDamagedRoomsToolStripMenuItem
-            // 
-            this.addDamagedRoomsToolStripMenuItem.Name = "addDamagedRoomsToolStripMenuItem";
-            this.addDamagedRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.addDamagedRoomsToolStripMenuItem.Text = "Add Damaged Room";
-            // 
-            // roomOutTimeBeforeToolStripMenuItem
-            // 
-            this.roomOutTimeBeforeToolStripMenuItem.Name = "roomOutTimeBeforeToolStripMenuItem";
-            this.roomOutTimeBeforeToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomOutTimeBeforeToolStripMenuItem.Text = "Room Out Time Before";
-            // 
-            // roomOutTimeWarningToolStripMenuItem
-            // 
-            this.roomOutTimeWarningToolStripMenuItem.Name = "roomOutTimeWarningToolStripMenuItem";
-            this.roomOutTimeWarningToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomOutTimeWarningToolStripMenuItem.Text = "Room Out Time Warning";
-            // 
-            // moreThan3DaysToolStripMenuItem
-            // 
-            this.moreThan3DaysToolStripMenuItem.Name = "moreThan3DaysToolStripMenuItem";
-            this.moreThan3DaysToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.moreThan3DaysToolStripMenuItem.Text = "More than 3 Days";
-            // 
-            // roomLockedToolStripMenuItem
-            // 
-            this.roomLockedToolStripMenuItem.Name = "roomLockedToolStripMenuItem";
-            this.roomLockedToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomLockedToolStripMenuItem.Text = "Room Locked";
-            // 
-            // roomInTimeOnlineNewToolStripMenuItem
-            // 
-            this.roomInTimeOnlineNewToolStripMenuItem.Name = "roomInTimeOnlineNewToolStripMenuItem";
-            this.roomInTimeOnlineNewToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomInTimeOnlineNewToolStripMenuItem.Text = "Room In Time (Online New)";
-            // 
-            // roomExtendToolStripMenuItem
-            // 
-            this.roomExtendToolStripMenuItem.Name = "roomExtendToolStripMenuItem";
-            this.roomExtendToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.roomExtendToolStripMenuItem.Text = "Room Extend";
-            // 
-            // availableRoomsToolStripMenuItem
-            // 
-            this.availableRoomsToolStripMenuItem.Name = "availableRoomsToolStripMenuItem";
-            this.availableRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.availableRoomsToolStripMenuItem.Text = "Available Rooms";
             // 
             // MDI
             // 

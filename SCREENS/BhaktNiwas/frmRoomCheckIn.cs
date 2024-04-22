@@ -41,7 +41,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
         //private OSOL_BLSDS.clsBlsRoomCheckIn objBlsRoomCheckIn = new OSOL_BLSDS.clsBlsRoomCheckIn();
         private RoomCheckInDAL RoomCheckInDALobj = new RoomCheckInDAL();
         //private OSOL_BLSDS.clsDsBNRoomCheckInDet objDsRoomCheckInDet = new OSOL_BLSDS.clsDsBNRoomCheckInDet();
-        //private OSOL_BLSDS.clsDsBNRoomMaster objDsRoomMst = new OSOL_BLSDS.clsDsBNRoomMaster();
+        private RoomMasterDAL objDsRoomMst = new RoomMasterDAL();
         private bool DisableSendKeys;
         private int srchFlag = 0;
         private bool bkDateEntry = false;
@@ -171,7 +171,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                 else
                     sublocid = cf.cmbItemdata(cboSublocation, cboSublocation.SelectedIndex);
 
-                dr = RoomCheckInDALobj.GetDrRoomDetails1(str, sublocid, (int)eTokenDetail.StatusYes, RoomCheckInLockID);
+                dr = objDsRoomMst.GetDrRoomDetails1(str, sublocid, (int)eTokenDetail.StatusYes, RoomCheckInLockID);
                 cf.FillListBox(chkRooms, dr, "RoomName", "RoomId", "RecordModifiedCount");
             }
             catch (Exception ex)
@@ -186,7 +186,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             DataTable dr;
             try
             {
-                dr = RoomCheckInDALobj.GetDrAuthPersons();
+                dr = objDsRoomMst.GetDrAuthPersons();
                 cf.FillCombo(cboAuthPer, dr, "Name", "id");
             }
             catch (Exception ex)
@@ -199,7 +199,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             DataTable dr;
             try
             {
-                dr = RoomCheckInDALobj.GetDrSublocations(RoomCheckInLockID, (int)eModType.BhaktaNiwas);
+                dr = objDsRoomMst.GetDrSublocations(RoomCheckInLockID, (int)eModType.BhaktaNiwas);
                 cf.FillCombo(cboSublocation, dr, "Name", "DeptId");
             }
             catch (Exception ex)
@@ -223,14 +223,14 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
 
             if (bhaktid == 4)
             {
-                ds = RoomCheckInDALobj.GetDonners(bhaktid, LocId);
+                ds = objDsRoomMst.GetDonners(bhaktid, LocId);
                 MultiColumnComboBox1.DataSource = ds.Tables[0];
                 MultiColumnComboBox1.DisplayMember = "Donner Id";
                 MultiColumnComboBox1.ValueMember = "ROOM_NAME";
             }
             else
             {
-                ds = RoomCheckInDALobj.GetAnnadan(bhaktid, LocId);
+                ds = objDsRoomMst.GetAnnadan(bhaktid, LocId);
                 MultiColumnComboBox2.DataSource = ds.Tables[0];
                 MultiColumnComboBox2.DisplayMember = "Donner Id";
                 MultiColumnComboBox2.ValueMember = "Name";
@@ -707,7 +707,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                         coll.Add(CheckInDet);
                         if (Flag == true)
                         {
-                            dr = RoomCheckInDALobj.checkRoomAvailability(CheckInDet.LockerId);
+                            dr = objDsRoomMst.checkRoomAvailability(CheckInDet.LockerId);
                             if (dr.Rows.Count > 0)
                             {
                                 avstatus = Convert.ToInt32(dr.Rows[0]["AVAILABLE_STATUS"]);
@@ -1547,7 +1547,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                         System.Data.DataSet drValidation;
                         try
                         {
-                            drValidation = RoomCheckInDALobj.GetValidation(id);
+                            drValidation = objDsRoomMst.GetValidation(id);
                             if (drValidation != null && drValidation.Tables[0].Rows.Count > 0)
                             {
                                 Interaction.MsgBox("This Room is All ready allocated to online Bhankt ....");
@@ -1561,7 +1561,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
 
                         try
                         {
-                            dr = RoomCheckInDALobj.GetRent(id);
+                            dr = objDsRoomMst.GetRent(id);
                             if (dr.Rows.Count > 0)
                             {
                                 RoomRentPerday += Convert.ToDouble(dr.Rows[0]["RentPerDay"]);
@@ -1760,9 +1760,9 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                 DataTable dr;
                 try
                 {
-                    dr = RoomCheckInDALobj.GetDrRoomIds(donerId, sublocid, (int)eTokenDetail.StatusYes);
+                    dr = objDsRoomMst.GetDrRoomIds(donerId, sublocid, (int)eTokenDetail.StatusYes);
                     cf.FillListBox(chkRooms, dr, "RoomName", "RoomId", "RecordModifiedCount");
-                    dr = RoomCheckInDALobj.GetDaysForDonner(donerId, RoomSubloId);
+                    dr = objDsRoomMst.GetDaysForDonner(donerId, RoomSubloId);
                     if (dr.Rows.Count > 0)
                         DnrAllowedDays = Convert.ToInt32(dr.Rows[0]["NoOfDays"]);
                     //dr.Close();
@@ -1794,7 +1794,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                 {
                     // dr = objDsRoomMst.GetDrRoomIds(donerId, sublocid, eTokenDetail.StatusActive, eTokenDetail.StatusYes)
                     // FillListBox(chkRooms, dr, "RoomName", "RoomId", "RecordModifiedCount")
-                    dr = RoomCheckInDALobj.GetDaysForAnnadan(donerId);
+                    dr = objDsRoomMst.GetDaysForAnnadan(donerId);
                     if (dr.Rows.Count > 0)
                         DnrAllowedDays = Convert.ToInt32(dr.Rows[0]["NoOfDays"]);
                     //dr.Close();

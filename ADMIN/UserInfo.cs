@@ -26,6 +26,7 @@ namespace SGMOSOL.ADMIN
         private static string reportpath;
         private static decimal bedCheckInMaxAmount;
         private static decimal roomCheckInMaxAmount;
+        private static DateTime todaysDate;
 
         public static int UserId
         {
@@ -119,6 +120,11 @@ namespace SGMOSOL.ADMIN
         {
             get { return roomCheckInMaxAmount; }
             set { roomCheckInMaxAmount = value; }
+        }
+        public static DateTime TodaysDate
+        {
+            get { return todaysDate; }
+            set { todaysDate = value; }
         }
     }
 }

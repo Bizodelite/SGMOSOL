@@ -44,108 +44,6 @@ namespace SGMOSOL.DAL.BhaktNiwas
                 return Dr;
             }
         }
-        public System.Data.DataTable GetDrRoomDetails1(string strRoomSrch = "", Int64 intDeptId = 0, int intAvailableStatus = 0, int Loc_ID = 0)
-        {
-            using (SqlCommand command = new SqlCommand("SP_GetRoomDetails", clsConnection.GetConnection()))
-            {
-                try
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@strRoomSrch", strRoomSrch);
-                    command.Parameters.AddWithValue("@intDeptId", intDeptId);
-                    command.Parameters.AddWithValue("@intAvailableStatus", intAvailableStatus);
-                    command.Parameters.AddWithValue("@Loc_ID", Loc_ID);
-                    Dr = clsConnection.ExecuteReader(command);
-                }
-                catch (Exception ex)
-                {
-                    cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
-                return Dr;
-            }
-        }
-        public System.Data.DataTable GetDrAuthPersons()
-        {
-            using (SqlCommand command = new SqlCommand("SP_GetAuthPersons", clsConnection.GetConnection()))
-            {
-                try
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    Dr = clsConnection.ExecuteReader(command);
-                }
-                catch (Exception ex)
-                {
-                    cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
-                return Dr;
-            }
-        }
-        public System.Data.DataTable GetDrSublocations(long locationID, long modTypeID = 0)
-        {
-            using (SqlCommand command = new SqlCommand("SP_GetSublocations", clsConnection.GetConnection()))
-            {
-                try
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@LocationID", locationID);
-                    command.Parameters.AddWithValue("@ModTypeID", modTypeID);
-                    Dr = clsConnection.ExecuteReader(command);
-                }
-                catch (Exception ex)
-                {
-                    cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
-                return Dr;
-            }
-        }
-        public System.Data.DataSet GetDonners(int bhaktid, int locId)
-        {
-            using (SqlCommand command = new SqlCommand("SP_GetDonners", clsConnection.GetConnection()))
-            {
-                System.Data.DataSet dataSet = new System.Data.DataSet();
-                try
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@bhaktid", bhaktid);
-                    command.Parameters.AddWithValue("@locId", locId);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-
-                    adapter.Fill(dataSet);
-                }
-                catch (Exception ex)
-                {
-                    cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
-                return dataSet;
-            }
-        }
-        public System.Data.DataSet GetAnnadan(int bhaktid, int locId)
-        {
-            using (SqlCommand command = new SqlCommand("SP_GetAnnadan", clsConnection.GetConnection()))
-            {
-                System.Data.DataSet dataSet = new System.Data.DataSet();
-                try
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@bhaktid", bhaktid);
-                    command.Parameters.AddWithValue("@locId", locId);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataSet);
-                }
-                catch (Exception ex)
-                {
-                    cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
-                return dataSet;
-            }
-        }
         public System.Data.DataTable GetLastEnterdName(int intCtrId)
         {
             using (SqlCommand command = new SqlCommand("SP_GetLastEnteredName", clsConnection.GetConnection()))
@@ -190,24 +88,6 @@ namespace SGMOSOL.DAL.BhaktNiwas
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    Dr = clsConnection.ExecuteReader(command);
-                }
-                catch (Exception ex)
-                {
-                    cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                }
-                return Dr;
-            }
-        }
-        public System.Data.DataTable checkRoomAvailability(int RoomId)
-        {
-            using (SqlCommand command = new SqlCommand("SP_CheckRoomAvailability", clsConnection.GetConnection()))
-            {
-                try
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@RoomId", RoomId);
                     Dr = clsConnection.ExecuteReader(command);
                 }
                 catch (Exception ex)
@@ -801,101 +681,371 @@ namespace SGMOSOL.DAL.BhaktNiwas
                 return -1; // Error
             }
         }
-        public System.Data.DataSet GetValidation(long id)
+        public long UpdateChange(RoomCheckInMst RoomCheckInMst, Collection coll, Collection DelColl, string strUserName, string strMacName, long lngSerialNo)
         {
-            System.Data.DataSet ds = new System.Data.DataSet();
+            Collection actualDelColl = new Collection();
+            Collection actualInsColl = new Collection();
+
+            Int16 ctr;
+            Int16 ctr1;
+            RoomCheckInDet DelCheckInDet = new RoomCheckInDet();
+            RoomCheckInDet InsCheckInDet = new RoomCheckInDet();
+            bool blnFound = false;
+
+            // -----Making Delete Collection
+            for (ctr = 1; ctr <= DelColl.Count; ctr++)
+            {
+                DelCheckInDet = (RoomCheckInDet)DelColl[ctr];
+                blnFound = false;
+                for (ctr1 = 1; ctr1 <= coll.Count; ctr1++)
+                {
+                    InsCheckInDet = (RoomCheckInDet)coll[ctr1];
+                    if (DelCheckInDet.LockerId == InsCheckInDet.LockerId)
+                    {
+                        blnFound = true;
+                        break;
+                    }
+                }
+                if (!blnFound)
+                    actualDelColl.Add(DelCheckInDet);
+            }
+
+            // ----Making Insert Collection
+            for (ctr = 1; ctr <= coll.Count; ctr++)
+            {
+                InsCheckInDet = (RoomCheckInDet)coll[ctr];
+                blnFound = false;
+                for (ctr1 = 1; ctr1 <= DelColl.Count; ctr1++)
+                {
+                    DelCheckInDet = (RoomCheckInDet)DelColl[ctr1];
+                    if (DelCheckInDet.LockerId == InsCheckInDet.LockerId)
+                    {
+                        blnFound = true;
+                        break;
+                    }
+                }
+                if (!blnFound)
+                    actualInsColl.Add(InsCheckInDet);
+            }
+
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SP_GetValidation", clsConnection.GetConnection()))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Id", id);
+                clsConnection.glbTransaction = clsConnection.glbCon.BeginTransaction();
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(ds);
+
+
+                long lngErrNo;
+                if (DelColl.Count > 0)
+                {
+                    //SetError("Deleting from BN_ROOM_CHECK_IN_DET_T ");
+                    lngErrNo = Delete(actualDelColl, strUserName, strMacName);
+                    if (lngErrNo < 0 & lngErrNo != -6)
+                    {
+                        clsConnection.glbTransaction.Rollback();
+                        return lngErrNo;
+                    }
                 }
+
+                if (DelColl.Count > 0)
+                {
+                    //SetError("Update BN_ROOM_CHECK_IN_DET_T_HISTORY");
+                    lngErrNo = UpdateRoomCheckInDetHistory(actualDelColl, strUserName, strMacName);
+                    if (lngErrNo < 0 & lngErrNo != -6)
+                    {
+                        clsConnection.glbTransaction.Rollback();
+                        return lngErrNo;
+                    }
+                }
+
+                //SetError("Inserting Into BN_ROOM_CHECK_IN_DET_T ");
+                lngErrNo = InsertDetails(actualInsColl, RoomCheckInMst.CheckInMstId, strUserName, strMacName);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+                //SetError("Inserting Into BN_ROOM_CHECK_IN_DET_T_HISTORY ");
+                lngErrNo = InsertIntoHistory(actualInsColl, RoomCheckInMst.CheckInMstId, strUserName, strMacName);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+
+                //SetError("Updating Into BN_ROOM_CHECK_IN_MST_T ");
+                lngErrNo = UpdateChangeRoomChanges(RoomCheckInMst, strUserName, strMacName);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+
+
+                //SetError("Updating Room Status for Delete Coll");
+                lngErrNo = UpdateStatus(actualDelColl, strUserName, strMacName);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+
+                //SetError("Updating Room Status for Insert Coll");
+                lngErrNo = UpdateStatus(actualInsColl, strUserName, strMacName);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+
+                clsConnection.glbTransaction.Commit();
+                return 1;
             }
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                return null; // Error
+                //MsgBox(ex.ToString());
+                clsConnection.glbTransaction.Rollback();
+                //SetError(ex.ToString());
+                return -1;
             }
-            return ds;
         }
-        public System.Data.DataTable GetRent(long id)
+        public long UpdateRoomCheckInDetHistory(Collection coll, string strUserName, string strMachineName)
         {
-            try
+            foreach (RoomCheckInDet item in coll)
             {
-                using (SqlCommand cmd = new SqlCommand("SP_GetRent", clsConnection.GetConnection()))
+                using (SqlCommand command = new SqlCommand("SP_UpdateRoomCheckInDetHistory", clsConnection.GetConnection()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    command.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@CheckInMstIds", item.CheckInMstId);
+                    command.Parameters.AddWithValue("@LockerIds", item.LockerId);
+                    command.Parameters.AddWithValue("@UserName", strUserName);
+                    command.Parameters.AddWithValue("@MachineName", strMachineName);
 
-                    Dr = clsConnection.ExecuteReader(cmd);
+                    try
+                    {
+                        long A = clsConnection.ExecuteNonQuery(command);
+                        if (A > 0)
+                        {
+                            return A;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return -90;
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-            }
-            return Dr;
+            return 0;
         }
-        public System.Data.DataTable GetDrRoomIds(int donerId, long intDeptId = 0, short intAvailableStatus = 0)
+        public long InsertIntoHistory(Collection coll, long lngRoomCheckInMstId, string strUserName, string strMachineName)
         {
-            try
+            foreach (RoomCheckInDet item in coll)
             {
-                using (SqlCommand cmd = new SqlCommand("SP_GetDrRoomIds", clsConnection.GetConnection()))
+                using (SqlCommand command = new SqlCommand("SP_InsertIntoRoomHistory", clsConnection.GetConnection()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    command.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@DonerId", donerId);
-                    cmd.Parameters.AddWithValue("@IntDeptId", intDeptId);
-                    cmd.Parameters.AddWithValue("@IntAvailableStatus", intAvailableStatus);
+                    command.Parameters.AddWithValue("@RoomCheckInMstId", lngRoomCheckInMstId);
+                    command.Parameters.AddWithValue("@LockerId", item.LockerId);
+                    command.Parameters.AddWithValue("@UserName", strUserName);
+                    command.Parameters.AddWithValue("@MachineName", strMachineName);
 
-                    Dr = clsConnection.ExecuteReader(cmd);
+                    try
+                    {
+                        long A = clsConnection.ExecuteNonQuery(command);
+                        if (A > 0)
+                        {
+                            return A;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return -1;
+                    }
                 }
+            }
+            return 0;
+        }
+        public long UpdateChangeRoomChanges(RoomCheckInMst roomCheckInMst, string strUserName, string strMachineName)
+        {
+            using (SqlCommand command = new SqlCommand("SP_UpdateChangeRoomChanges", clsConnection.GetConnection()))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@CheckInMstId", roomCheckInMst.CheckInMstId);
+                command.Parameters.AddWithValue("@Name", roomCheckInMst.Name);
+                command.Parameters.AddWithValue("@Sublocid", roomCheckInMst.Sublocid);
+                command.Parameters.AddWithValue("@Sublocation", roomCheckInMst.sublocn);
+                command.Parameters.AddWithValue("@Days", roomCheckInMst.Days);
+                command.Parameters.AddWithValue("@NoOfRooms", roomCheckInMst.NoOfRooms);
+                command.Parameters.AddWithValue("@OutDate", roomCheckInMst.OutDate);
+                command.Parameters.AddWithValue("@OutTime", roomCheckInMst.OutTime);
+                command.Parameters.AddWithValue("@Advance", roomCheckInMst.Advance);
+                command.Parameters.AddWithValue("@Rent", roomCheckInMst.Rent);
+                command.Parameters.AddWithValue("@ScanDoc", roomCheckInMst.ScanDoc);
+                command.Parameters.AddWithValue("@ModifiedBy", strUserName);
+                command.Parameters.AddWithValue("@MachineName", strMachineName);
+                command.Parameters.AddWithValue("@MobNo", roomCheckInMst.mob_no);
+                command.Parameters.AddWithValue("@RecordModifiedCount", roomCheckInMst.RecordModifiedCount);
+
+                try
+                {
+                    return clsConnection.ExecuteNonQuery(command);
+                }
+                catch (Exception ex)
+                {
+                    return -10;
+                }
+            }
+        }
+        public long Insert1(RoomChangeMst RoomChangeMst, Collection coll, string strUserName, string strMacName, long lngSerialNo, DateTime EndteredOn)
+        {
+            long lngErrNo = 0;
+            try
+            {
+                clsConnection.glbTransaction = clsConnection.glbCon.BeginTransaction();
+                for (var ctr = 1; ctr <= coll.Count; ctr++)
+                {
+                    RoomChangeMst.PrevLkrId = ((RoomCheckInDet)coll[ctr]).LockerId;
+                    //SetError("Inserting Into BN_ROOM_CHANGE_T ");
+                    lngErrNo = InsertRoomChange(RoomChangeMst, strUserName, strMacName);
+                    if (lngErrNo < 0)
+                    {
+                        clsConnection.glbTransaction.Rollback();
+                        return lngErrNo;
+                    }
+                }
+                clsConnection.glbTransaction.Commit();
+                return lngErrNo;
             }
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                clsConnection.glbTransaction.Rollback();
+                //SetError(ex.ToString());
+                return -1;
             }
-            return Dr;
         }
-        public System.Data.DataTable GetDaysForDonner(int donerId, int roomId)
+        public long InsertRoomChange(RoomChangeMst roomChangeMst, string strUserName, string strMachineName)
+        {
+            using (SqlCommand command = new SqlCommand("SP_InsertRoomChange", clsConnection.GetConnection()))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@CheckInMstId", roomChangeMst.CheckInMstId);
+                command.Parameters.AddWithValue("@PrevRoomId", roomChangeMst.PrevLkrId);
+                command.Parameters.AddWithValue("@Reason", roomChangeMst.Reason);
+                command.Parameters.AddWithValue("@UserId", roomChangeMst.UserId);
+                command.Parameters.AddWithValue("@ServerName", roomChangeMst.ServerName);
+                command.Parameters.AddWithValue("@EnteredBy", strUserName);
+                command.Parameters.AddWithValue("@ModifiedBy", strUserName);
+                command.Parameters.AddWithValue("@MachineName", strMachineName);
+
+                try
+                {
+                    return clsConnection.ExecuteNonQuery(command);
+                }
+                catch (Exception ex)
+                {
+                    return -10;
+                }
+            }
+        }
+        public long InsertRoomExtend(RoomCheckInMst RoomChangeMst, string strUserName, string strMacName)
+        {
+            long lngMstId;
+            long lngErrNo;
+            try
+            {
+                clsConnection.glbTransaction = clsConnection.glbCon.BeginTransaction();
+
+
+                //SetError("Inserting Into BN_ROOM_EXTEND_T ");
+                lngErrNo = InserRoomExtend(RoomChangeMst, strUserName, strMacName);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+
+                clsConnection.glbTransaction.Commit();
+                return lngErrNo;
+            }
+            catch (Exception ex)
+            {
+                clsConnection.glbTransaction.Rollback();
+                //SetError(ex.ToString());
+                return -1;
+            }
+        }
+        public long InserRoomExtend(RoomCheckInMst roomCheckInMst, string strUserName,string strMacName)
+        {
+            using (SqlCommand command = new SqlCommand("SP_InsertRoomsExtend", clsConnection.GetConnection()))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@LocId", roomCheckInMst.LocId);
+                command.Parameters.AddWithValue("@DeptId", roomCheckInMst.DeptId);
+                command.Parameters.AddWithValue("@CtrMachId", roomCheckInMst.CtrMachId);
+                command.Parameters.AddWithValue("@CheckInMstId", roomCheckInMst.CheckInMstId);
+                command.Parameters.AddWithValue("@ExtendDate", roomCheckInMst.ExtDate);
+                command.Parameters.AddWithValue("@Rent", roomCheckInMst.ExtRent);
+                command.Parameters.AddWithValue("@Days", roomCheckInMst.ExtDay);
+                command.Parameters.AddWithValue("@EnteredBy", strUserName);
+                command.Parameters.AddWithValue("@ModifiedBy", strUserName);
+
+                try
+                {
+                    return clsConnection.ExecuteNonQuery(command);
+                }
+                catch (Exception ex)
+                {
+                    return -10;
+                }
+            }
+        }
+        public long DeleteRoomLocked(string StrID)
+        {
+            long lngMstId;
+            long lngErrNo;
+            try
+            {
+                clsConnection.glbTransaction = clsConnection.glbCon.BeginTransaction();
+
+
+                //SetError("Deleting Into BN_ROOM_CHANGE_T ");
+                lngErrNo = deleteRoomLocked(StrID);
+                if (lngErrNo < 0)
+                {
+                    clsConnection.glbTransaction.Rollback();
+                    return lngErrNo;
+                }
+
+                clsConnection.glbTransaction.Commit();
+                return lngErrNo;
+            }
+            catch (Exception ex)
+            {
+                clsConnection.glbTransaction.Rollback();
+                //SetError(ex.ToString());
+                return -1;
+            }
+        }
+        public long deleteRoomLocked(string id)
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SP_GetDaysForDonner", clsConnection.GetConnection()))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@RoomId", roomId);
-                    Dr = clsConnection.ExecuteReader(cmd);
-                }
+                    SqlCommand command = new SqlCommand("SP_DeleteRoomLocked", clsConnection.GetConnection());
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@BookingId", id);
+
+                    return clsConnection.ExecuteNonQuery(command);
             }
             catch (Exception ex)
             {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return -10;
             }
-            return Dr;
-        }
-        public System.Data.DataTable GetDaysForAnnadan(int donerId)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand("GetDaysForAnnadan", clsConnection.GetConnection()))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DonerId", donerId);
-                    Dr = clsConnection.ExecuteReader(cmd);
-                }
-            }
-            catch (Exception ex)
-            {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-            }
-            return Dr;
         }
     }
 }

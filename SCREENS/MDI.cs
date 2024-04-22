@@ -50,6 +50,16 @@ namespace SGMOSOL
         SessionManager sessionManager;
         frmRoomCheckIn frmRoomCheckIn;
         frmRoomCheckOut frmRoomCheckOut;
+        frmRoomOccupied frmRoomOccupied;
+        frmRoomChange frmRoomChange;
+        frmDailyVoucherEntryBed dailyVoucherEntryBhaktNiwas;
+        frmDmRoomList frmDmRoomList;
+        frmRoomDamaged frmRoomDamaged;
+        frmRoomCheckOut frmRoomTimeBefore;
+        frmRoomChkOutWrng frmRoomChkOutWrng;
+        frmRoomMoreThan3D frmRoomMoreThan3D;
+        frmRoomLocked frmRoomLocked;
+        frmRoomCheckinOnline frmRoomCheckinOnline;
 
         public MDI()
         {
@@ -90,7 +100,7 @@ namespace SGMOSOL
         public void InitAppParam()
         {
             //UserInfo.Rounding = "N";
-            //UserInfo.TodaysDate = cm.GetDsSERVERDATE();
+            UserInfo.TodaysDate = cm.GetComSysdate();
             //UserInfo.MaxRowsOfFindGrid = 300;
             //UserInfo.DengiAlertAmt = 5000;
             //UserInfo.InstrumentDateDays = 30;
@@ -466,6 +476,96 @@ namespace SGMOSOL
             frmRoomCheckOut.MdiParent = this;
             frmRoomCheckOut.WindowState = FormWindowState.Maximized;
             frmRoomCheckOut.Show();
+        }
+
+        private void occupiedRoomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomOccupied = new frmRoomOccupied();
+            frmRoomOccupied.StartPosition = FormStartPosition.CenterParent;
+            frmRoomOccupied.MdiParent = this;
+            frmRoomOccupied.WindowState = FormWindowState.Maximized;
+            frmRoomOccupied.Show();
+        }
+
+        private void roomChangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomChange = new frmRoomChange(eScreenID.RoomChange);
+            frmRoomChange.StartPosition = FormStartPosition.CenterParent;
+            frmRoomChange.MdiParent = this;
+            frmRoomChange.WindowState = FormWindowState.Maximized;
+            frmRoomChange.Show();
+        }
+
+        private void dailyVoucherEntryBhaktNiwasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dailyVoucherEntryBhaktNiwas = new frmDailyVoucherEntryBed(eScreenID.DailyVoucherEntryBhaktniwas);
+            dailyVoucherEntryBhaktNiwas.StartPosition = FormStartPosition.CenterParent;
+            dailyVoucherEntryBhaktNiwas.MdiParent = this;
+            dailyVoucherEntryBhaktNiwas.WindowState = FormWindowState.Maximized;
+            dailyVoucherEntryBhaktNiwas.Show();
+        }
+
+        private void roomOutOfOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDmRoomList = new frmDmRoomList();
+            frmDmRoomList.StartPosition = FormStartPosition.CenterParent;
+            frmDmRoomList.MdiParent = this;
+            frmDmRoomList.WindowState = FormWindowState.Maximized;
+            frmDmRoomList.Show();
+        }
+
+        private void addDamagedRoomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomDamaged = new frmRoomDamaged();
+            frmRoomDamaged.StartPosition = FormStartPosition.CenterParent;
+            frmRoomDamaged.MdiParent = this;
+            frmRoomDamaged.WindowState = FormWindowState.Maximized;
+            frmRoomDamaged.Show();
+        }
+
+        private void roomOutTimeBeforeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomTimeBefore = new frmRoomCheckOut(eScreenID.RoomCheckOutBefore);
+            frmRoomTimeBefore.StartPosition = FormStartPosition.CenterParent;
+            frmRoomTimeBefore.MdiParent = this;
+            frmRoomTimeBefore.WindowState = FormWindowState.Maximized;
+            frmRoomTimeBefore.Show();
+        }
+
+        private void roomOutTimeWarningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomChkOutWrng = new frmRoomChkOutWrng();
+            frmRoomChkOutWrng.StartPosition = FormStartPosition.CenterParent;
+            frmRoomChkOutWrng.MdiParent = this;
+            frmRoomChkOutWrng.WindowState = FormWindowState.Maximized;
+            frmRoomChkOutWrng.Show();
+        }
+
+        private void moreThan3DaysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomMoreThan3D = new frmRoomMoreThan3D();
+            frmRoomMoreThan3D.StartPosition = FormStartPosition.CenterParent;
+            frmRoomMoreThan3D.MdiParent = this;
+            frmRoomMoreThan3D.WindowState = FormWindowState.Maximized;
+            frmRoomMoreThan3D.Show();
+        }
+
+        private void roomLockedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomLocked = new frmRoomLocked();
+            frmRoomLocked.StartPosition = FormStartPosition.CenterParent;
+            frmRoomLocked.MdiParent = this;
+            frmRoomLocked.WindowState = FormWindowState.Maximized;
+            frmRoomLocked.Show();
+        }
+
+        private void roomInTimeOnlineNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomCheckinOnline = new frmRoomCheckinOnline();
+            frmRoomCheckinOnline.StartPosition = FormStartPosition.CenterParent;
+            frmRoomCheckinOnline.MdiParent = this;
+            frmRoomCheckinOnline.WindowState = FormWindowState.Maximized;
+            frmRoomCheckinOnline.Show();
         }
     }
 }

@@ -347,7 +347,7 @@ namespace SGMOSOL.SCREENS
                 {
                     CheckInDet.LockerId = CF.lsbItemData(chkLockers, i);
                     CheckInDet.LockerAvailableStatus = (int)eTokenDetail.StatusNo;
-                    CheckInDet.LockerRecordModifiedCount = CF.lsbItemData(chkLockers, i) + 1;
+                    CheckInDet.LockerRecordModifiedCount = Convert.ToInt64(CF.lsbItemName2(chkLockers, i)) + 1;
                     coll.Add(CheckInDet);
                 }
             }

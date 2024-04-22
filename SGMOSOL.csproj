@@ -349,7 +349,28 @@
     </Compile>
     <Compile Include="DAL\Bed System\BedCheckOutDAL.cs" />
     <Compile Include="DAL\Bed System\BedCheckINDAL.cs" />
+    <Compile Include="DAL\BhaktNiwas\RoomChangeDAL.cs" />
     <Compile Include="DAL\BhaktNiwas\RoomCheckOutDAL.cs" />
+    <Compile Include="DAL\BhaktNiwas\RoomLockedDAL.cs" />
+    <Compile Include="DAL\BhaktNiwas\RoomMasterDAL.cs" />
+    <Compile Include="SCREENS\BhaktNiwas\frmDmRoomList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmDmRoomList.Designer.cs">
+      <DependentUpon>frmDmRoomList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomChange.Designer.cs">
+      <DependentUpon>frmRoomChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckinOnline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckinOnline.Designer.cs">
+      <DependentUpon>frmRoomCheckinOnline.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckOut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +419,36 @@
     </Compile>
     <Compile Include="SCREENS\BhaktNiwas\frmRoomCheckIn.Designer.cs">
       <DependentUpon>frmRoomCheckIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomChkOutWrng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomChkOutWrng.Designer.cs">
+      <DependentUpon>frmRoomChkOutWrng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomDamaged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomDamaged.Designer.cs">
+      <DependentUpon>frmRoomDamaged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomLocked.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomLocked.Designer.cs">
+      <DependentUpon>frmRoomLocked.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomMoreThan3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomMoreThan3D.Designer.cs">
+      <DependentUpon>frmRoomMoreThan3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomOccupied.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomOccupied.Designer.cs">
+      <DependentUpon>frmRoomOccupied.cs</DependentUpon>
     </Compile>
     <Compile Include="SCREENS\frmMessReport.cs">
       <SubType>Form</SubType>
@@ -613,8 +664,20 @@
     <EmbeddedResource Include="Custom User Contols\InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RoomCheckInReceipt.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RoomCheckInNew.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmDmRoomList.resx">
+      <DependentUpon>frmDmRoomList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomChange.resx">
+      <DependentUpon>frmRoomChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomCheckinOnline.resx">
+      <DependentUpon>frmRoomCheckinOnline.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomCheckOut.resx">
       <DependentUpon>frmRoomCheckOut.cs</DependentUpon>
@@ -636,6 +699,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomCheckIn.resx">
       <DependentUpon>frmRoomCheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomChkOutWrng.resx">
+      <DependentUpon>frmRoomChkOutWrng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomDamaged.resx">
+      <DependentUpon>frmRoomDamaged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomLocked.resx">
+      <DependentUpon>frmRoomLocked.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomMoreThan3D.resx">
+      <DependentUpon>frmRoomMoreThan3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomOccupied.resx">
+      <DependentUpon>frmRoomOccupied.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmMessReport.resx">
       <DependentUpon>frmMessReport.cs</DependentUpon>

@@ -39,9 +39,9 @@ namespace SGMOSOL.BAL
             public DateTime OutTime { get; set; }
             public decimal Advance { get; set; }
             public decimal Rent { get; set; }
-            public double ExtRent { get; set; }
+            public decimal ExtRent { get; set; }
             public int ExtDay { get; set; }
-            public string ExtDate { get; set; }
+            public DateTime ExtDate { get; set; }
             public long RecordModifiedCount { get; set; }
             public int UserId { get; set; }
             public string ServerName { get; set; }
@@ -119,6 +119,46 @@ namespace SGMOSOL.BAL
             public Int32 LockerAvailableStatus { get; set; }
             public long LockerRecordModifiedCount { get; set; }
         }
-
+        public struct RoomChangeMst
+        {
+            public long CheckInMstId { get; set; }
+            public int ComId { get; set; }
+            public int LocId { get; set; }
+            public int DeptId { get; set; }
+            public long CtrMachId { get; set; }
+            public int FyId { get; set; }
+            public int PrevLkrId { get; set; }
+            public DateTime OutDate { get; set; }
+            public DateTime OutTime { get; set; }
+            public long SerialNo { get; set; }
+            public string Reason { get; set; }
+            public int UserId { get; set; }
+            public string ServerName { get; set; }
+            public string EnteredBy { get; set; }
+            public string EnteredOn { get; set; }
+            public string ModifiedBy { get; set; }
+            public string ModifiedOn { get; set; }
+            public string MachineName { get; set; }
+        }
+        public struct DamagedRooms
+        {
+            public Int32 LockerId { get; set; }
+            public string Reason { get; set; }
+            public DateTime sDate { get; set; }
+            public string EnteredBy { get; set; }
+        }
+        public struct RoomLocked
+        {
+            public long ROOM_LOCK_ID { get; set; }
+            public long ROOM_ID { get; set; }
+            public DateTime LOCK_DATE { get; set; }
+            public long DEPT_ID { get; set; }
+            public long LOC_ID { get; set; }
+            public string EnteredBy { get; set; }
+            public string EnteredOn { get; set; }
+            public string ModifiedBy { get; set; }
+            public string ModifiedOn { get; set; }
+            public long BookingID { get; set; }
+        }
     }
 }

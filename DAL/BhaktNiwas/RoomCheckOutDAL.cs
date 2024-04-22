@@ -46,30 +46,6 @@ namespace SGMOSOL.DAL.BhaktNiwas
             }
             return Dr;
         }
-        public int GetrDonnerRoomId(long checkInMstId)
-        {
-            int donnerRoomId = 0;
-            try
-            {
-                using (SqlCommand command = new SqlCommand("SP_GetDonnerRoomId", clsConnection.GetConnection()))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@CheckInMstId", checkInMstId);
-                    command.ExecuteNonQuery();
-                    Dr = clsConnection.ExecuteReader(command);
-                    if (Dr.Rows.Count > 0)
-                    {
-                        donnerRoomId = Convert.ToInt32(Dr.Rows[0]["Donner_room_Id"]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-            }
-            return donnerRoomId;
-        }
         public System.Data.DataTable GetDrRoomCheckOutMst(long roomCheckOutMstId = 0, DateTime? date = null, long serialNo = 0, long ctrMachId = 0, long comId = 0, long locId = 0, long deptId = 0, long fyId = 0, string userName = null)
         {
             try

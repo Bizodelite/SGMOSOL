@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Label10 = new System.Windows.Forms.Label();
             this.dtpCheckInTime = new System.Windows.Forms.DateTimePicker();
             this.dtpCheckIn = new System.Windows.Forms.DateTimePicker();
@@ -38,6 +41,14 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.fpsPrintReceipt = new System.Windows.Forms.DataGridView();
+            this.ColLocation = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDengi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColOccupied = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPending = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColBedOutofOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.fpsPrintReceipt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,12 +159,95 @@
             // 
             // fpsPrintReceipt
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.fpsPrintReceipt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.fpsPrintReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fpsPrintReceipt.Location = new System.Drawing.Point(18, 45);
+            this.fpsPrintReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColLocation,
+            this.Column1,
+            this.Column2,
+            this.ColDengi,
+            this.ColQty,
+            this.ColOccupied,
+            this.ColPending,
+            this.ColBedOutofOrder});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.fpsPrintReceipt.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fpsPrintReceipt.Location = new System.Drawing.Point(18, 44);
             this.fpsPrintReceipt.Name = "fpsPrintReceipt";
-            this.fpsPrintReceipt.Size = new System.Drawing.Size(727, 347);
-            this.fpsPrintReceipt.TabIndex = 133;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.fpsPrintReceipt.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.fpsPrintReceipt.Size = new System.Drawing.Size(744, 348);
+            this.fpsPrintReceipt.TabIndex = 209;
             this.fpsPrintReceipt.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.fpsPrintReceipt_CellEnter);
+            // 
+            // ColLocation
+            // 
+            this.ColLocation.HeaderText = "Location";
+            this.ColLocation.Name = "ColLocation";
+            this.ColLocation.ReadOnly = true;
+            this.ColLocation.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColLocation.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // ColDengi
+            // 
+            this.ColDengi.HeaderText = "Dengi";
+            this.ColDengi.Name = "ColDengi";
+            this.ColDengi.ReadOnly = true;
+            // 
+            // ColQty
+            // 
+            this.ColQty.HeaderText = "Qty";
+            this.ColQty.Name = "ColQty";
+            this.ColQty.ReadOnly = true;
+            // 
+            // ColOccupied
+            // 
+            this.ColOccupied.HeaderText = "Occupied";
+            this.ColOccupied.Name = "ColOccupied";
+            this.ColOccupied.ReadOnly = true;
+            // 
+            // ColPending
+            // 
+            this.ColPending.HeaderText = "Pending";
+            this.ColPending.Name = "ColPending";
+            this.ColPending.ReadOnly = true;
+            // 
+            // ColBedOutofOrder
+            // 
+            this.ColBedOutofOrder.HeaderText = "BedOutofOrder";
+            this.ColBedOutofOrder.Name = "ColBedOutofOrder";
             // 
             // FrmBedO
             // 
@@ -191,5 +285,13 @@
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.DataGridView fpsPrintReceipt;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDengi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColOccupied;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPending;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColBedOutofOrder;
     }
 }

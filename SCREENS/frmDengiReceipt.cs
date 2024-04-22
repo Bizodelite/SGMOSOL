@@ -953,9 +953,11 @@ namespace SGMOSOL.SCREENS
                             getDengiNo();
                             unLockControls();
                             string receptID = status.ToString();
-                        
                             frmReportViewer report = new frmReportViewer("PRINT", receptID);
+                            commonFunctions.AppendToFile("");
+                            commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                             report.createReport("Dengi");
+                            commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                             //report.Show();
                         }
                         if (chkDeclaration.Checked == true)
@@ -1171,7 +1173,10 @@ namespace SGMOSOL.SCREENS
 
 
             frmReportViewer report = new frmReportViewer("PRINT", receptID, "D");
+            commonFunctions.AppendToFile(" ");
+            commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             report.createReport("Dengi");
+            commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)

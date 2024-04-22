@@ -14,7 +14,7 @@ namespace SGMOSOL.ADMIN
             if (strInput == Constants.vbNullString)
                 return "NULL,";
             else
-                return "'" + Strings.Replace(strInput, "'", "''") + "',";
+                return "'" + Strings.Replace(strInput, "'", "''") + "'";
         }
         public static string FormatCharDataM(string strInput)
         {

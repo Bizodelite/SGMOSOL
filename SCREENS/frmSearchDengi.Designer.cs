@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblAmountInwords = new System.Windows.Forms.Label();
+            this.txttotalAMount = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cboDengiType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblmobile = new System.Windows.Forms.Label();
@@ -46,9 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDengiReceipt = new System.Windows.Forms.DataGridView();
             this.txtMobile = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txttotalAMount = new System.Windows.Forms.TextBox();
-            this.lblAmountInwords = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDengiReceipt)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +78,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1327, 130);
             this.panel1.TabIndex = 0;
+            // 
+            // lblAmountInwords
+            // 
+            this.lblAmountInwords.AutoSize = true;
+            this.lblAmountInwords.ForeColor = System.Drawing.Color.Red;
+            this.lblAmountInwords.Location = new System.Drawing.Point(703, 95);
+            this.lblAmountInwords.Name = "lblAmountInwords";
+            this.lblAmountInwords.Size = new System.Drawing.Size(0, 16);
+            this.lblAmountInwords.TabIndex = 17;
+            // 
+            // txttotalAMount
+            // 
+            this.txttotalAMount.Enabled = false;
+            this.txttotalAMount.Location = new System.Drawing.Point(706, 71);
+            this.txttotalAMount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txttotalAMount.Name = "txttotalAMount";
+            this.txttotalAMount.Size = new System.Drawing.Size(296, 22);
+            this.txttotalAMount.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(614, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 16);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Total Amount";
             // 
             // cboDengiType
             // 
@@ -215,6 +242,7 @@
             // 
             // dgvDengiReceipt
             // 
+            this.dgvDengiReceipt.AllowUserToAddRows = false;
             this.dgvDengiReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDengiReceipt.Location = new System.Drawing.Point(21, 181);
             this.dgvDengiReceipt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -236,33 +264,6 @@
             this.txtMobile.Size = new System.Drawing.Size(196, 22);
             this.txtMobile.TabIndex = 12;
             this.txtMobile.TextChanged += new System.EventHandler(this.txtMobile_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(614, 73);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 16);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Total Amount";
-            // 
-            // txttotalAMount
-            // 
-            this.txttotalAMount.Enabled = false;
-            this.txttotalAMount.Location = new System.Drawing.Point(706, 71);
-            this.txttotalAMount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txttotalAMount.Name = "txttotalAMount";
-            this.txttotalAMount.Size = new System.Drawing.Size(296, 22);
-            this.txttotalAMount.TabIndex = 16;
-            // 
-            // lblAmountInwords
-            // 
-            this.lblAmountInwords.AutoSize = true;
-            this.lblAmountInwords.ForeColor = System.Drawing.Color.Red;
-            this.lblAmountInwords.Location = new System.Drawing.Point(703, 95);
-            this.lblAmountInwords.Name = "lblAmountInwords";
-            this.lblAmountInwords.Size = new System.Drawing.Size(0, 16);
-            this.lblAmountInwords.TabIndex = 17;
             // 
             // frmSearchDengi
             // 

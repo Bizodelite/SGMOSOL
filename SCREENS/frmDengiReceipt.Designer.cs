@@ -83,6 +83,7 @@ namespace SGMOSOL.SCREENS
             this.txtChqBankname = new System.Windows.Forms.TextBox();
             this.Label4 = new System.Windows.Forms.Label();
             this.pnlDetail = new System.Windows.Forms.Panel();
+            this.lblScanner = new System.Windows.Forms.Label();
             this.lblDistrict = new System.Windows.Forms.Label();
             this.lblTaluka = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -123,7 +124,6 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge = new System.Windows.Forms.Button();
             this.chkScanDoc = new System.Windows.Forms.CheckBox();
             this.chkDeclaration = new System.Windows.Forms.CheckBox();
-            this.lblScanner = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlMaster.SuspendLayout();
             this.pnlDDDtl.SuspendLayout();
@@ -863,11 +863,21 @@ namespace SGMOSOL.SCREENS
             this.pnlDetail.Size = new System.Drawing.Size(1568, 253);
             this.pnlDetail.TabIndex = 7;
             // 
+            // lblScanner
+            // 
+            this.lblScanner.AutoSize = true;
+            this.lblScanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanner.ForeColor = System.Drawing.Color.OliveDrab;
+            this.lblScanner.Location = new System.Drawing.Point(1080, 217);
+            this.lblScanner.Name = "lblScanner";
+            this.lblScanner.Size = new System.Drawing.Size(0, 16);
+            this.lblScanner.TabIndex = 168;
+            // 
             // lblDistrict
             // 
             this.lblDistrict.AutoSize = true;
             this.lblDistrict.ForeColor = System.Drawing.Color.Red;
-            this.lblDistrict.Location = new System.Drawing.Point(905, 180);
+            this.lblDistrict.Location = new System.Drawing.Point(532, 186);
             this.lblDistrict.Name = "lblDistrict";
             this.lblDistrict.Size = new System.Drawing.Size(0, 16);
             this.lblDistrict.TabIndex = 167;
@@ -876,7 +886,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblTaluka.AutoSize = true;
             this.lblTaluka.ForeColor = System.Drawing.Color.Red;
-            this.lblTaluka.Location = new System.Drawing.Point(103, 218);
+            this.lblTaluka.Location = new System.Drawing.Point(982, 189);
             this.lblTaluka.Name = "lblTaluka";
             this.lblTaluka.Size = new System.Drawing.Size(0, 16);
             this.lblTaluka.TabIndex = 166;
@@ -1000,7 +1010,7 @@ namespace SGMOSOL.SCREENS
             this.cboCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCountry.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCountry.FormattingEnabled = true;
-            this.cboCountry.Location = new System.Drawing.Point(114, 105);
+            this.cboCountry.Location = new System.Drawing.Point(114, 108);
             this.cboCountry.Margin = new System.Windows.Forms.Padding(4);
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(311, 36);
@@ -1347,16 +1357,6 @@ namespace SGMOSOL.SCREENS
             this.chkDeclaration.Text = "Print Declaration";
             this.chkDeclaration.UseVisualStyleBackColor = true;
             this.chkDeclaration.Visible = false;
-            // 
-            // lblScanner
-            // 
-            this.lblScanner.AutoSize = true;
-            this.lblScanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanner.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lblScanner.Location = new System.Drawing.Point(1080, 217);
-            this.lblScanner.Name = "lblScanner";
-            this.lblScanner.Size = new System.Drawing.Size(0, 16);
-            this.lblScanner.TabIndex = 168;
             // 
             // frmDengiReceipt
             // 

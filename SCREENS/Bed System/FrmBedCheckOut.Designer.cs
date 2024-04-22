@@ -34,8 +34,6 @@
             this.Label19 = new System.Windows.Forms.Label();
             this.txtVchNo = new System.Windows.Forms.TextBox();
             this.Label3 = new System.Windows.Forms.Label();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.rdBhakta = new System.Windows.Forms.RadioButton();
             this.rdTrip = new System.Windows.Forms.RadioButton();
@@ -60,10 +58,6 @@
             this.Label9 = new System.Windows.Forms.Label();
             this.nudRent = new System.Windows.Forms.NumericUpDown();
             this.nudAdvance = new System.Windows.Forms.NumericUpDown();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.Label14 = new System.Windows.Forms.Label();
             this.Label13 = new System.Windows.Forms.Label();
             this.Label12 = new System.Windows.Forms.Label();
@@ -75,11 +69,18 @@
             this.Label11 = new System.Windows.Forms.Label();
             this.fpsPrintReceipt = new System.Windows.Forms.DataGridView();
             this.ColProduct = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAdvance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDengi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAdvAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDengiAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRefund)).BeginInit();
@@ -160,29 +161,6 @@
             this.Label3.TabIndex = 192;
             this.Label3.Text = "Check Out No";
             this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Image = global::SGMOSOL.ResourceMain.Data_Fetch_22;
-            this.btnLoad.Location = new System.Drawing.Point(272, 89);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(44, 30);
-            this.btnLoad.TabIndex = 191;
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Enabled = false;
-            this.btnSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Image = global::SGMOSOL.ResourceMain.Search;
-            this.btnSearch.Location = new System.Drawing.Point(9, 430);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(100, 46);
-            this.btnSearch.TabIndex = 190;
-            this.btnSearch.Text = "&Search";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // GroupBox1
             // 
@@ -320,6 +298,7 @@
             this.txtNoOfPerson.Size = new System.Drawing.Size(109, 26);
             this.txtNoOfPerson.TabIndex = 158;
             this.txtNoOfPerson.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNoOfPerson.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNoOfPerson_KeyPress);
             // 
             // Label16
             // 
@@ -494,58 +473,6 @@
             this.nudAdvance.TabIndex = 173;
             this.nudAdvance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btnClose
-            // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
-            this.btnClose.Location = new System.Drawing.Point(588, 430);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 46);
-            this.btnClose.TabIndex = 163;
-            this.btnClose.Text = "&Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnNew
-            // 
-            this.btnNew.Enabled = false;
-            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.Image = global::SGMOSOL.ResourceMain.NewAddress;
-            this.btnNew.Location = new System.Drawing.Point(288, 430);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(100, 46);
-            this.btnNew.TabIndex = 161;
-            this.btnNew.Text = "&New";
-            this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Enabled = false;
-            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
-            this.btnSave.Location = new System.Drawing.Point(388, 430);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 46);
-            this.btnSave.TabIndex = 160;
-            this.btnSave.Text = "&Save\r\n / Print";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Enabled = false;
-            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
-            this.btnPrint.Location = new System.Drawing.Point(488, 430);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 46);
-            this.btnPrint.TabIndex = 162;
-            this.btnPrint.Text = "&Print";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
             // Label14
             // 
             this.Label14.AutoSize = true;
@@ -652,11 +579,13 @@
             this.fpsPrintReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.fpsPrintReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColProduct,
+            this.Column1,
             this.ColAdvance,
             this.ColDengi,
             this.ColQty,
             this.ColAdvAmount,
             this.ColDengiAmt});
+            this.fpsPrintReceipt.Enabled = false;
             this.fpsPrintReceipt.Location = new System.Drawing.Point(20, 193);
             this.fpsPrintReceipt.Name = "fpsPrintReceipt";
             this.fpsPrintReceipt.Size = new System.Drawing.Size(744, 124);
@@ -664,6 +593,7 @@
             this.fpsPrintReceipt.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.fpsPrintReceipt_CellEnter);
             this.fpsPrintReceipt.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.fpsPrintReceipt_CellLeave);
             this.fpsPrintReceipt.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.fpsPrintReceipt_CellValueChanged);
+            this.fpsPrintReceipt.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.fpsPrintReceipt_EditingControlShowing);
             this.fpsPrintReceipt.Enter += new System.EventHandler(this.fpsPrintReceipt_Enter);
             this.fpsPrintReceipt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fpsPrintReceipt_KeyDown);
             this.fpsPrintReceipt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCheckInVchNo_KeyPress);
@@ -676,6 +606,12 @@
             this.ColProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColProduct.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
             // 
             // ColAdvance
             // 
@@ -701,6 +637,81 @@
             // 
             this.ColDengiAmt.HeaderText = "Dengi Amt";
             this.ColDengiAmt.Name = "ColDengiAmt";
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Image = global::SGMOSOL.ResourceMain.Data_Fetch_22;
+            this.btnLoad.Location = new System.Drawing.Point(272, 89);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(44, 30);
+            this.btnLoad.TabIndex = 191;
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Enabled = false;
+            this.btnSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::SGMOSOL.ResourceMain.Search;
+            this.btnSearch.Location = new System.Drawing.Point(9, 430);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 46);
+            this.btnSearch.TabIndex = 190;
+            this.btnSearch.Text = "&Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
+            this.btnClose.Location = new System.Drawing.Point(588, 430);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(100, 46);
+            this.btnClose.TabIndex = 163;
+            this.btnClose.Text = "&Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Enabled = false;
+            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.Image = global::SGMOSOL.ResourceMain.NewAddress;
+            this.btnNew.Location = new System.Drawing.Point(288, 430);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(100, 46);
+            this.btnNew.TabIndex = 161;
+            this.btnNew.Text = "&New";
+            this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Enabled = false;
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
+            this.btnSave.Location = new System.Drawing.Point(388, 430);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 46);
+            this.btnSave.TabIndex = 160;
+            this.btnSave.Text = "&Save\r\n / Print";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Enabled = false;
+            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
+            this.btnPrint.Location = new System.Drawing.Point(488, 430);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 46);
+            this.btnPrint.TabIndex = 162;
+            this.btnPrint.Text = "&Print";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // FrmBedCheckOut
             // 
@@ -816,6 +827,7 @@
         internal System.Windows.Forms.Label Label11;
         private System.Windows.Forms.DataGridView fpsPrintReceipt;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAdvance;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDengi;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColQty;

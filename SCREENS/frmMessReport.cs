@@ -165,7 +165,6 @@ namespace SGMOSOL.DAL.Locker
             {
                 lblFromDate.Visible = true;
                 lblToDate.Visible = true;
-                // dtpToDt.Visible = False
                 btnPrint.Enabled = true;
             }
         }
@@ -180,7 +179,7 @@ namespace SGMOSOL.DAL.Locker
             if (cboCounter.Items.Count > 0)
             {
                 cboCounter.SelectedIndex = 0;
-                ReportDeptId = cf.cmbItemName2(cboCounter, cboCounter.SelectedIndex);
+                ReportDeptId = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
 
                 LocID = cf.cmbItemName3(cboCounter, cboCounter.SelectedIndex);
             }
@@ -449,6 +448,7 @@ namespace SGMOSOL.DAL.Locker
 
             sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, mScreenId, false);
             sForm.Text = this.Text;
+            sForm.WindowState = FormWindowState.Maximized;
             setCursor(this, true);
             sForm.Show();
         }

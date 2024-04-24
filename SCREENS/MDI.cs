@@ -244,6 +244,7 @@ namespace SGMOSOL
         private void totalDengiReportToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             CloseCurrentlyOpenMenuForm();
+            CloseCurrentlyOpenMenuForm();
             frmDengiReceip = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
             if (frmDengiReceip == null)
             {
@@ -288,27 +289,27 @@ namespace SGMOSOL
         private void MDI_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-            sessionManager.ResetSession();
+            //sessionManager.ResetSession();
 
         }
 
         private void MDI_KeyDown(object sender, KeyEventArgs e)
         {
 
-            sessionManager.ResetSession();
+            //sessionManager.ResetSession();
 
         }
 
         private void MDI_MouseMove(object sender, MouseEventArgs e)
         {
-            sessionManager.ResetSession();
+           // sessionManager.ResetSession();
 
         }
 
         private void MDI_MouseClick(object sender, MouseEventArgs e)
         {
 
-            sessionManager.ResetSession();
+           // sessionManager.ResetSession();
 
         }
         private void lockerCheckINToolStripMenuItem_Click(object sender, EventArgs e)

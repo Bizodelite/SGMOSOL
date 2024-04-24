@@ -159,8 +159,8 @@ namespace SGMOSOL.SCREENS
                     showPanel();
                     getDengiNo();
                 }
-                sessionManager = new SessionManager(this);
-                sessionManager.StartTimer();
+               // sessionManager = new SessionManager(this);
+               // sessionManager.StartTimer();
             }
             catch (Exception ex)
             {
@@ -1554,7 +1554,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
-                sessionManager.ResetSession();
+              //  sessionManager.ResetSession();
                 dengiReceiptDAL = new DengiReceiptDAL();
                 DataTable dt = new DataTable();
                 if (e.Control && e.KeyCode == Keys.P)
@@ -1699,7 +1699,7 @@ namespace SGMOSOL.SCREENS
 
         private void frmDengiReceipt_MouseClick(object sender, MouseEventArgs e)
         {
-            sessionManager.ResetSession();
+           // sessionManager.ResetSession();
         }
 
         private void chkScanDoc_CheckedChanged(object sender, EventArgs e)

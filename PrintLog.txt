@@ -15,3 +15,20 @@ Creating Report:-2024-04-22 18:11:09
 Serial_Number:-30
 Printing Report Report:-2024-04-22 18:11:13
 Done Report:-2024-04-22 18:11:18
+
+Creating Report:-2024-04-24 10:22:10
+Serial_Number:-33
+Printing Report Report:-2024-04-24 10:22:20
+Done Report:-2024-04-24 10:22:32
+
+Creating Report:-2024-04-24 10:39:34
+Serial_Number:-34
+Printing Report Report:-2024-04-24 10:39:37
+Done Report:-2024-04-24 10:39:43
+Printing Report Report:-2024-04-24 10:40:19
+Printing Report Report:-2024-04-24 10:41:18
+
+Creating Report:-2024-04-24 10:59:42
+Serial_Number:-35
+Printing Report Report:-2024-04-24 10:59:44
+Done Report:-2024-04-24 10:59:51

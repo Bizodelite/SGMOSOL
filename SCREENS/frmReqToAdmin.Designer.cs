@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMaster = new System.Windows.Forms.Panel();
             this.lblQty = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCounter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblItemCode = new System.Windows.Forms.Label();
             this.pnlMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemDetails)).BeginInit();
             this.panel2.SuspendLayout();
@@ -59,6 +60,7 @@
             // pnlMaster
             // 
             this.pnlMaster.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlMaster.Controls.Add(this.lblItemCode);
             this.pnlMaster.Controls.Add(this.lblQty);
             this.pnlMaster.Controls.Add(this.btnClose);
             this.pnlMaster.Controls.Add(this.btnSave);
@@ -207,22 +209,23 @@
             // 
             // dgvItemDetails
             // 
+            this.dgvItemDetails.AllowUserToAddRows = false;
             this.dgvItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.PaleTurquoise;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItemDetails.Location = new System.Drawing.Point(196, 175);
             this.dgvItemDetails.Name = "dgvItemDetails";
             this.dgvItemDetails.ReadOnly = true;
             this.dgvItemDetails.RowHeadersWidth = 51;
             this.dgvItemDetails.RowTemplate.Height = 24;
-            this.dgvItemDetails.Size = new System.Drawing.Size(708, 172);
+            this.dgvItemDetails.Size = new System.Drawing.Size(989, 172);
             this.dgvItemDetails.TabIndex = 40;
             this.dgvItemDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemDetails_CellContentClick);
             // 
@@ -323,6 +326,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Counter";
             // 
+            // lblItemCode
+            // 
+            this.lblItemCode.AutoSize = true;
+            this.lblItemCode.ForeColor = System.Drawing.Color.Red;
+            this.lblItemCode.Location = new System.Drawing.Point(318, 110);
+            this.lblItemCode.Name = "lblItemCode";
+            this.lblItemCode.Size = new System.Drawing.Size(0, 22);
+            this.lblItemCode.TabIndex = 52;
+            // 
             // frmReqToAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -366,5 +378,6 @@
         private System.Windows.Forms.TextBox txtCounter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblQty;
+        private System.Windows.Forms.Label lblItemCode;
     }
 }

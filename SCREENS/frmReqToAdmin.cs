@@ -283,33 +283,39 @@ namespace SGMOSOL.SCREENS
             bool itemFound = false;
             if (e.KeyCode == Keys.Enter)
             {
-
-                if (txtQuantity.Text != "0")
+                if (cboItemCode.Text != "")
                 {
-                    addItemIngrid();
-                }
-                if (txtQuantity.Text == "0")
-                {
-                    // Get the item name
-                    string itemName = txtItemName.Text;
-
-                    // Search for the item in the DataGridView
-                    foreach (DataGridViewRow row in dgvItemDetails.Rows)
+                    if (txtQuantity.Text != "0")
                     {
-                        if (row.Cells["Item Name"].Value.ToString() == itemName)
+                        addItemIngrid();
+                    }
+                    if (txtQuantity.Text == "0")
+                    {
+                        // Get the item name
+                        string itemName = txtItemName.Text;
+
+                        // Search for the item in the DataGridView
+                        foreach (DataGridViewRow row in dgvItemDetails.Rows)
                         {
-                            // Remove the row from the DataGridView
-                            dgvItemDetails.Rows.Remove(row);
-                           // txtTotalAmount.Text = getTotalAmount();
-                            itemFound = true;
-                            clear();
-                            break;
+                            if (row.Cells["Item Name"].Value.ToString() == itemName)
+                            {
+                                // Remove the row from the DataGridView
+                                dgvItemDetails.Rows.Remove(row);
+                                // txtTotalAmount.Text = getTotalAmount();
+                                itemFound = true;
+                                clear();
+                                break;
+                            }
+                        }
+                        if (itemFound == false)
+                        {
+                            MessageBox.Show("Item not found");
                         }
                     }
-                    if (itemFound == false)
-                    {
-                        MessageBox.Show("Item not found");
-                    }
+                }
+                else
+                {
+                    lblItemCode.Text = "Please select an Item";
                 }
             }
         }
@@ -358,7 +364,10 @@ namespace SGMOSOL.SCREENS
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveRequirement();
+            if (lblQuantity.Text == "" && lblItemCode.Text == "")
+            {
+                saveRequirement();
+            }
 
         }
         public void saveRequirement()

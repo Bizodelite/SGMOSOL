@@ -692,7 +692,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
 
             strReportName = "RoomCheckOutReceipt.rpt";
             FillDataInDataset();
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckOut, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckOut, true);
             sForm.Text = "Room Check Out : " + eReportID.RoomCheckOut;
             sForm.Show();
             sForm.Close();
@@ -707,7 +707,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             System.Drawing.Printing.PrintDocument printDoc = new System.Drawing.Printing.PrintDocument();
 
             strReportName = "RoomCheckOutReceiptDup.rpt";
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckOut, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckOut, true);
             sForm.Text = "Room Check Out : " + eReportID.RoomCheckOut;
             sForm.Show();
             sForm.Close();

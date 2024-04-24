@@ -133,9 +133,9 @@ namespace SGMOSOL.SCREENS
             if (cboCounter.Items.Count > 0)
             {
                 cboCounter.SelectedIndex = 0;
-                ReportDeptId = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
+                ReportDeptId = Convert.ToInt64(cf.cmbItemName2(cboCounter, cboCounter.SelectedIndex));
 
-                LocID = cf.cmbItemdata(cboCounter, cboCounter.SelectedIndex);
+                LocID = Convert.ToInt64(cf.cmbItemName3(cboCounter, cboCounter.SelectedIndex));
             }
 
             cboCounter.Enabled = true;

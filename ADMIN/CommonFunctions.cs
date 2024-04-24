@@ -2289,6 +2289,21 @@ namespace SGMOSOL.ADMIN
             }
             return 0;
         }
+        public static DateTime ParseDateTimeInAnyFormat(string inputDateTime)
+        {
+            string[] formats = { "yyyy-MM-dd", "yyyy/MM/dd", "MM/dd/yyyy", "dd/MM/yyyy", "dd/MMM/yyyy", "dd-MMM-yyyy", "dd-MM-yyyy" }; // Add more formats as needed
+
+            DateTime parsedDateTime;
+            if (DateTime.TryParseExact(inputDateTime, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDateTime))
+            {
+                return parsedDateTime;
+            }
+            else
+            {
+                // Handle parsing failure, return default datetime or throw exception
+                throw new FormatException("Input datetime is not in a recognized format.");
+            }
+        }
     }
 }
 

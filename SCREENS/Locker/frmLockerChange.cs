@@ -329,7 +329,7 @@ namespace SGMOSOL.SCREENS.Locker
             CheckInMst.UserId = UserInfo.UserId;
             CheckInMst.ExtDay = Convert.ToInt32(txtDays.Text);
             CheckInMst.ExtRent = Convert.ToDouble(nudRentPending.Value);
-            CheckInMst.ExtDate = DateTime.Now.ToString("dd/MM/yyyy");
+            CheckInMst.ExtDate = DateTime.Now;
             CheckInMst.ServerName = UserInfo.serverName;
             CheckInMst.EnteredBy = UserInfo.UserName;
             CheckInMst.ModifiedBy = UserInfo.UserName;

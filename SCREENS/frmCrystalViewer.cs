@@ -27,6 +27,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using System.Resources;
 using static SGMOSOL.ADMIN.CommonFunctions;
 using Microsoft.Reporting.WebForms;
+using CrystalDecisions.ReportAppServer.ReportDefModel;
 
 namespace SGMOSOL.SCREENS
 {
@@ -35,7 +36,7 @@ namespace SGMOSOL.SCREENS
         private string mReportName;
         private string mSelectCriteria;
         private string mSubRptSelectCriteria;
-        private eScreenID mReportID;
+        private long mReportID;
         private Database crDatabase;
         private Tables crTables;
         private Table crTable;
@@ -53,7 +54,9 @@ namespace SGMOSOL.SCREENS
 
         CommonFunctions cm = new CommonFunctions();
 
-        public frmCrystalViewer(string ReportName, string SelectCriteria = "", System.Data.DataSet ObjDataSet = null, Hashtable objHash = null, Collection collParameter = null, eScreenID pReportId = 0, bool DirectToPrinter = false, bool DS_SCONNECT = false, bool DB_DS_CONNECT = false, string strStockRptv = "", string printType = "") : base()
+        string printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+
+        public frmCrystalViewer(string ReportName, string SelectCriteria = "", System.Data.DataSet ObjDataSet = null, Hashtable objHash = null, Collection collParameter = null, long pReportId = 0, bool DirectToPrinter = false, bool DS_SCONNECT = false, bool DB_DS_CONNECT = false, string strStockRptv = "", string printType = "") : base()
         {
             mReportName = ReportName;
             mSelectCriteria = SelectCriteria;
@@ -70,6 +73,20 @@ namespace SGMOSOL.SCREENS
 
         private void frmCrystalViewer_Load(System.Object sender, System.EventArgs e)
         {
+            if ((mReportID == (long)eReportID.LockerCheckIn))
+                printerName = System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name");
+            else if ((mReportID == (long)eReportID.LockerCheckOut))
+                printerName = System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name1");
+            if ((mReportID == (long)eReportID.RoomCheckIn))
+                printerName = System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name");
+            else if ((mReportID == (long)eReportID.RoomCheckIn1))
+                printerName = System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name1");
+            else if ((mReportID == (long)eReportID.RoomCheckOut))
+                printerName = System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name1");
+
+            if ((mReportID == (long)eReportID.DengiAcknowledge))
+                printerName = System.Configuration.ConfigurationSettings.AppSettings.Get("Printer_name1");
+
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource = null;
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = mReportName;
@@ -90,8 +107,6 @@ namespace SGMOSOL.SCREENS
         }
         public void printReport(string docName)
         {
-            string printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
-
             byte[] renderedBytes = reportViewer1.LocalReport.Render("Image");
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
             {

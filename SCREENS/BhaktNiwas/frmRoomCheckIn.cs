@@ -569,7 +569,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             FillDataInDataset(txtmobno.Tag.ToString());
 
             strReportName = "RoomCheckInNew.rdlc";
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckIn1, true);
             sForm.Text = "Room Check IN : " + eReportID.RoomCheckOut;
             sForm.Show();
             System.Threading.Thread.Sleep(450);
@@ -1280,8 +1280,8 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             // sForm.Close()
 
             strReportName = "RoomCheckInNew.rdlc";
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true, false, false,"","D");
-            sForm.Text = "Room Check IN : " + eReportID.RoomCheckIn1;
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckIn, true, false, false,"","D");
+            sForm.Text = "Room Check IN : " + eReportID.RoomCheckIn;
             sForm.Show();
             System.Threading.Thread.Sleep(850);
             sForm.Close();
@@ -1312,8 +1312,8 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             MyRow["DEPT_SH_NAME"] = RoomCheckInDeptName;
             MyRow["COUNTER"] = mStrCounterMachineShortName;
 
-            MyRow["IN_DATE"] = dtpCheckIn.Value.ToString("dd/MM/yyyy");
-            MyRow["IN_TIME"] = dtpCheckInTime.Value.ToString("hh:mm:ss tt");
+            MyRow["IN_DATE"] = dtpCheckIn.Value;
+            MyRow["IN_TIME"] = dtpCheckInTime.Value;
             MyRow["SERIAL_NO"] = txtVchNo.Text;
             MyRow["APP_NO"] = txtAppNo.Text;
             MyRow["SublocationNm"] = cboSublocation.Text;

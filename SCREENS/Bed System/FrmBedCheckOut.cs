@@ -958,7 +958,7 @@ namespace SGMOSOL.SCREENS.BedSystem
                     for (int ctr = 0; ctr <= withBlock.RowCount - 2; ctr++)
                     {
                         ds = FillDataInSystem(ctr);
-                        sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.BedCheckIn, true);
+                        sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.BedCheckIn, true);
                         sForm.Text = "Print Receipt : " + eReportID.BedCheckIn;
                         sForm.Show();
                         System.Threading.Thread.Sleep(500);

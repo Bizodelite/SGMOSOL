@@ -308,7 +308,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Fields!IN_DATE.Value</Value>
-                    <Style />
+                    <Style>
+                      <Format>d MMM yyyy</Format>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -336,7 +338,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Fields!IN_TIME.Value</Value>
-                    <Style />
+                    <Style>
+                      <Format>H:mm:ss</Format>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>

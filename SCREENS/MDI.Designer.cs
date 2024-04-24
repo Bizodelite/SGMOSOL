@@ -430,6 +430,7 @@
             this.availableRoomsToolStripMenuItem.Name = "availableRoomsToolStripMenuItem";
             this.availableRoomsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.availableRoomsToolStripMenuItem.Text = "Available Rooms";
+            this.availableRoomsToolStripMenuItem.Click += new System.EventHandler(this.availableRoomsToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 

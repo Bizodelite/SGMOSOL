@@ -617,6 +617,7 @@
             this.txtRoomSrch.Name = "txtRoomSrch";
             this.txtRoomSrch.Size = new System.Drawing.Size(219, 20);
             this.txtRoomSrch.TabIndex = 158;
+            this.txtRoomSrch.TextChanged += new System.EventHandler(this.txtRoomSrch_TextChanged);
             // 
             // Label10
             // 

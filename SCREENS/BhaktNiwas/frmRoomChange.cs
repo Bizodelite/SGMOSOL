@@ -902,7 +902,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             {
                 strReportName = "RoomCheckInReceipt.rdlc";
                 FillDataInDataset(txtmobno.Tag.ToString());
-                sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+                sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eScreenID.RoomCheckIn, true);
                 sForm.Text = "Room Check In : " + eReportID.RoomCheckIn;
 
 

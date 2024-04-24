@@ -343,7 +343,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             }
             catch (Exception ex)
             {
-               
+
             }
             // FillAvailableRooms()
             // FillDonners(4)
@@ -446,7 +446,10 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                 return;
             if (fncSave())
             {
-                objDsRoomCheckInMst.DeleteRoomLocked(BookingID);
+                if (BookingID != null)
+                {
+                    objDsRoomCheckInMst.DeleteRoomLocked(BookingID);
+                }
                 OpenPreviewWindow();
                 blnformChange = false;
                 btnNew_Click(null, null);
@@ -622,14 +625,14 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
 
 
             FillDataInDataset(BarcodeRet);
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckIn, true);
             sForm.Text = "Room Check In : " + eReportID.RoomCheckIn;
             sForm.Show();
             System.Threading.Thread.Sleep(850);
             sForm.Close();
             strReportName = "RoomCheckInNew.rdlc";
 
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckIn1, true);
             sForm.Text = "Room Check IN : " + eReportID.RoomCheckIn1;
 
             sForm.Show();
@@ -970,14 +973,14 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
 
 
             FillDataInDataset(BarcodeRet);
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckIn, true);
             sForm.Text = "Room Check In : " + eReportID.RoomCheckIn;
             sForm.Show();
             System.Threading.Thread.Sleep(850);
             sForm.Close();
             strReportName = "RoomCheckInNew.rdlc";
 
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eScreenID.RoomCheckIn, true);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)eReportID.RoomCheckIn1, true);
             sForm.Text = "Room Check IN : " + eReportID.RoomCheckIn1;
 
             sForm.Show();
@@ -1103,7 +1106,7 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             }
 
             setCursor(this, false);
-            frmSearchNew form1 = new frmSearchNew("dbo.BN_RoomCheck_IN_ONLINE_V",false,eModType.BhaktaNiwas);
+            frmSearchNew form1 = new frmSearchNew("dbo.BN_RoomCheck_IN_ONLINE_V", false, eModType.BhaktaNiwas);
             long lngSearchId;
             form1.mIntCtrMachId = Convert.ToInt32(txtCounter.Tag);
             form1.ShowDialog();
@@ -1348,6 +1351,11 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                 }
                 else { return null; }
             }
+        }
+
+        private void txtRoomSrch_TextChanged(object sender, EventArgs e)
+        {
+            FillAvailableRooms();
         }
     }
 

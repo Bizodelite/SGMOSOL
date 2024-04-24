@@ -60,6 +60,7 @@ namespace SGMOSOL
         frmRoomMoreThan3D frmRoomMoreThan3D;
         frmRoomLocked frmRoomLocked;
         frmRoomCheckinOnline frmRoomCheckinOnline;
+        frmRoomList frmRoomList;
 
         public MDI()
         {
@@ -566,6 +567,15 @@ namespace SGMOSOL
             frmRoomCheckinOnline.MdiParent = this;
             frmRoomCheckinOnline.WindowState = FormWindowState.Maximized;
             frmRoomCheckinOnline.Show();
+        }
+
+        private void availableRoomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoomList = new frmRoomList(eScreenID.RoomAvailable);
+            frmRoomList.StartPosition = FormStartPosition.CenterParent;
+            frmRoomList.MdiParent = this;
+            frmRoomList.WindowState = FormWindowState.Maximized;
+            frmRoomList.Show();
         }
     }
 }

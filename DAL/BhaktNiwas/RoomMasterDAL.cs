@@ -85,7 +85,7 @@ namespace SGMOSOL.DAL.BhaktNiwas
                 using (SqlCommand command = new SqlCommand("SP_GetRoomDetails", clsConnection.GetConnection()))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@intDeptId", intDeptId);
+                    command.Parameters.AddWithValue("@intDeptId", DeptID);
                     command.Parameters.AddWithValue("@intAvailableStatus", intAvailableStatus);
                     command.Parameters.AddWithValue("@Loc_ID", locId);
                     command.Parameters.AddWithValue("@strRoomSrch", "");
@@ -463,6 +463,48 @@ namespace SGMOSOL.DAL.BhaktNiwas
                 cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
             return ds;
+        }
+        public System.Data.DataSet GetDsRoomDetails(Int64 intDeptId = 0, int intActiveInactiveStatus = 0, int intAvailableStatus = 0, int LocID = 0)
+        {
+            System.Data.DataSet ds = new System.Data.DataSet();
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SP_GetRoomListDetails", clsConnection.GetConnection());
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@DeptId", intDeptId);
+                command.Parameters.AddWithValue("@ActiveInactiveStatus", intActiveInactiveStatus);
+                command.Parameters.AddWithValue("@AvailableStatus", intAvailableStatus);
+                command.Parameters.AddWithValue("@LocId", LocID);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return ds;
+        }
+        public System.Data.DataTable GetDrRoomLDetails(Int64 intDeptId = 0, int intActiveInactiveStatus = 0 ,int intAvailableStatus = 0,int locid = 0)
+        {
+            try
+            {
+                    SqlCommand command = new SqlCommand("SP_GetRoomDetailsSummary", clsConnection.GetConnection());
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@DeptId", intDeptId);
+                    command.Parameters.AddWithValue("@LocId", locid);
+
+                    Dr = clsConnection.ExecuteReader(command);
+            }
+            catch (Exception ex)
+            {
+                cf.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+
+            return Dr;
         }
     }
 }

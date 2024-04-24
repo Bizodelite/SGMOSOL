@@ -158,6 +158,19 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             this.Close();
         }
 
+       
+        private void FillSublocations()
+        {
+            System.Data.DataTable dr;
+            try
+            {
+                dr = objDsRoomMst.GetDrSublocations(PrintReceiptLocId, (Int64)eModType.BhaktaNiwas);
+                cf.FillCombo(cboSublocation, dr, "Name", "DeptId");
+            }
+            catch (Exception ex)
+            {
+            }
+        }
         private void FillAvailableRooms()
         {
             System.Data.DataTable dr;
@@ -171,19 +184,6 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             {
             }
         }
-        private void FillSublocations()
-        {
-            System.Data.DataTable dr;
-            try
-            {
-                dr = objDsRoomMst.GetDrSublocations(PrintReceiptLocId, (Int64)eModType.BhaktaNiwas);
-                cf.FillCombo(cboSublocation, dr, "Name", "DeptId");
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
 
         private void FillDamagedRooms()
         {
@@ -249,8 +249,14 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
                 SubLocID = cf.cmbItemdata(cboSublocation, cboSublocation.SelectedIndex);
                 if (chkSelectAll.Checked == true)
                     chkSelectAll.Checked = false;
-                FillDamagedRooms();
+                //FillDamagedRooms();
             }
+
+            if (flag == 0)
+                FillAvailableRooms();
+            else
+                FillDamagedRooms();
+            RoomListBox.Refresh();
         }
 
         private void chkSelectAll_CheckedChanged(System.Object sender, System.EventArgs e)

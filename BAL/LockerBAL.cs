@@ -23,7 +23,7 @@ namespace SGMOSOL.BAL
             public Int32 AppNo { get; set; }
             public double ExtRent { get; set; }
             public int ExtDay { get; set; }
-            public string ExtDate { get; set; }
+            public DateTime ExtDate { get; set; }
             public string Name { get; set; }
             public string Place { get; set; }
             public int Days { get; set; }

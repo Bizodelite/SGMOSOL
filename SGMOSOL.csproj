@@ -432,6 +432,12 @@
     <Compile Include="SCREENS\BhaktNiwas\frmRoomDamaged.Designer.cs">
       <DependentUpon>frmRoomDamaged.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\BhaktNiwas\frmRoomList.Designer.cs">
+      <DependentUpon>frmRoomList.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\BhaktNiwas\frmRoomLocked.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -705,6 +711,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomDamaged.resx">
       <DependentUpon>frmRoomDamaged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomList.resx">
+      <DependentUpon>frmRoomList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\BhaktNiwas\frmRoomLocked.resx">
       <DependentUpon>frmRoomLocked.cs</DependentUpon>

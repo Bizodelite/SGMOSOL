@@ -447,7 +447,7 @@ namespace SGMOSOL.DAL.Locker
 
             //sForm = new frmCrystalViewer(UserInfo.ReportPath & strReportName,null , ds, , pColl, mScreenId, False)
 
-            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, mScreenId, false);
+            sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)mScreenId, false);
             sForm.Text = this.Text;
             setCursor(this, true);
             sForm.Show();

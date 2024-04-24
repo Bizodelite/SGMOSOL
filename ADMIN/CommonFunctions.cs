@@ -719,7 +719,7 @@ namespace SGMOSOL.ADMIN
             try
             {
                 // Append the text to the file
-                using (StreamWriter writer = File.AppendText("D:\\OdeliteNewProject_09\\PrintLog.txt"))
+                using (StreamWriter writer = File.AppendText(System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINT_LOGFILE"]))
                 {
                     writer.WriteLine(text);
                 }

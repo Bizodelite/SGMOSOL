@@ -85,8 +85,7 @@ namespace SGMOSOL.SCREENS
                 {
                     using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
                     {
-                        try
-                        {
+                        
                             PrintDocument printDoc = new PrintDocument();
                             printDoc.PrinterSettings.PrinterName = printerName;
                             printDoc.DocumentName = docName;
@@ -98,22 +97,19 @@ namespace SGMOSOL.SCREENS
                                 args.Graphics.DrawImage(image, args.MarginBounds);
                             };
                             printDoc.Print();
-                        }
-                        catch (Exception ex)
-                        {
-                            cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                cm.InsertErrorLog(ex.Message, "while printing receipt", UserInfo.version);
+                cm.AppendToFile("Failed Report while Printing " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cm.InsertErrorLog(ex.Message, "while printing Dengi receipt", UserInfo.version);
             }
 
         }
         public void createReport(string form)
         {
+            string strSerialNumberPrint = null;
             try
             {
                 if (form == "Dengi")
@@ -126,13 +122,13 @@ namespace SGMOSOL.SCREENS
                     string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     ReportDataSource reportDataSource = null;
                     string DocumentName = null;
-                    string strSerialNumberPrint = null;
+
                     reportViewer2.LocalReport.DataSources.Clear();
                     if (flag == "PRINT")
                     {
                         dt = da.getDengiReceiptDataForReport(receiptID);
                         reportFileName = "DengiReceipt.rdlc";
-                   
+
                         reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
                         reportViewer2.LocalReport.ReportPath = reportPath;
                         reportDataSource = new ReportDataSource("DataSet1", dt);
@@ -185,6 +181,7 @@ namespace SGMOSOL.SCREENS
             }
             catch (Exception ex)
             {
+                cm.AppendToFile("Failed Report while Creating :-Serial No " + strSerialNumberPrint + " " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 cm.InsertErrorLog(ex.Message, "While creating receipt", UserInfo.version);
             }
         }

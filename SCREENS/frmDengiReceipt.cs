@@ -830,7 +830,7 @@ namespace SGMOSOL.SCREENS
                 DialogResult result;
                 dengiReceiptModel = new dengiReceiptModel();
                 loginDAL login = new loginDAL();
-                // dengiReceiptModel.dr_Date = DateTime.Parse(dtpPrnRcptDt.Text);
+                // dengiReceiptModel.dr_Date = dtpPrnRcptDt.Value;
                 dengiReceiptModel.dr_Date = commonFunctions.ParseDateTimeInAnyFormat(dtpPrnRcptDt.Text);
                 dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
                 dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;

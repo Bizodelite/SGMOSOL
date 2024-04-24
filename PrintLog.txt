@@ -32,3 +32,36 @@ Creating Report:-2024-04-24 10:59:42
 Serial_Number:-35
 Printing Report Report:-2024-04-24 10:59:44
 Done Report:-2024-04-24 10:59:51
+
+Creating Report:-2024-04-24 14:20:50
+Serial_Number:-36
+Printing Report Report:-2024-04-24 14:20:55
+Done Report:-2024-04-24 14:21:12
+ 
+Creating Report:-2024-04-24 14:23:56
+Serial_Number:-36
+Printing Report Report:-2024-04-24 14:23:59
+Done Report:-2024-04-24 14:24:08
+ 
+Creating Report:-2024-04-24 14:27:51
+Serial_Number:-36
+Printing Report Report:-2024-04-24 14:27:53
+ 
+Creating Report:-2024-04-24 14:30:59
+Serial_Number:-36
+Printing Report Report:-2024-04-24 14:31:02
+ 
+Creating Report:-2024-04-24 14:35:24
+Serial_Number:-36
+Printing Report Report:-2024-04-24 14:35:27
+Done Report:-2024-04-24 14:36:46
+ 
+Creating Report:-2024-04-24 14:39:41
+Serial_Number:-33
+Printing Report Report:-2024-04-24 14:39:44
+Done Report:-2024-04-24 14:39:48
+
+Creating Report:-2024-04-24 14:41:07
+Serial_Number:-37
+Printing Report Report:-2024-04-24 14:41:08
+Done Report:-2024-04-24 14:41:16

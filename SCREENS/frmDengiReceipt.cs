@@ -785,6 +785,7 @@ namespace SGMOSOL.SCREENS
             else
             {
                 txtAddGotra.Visible = false;
+                txtAddGotra.Text = "";
             }
             userDengi.SetGotra(cboGotra.Text);
             if (userDengi.Visible)
@@ -1705,6 +1706,74 @@ namespace SGMOSOL.SCREENS
         private void chkScanDoc_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboState_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboGotra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboCountry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboDoctype_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboDengiType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboPaymentType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAddGotra_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAddGotra.Text!="")
+            {
+                userDengi.SetGotra(txtAddGotra.Text); 
+            }
+            else
+            {
+                userDengi.SetGotra("");
+            }
         }
     }
 }

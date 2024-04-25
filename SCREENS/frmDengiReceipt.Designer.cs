@@ -200,6 +200,7 @@ namespace SGMOSOL.SCREENS
             this.cboDoctype.Size = new System.Drawing.Size(226, 36);
             this.cboDoctype.TabIndex = 2;
             this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged);
+            this.cboDoctype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDoctype_KeyDown);
             // 
             // lblPaymentMode
             // 
@@ -510,6 +511,7 @@ namespace SGMOSOL.SCREENS
             this.cboPaymentType.Size = new System.Drawing.Size(240, 36);
             this.cboPaymentType.TabIndex = 5;
             this.cboPaymentType.SelectedIndexChanged += new System.EventHandler(this.cboPaymentType_SelectedIndexChanged);
+            this.cboPaymentType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboPaymentType_KeyDown);
             // 
             // Label1
             // 
@@ -537,6 +539,7 @@ namespace SGMOSOL.SCREENS
             this.cboDengiType.Size = new System.Drawing.Size(153, 36);
             this.cboDengiType.TabIndex = 4;
             this.cboDengiType.SelectedIndexChanged += new System.EventHandler(this.cboDengiType_SelectedIndexChanged);
+            this.cboDengiType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDengiType_KeyDown);
             // 
             // dtpPrnRcptDt
             // 
@@ -1015,6 +1018,7 @@ namespace SGMOSOL.SCREENS
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(311, 36);
             this.cboCountry.TabIndex = 10;
+            this.cboCountry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCountry_KeyDown);
             // 
             // Label22
             // 
@@ -1040,6 +1044,7 @@ namespace SGMOSOL.SCREENS
             this.cboDistrict.Size = new System.Drawing.Size(337, 36);
             this.cboDistrict.TabIndex = 14;
             this.cboDistrict.SelectedIndexChanged += new System.EventHandler(this.cboDistrict_SelectedIndexChanged);
+            this.cboDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDistrict_KeyDown);
             // 
             // cboState
             // 
@@ -1053,6 +1058,7 @@ namespace SGMOSOL.SCREENS
             this.cboState.Size = new System.Drawing.Size(311, 36);
             this.cboState.TabIndex = 12;
             this.cboState.SelectedIndexChanged += new System.EventHandler(this.cboState_SelectedIndexChanged);
+            this.cboState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboState_KeyDown);
             // 
             // Label20
             // 
@@ -1102,6 +1108,7 @@ namespace SGMOSOL.SCREENS
             this.txtAddGotra.Size = new System.Drawing.Size(227, 35);
             this.txtAddGotra.TabIndex = 4;
             this.txtAddGotra.Visible = false;
+            this.txtAddGotra.TextChanged += new System.EventHandler(this.txtAddGotra_TextChanged);
             // 
             // txttal
             // 
@@ -1205,6 +1212,7 @@ namespace SGMOSOL.SCREENS
             this.cboGotra.Size = new System.Drawing.Size(209, 36);
             this.cboGotra.TabIndex = 7;
             this.cboGotra.SelectedIndexChanged += new System.EventHandler(this.cboGotra_SelectedIndexChanged);
+            this.cboGotra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboGotra_KeyDown);
             // 
             // Label26
             // 

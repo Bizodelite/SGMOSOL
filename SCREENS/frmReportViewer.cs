@@ -13,6 +13,7 @@ using SGMOSOL.DAL;
 using SGMOSOL.DataSet;
 using Microsoft.Identity.Client;
 using SGMOSOL.ADMIN;
+
 using System.Diagnostics;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 using System.IO;
@@ -62,7 +63,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
-                cm.AppendToFile("Printing Report Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cm.AppendToFile("Report content is ready:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 string printerName = null;
                 if (PrinterType == PrinterNames.DengiDeclaration)
                 {
@@ -70,7 +71,7 @@ namespace SGMOSOL.SCREENS
                 }
                 if (PrinterType == PrinterNames.DengiPrint)
                 {
-                    printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["DengiReceipt_Printer_name"].ToString();
                 }
                 if (PrinterType == PrinterNames.BhojnalayReceipt)
                 {
@@ -83,27 +84,43 @@ namespace SGMOSOL.SCREENS
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
                 {
-                    using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
+                    try
                     {
-                        
+                        using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
+                        {
+
                             PrintDocument printDoc = new PrintDocument();
                             printDoc.PrinterSettings.PrinterName = printerName;
                             printDoc.DocumentName = docName;
                             PaperSize paperSize = new PaperSize("Custom", (int)(4.84 * 100), (int)(5.70 * 100));
                             printDoc.DefaultPageSettings.PaperSize = paperSize;
                             printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                            printDoc.PrintPage += (s, args) =>
+                            DialogResult result = MessageBox.Show("The document is being sent to the printer. Do you want to continue?", "Print", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
                             {
-                                args.Graphics.DrawImage(image, args.MarginBounds);
-                            };
-                            printDoc.Print();
+                                printDoc.PrintPage += (s, args) =>
+                                {
+                                    cm.AppendToFile("It is getting ready to print page (checking page..)  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                    args.Graphics.DrawImage(image, args.MarginBounds);
+                                    cm.AppendToFile("It is setting margine " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                };
+                                cm.AppendToFile("It is  printing content on page " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                printDoc.Print();
+                                cm.AppendToFile("Successfully done with printing process " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        cm.AppendToFile("Failed Report In Print Function " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                 }
             }
             catch (Exception ex)
             {
                 cm.AppendToFile("Failed Report while Printing " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                cm.InsertErrorLog(ex.Message, "while printing Dengi receipt", UserInfo.version);
+                cm.InsertErrorLog(ex.Message, "while printing Dengi receipt ", UserInfo.version);
             }
 
         }

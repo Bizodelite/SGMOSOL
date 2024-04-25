@@ -95,7 +95,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1360, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1360, 30);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -106,7 +106,7 @@
             this.requirementToAdminToolStripMenuItem});
             this.bhojanalayaToolStripMenuItem.Enabled = false;
             this.bhojanalayaToolStripMenuItem.Name = "bhojanalayaToolStripMenuItem";
-            this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
+            this.bhojanalayaToolStripMenuItem.Size = new System.Drawing.Size(104, 26);
             this.bhojanalayaToolStripMenuItem.Text = "Bhojanalaya";
             // 
             // printReceiptToolStripMenuItem
@@ -130,7 +130,7 @@
             this.totalDengiReportToolStripMenuItem});
             this.dengiToolStripMenuItem.Enabled = false;
             this.dengiToolStripMenuItem.Name = "dengiToolStripMenuItem";
-            this.dengiToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.dengiToolStripMenuItem.Size = new System.Drawing.Size(63, 26);
             this.dengiToolStripMenuItem.Text = "Dengi";
             this.dengiToolStripMenuItem.Click += new System.EventHandler(this.dengiToolStripMenuItem_Click);
             // 
@@ -165,7 +165,7 @@
             this.lockerAdvanceVoucherToolStripMenuItem});
             this.lockerToolStripMenuItem.Enabled = false;
             this.lockerToolStripMenuItem.Name = "lockerToolStripMenuItem";
-            this.lockerToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.lockerToolStripMenuItem.Size = new System.Drawing.Size(66, 26);
             this.lockerToolStripMenuItem.Text = "Locker";
             // 
             // checkInToolStripMenuItem
@@ -262,7 +262,7 @@
             this.bedAdvanceVoucherToolStripMenuItem});
             this.bedSystemToolStripMenuItem.Enabled = false;
             this.bedSystemToolStripMenuItem.Name = "bedSystemToolStripMenuItem";
-            this.bedSystemToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
+            this.bedSystemToolStripMenuItem.Size = new System.Drawing.Size(100, 26);
             this.bedSystemToolStripMenuItem.Text = "Bed System";
             // 
             // dailyVoucherEntryBedToolStripMenuItem
@@ -307,7 +307,7 @@
             this.encryptionToolStripMenuItem2,
             this.fundCalculationToolStripMenuItem});
             this.settingToolStripMenuItem1.Name = "settingToolStripMenuItem1";
-            this.settingToolStripMenuItem1.Size = new System.Drawing.Size(70, 24);
+            this.settingToolStripMenuItem1.Size = new System.Drawing.Size(70, 26);
             this.settingToolStripMenuItem1.Text = "Setting";
             // 
             // changePasswordToolStripMenuItem1
@@ -334,7 +334,7 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -391,7 +391,7 @@
             this.pctControls.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pctControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.pctControls.Image = ((System.Drawing.Image)(resources.GetObject("pctControls.Image")));
-            this.pctControls.Location = new System.Drawing.Point(0, 28);
+            this.pctControls.Location = new System.Drawing.Point(0, 30);
             this.pctControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pctControls.Name = "pctControls";
             this.pctControls.Size = new System.Drawing.Size(1360, 167);

@@ -346,7 +346,7 @@ namespace SGMOSOL.SCREENS
         }
         public void printReport(string docName)
         {
-            string printerName = System.Configuration.ConfigurationManager.AppSettings["FundCalculation"].ToString();
+            string printerName = System.Configuration.ConfigurationManager.AppSettings["FundCalculation_Printer"].ToString();
 
             byte[] renderedBytes = reportViewer1.LocalReport.Render("Image");
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))

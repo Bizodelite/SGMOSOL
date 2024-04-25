@@ -299,6 +299,8 @@ namespace SGMOSOL.DataSet {
             
             private global::System.Data.DataColumn columnTotal_Count;
             
+            private global::System.Data.DataColumn columnCOUNTER_NAME;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public TotalAmountByPaymentIdDataTable() {
@@ -414,6 +416,14 @@ namespace SGMOSOL.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn COUNTER_NAMEColumn {
+                get {
+                    return this.columnCOUNTER_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +459,7 @@ namespace SGMOSOL.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TotalAmountByPaymentIdRow AddTotalAmountByPaymentIdRow(string CASH, string NET_TRANSFER, string CHEQUE, string SWIPE, string DD, string USERNAME, string Display_Value, string Location_Name, string Total_Amount, string Total_Count) {
+            public TotalAmountByPaymentIdRow AddTotalAmountByPaymentIdRow(string CASH, string NET_TRANSFER, string CHEQUE, string SWIPE, string DD, string USERNAME, string Display_Value, string Location_Name, string Total_Amount, string Total_Count, string COUNTER_NAME) {
                 TotalAmountByPaymentIdRow rowTotalAmountByPaymentIdRow = ((TotalAmountByPaymentIdRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CASH,
@@ -461,7 +471,8 @@ namespace SGMOSOL.DataSet {
                         Display_Value,
                         Location_Name,
                         Total_Amount,
-                        Total_Count};
+                        Total_Count,
+                        COUNTER_NAME};
                 rowTotalAmountByPaymentIdRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTotalAmountByPaymentIdRow);
                 return rowTotalAmountByPaymentIdRow;
@@ -494,6 +505,7 @@ namespace SGMOSOL.DataSet {
                 this.columnLocation_Name = base.Columns["Location_Name"];
                 this.columnTotal_Amount = base.Columns["Total_Amount"];
                 this.columnTotal_Count = base.Columns["Total_Count"];
+                this.columnCOUNTER_NAME = base.Columns["COUNTER_NAME"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +531,8 @@ namespace SGMOSOL.DataSet {
                 base.Columns.Add(this.columnTotal_Amount);
                 this.columnTotal_Count = new global::System.Data.DataColumn("Total_Count", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal_Count);
+                this.columnCOUNTER_NAME = new global::System.Data.DataColumn("COUNTER_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOUNTER_NAME);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -823,6 +837,22 @@ namespace SGMOSOL.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string COUNTER_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableTotalAmountByPaymentId.COUNTER_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'COUNTER_NAME\' in table \'TotalAmountByPaymentId\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTotalAmountByPaymentId.COUNTER_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsCASHNull() {
                 return this.IsNull(this.tableTotalAmountByPaymentId.CASHColumn);
             }
@@ -939,6 +969,18 @@ namespace SGMOSOL.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTotal_CountNull() {
                 this[this.tableTotalAmountByPaymentId.Total_CountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCOUNTER_NAMENull() {
+                return this.IsNull(this.tableTotalAmountByPaymentId.COUNTER_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCOUNTER_NAMENull() {
+                this[this.tableTotalAmountByPaymentId.COUNTER_NAMEColumn] = global::System.Convert.DBNull;
             }
         }
         

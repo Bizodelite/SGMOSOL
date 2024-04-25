@@ -57,10 +57,14 @@
           <DataField>Total_Count</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="COUNTER_NAME">
+          <DataField>COUNTER_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DengiTotalAmountReport</rd:DataSetName>
-        <rd:SchemaPath>D:\OdeliteProjects\SGMOSOL\DataSet\DengiTotalAmountReport.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\OdeliteNewProject_09\DataSet\DengiTotalAmountReport.xsd</rd:SchemaPath>
         <rd:TableName>TotalAmountByPaymentId</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -235,15 +239,15 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>COUNTER: </Value>
+                    <Value>USERNAME:  </Value>
                     <Style />
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!COUNTER.Value</Value>
+                    <Value>=Fields!USERNAME.Value</Value>
                     <Style />
                   </TextRun>
                   <TextRun>
-                    <Value>          DATE: </Value>
+                    <Value>         DATE: </Value>
                     <Style />
                   </TextRun>
                   <TextRun>
@@ -332,7 +336,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>USERNAME</Value>
+                                  <Value>COUNTER NAME</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -570,21 +574,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="USERNAME">
+                        <Textbox Name="COUNTER_NAME">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!USERNAME.Value</Value>
+                                  <Value>=Fields!COUNTER_NAME.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>USERNAME</rd:DefaultName>
+                          <rd:DefaultName>COUNTER_NAME</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

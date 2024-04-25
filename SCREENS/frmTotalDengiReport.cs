@@ -82,7 +82,7 @@ namespace SGMOSOL.SCREENS
             parameters[1] = new ReportParameter("USERNAME", txtUserName.Text);
             parameters[2] = new ReportParameter("FROMDATE", dtfromDate.Text);
             parameters[3] = new ReportParameter("TODATE", dtToDate.Text);
-            parameters[4] = new ReportParameter("DATE", System.DateTime.Today.ToString());
+            parameters[4] = new ReportParameter("DATE", System.DateTime.Today.ToString("dd-MM-yyyy"));
             reportViewer1.LocalReport.SetParameters(parameters);
             ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dt);
             reportViewer1.LocalReport.DataSources.Clear();

@@ -95,3 +95,39 @@ Serial_Number:-38
 Printing Report Report:-2024-04-24 19:43:11
 Failed Report while Printing 2024-04-24 19:43:11
 Done Report:-2024-04-24 19:43:11
+
+Creating Report:-2024-04-25 11:08:25
+Serial_Number:-40
+Printing Report Report:-2024-04-25 11:08:28
+Failed Report while Printing 2024-04-25 11:08:28
+Done Report:-2024-04-25 11:08:28
+
+Creating Report:-2024-04-25 11:16:29
+Serial_Number:-41
+Printing Report Report:-2024-04-25 11:16:32
+Done Report:-2024-04-25 11:16:39
+
+Creating Report:-2024-04-25 12:03:58
+Serial_Number:-42
+Printing Report Report:-2024-04-25 12:04:00
+Done Report:-2024-04-25 12:04:07
+Printing Report Report:-2024-04-25 12:33:05
+Printing Report Report:-2024-04-25 12:34:45
+ 
+Creating Report:-2024-04-25 16:07:33
+Serial_Number:-41
+Printing Report Report:-2024-04-25 16:07:36
+It is starting printing process2024-04-25 16:07:41
+It is getting ready to print page (checking page..) 2024-04-25 16:07:51
+It is setting margine2024-04-25 16:07:51
+Successfully done with printing process2024-04-25 16:07:51
+Done Report:-2024-04-25 16:07:51
+
+Creating Report:-2024-04-25 16:18:00
+Serial_Number:-826649
+Printing Report Report:-2024-04-25 16:18:08
+It is starting printing process 2024-04-25 16:18:13
+It is getting ready to print page (checking page..)  2024-04-25 16:18:23
+It is setting margine2024-04-25 16:18:23
+Successfully done with printing process 2024-04-25 16:18:23
+Done Report:-2024-04-25 16:18:23

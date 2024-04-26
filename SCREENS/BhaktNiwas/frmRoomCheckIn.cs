@@ -623,9 +623,9 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             CheckInMst.invoiceno = txtInvoice.Text;
             CheckInMst.paymenttype = cf.cmbItemdata(cboPaymentType, cboPaymentType.SelectedIndex);
             if (CheckInMst.paymenttype == (Int64)eTokenDetail.Cheque)
-                CheckInMst.CHQ_DATE = FormatDateToString(dtChqDt.Value);
+                CheckInMst.CHQ_DATE = dtChqDt.Value;
             else
-                CheckInMst.CHQ_DATE = "";
+                CheckInMst.CHQ_DATE = null;
             CheckInMst.CHQ_BANK_NAME = txtChqBankname.Text;
             CheckInMst.CHQ_NO = txtChqNo.Text;
             CheckInMst.Barcode = GenerateRandomString(4) + txtVchNo.Text;

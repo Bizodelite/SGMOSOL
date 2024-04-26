@@ -65,7 +65,7 @@ namespace SGMOSOL.BAL
             public string DISTRICT { get; set; }
             public string CHQ_BANK_NAME { get; set; }
             public string CHQ_NO { get; set; }
-            public string CHQ_DATE { get; set; }
+            public DateTime? CHQ_DATE { get; set; }
             // code added 26-07-2023 
             // check for kyc document 
             public string DOC_TYPE { get; set; }

@@ -64,7 +64,7 @@ namespace SGMOSOL.SCREENS
 
 
             fpsSearch.DataSource = ds;
-            if (fpsSearch.DataSource != null)
+            if (fpsSearch.DataSource != null && ds.Rows.Count > 0)
             {
                 //var withBlock = fpsSearch;
                 fpsSearch.Columns[0].Visible = false;

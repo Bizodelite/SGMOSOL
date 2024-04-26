@@ -131,3 +131,11 @@ It is getting ready to print page (checking page..)  2024-04-25 16:18:23
 It is setting margine2024-04-25 16:18:23
 Successfully done with printing process 2024-04-25 16:18:23
 Done Report:-2024-04-25 16:18:23
+ 
+Creating Report:-2024-04-26 16:16:19
+Serial_Number:-826649
+Done Report:-2024-04-26 16:16:33
+ 
+Creating Report:-2024-04-26 16:17:42
+Serial_Number:-826649
+Done Report:-2024-04-26 16:17:44

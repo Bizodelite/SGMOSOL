@@ -160,7 +160,7 @@ namespace SGMOSOL.SCREENS
                             cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
                         }
                         MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
-                        printReport(DocumentName, PrinterNames.DengiPrint);
+                       // printReport(DocumentName, PrinterNames.DengiPrint);
 
                     }
                     if (flag == "DECLARATION")

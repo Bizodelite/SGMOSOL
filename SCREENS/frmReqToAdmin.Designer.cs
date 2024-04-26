@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMaster = new System.Windows.Forms.Panel();
+            this.lblItemCode = new System.Windows.Forms.Label();
             this.lblQty = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCounter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblItemCode = new System.Windows.Forms.Label();
             this.pnlMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemDetails)).BeginInit();
             this.panel2.SuspendLayout();
@@ -80,6 +80,15 @@
             this.pnlMaster.Size = new System.Drawing.Size(1330, 552);
             this.pnlMaster.TabIndex = 0;
             this.pnlMaster.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMaster_Paint);
+            // 
+            // lblItemCode
+            // 
+            this.lblItemCode.AutoSize = true;
+            this.lblItemCode.ForeColor = System.Drawing.Color.Red;
+            this.lblItemCode.Location = new System.Drawing.Point(318, 110);
+            this.lblItemCode.Name = "lblItemCode";
+            this.lblItemCode.Size = new System.Drawing.Size(0, 22);
+            this.lblItemCode.TabIndex = 52;
             // 
             // lblQty
             // 
@@ -145,19 +154,19 @@
             // 
             this.txtItemName.Enabled = false;
             this.txtItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtItemName.Location = new System.Drawing.Point(576, 132);
+            this.txtItemName.Location = new System.Drawing.Point(618, 141);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(126, 28);
+            this.txtItemName.Size = new System.Drawing.Size(255, 28);
             this.txtItemName.TabIndex = 46;
             this.txtItemName.TextChanged += new System.EventHandler(this.txtItemName_TextChanged);
             // 
             // txtQuantity
             // 
             this.txtQuantity.BackColor = System.Drawing.Color.MistyRose;
-            this.txtQuantity.Location = new System.Drawing.Point(811, 135);
+            this.txtQuantity.Location = new System.Drawing.Point(982, 141);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(73, 28);
+            this.txtQuantity.Size = new System.Drawing.Size(150, 28);
             this.txtQuantity.TabIndex = 2;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantity_KeyDown);
@@ -167,7 +176,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(719, 135);
+            this.label11.Location = new System.Drawing.Point(890, 144);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(85, 22);
             this.label11.TabIndex = 45;
@@ -178,7 +187,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(457, 135);
+            this.label8.Location = new System.Drawing.Point(508, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 22);
             this.label8.TabIndex = 44;
@@ -189,9 +198,9 @@
             // 
             this.cboItemCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboItemCode.FormattingEnabled = true;
-            this.cboItemCode.Location = new System.Drawing.Point(318, 132);
+            this.cboItemCode.Location = new System.Drawing.Point(307, 141);
             this.cboItemCode.Name = "cboItemCode";
-            this.cboItemCode.Size = new System.Drawing.Size(133, 30);
+            this.cboItemCode.Size = new System.Drawing.Size(180, 30);
             this.cboItemCode.TabIndex = 1;
             this.cboItemCode.SelectedIndexChanged += new System.EventHandler(this.cboItemCode_SelectedIndexChanged);
             this.cboItemCode.TextChanged += new System.EventHandler(this.cboItemCode_TextChanged);
@@ -200,7 +209,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(201, 135);
+            this.label7.Location = new System.Drawing.Point(201, 146);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 22);
             this.label7.TabIndex = 43;
@@ -325,15 +334,6 @@
             this.label1.Size = new System.Drawing.Size(81, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Counter";
-            // 
-            // lblItemCode
-            // 
-            this.lblItemCode.AutoSize = true;
-            this.lblItemCode.ForeColor = System.Drawing.Color.Red;
-            this.lblItemCode.Location = new System.Drawing.Point(318, 110);
-            this.lblItemCode.Name = "lblItemCode";
-            this.lblItemCode.Size = new System.Drawing.Size(0, 22);
-            this.lblItemCode.TabIndex = 52;
             // 
             // frmReqToAdmin
             // 

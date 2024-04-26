@@ -255,7 +255,7 @@ namespace SGMOSOL.SCREENS
             cboItemCode.SelectedValue = 0;
             //  cboItemName.SelectedValue = 0;
             txtAmount.Text = "";
-            //txtPrice.Text = "0";
+            txtPrice.Text = "0";
             txtQuantity.Text = "";
         }
 

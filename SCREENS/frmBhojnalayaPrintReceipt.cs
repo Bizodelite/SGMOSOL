@@ -141,10 +141,23 @@ namespace SGMOSOL.SCREENS
                 fillItemCode();
                 createItemTable();
                 fillDocumentType();
-                txtReceiptno.Text = bhojnalayprintReceiptBAL.getMasterReceiptNumber().ToString();
+                getMasterReceiptNumber();
             }
             txtUser.Text = UserInfo.UserName;
 
+        }
+        public void getMasterReceiptNumber()
+        {
+            try
+            {
+                bhojnalayprintReceiptBAL = new BhojnalayPrintReceiptBAL();
+                int receiptID = bhojnalayprintReceiptBAL.getMasterReceiptNumber();
+                txtReceiptno.Text = receiptID.ToString();
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
         private void FillCounter()
         {
@@ -755,6 +768,7 @@ namespace SGMOSOL.SCREENS
         private void btnNew_Click(object sender, EventArgs e)
         {
             clearControls();
+            getMasterReceiptNumber();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

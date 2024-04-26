@@ -175,7 +175,7 @@ namespace SGMOSOL.SCREENS
                 PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
                 UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
                 mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
-                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName+ " /"+UserInfo.version;
+                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName + " /" + UserInfo.version;
             }
             //dr.Close();
         }
@@ -268,7 +268,7 @@ namespace SGMOSOL.SCREENS
             cboItemCode.SelectedValue = 0;
             //  cboItemName.SelectedValue = 0;
             txtAmount.Text = "";
-            //txtPrice.Text = "0";
+            txtPrice.Text = "0";
             txtQuantity.Text = "";
         }
 
@@ -293,9 +293,9 @@ namespace SGMOSOL.SCREENS
                             int currentAmount = Convert.ToInt32(row["Amount"]);
                             row["Price"] = Convert.ToDecimal(txtPrice.Text);
                             // row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
-                             row["Quantity"] = Convert.ToInt32(txtQuantity.Text);
-                            row["Amount"] = Convert.ToDecimal(txtAmount.Text) ;
-                           // row["Amount"] = currentAmount;
+                            row["Quantity"] = Convert.ToInt32(txtQuantity.Text);
+                            row["Amount"] = Convert.ToDecimal(txtAmount.Text);
+                            // row["Amount"] = currentAmount;
                         }
                     }
                     else
@@ -313,7 +313,8 @@ namespace SGMOSOL.SCREENS
                     cboItemCode.Focus();
                 }
             }
-            else {
+            else
+            {
                 MessageBox.Show("Please Select Item");
             }
         }
@@ -755,7 +756,8 @@ namespace SGMOSOL.SCREENS
         private void txtTotalAmount_TextChanged(object sender, EventArgs e)
         {
             CommonFunctions cm = new CommonFunctions();
-            lblamouwords.Text = cm.words(Convert.ToDouble(txtTotalAmount.Text));
+            if (txtTotalAmount.Text != "")
+                lblamouwords.Text = cm.words(Convert.ToDouble(txtTotalAmount.Text));
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

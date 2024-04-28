@@ -32,6 +32,7 @@ namespace SGMOSOL.SCREENS
         DengiReceiptDAL da;
         BhojnalayPrintReceiptDAL bhojnalayDAL;
         CommonFunctions cm = new CommonFunctions();
+        string strSerialNumberPrint = null;
 
         public enum PrinterNames
         {
@@ -82,6 +83,8 @@ namespace SGMOSOL.SCREENS
                     printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayDec"].ToString();
                 }
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
+                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString()+"\\DengiReceipt_"+ strSerialNumberPrint+".png"; // Change this to your desired path and file name
+                File.WriteAllBytes(filePath, renderedBytes);
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
                 {
                     try
@@ -95,7 +98,7 @@ namespace SGMOSOL.SCREENS
                             PaperSize paperSize = new PaperSize("Custom", (int)(4.84 * 100), (int)(5.70 * 100));
                             printDoc.DefaultPageSettings.PaperSize = paperSize;
                             printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                            DialogResult result = MessageBox.Show("The document is being sent to the printer. Do you want to continue?", "Print", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult result = MessageBox.Show("The Receipt with  serial number "+strSerialNumberPrint+" being sent to the printer. Do you want to continue?", "Print", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             if (result == DialogResult.Yes)
                             {
@@ -126,7 +129,7 @@ namespace SGMOSOL.SCREENS
         }
         public void createReport(string form)
         {
-            string strSerialNumberPrint = null;
+           
             try
             {
                 if (form == "Dengi")
@@ -159,8 +162,8 @@ namespace SGMOSOL.SCREENS
                             strSerialNumberPrint = row["SERIAL_NO"].ToString();
                             cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
                         }
-                        MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
-                       // printReport(DocumentName, PrinterNames.DengiPrint);
+                       // MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
+                        printReport(DocumentName, PrinterNames.DengiPrint);
 
                     }
                     if (flag == "DECLARATION")

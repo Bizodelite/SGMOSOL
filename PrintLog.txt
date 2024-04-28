@@ -139,3 +139,197 @@ Done Report:-2024-04-26 16:16:33
 Creating Report:-2024-04-26 16:17:42
 Serial_Number:-826649
 Done Report:-2024-04-26 16:17:44
+ 
+Creating Report:-2024-04-26 16:53:20
+Serial_Number:-826649
+Done Report:-2024-04-26 16:53:23
+
+Creating Report:-2024-04-27 13:02:45
+Serial_Number:-826650
+Failed Report while Creating :-Serial No 826650 2024-04-27 13:04:27
+Done Report:-2024-04-27 13:04:32
+ 
+Creating Report:-2024-04-27 13:12:42
+Serial_Number:-826650
+Failed Report while Creating :-Serial No 826650 2024-04-27 13:14:35
+Done Report:-2024-04-27 13:14:35
+ 
+Creating Report:-2024-04-27 13:30:13
+Serial_Number:-826650
+Failed Report while Creating :-Serial No 826650 2024-04-27 13:35:16
+Done Report:-2024-04-27 13:35:16
+ 
+Creating Report:-2024-04-27 13:50:03
+Serial_Number:-826650
+ 
+Creating Report:-2024-04-27 13:55:06
+Serial_Number:-826650
+ 
+Creating Report:-2024-04-27 14:01:30
+Serial_Number:-826650
+ 
+Creating Report:-2024-04-27 17:51:16
+Serial_Number:-826650
+ 
+Creating Report:-2024-04-27 17:58:38
+Serial_Number:-826650
+Report content is ready:-2024-04-27 17:58:56
+ 
+Creating Report:-2024-04-27 18:00:13
+Serial_Number:-826650
+Report content is ready:-2024-04-27 18:00:22
+ 
+Creating Report:-2024-04-27 18:03:26
+Serial_Number:-826650
+Report content is ready:-2024-04-27 18:03:32
+Failed Report while Printing 2024-04-27 18:04:58
+Done Report:-2024-04-27 18:04:58
+ 
+Creating Report:-2024-04-27 18:05:57
+Serial_Number:-826650
+Report content is ready:-2024-04-27 18:05:59
+ 
+Creating Report:-2024-04-28 20:04:36
+Serial_Number:-826650
+Report content is ready:-2024-04-28 20:04:42
+ 
+Creating Report:-2024-04-28 20:43:24
+Serial_Number:-826650
+Report content is ready:-2024-04-28 20:43:29
+ 
+Creating Report:-2024-04-28 22:02:57
+Serial_Number:-826650
+Done Report:-2024-04-28 22:03:00
+ 
+Creating Report:-2024-04-28 22:04:02
+Serial_Number:-41
+Report content is ready:-2024-04-28 22:04:09
+It is  printing content on page 2024-04-28 22:04:18
+It is getting ready to print page (checking page..)  2024-04-28 22:04:29
+It is setting margine 2024-04-28 22:04:29
+Successfully done with printing process 2024-04-28 22:04:29
+Done Report:-2024-04-28 22:04:29
+ 
+Creating Report:-2024-04-28 22:06:54
+Serial_Number:-826649
+Report content is ready:-2024-04-28 22:06:58
+It is  printing content on page 2024-04-28 22:07:01
+Successfully done with printing process 2024-04-28 22:07:06
+Done Report:-2024-04-28 22:07:06
+ 
+Creating Report:-2024-04-28 22:08:58
+Serial_Number:-40
+Report content is ready:-2024-04-28 22:09:02
+It is  printing content on page 2024-04-28 22:09:09
+It is getting ready to print page (checking page..)  2024-04-28 22:09:18
+It is setting margine 2024-04-28 22:09:18
+Successfully done with printing process 2024-04-28 22:09:18
+Done Report:-2024-04-28 22:09:18
+ 
+Creating Report:-2024-04-28 22:10:46
+Serial_Number:-35
+Report content is ready:-2024-04-28 22:10:51
+It is  printing content on page 2024-04-28 22:10:54
+It is getting ready to print page (checking page..)  2024-04-28 22:10:59
+It is setting margine 2024-04-28 22:10:59
+Successfully done with printing process 2024-04-28 22:11:00
+Done Report:-2024-04-28 22:11:00
+ 
+Creating Report:-2024-04-28 22:17:22
+Serial_Number:-33
+Report content is ready:-2024-04-28 22:17:24
+It is  printing content on page 2024-04-28 22:17:33
+It is getting ready to print page (checking page..)  2024-04-28 22:17:41
+It is setting margine 2024-04-28 22:17:41
+Successfully done with printing process 2024-04-28 22:17:41
+Done Report:-2024-04-28 22:17:41
+
+Creating Report:-2024-04-28 22:19:53
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:19:54
+It is  printing content on page 2024-04-28 22:19:58
+It is getting ready to print page (checking page..)  2024-04-28 22:20:03
+It is setting margine 2024-04-28 22:20:03
+Successfully done with printing process 2024-04-28 22:20:03
+Done Report:-2024-04-28 22:20:03
+ 
+Creating Report:-2024-04-28 22:21:24
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:21:25
+Failed Report while Printing 2024-04-28 22:21:26
+Done Report:-2024-04-28 22:21:26
+ 
+Creating Report:-2024-04-28 22:21:42
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:21:43
+Failed Report while Printing 2024-04-28 22:21:43
+Done Report:-2024-04-28 22:21:43
+ 
+Creating Report:-2024-04-28 22:21:51
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:21:52
+Failed Report while Printing 2024-04-28 22:21:52
+Done Report:-2024-04-28 22:21:52
+ 
+Creating Report:-2024-04-28 22:21:52
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:21:53
+Failed Report while Printing 2024-04-28 22:21:53
+Done Report:-2024-04-28 22:21:53
+ 
+Creating Report:-2024-04-28 22:21:53
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:21:54
+Failed Report while Printing 2024-04-28 22:21:54
+Done Report:-2024-04-28 22:21:54
+ 
+Creating Report:-2024-04-28 22:21:54
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:21:55
+Failed Report while Printing 2024-04-28 22:21:55
+Done Report:-2024-04-28 22:21:55
+ 
+Creating Report:-2024-04-28 22:22:28
+Serial_Number:-41
+Report content is ready:-2024-04-28 22:22:29
+Failed Report while Printing 2024-04-28 22:22:29
+Done Report:-2024-04-28 22:22:29
+ 
+Creating Report:-2024-04-28 22:23:06
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:23:11
+ 
+Creating Report:-2024-04-28 22:24:53
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:24:56
+It is  printing content on page 2024-04-28 22:25:00
+Successfully done with printing process 2024-04-28 22:25:08
+Done Report:-2024-04-28 22:25:08
+ 
+Creating Report:-2024-04-28 22:34:05
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:34:07
+It is  printing content on page 2024-04-28 22:34:11
+Successfully done with printing process 2024-04-28 22:34:16
+Done Report:-2024-04-28 22:34:16
+ 
+Creating Report:-2024-04-28 22:34:31
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:34:31
+It is  printing content on page 2024-04-28 22:34:34
+ 
+Creating Report:-2024-04-28 22:34:40
+Serial_Number:-826651
+Report content is ready:-2024-04-28 22:34:41
+Done Report:-2024-04-28 22:34:42
+Failed Report In Print Function 2024-04-28 22:35:06
+Done Report:-2024-04-28 22:35:06
+
+Creating Report:-2024-04-28 22:36:01
+Serial_Number:-826652
+Report content is ready:-2024-04-28 22:36:03
+It is  printing content on page 2024-04-28 22:36:06
+It is getting ready to print page (checking page..)  2024-04-28 22:36:09
+It is setting margine 2024-04-28 22:36:09
+Successfully done with printing process 2024-04-28 22:36:09
+Done Report:-2024-04-28 22:36:09

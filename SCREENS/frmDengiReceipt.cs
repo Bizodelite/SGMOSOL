@@ -960,14 +960,14 @@ namespace SGMOSOL.SCREENS
                             commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                             report.createReport("Dengi");
                             commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                            report.Show();
+                           // report.Show();
                         }
                         if (chkDeclaration.Checked == true)
                         {
                             string receptID = status.ToString();
                             frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
                             report.createReport("Dengi");
-                            report.Show(); 
+                            //report.Show(); 
                         }
                     }
                     else
@@ -1179,7 +1179,7 @@ namespace SGMOSOL.SCREENS
             commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             report.createReport("Dengi");
             commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            report.Show();
+           // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
         {

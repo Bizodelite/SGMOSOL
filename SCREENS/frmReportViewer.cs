@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using System.Drawing.Printing;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using SGMOSOL.DAL;
 using SGMOSOL.DataSet;
 using Microsoft.Identity.Client;
@@ -83,8 +86,7 @@ namespace SGMOSOL.SCREENS
                     printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayDec"].ToString();
                 }
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
-                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString()+"\\DengiReceipt_"+ strSerialNumberPrint+".png"; // Change this to your desired path and file name
-                File.WriteAllBytes(filePath, renderedBytes);
+               
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
                 {
                     try
@@ -102,10 +104,35 @@ namespace SGMOSOL.SCREENS
 
                             if (result == DialogResult.Yes)
                             {
+                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
+                                File.WriteAllBytes(filePath, renderedBytes);
+
                                 printDoc.PrintPage += (s, args) =>
                                 {
                                     cm.AppendToFile("It is getting ready to print page (checking page..)  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                     args.Graphics.DrawImage(image, args.MarginBounds);
+                                    //For adding watermark
+                                    using (StringFormat stringFormat = new StringFormat())
+                                    using (Font watermarkFont = new Font("Arial", 100))
+
+                                    using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
+                                    {
+                                        string watermarkText = "SSGMSS"; // Your watermark text
+                                        SizeF textSize = args.Graphics.MeasureString(watermarkText, watermarkFont);
+
+                                        // Position the watermark diagonally across the receipt
+                                        float centerX = (args.PageBounds.Width - textSize.Width) / 2;
+                                        float centerY = (args.PageBounds.Height - textSize.Height) / 2;
+
+                                        // Apply rotation for diagonal watermark
+                                        Matrix matrix = new Matrix();
+                                        matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
+                                        args.Graphics.Transform = matrix;
+
+                                        args.Graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
+                                    }
+                                    //End here
+
                                     cm.AppendToFile("It is setting margine " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                 };
                                 cm.AppendToFile("It is  printing content on page " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -117,6 +144,7 @@ namespace SGMOSOL.SCREENS
                     catch (Exception ex)
                     {
                         cm.AppendToFile("Failed Report In Print Function " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cm.InsertErrorLog(ex.Message, "while printing Dengi receipt ", UserInfo.version);
                     }
                 }
             }

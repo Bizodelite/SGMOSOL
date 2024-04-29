@@ -104,6 +104,43 @@ namespace SGMOSOL.SCREENS
 
                             if (result == DialogResult.Yes)
                             {
+
+                                //add watermark
+                                cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
+
+                                // Add watermark for saving file
+                                using (Bitmap bitmapWithWatermark = new Bitmap(image.Width, image.Height))
+                                {
+                                    using (Graphics graphics = Graphics.FromImage(bitmapWithWatermark))
+                                    {
+                                        graphics.DrawImage(image, new Point(0, 0));
+
+                                        using (StringFormat stringFormat = new StringFormat())
+                                        using (Font watermarkFont = new Font("Arial", 100))
+                                        using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
+                                        {
+                                            string watermarkText = "SSGMSS"; // Your watermark text
+                                            SizeF textSize = graphics.MeasureString(watermarkText, watermarkFont);
+
+                                            // Position the watermark diagonally across the receipt
+                                            float centerX = (bitmapWithWatermark.Width - textSize.Width) / 2;
+                                            float centerY = (bitmapWithWatermark.Height - textSize.Height) / 2;
+
+                                            // Apply rotation for diagonal watermark
+                                            Matrix matrix = new Matrix();
+                                            matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
+                                            graphics.Transform = matrix;
+                                            graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
+
+                                            // Save the file with watermark
+                                            bitmapWithWatermark.Save(filePath, ImageFormat.Png);
+                                            cm.AppendToFile("Saved file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                        }
+                                    }
+                                }
+
+                                //ends here 
                                 printDoc.PrintPage += (s, args) =>
                                 {
                                     cm.AppendToFile("It is getting ready to print page (checking page..)  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -113,36 +150,7 @@ namespace SGMOSOL.SCREENS
                                 cm.AppendToFile("It is  printing content on page " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                 printDoc.Print();
                                 cm.AppendToFile("Successfully done with printing process " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                //add watermark
-                                cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
-
-                                // Add watermark for saving file
-                                using (Graphics graphics = Graphics.FromImage(image))
-                                using (StringFormat stringFormat = new StringFormat())
-                                using (Font watermarkFont = new Font("Arial", 100))
-                                using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
-                                {
-                                    string watermarkText = "SSGMSS"; // Your watermark text
-                                    SizeF textSize = graphics.MeasureString(watermarkText, watermarkFont);
-
-                                    // Position the watermark diagonally across the receipt
-                                    float centerX = (image.Width - textSize.Width) / 2;
-                                    float centerY = (image.Height - textSize.Height) / 2;
-
-                                    // Apply rotation for diagonal watermark
-                                    Matrix matrix = new Matrix();
-                                    matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
-                                    graphics.Transform = matrix;
-                                    graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
-
-                                    // Save the file with watermark
-                                    image.Save(filePath, ImageFormat.Png);
-                                    // File.WriteAllBytes(filePath, renderedBytes);
-                                    cm.AppendToFile("Saved file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                }
-                                //ends here 
-                              
+                                
 
                             }
                         }

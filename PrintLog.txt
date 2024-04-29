@@ -504,3 +504,36 @@ Successfully done with printing process 2024-04-29 14:26:46
 saving file in folder 2024-04-29 14:26:46
 Saved file in folder 2024-04-29 14:26:46
 Done Report:-2024-04-29 14:26:46
+ 
+Creating Report:-2024-04-29 14:48:07
+Serial_Number:-31
+Report content is ready:-2024-04-29 14:48:08
+It is  printing content on page 2024-04-29 14:48:11
+It is getting ready to print page (checking page..)  2024-04-29 14:48:15
+It is setting margine 2024-04-29 14:48:15
+Successfully done with printing process 2024-04-29 14:48:15
+saving file in folder 2024-04-29 14:48:15
+Saved file in folder 2024-04-29 14:48:15
+Done Report:-2024-04-29 14:48:15
+
+Creating Report:-2024-04-29 15:10:02
+Serial_Number:-826657
+Report content is ready:-2024-04-29 15:10:03
+saving file in folder 2024-04-29 15:10:06
+Saved file in folder 2024-04-29 15:10:06
+It is  printing content on page 2024-04-29 15:10:06
+It is getting ready to print page (checking page..)  2024-04-29 15:10:11
+It is setting margine 2024-04-29 15:10:11
+Successfully done with printing process 2024-04-29 15:10:11
+Done Report:-2024-04-29 15:10:11
+ 
+Creating Report:-2024-04-29 15:12:15
+Serial_Number:-35
+Report content is ready:-2024-04-29 15:12:16
+saving file in folder 2024-04-29 15:12:19
+Saved file in folder 2024-04-29 15:12:19
+It is  printing content on page 2024-04-29 15:12:19
+It is getting ready to print page (checking page..)  2024-04-29 15:12:25
+It is setting margine 2024-04-29 15:12:25
+Successfully done with printing process 2024-04-29 15:12:25
+Done Report:-2024-04-29 15:12:25

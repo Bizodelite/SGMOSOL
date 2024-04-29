@@ -86,7 +86,7 @@ namespace SGMOSOL.SCREENS
                     printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayDec"].ToString();
                 }
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
-               
+
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
                 {
                     try
@@ -100,44 +100,50 @@ namespace SGMOSOL.SCREENS
                             PaperSize paperSize = new PaperSize("Custom", (int)(4.84 * 100), (int)(5.70 * 100));
                             printDoc.DefaultPageSettings.PaperSize = paperSize;
                             printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                            DialogResult result = MessageBox.Show("The Receipt with  serial number "+strSerialNumberPrint+" being sent to the printer. Do you want to continue?", "Print", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult result = MessageBox.Show("The Receipt with  serial number " + strSerialNumberPrint + " being sent to the printer. Do you want to continue?", "Print", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             if (result == DialogResult.Yes)
                             {
-                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
-                                File.WriteAllBytes(filePath, renderedBytes);
-
                                 printDoc.PrintPage += (s, args) =>
                                 {
                                     cm.AppendToFile("It is getting ready to print page (checking page..)  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                     args.Graphics.DrawImage(image, args.MarginBounds);
-                                    //For adding watermark
-                                    using (StringFormat stringFormat = new StringFormat())
-                                    using (Font watermarkFont = new Font("Arial", 100))
-
-                                    using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
-                                    {
-                                        string watermarkText = "SSGMSS"; // Your watermark text
-                                        SizeF textSize = args.Graphics.MeasureString(watermarkText, watermarkFont);
-
-                                        // Position the watermark diagonally across the receipt
-                                        float centerX = (args.PageBounds.Width - textSize.Width) / 2;
-                                        float centerY = (args.PageBounds.Height - textSize.Height) / 2;
-
-                                        // Apply rotation for diagonal watermark
-                                        Matrix matrix = new Matrix();
-                                        matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
-                                        args.Graphics.Transform = matrix;
-
-                                        args.Graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
-                                    }
-                                    //End here
-
                                     cm.AppendToFile("It is setting margine " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                 };
                                 cm.AppendToFile("It is  printing content on page " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                 printDoc.Print();
                                 cm.AppendToFile("Successfully done with printing process " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                //add watermark
+                                cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
+
+                                // Add watermark for saving file
+                                using (Graphics graphics = Graphics.FromImage(image))
+                                using (StringFormat stringFormat = new StringFormat())
+                                using (Font watermarkFont = new Font("Arial", 100))
+                                using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
+                                {
+                                    string watermarkText = "SSGMSS"; // Your watermark text
+                                    SizeF textSize = graphics.MeasureString(watermarkText, watermarkFont);
+
+                                    // Position the watermark diagonally across the receipt
+                                    float centerX = (image.Width - textSize.Width) / 2;
+                                    float centerY = (image.Height - textSize.Height) / 2;
+
+                                    // Apply rotation for diagonal watermark
+                                    Matrix matrix = new Matrix();
+                                    matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
+                                    graphics.Transform = matrix;
+                                    graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
+
+                                    // Save the file with watermark
+                                    image.Save(filePath, ImageFormat.Png);
+                                    // File.WriteAllBytes(filePath, renderedBytes);
+                                    cm.AppendToFile("Saved file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                }
+                                //ends here 
+                              
+
                             }
                         }
                     }
@@ -155,9 +161,11 @@ namespace SGMOSOL.SCREENS
             }
 
         }
+
+        
         public void createReport(string form)
         {
-           
+
             try
             {
                 if (form == "Dengi")
@@ -190,7 +198,7 @@ namespace SGMOSOL.SCREENS
                             strSerialNumberPrint = row["SERIAL_NO"].ToString();
                             cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
                         }
-                       // MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
+                        // MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
                         printReport(DocumentName, PrinterNames.DengiPrint);
 
                     }

@@ -9,11 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using System.Drawing.Printing;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using SGMOSOL.DAL;
 using SGMOSOL.DataSet;
 using Microsoft.Identity.Client;
 using SGMOSOL.ADMIN;
+
 using System.Diagnostics;
+using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
+using System.IO;
 
 
 
@@ -29,6 +35,7 @@ namespace SGMOSOL.SCREENS
         DengiReceiptDAL da;
         BhojnalayPrintReceiptDAL bhojnalayDAL;
         CommonFunctions cm = new CommonFunctions();
+        string strSerialNumberPrint = null;
 
         public enum PrinterNames
         {
@@ -46,8 +53,8 @@ namespace SGMOSOL.SCREENS
             this.flag = flag;
             this.printType = PrintType;
             this.DataTableDT = DT;
-           // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
-           // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
+            // reportViewer2.Size = new System.Drawing.Size(Size.Width, Size.Height);
+            // reportViewer2.Size = new System.Drawing.Size((int)(5 * 100), (int)(6 * 100));
         }
 
         private void frmReportViewer_Load(object sender, EventArgs e)
@@ -60,6 +67,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                cm.AppendToFile("Report content is ready:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 string printerName = null;
                 if (PrinterType == PrinterNames.DengiDeclaration)
                 {
@@ -67,7 +75,7 @@ namespace SGMOSOL.SCREENS
                 }
                 if (PrinterType == PrinterNames.DengiPrint)
                 {
-                    printerName = System.Configuration.ConfigurationManager.AppSettings["DengiPrint_Printer_name"].ToString();
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["DengiReceipt_Printer_name"].ToString();
                 }
                 if (PrinterType == PrinterNames.BhojnalayReceipt)
                 {
@@ -78,91 +86,167 @@ namespace SGMOSOL.SCREENS
                     printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayDec"].ToString();
                 }
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
+
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
                 {
-                    using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
+                    try
                     {
-                        try
+                        using (System.Drawing.Image image = System.Drawing.Image.FromStream(stream))
                         {
+
                             PrintDocument printDoc = new PrintDocument();
                             printDoc.PrinterSettings.PrinterName = printerName;
                             printDoc.DocumentName = docName;
                             PaperSize paperSize = new PaperSize("Custom", (int)(4.84 * 100), (int)(5.70 * 100));
                             printDoc.DefaultPageSettings.PaperSize = paperSize;
                             printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                            printDoc.PrintPage += (s, args) =>
+                            DialogResult result = MessageBox.Show("The Receipt with  serial number " + strSerialNumberPrint + " being sent to the printer. Do you want to continue?", "Print", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
                             {
-                                args.Graphics.DrawImage(image, args.MarginBounds);
-                            };
-                            printDoc.Print();
+
+                                //add watermark
+                                cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
+
+                                // Add watermark for saving file
+                                using (Bitmap bitmapWithWatermark = new Bitmap(image.Width, image.Height))
+                                {
+                                    using (Graphics graphics = Graphics.FromImage(bitmapWithWatermark))
+                                    {
+                                        graphics.DrawImage(image, new Point(0, 0));
+
+                                        using (StringFormat stringFormat = new StringFormat())
+                                        using (Font watermarkFont = new Font("Arial", 100))
+                                        using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
+                                        {
+                                            string watermarkText = "SSGMSS"; // Your watermark text
+                                            SizeF textSize = graphics.MeasureString(watermarkText, watermarkFont);
+
+                                            // Position the watermark diagonally across the receipt
+                                            float centerX = (bitmapWithWatermark.Width - textSize.Width) / 2;
+                                            float centerY = (bitmapWithWatermark.Height - textSize.Height) / 2;
+
+                                            // Apply rotation for diagonal watermark
+                                            Matrix matrix = new Matrix();
+                                            matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
+                                            graphics.Transform = matrix;
+                                            graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
+
+                                            // Save the file with watermark
+                                            bitmapWithWatermark.Save(filePath, ImageFormat.Png);
+                                            cm.AppendToFile("Saved file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                        }
+                                    }
+                                }
+
+                                //ends here 
+                                printDoc.PrintPage += (s, args) =>
+                                {
+                                    cm.AppendToFile("It is getting ready to print page (checking page..)  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                    args.Graphics.DrawImage(image, args.MarginBounds);
+                                    cm.AppendToFile("It is setting margine " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                };
+                                cm.AppendToFile("It is  printing content on page " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                printDoc.Print();
+                                cm.AppendToFile("Successfully done with printing process " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                
+
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        cm.AppendToFile("Failed Report In Print Function " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cm.InsertErrorLog(ex.Message, "while printing Dengi receipt ", UserInfo.version);
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               cm.InsertErrorLog(ex.Message,UserInfo.module, UserInfo.version);
+                cm.AppendToFile("Failed Report while Printing " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cm.InsertErrorLog(ex.Message, "while printing Dengi receipt ", UserInfo.version);
             }
 
         }
+
+        
         public void createReport(string form)
         {
-            if (form == "Dengi")
-            {
-                da = new DengiReceiptDAL();
-                DataTable dt = new DataTable();
-                string reportPath = null;
-                string reportFileName = null;
-                string reportsFolder = "Reports";
-                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                ReportDataSource reportDataSource = null;
-                string DocumentName = null;
-                reportViewer2.LocalReport.DataSources.Clear();
-                if (flag == "PRINT")
-                {
-                    dt = da.getDengiReceiptDataForReport(receiptID);
-                    reportFileName = "DengiReceipt.rdlc";
-                    reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
-                    reportViewer2.LocalReport.ReportPath = reportPath;
-                    reportDataSource = new ReportDataSource("DataSet1", dt);
-                    reportViewer2.LocalReport.DataSources.Add(reportDataSource);
-                    DataTable dt1 = (DataTable)reportDataSource.Value;
-                    addCustomField(dt1);
-                    reportViewer2.RefreshReport();
-                    DocumentName = "DengiReceipt";
-                    printReport(DocumentName,PrinterNames.DengiPrint);
 
-                }
-                if (flag == "DECLARATION")
+            try
+            {
+                if (form == "Dengi")
                 {
-                    dt = da.getDengiReceiptDataForReport(receiptID);
-                    reportFileName = "DengiDeclaration.rdlc";
-                    reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
-                    reportViewer2.LocalReport.ReportPath = reportPath;
-                    reportDataSource = new ReportDataSource("DataSet1", dt);
-                    reportViewer2.LocalReport.DataSources.Add(reportDataSource);
-                    DataTable dt1 = (DataTable)reportDataSource.Value;
-                    addCustomField(dt1);
-                    reportViewer2.RefreshReport();
-                    DocumentName = "DengiDeclaration";
-                    printReport(DocumentName,PrinterNames.DengiDeclaration);
+                    da = new DengiReceiptDAL();
+                    DataTable dt = new DataTable();
+                    string reportPath = null;
+                    string reportFileName = null;
+                    string reportsFolder = "Reports";
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    ReportDataSource reportDataSource = null;
+                    string DocumentName = null;
+
+                    reportViewer2.LocalReport.DataSources.Clear();
+                    if (flag == "PRINT")
+                    {
+                        dt = da.getDengiReceiptDataForReport(receiptID);
+                        reportFileName = "DengiReceipt.rdlc";
+
+                        reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                        reportViewer2.LocalReport.ReportPath = reportPath;
+                        reportDataSource = new ReportDataSource("DataSet1", dt);
+                        reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                        DataTable dt1 = (DataTable)reportDataSource.Value;
+                        addCustomField(dt1);
+                        reportViewer2.RefreshReport();
+                        DocumentName = "DengiReceipt";
+                        foreach (DataRow row in dt1.Rows)
+                        {
+                            strSerialNumberPrint = row["SERIAL_NO"].ToString();
+                            cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
+                        }
+                        // MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
+                        printReport(DocumentName, PrinterNames.DengiPrint);
+
+                    }
+                    if (flag == "DECLARATION")
+                    {
+                        dt = da.getDengiReceiptDataForReport(receiptID);
+                        reportFileName = "DengiDeclaration.rdlc";
+                        reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                        reportViewer2.LocalReport.ReportPath = reportPath;
+                        reportDataSource = new ReportDataSource("DataSet1", dt);
+                        reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                        DataTable dt1 = (DataTable)reportDataSource.Value;
+                        addCustomField(dt1);
+                        reportViewer2.RefreshReport();
+                        DocumentName = "DengiDeclaration";
+                        foreach (DataRow row in dt1.Rows)
+                        {
+                            strSerialNumberPrint = row["SERIAL_NO"].ToString();
+                        }
+                        MessageBox.Show("Printing Dengi Declaration for Serial number " + strSerialNumberPrint);
+                        printReport(DocumentName, PrinterNames.DengiDeclaration);
+                    }
+                }
+                if (form == "Bhojnalaya")
+                {
+                    createBhojnalayRepoort();
+                }
+                if (form == "LockerCheckIN")
+                {
+                    LockerCheckInReport();
+                }
+                if (form == "LockerCheckOut")
+                {
+                    LockerCheckOutReport();
                 }
             }
-            if (form == "Bhojnalaya")
+            catch (Exception ex)
             {
-                createBhojnalayRepoort();
-            }
-            if (form == "LockerCheckIN")
-            {
-                LockerCheckInReport();
-            }
-            if (form == "LockerCheckOut")
-            {
-                LockerCheckOutReport();
+                cm.AppendToFile("Failed Report while Creating :-Serial No " + strSerialNumberPrint + " " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cm.InsertErrorLog(ex.Message, "While creating receipt", UserInfo.version);
             }
         }
 
@@ -237,36 +321,34 @@ namespace SGMOSOL.SCREENS
                 printReport(DocumentName, PrinterNames.BhojnalayDec);
             }
         }
-        public void printDeclarationwithoutSave(DataTable dt, string formType=null)
+        public void printDeclarationwithoutSave(DataTable dt, string formType = null)
         {
-            string reportPath = null;
-            string reportFileName = null;
-            string reportsFolder = "Reports";
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            ReportDataSource reportDataSource = null;
-            string DocumentName = null;
-            if (formType == "Dengi")
+            try
             {
+                string reportPath = null;
+                string reportFileName = null;
+                string reportsFolder = "Reports";
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                ReportDataSource reportDataSource = null;
+                string DocumentName = null;
                 reportFileName = "DengiDeclaration.rdlc";
                 DocumentName = "DengiDeclaration";
+
+                reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
+                reportViewer2.LocalReport.ReportPath = reportPath;
+                reportDataSource = new ReportDataSource("DataSet1", dt);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                DataTable dt1 = (DataTable)reportDataSource.Value;
+                // addCustomField(dt1);
+                reportViewer2.RefreshReport();
+                printReport(DocumentName, PrinterNames.DengiDeclaration);
             }
-            if (formType == "Bhojnalaya")
+            catch (Exception ex)
             {
-                reportFileName = "mess_item_receipt.rdlc";
-                DocumentName = "BhojnalayDeclaration";
+                cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
 
-            reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
-            reportViewer2.LocalReport.ReportPath = reportPath;
-            reportDataSource = new ReportDataSource("DataSet1", dt);
-            reportViewer2.LocalReport.DataSources.Add(reportDataSource);
-            DataTable dt1 = (DataTable)reportDataSource.Value;
-            // addCustomField(dt1);
-            reportViewer2.RefreshReport();
-            
-           printReport(DocumentName, PrinterNames.DengiDeclaration);
 
-            
         }
         public void LockerCheckInReport()
         {
@@ -276,7 +358,7 @@ namespace SGMOSOL.SCREENS
             string reportFileName = null;
             string reportsFolder = "Reports";
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            appDirectory = appDirectory.Replace("bin\\Debug\\","");
+            appDirectory = appDirectory.Replace("bin\\Debug\\", "");
             ReportDataSource reportDataSource = null;
             string DocumentName = null;
             reportViewer2.LocalReport.DataSources.Clear();

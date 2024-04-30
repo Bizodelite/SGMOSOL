@@ -13,6 +13,7 @@ namespace SGMOSOL.SCREENS
     public partial class frmUserDengi : Form
     {
         frmDengiReceipt dengiReceipt;
+        frmBhojnalayaPrintReceipt bhojnalayaPrintReceipt;
         public frmUserDengi()
         {
             InitializeComponent();
@@ -194,10 +195,29 @@ namespace SGMOSOL.SCREENS
 
         private void frmUserDengi_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dengiReceipt = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
-            if (dengiReceipt != null)
+            //dengiReceipt = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
+            //if (dengiReceipt != null)
+            //{
+            //    dengiReceipt.Close();
+            //}
+            //bhojnalayaPrintReceipt = Application.OpenForms.OfType<frmBhojnalayaPrintReceipt>().FirstOrDefault();
+            //if (bhojnalayaPrintReceipt != null)
+            //{
+            //    bhojnalayaPrintReceipt.Close();
+            //}
+        }
+
+        private void frmUserDengi_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.OfType<frmDengiReceipt>().Any())
             {
-                dengiReceipt.Close();
+                Application.OpenForms.OfType<frmDengiReceipt>().First().Close();
+            }
+
+            // Close frmbhojnalay if it's open
+            if (Application.OpenForms.OfType<frmBhojnalayaPrintReceipt>().Any())
+            {
+                Application.OpenForms.OfType<frmBhojnalayaPrintReceipt>().First().Close();
             }
         }
     }

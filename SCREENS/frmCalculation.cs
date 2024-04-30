@@ -15,6 +15,7 @@ using Microsoft.Reporting.WinForms;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Reflection;
 using System.Drawing.Printing;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 
 
@@ -34,7 +35,28 @@ namespace SGMOSOL.SCREENS
         {
 
         }
+        private void FillCounter()
+        {
+            System.Data.DataTable dr;
+            dr = cm.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(0));
+            if (dr.Rows.Count > 0)
+            {
+                cboCounter.DataSource = dr;
+                cboCounter.DisplayMember = "CounterMachineShortName";
+                cboCounter.ValueMember = "CtrMachId";
 
+               // txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+              //  txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                //UserInfo.Counter_Name = txtCounter.Text;
+               // UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+              //  UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+               // PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+               // PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
+               // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+            }
+            //dr.Close();
+        }
         private void dtpPrnRcptDt_ValueChanged(object sender, EventArgs e)
         {
 
@@ -42,7 +64,9 @@ namespace SGMOSOL.SCREENS
 
         private void frmCalculation_Load(object sender, EventArgs e)
         {
-            txtCounter.Text = UserInfo.Counter_Name;
+            cm = new CommonFunctions();
+            FillCounter();
+            cboCounter.Text = UserInfo.Counter_Name;
             txtUser.Text = UserInfo.UserName;
             fillCurrency();
             createItemTable();
@@ -187,6 +211,7 @@ namespace SGMOSOL.SCREENS
                     clear();
                 }
             }
+            cboCurrency.Focus();
         }
         private string getTotalAmount()
         {
@@ -304,23 +329,24 @@ namespace SGMOSOL.SCREENS
                     }
                     dataGridViewData.Rows.Add(dataRow);
                 }
-                ReportParameter[] parameters = new ReportParameter[5];
-                parameters[0] = new ReportParameter("CounterName", txtCounter.Text);
+                ReportParameter[] parameters = new ReportParameter[6];
+                parameters[0] = new ReportParameter("CounterName", cboCounter.Text);
                 parameters[1] = new ReportParameter("UserName", txtUser.Text);
                 parameters[2] = new ReportParameter("Date", dtpPrnRcptDt.Text);
-                parameters[3] = new ReportParameter("TotalAmount", txtTotalAmount.Text);
-                parameters[4] = new ReportParameter("TotalAmountInWords", cm.words(Convert.ToDouble(txtTotalAmount.Text)));
+                parameters[3] = new ReportParameter("Time", DateTime.Now.ToString("hh:mm tt"));
+                parameters[4] = new ReportParameter("TotalAmount", txtTotalAmount.Text);
+                parameters[5] = new ReportParameter("TotalAmountInWords", cm.words(Convert.ToDouble(txtTotalAmount.Text)));
                 reportViewer1.LocalReport.SetParameters(parameters);
                 ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dataGridViewData);
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(reportDataSource);
                 this.reportViewer1.RefreshReport();
-                // printReport("TotalFundReport");
+                printReport("TotalFundReport");
             }
         }
         public void printReport(string docName)
         {
-            string printerName = System.Configuration.ConfigurationManager.AppSettings["Printer_name"].ToString();
+            string printerName = System.Configuration.ConfigurationManager.AppSettings["FundCalculation_Printer"].ToString();
 
             byte[] renderedBytes = reportViewer1.LocalReport.Render("Image");
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))

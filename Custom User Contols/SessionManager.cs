@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using SGMOSOL.SCREENS;
+using SGMOSOL.BAL;
 
 namespace SGMOSOL.Custom_User_Contols
 {
@@ -15,16 +16,16 @@ namespace SGMOSOL.Custom_User_Contols
         int SessionTimeoutMilliseconds;
         private DateTime lastActivityTime;
         private Timer sessionTimer;
-
-        public SessionManager()
+        private Form MDIForm;
+        public SessionManager(Form frmMdi)
         {
             SessionTimeoutMilliseconds = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Timer"]);
             // Initialize last activity time
             lastActivityTime = DateTime.Now;
-
+            MDIForm = frmMdi;
             // Initialize and configure the session timer
             sessionTimer = new Timer();
-            sessionTimer.Interval = 30000; // Check every second
+            sessionTimer.Interval = SessionTimeoutMilliseconds; // Check every second
             sessionTimer.Tick += SessionTimer_Tick;
         }
 
@@ -43,24 +44,27 @@ namespace SGMOSOL.Custom_User_Contols
             TimeSpan elapsedTime = DateTime.Now - lastActivityTime;
             if (elapsedTime.TotalMilliseconds >= SessionTimeoutMilliseconds)
             {
-                // Stop the timer to prevent further ticks
                 sessionTimer.Stop();
-
-                // Session timeout
                 MessageBox.Show("Session has timed out. You will be redirected to the login page.");
-              
+                LoginBAL loginBAL = new LoginBAL();
+                loginBAL.updateUser_Login_Details();
+                loginBAL.DeleteUser_Login_details();
+                if (MDIForm != null)
+                {
+                    MDIForm.Close();
+                }
+                //frmUserDengi userDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+                //if (userDengi != null)
+                //{
+                //    userDengi.Close();
+                //}
 
-               // Application.Exit();
-               // System.Diagnostics.Process.Start(Application.ExecutablePath);
-
-                // Close the current form
-                Form.ActiveForm.Close();
-                frmLogin frm = new frmLogin();
-                frm.ShowDialog();
+                MDI login = new MDI();
+                login.WindowState = FormWindowState.Maximized;
+                login.ShowDialog();
             }
             else
             {
-                // Update last activity time if session is still active
                 lastActivityTime = DateTime.Now;
             }
         }

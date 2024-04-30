@@ -56,17 +56,31 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!Date.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">  </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!Time.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Date</rd:DefaultName>
-            <Top>3.8862cm</Top>
-            <Left>6.1487cm</Left>
+            <Top>3.8227cm</Top>
+            <Left>5.5772cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
+            <Width>4.32034cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -85,7 +99,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!CounterName.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -93,9 +109,9 @@
             </Paragraphs>
             <rd:DefaultName>CounterName</rd:DefaultName>
             <Top>4.46504cm</Top>
-            <Left>6.16987cm</Left>
+            <Left>5.5137cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
+            <Width>4.38384cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -115,7 +131,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!UserName.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -123,9 +141,9 @@
             </Paragraphs>
             <rd:DefaultName>UserName</rd:DefaultName>
             <Top>5.06504cm</Top>
-            <Left>6.16987cm</Left>
+            <Left>5.5137cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
+            <Width>4.38384cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -141,13 +159,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.8865cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.8865cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.8865cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -165,7 +183,7 @@
                                 <TextRun>
                                   <Value>Currency</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -198,7 +216,7 @@
                                 <TextRun>
                                   <Value>Quantity</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -231,7 +249,7 @@
                                 <TextRun>
                                   <Value>Amount</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -268,7 +286,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Currency.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -298,7 +318,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Quantity.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -328,7 +350,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Amount.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -371,9 +395,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>6.38386cm</Top>
-            <Left>1.42387cm</Left>
+            <Left>0.5772cm</Left>
             <Height>1.2cm</Height>
-            <Width>7.5cm</Width>
+            <Width>8.6595cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -399,8 +423,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TotalAmount</rd:DefaultName>
-            <Top>7.93581cm</Top>
-            <Left>5.5137cm</Left>
+            <Top>8.21098cm</Top>
+            <Left>4.37542cm</Left>
             <Height>0.6cm</Height>
             <Width>3.41017cm</Width>
             <ZIndex>4</ZIndex>
@@ -432,8 +456,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.93581cm</Top>
-            <Left>1.3627cm</Left>
+            <Top>8.21098cm</Top>
+            <Left>0.5772cm</Left>
             <Height>0.6cm</Height>
             <Width>3.62183cm</Width>
             <ZIndex>5</ZIndex>
@@ -455,15 +479,17 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Counter:-</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>4.4862cm</Top>
-            <Left>4.08615cm</Left>
+            <Top>4.44387cm</Top>
+            <Left>3.49348cm</Left>
             <Height>0.6cm</Height>
             <Width>1.88617cm</Width>
             <ZIndex>6</ZIndex>
@@ -485,7 +511,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>User:-</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -493,7 +521,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
             <Top>5.10031cm</Top>
-            <Left>4.10731cm</Left>
+            <Left>3.45114cm</Left>
             <Height>0.6cm</Height>
             <Width>1.88617cm</Width>
             <ZIndex>7</ZIndex>
@@ -524,10 +552,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TotalAmountInWords</rd:DefaultName>
-            <Top>8.7122cm</Top>
-            <Left>1.30153cm</Left>
+            <Top>8.81098cm</Top>
+            <Left>0.5772cm</Left>
             <Height>0.6cm</Height>
-            <Width>7.62233cm</Width>
+            <Width>8.6595cm</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -547,15 +575,17 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Date:-</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>3.8862cm</Top>
-            <Left>4.08614cm</Left>
+            <Top>3.8227cm</Top>
+            <Left>3.49347cm</Left>
             <Height>0.6cm</Height>
             <Width>1.88617cm</Width>
             <ZIndex>9</ZIndex>
@@ -570,10 +600,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>14.56cm</Height>
+        <Height>14.5cm</Height>
         <Style />
       </Body>
-      <Width>12.98cm</Width>
+      <Width>10.5cm</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -607,6 +637,11 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Time">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -637,6 +672,11 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>TotalAmountInWords</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>Time</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

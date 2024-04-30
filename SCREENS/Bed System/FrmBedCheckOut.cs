@@ -30,16 +30,11 @@ namespace SGMOSOL.SCREENS.BedSystem
         private eScreenID mScreenID;
         private int rbFlag;
         private bool mBlnEdit = false;
-        private eAction mAction;        // Reference to Enum of Type Action for ActionView,ActionNew,ActionUpdate and ActionDelete
-        private ArrayList CtrlArr = new ArrayList(); // To insert Form Control in Array List
+        private eAction mAction;    
+        private ArrayList CtrlArr = new ArrayList(); 
         private ArrayList btnArr = new ArrayList();
-        //private OSOL_ADMIN.clsDsCommon mClsDsCom = new OSOL_ADMIN.clsDsCommon();
-        //private OSOL_BLSDS.clsBedRoomCheckout objBlsInvAlloc = new OSOL_BLSDS.clsBedRoomCheckout();
-        //private OSOL_BLSDS.clsDsBedCheckoutMst objDsPrintReceiptationMst = new OSOL_BLSDS.clsDsBedCheckoutMst();
-        //private OSOL_BLSDS.clsDsBedCheckoutDet objDsMessPrintReceiptDet = new OSOL_BLSDS.clsDsBedCheckoutDet();
         private bool DisableSendKeys;
         private DateTime dtEnteredOn;
-        // 'Dim RoomAdvanceTariff As Double
         private double RoomTotalRent;
         private bool bkDateEntry = false;
         private bool blnformChange;
@@ -62,8 +57,6 @@ namespace SGMOSOL.SCREENS.BedSystem
         private string PlaceRoomHolder;
         private long countedDays;
         private long oldDays;
-        // Dim t1 As New ThreadStart(AddressOf LoadItemMinLevel)
-        // Dim objThread As New Thread(t1)
         CommonFunctions cf = new CommonFunctions();
         BedCheckOutDAL BedCheckOutDALobj = new BedCheckOutDAL();
 
@@ -111,19 +104,10 @@ namespace SGMOSOL.SCREENS.BedSystem
 
             FillItemMaster();
 
-
-
-
-            // commented by girish
-
-            // objThread.Start()
             btnNew_Click(null, null);
         }
         private void ScreenToCenter()
         {
-            //Int32 ctr;
-            //ctr = (MDI.Size.Width - this.Size.Width) / (double)2;
-            //this.Location = new Point(ctr, 0);
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
         private void FormClear()
@@ -138,11 +122,11 @@ namespace SGMOSOL.SCREENS.BedSystem
             nudRefund.Value = 0;
             nudRent.Value = 0;
             txtTotalAmt.Value = 0;
-            fpsPrintReceipt.RowCount = 0;
-            fpsPrintReceipt.RowCount = 1;
             txtCheckInVchNo.Tag = null;
-        }
 
+            fpsPrintReceipt.Rows.Clear();
+
+        }
         private void FillCounter()
         {
             System.Data.DataTable dr;
@@ -217,13 +201,19 @@ namespace SGMOSOL.SCREENS.BedSystem
                 cf.FillComboWithDataSet(lstItemMaster, dsItemMaster.Tables[0], "ItemTitle", "ItemTitle", "ItemId", "ItemCode", "");
 
             DataGridViewComboBoxCell cboItem = new DataGridViewComboBoxCell();
-            cboItem.DataSource = lstItemMaster;
-            cboItem.ReadOnly = true;
-            fpsPrintReceipt.Columns[(int)ePrintReceipt.ProductN].CellTemplate = cboItem;
+            foreach (var item in lstItemMaster.Items)
+            {
+                cboItem.Items.Add(item.ToString());
+            }
+            ((DataGridViewComboBoxColumn)fpsPrintReceipt.Columns[(int)ePrintReceipt.ProductN]).DataSource = cboItem.Items;
         }
 
         private void fpsPrintReceipt_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
             string Filtercriteria;
             DataView Dv;
             var withBlock = fpsPrintReceipt;
@@ -248,8 +238,6 @@ namespace SGMOSOL.SCREENS.BedSystem
             }
             else if (e.ColumnIndex == (int)ePrintReceipt.Qty)
             {
-
-                // .Cells(e.Row, ePrintReceipt.Amount).Text = RoundIt(.Cells(e.Row, ePrintReceipt.Price).Value * .Cells(e.Row, ePrintReceipt.Qty).Value, 2)
                 withBlock.Rows[e.RowIndex].Cells[(int)ePrintReceipt.TotAdv].Value = Convert.ToDouble(withBlock.Rows[e.RowIndex].Cells[(int)ePrintReceipt.Advance].Value) * Convert.ToDouble(withBlock.Rows[e.RowIndex].Cells[(int)ePrintReceipt.Qty].Value);
                 withBlock.Rows[e.RowIndex].Cells[(int)ePrintReceipt.TotNidhi].Value = Convert.ToDouble(withBlock.Rows[e.RowIndex].Cells[(int)ePrintReceipt.Nidhi].Value) * Convert.ToDouble(withBlock.Rows[e.RowIndex].Cells[(int)ePrintReceipt.Qty].Value);
             }
@@ -259,6 +247,10 @@ namespace SGMOSOL.SCREENS.BedSystem
 
         private void fpsPrintReceipt_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
+            if (fpsPrintReceipt.CurrentCell == null)
+            {
+                return;
+            }
             try
             {
                 var withBlock = fpsPrintReceipt;
@@ -288,19 +280,13 @@ namespace SGMOSOL.SCREENS.BedSystem
 
         private void txtCheckInVchNo_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            // If Not ((e.KeyChar >= "0" And e.KeyChar <= "9") Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 46) Then
-            // e.Handled = True
-            // End If
-
             if (e.KeyChar == (int)Keys.Enter)
             {
                 System.Data.DataTable dr;
                 BedCheckInDet PrnRcptDtDet = new BedCheckInDet();
-                long lngCtrMachId;
                 int bhaktype;
                 long mstId;
                 mDelColl = new Collection();
-                // FormClear()
                 try
                 {
                     dr = BedCheckOutDALobj.GetDsBedCheckInMstBarcode(0, "", txtCheckInVchNo.Text, Convert.ToInt64(txtCounter.Tag), UserInfo.CompanyID, PrintReceiptLocId, 0, 0, "");
@@ -315,20 +301,14 @@ namespace SGMOSOL.SCREENS.BedSystem
                         }
 
 
-                        // dtpCheckIn.Value = dr("InDate")
                         txtmobno.Text = dr.Rows[0]["MOB_NO"].ToString();
-                        // dtpCheckInTime.Value = dr.Rows[0]["InTime"]
                         txtCheckInVchNo.Text = (dr.Rows[0]["SerialNo"].ToString());
                         txtCheckInVchNo.Tag = dr.Rows[0]["CheckInMstId"];
-                        // txtVchNo.Tag = lngSearchId
-                        // dtpCheckIn.Tag = dr.Rows[0]["RecordModifiedCount"]
                         txtName.Text = dr.Rows[0]["Name"].ToString();
                         txtPlace.Text = dr.Rows[0]["Place"].ToString();
                         dtpCheckIn.Value = Convert.ToDateTime(dr.Rows[0]["InDate"]);
                         dtpCheckInTime.Value = Convert.ToDateTime(dr.Rows[0]["InTime"]);
                         txtDays.Text = dr.Rows[0]["Days"].ToString();
-                        // dtpCheckOut.Value = dr.Rows[0]["OutDate"]
-                        // dtpCheckOutTime.Value = dr.Rows[0]["OutTime"]
                         txtNoOfPerson.Text = dr.Rows[0]["NoOfPersons"].ToString();
                         mstId = Convert.ToInt64(dr.Rows[0]["CheckInMstId"]);
 
@@ -348,9 +328,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                         dr = BedCheckOutDALobj.GetDrPrintRcptDet(mstId, UserInfo.UserId);
                         {
                             var withBlock = fpsPrintReceipt;
-                            withBlock.RowCount = 0;
-                            withBlock.RowCount = 1;
-                            //while (dr.Read)
                             foreach (DataRow drrow in dr.Rows)
                             {
                                 withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductN].Value = drrow["ItemTitle"];
@@ -366,20 +343,15 @@ namespace SGMOSOL.SCREENS.BedSystem
                                 mDelColl.Add(PrnRcptDtDet);
                                 withBlock.RowCount = withBlock.RowCount + 1;
                             }
-                            //dr.Close();
                         }
 
                         FillItemMaster();
 
-                        // mAction = eAction.ActionUpdate
-                        // blnformChange = False
-                        // dtpCheckIn.Enabled = False
                         fpsPrintReceipt.Focus();
                     }
                     else
                     {
                         MessageBox.Show("Receipt No. not found." + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //dr.Close();
                         txtCheckInVchNo.Text = "";
                         txtCheckInVchNo.Focus();
                     }
@@ -388,13 +360,37 @@ namespace SGMOSOL.SCREENS.BedSystem
 
                 catch (Exception ex)
                 {
-                    //if (!dr == null)
-                    //    dr.Close();
                     MessageBox.Show("Load Transaction failed.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnNew_Click(null, null);
                 }
             }
         }
+        private void fpsPrintReceipt_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (fpsPrintReceipt.CurrentCell.ColumnIndex == 0 && e.Control is ComboBox)
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                comboBox.SelectedIndexChanged -= LastColumnComboSelectionChanged;
+                comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
+            }
+        }
+
+        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
+        {
+            Int32 lngItemId;
+            {
+                var withBlock = fpsPrintReceipt;
+                if (withBlock.CurrentCell.ColumnIndex == (int)ePrintReceipt.ProductN & withBlock.CurrentCell.RowIndex == withBlock.RowCount - 1)
+                    withBlock.RowCount += 1;
+                if (withBlock.CurrentCell.ColumnIndex == (int)ePrintReceipt.ProductN)
+                {
+                    lngItemId = Convert.ToInt32(withBlock.Rows[withBlock.CurrentCell.RowIndex].Cells[withBlock.CurrentCell.ColumnIndex].Tag);
+                    if (lngItemId > 0)
+                        withBlock.CurrentCell = fpsPrintReceipt.Rows[withBlock.CurrentCell.RowIndex].Cells[(int)ePrintReceipt.Qty];
+                }
+            }
+        }
+
         //private void fpsPrintReceipt_ComboCloseUp(object sender, FarPoint.Win.Spread.EditorNotifyEventArgs e)
         //{
         //    Int32 lngItemId;
@@ -412,13 +408,10 @@ namespace SGMOSOL.SCREENS.BedSystem
         //}
         private void btnSave_Click(System.Object sender, System.EventArgs e)
         {
-            long lngError = -1;
             if (blnformChange == false)
                 return;
             if (fncSave())
             {
-                // commented by girish
-                // LoadItemMinLevel()
                 blnformChange = false;
                 btnNew_Click(null, null);
             }
@@ -455,8 +448,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                 strErr = ProcErr(lngError);
                 col = new string[1];
                 col[0] = "";
-                // commented by girish
-                // If Len(strErr) = 0 Then strErr = GetErrorMessage(mStrErrMsg, 10)
                 if (Strings.Len(strErr) == 0)
                     strErr = "Could Not Save Data with Error No:" + lngError.ToString();
 
@@ -469,11 +460,9 @@ namespace SGMOSOL.SCREENS.BedSystem
                 col = new string[2];
                 col[0] = "Receipt";
                 col[1] = Conversion.Str(lngSerialNo);
-                // MessageBox.Show(GetErrorMessage(col, 7), PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 setCursor(this, true);
                 flag = true;
 
-                // If Val(dtpPrnRcptDt.Tag & vbNullString) = 0 And mScreenID = ScreenID.PrintReceipt Then
                 dtpCurDate.Tag = 1;
                 blnformChange = false;
                 btnPrint_Click(null, null);
@@ -491,8 +480,8 @@ namespace SGMOSOL.SCREENS.BedSystem
             PrnRcptDtMst.CheckOutMstId = Convert.ToInt64(txtVchNo.Tag);
             PrnRcptDtMst.CheckInMstId = Convert.ToInt64(txtCheckInVchNo.Tag);
             PrnRcptDtMst.ComId = UserInfo.CompanyID;
-            PrnRcptDtMst.LocId = PrintReceiptLocId;  // UserInfo.LocationID
-            PrnRcptDtMst.DeptId = PrintReceiptDeptID; // UserInfo.DepartmentID
+            PrnRcptDtMst.LocId = PrintReceiptLocId;
+            PrnRcptDtMst.DeptId = PrintReceiptDeptID;
             PrnRcptDtMst.FyId = UserInfo.fy_id;
             PrnRcptDtMst.UserId = UserInfo.UserId;
             PrnRcptDtMst.CtrMachId = Convert.ToInt64(txtCounter.Tag);
@@ -505,7 +494,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                 Qty = Qty + Math.Round(Convert.ToDouble(fpsPrintReceipt.Rows[ctr].Cells[(int)ePrintReceipt.Qty].Value), 0);
             }
             PrnRcptDtMst.NoOfBeds = Qty;
-            // PrnRcptDtMst.Amount = nudAmount.Value
             PrnRcptDtMst.Advance = dblAdvAmt;
             PrnRcptDtMst.Refund = dblAdvAmt;
             PrnRcptDtMst.Rent = dblRentAmt;
@@ -515,16 +503,12 @@ namespace SGMOSOL.SCREENS.BedSystem
             PrnRcptDtMst.Days = Convert.ToInt32(txtDays.Text);
             PrnRcptDtMst.NoOfPersons = Convert.ToInt32(txtNoOfPerson.Text);
             PrnRcptDtMst.UserId = UserInfo.UserId;
-            // PrnRcptDtMst.NoOfPersons = Val(txtNoOfPnersons.Text)
-            // PrnRcptDtMst.OutDate = FormatDateToString(dtpCheckOut.Value)
-            // PrnRcptDtMst.OutTime = Format(Hour(dtpCheckOutTime.Text), "00") & ":" & Format(Minute(dtpCheckOutTime.Text), "00") & ":00"
             if (rbFlag == 0)
                 PrnRcptDtMst.BhaktTypeId = (int)eBhaktaType.Bhkta;
             else if (rbFlag == 1)
                 PrnRcptDtMst.BhaktTypeId = (int)eBhaktaType.Trip;
             else if (rbFlag == 2)
                 PrnRcptDtMst.BhaktTypeId = (int)eBhaktaType.Gorup;
-            // PrnRcptDtMst.RecordModifiedCount = Val(dtpCheckOut.Tag & vbNullString) + 1
             PrnRcptDtMst.ServerName = UserInfo.serverName;
             return PrnRcptDtMst;
         }
@@ -533,10 +517,6 @@ namespace SGMOSOL.SCREENS.BedSystem
         {
             Collection coll = new Collection();
             BedCheckInDet PrnRcptDtDet = new BedCheckInDet();
-            double dblAmt = 0;
-            // Dim item_name As String = ""
-            item_name = "";
-            string item_name1;
             PrnRcptDtDet.CheckOutMstId = Convert.ToInt64(txtVchNo.Tag);
             {
                 var withBlock = fpsPrintReceipt;
@@ -544,7 +524,7 @@ namespace SGMOSOL.SCREENS.BedSystem
                 {
                     PrnRcptDtDet.ProdId = Convert.ToInt32(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.ProductN].Tag);
                     PrnRcptDtDet.Qty = Convert.ToInt32(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Qty].Value);
-                    PrnRcptDtDet.Rent = Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.TotNidhi].Value);
+                    PrnRcptDtDet.Rent = Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Nidhi].Value);
                     PrnRcptDtDet.Advance = Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Advance].Value);
                     PrnRcptDtDet.TotalRent = Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.TotNidhi].Value);
                     PrnRcptDtDet.TotalAdv = Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.TotAdv].Value);
@@ -559,48 +539,38 @@ namespace SGMOSOL.SCREENS.BedSystem
             int i;
             col = new string[3];
             bool blnValidTag;
-            string Filtercriteria;
-            DataView Dv;
-            DataRowView Drv;
 
+            var withBlock = fpsPrintReceipt;
+            if (withBlock.RowCount >= 2)
             {
-                var withBlock = fpsPrintReceipt;
-                if (withBlock.RowCount >= 2)
-                {
-                    if (withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.ProductN].Value.ToString() == "" && Convert.ToInt32(withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.Qty].Value) == 0)
-                        withBlock.Rows.RemoveAt(withBlock.RowCount - 2);
-                }
+                if (withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.ProductN].Value == null && Convert.ToInt32(withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.Qty].Value) == 0)
+                    withBlock.Rows.RemoveAt(withBlock.RowCount - 2);
+            }
 
-                if (withBlock.RowCount == 1)
+            if (withBlock.RowCount == 1)
+            {
+                MessageBox.Show("Please enter Item Details to save.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            for (i = 0; i <= withBlock.RowCount - 2; i++)
+            {
+                if (Convert.ToInt32(withBlock.Rows[i].Cells[(int)ePrintReceipt.ProductN].Tag) == 0)
                 {
-                    MessageBox.Show("Please enter Item Details to save.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    col[0] = "Menu";
+                    col[1] = (i + 1).ToString();
+                    blnValidTag = showError(fpsPrintReceipt, PrjMsgBoxTitle, cf.GetErrorMessage(col, 48), i, (int)ePrintReceipt.ProductN);
+                    withBlock.CurrentCell = fpsPrintReceipt.Rows[i].Cells[(int)ePrintReceipt.ProductN];
                     return false;
                 }
-                // If .RowCount >= 2 Then
-                // MessageBox.Show("Please Select only one Product.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                // IsValidForm = False
-                // Exit Function
-                // End If
-                for (i = 0; i <= withBlock.RowCount - 2; i++)
+
+
+                if (Convert.ToInt32(withBlock.Rows[i].Cells[(int)ePrintReceipt.Qty].Value) == 0)
                 {
-                    if (Convert.ToInt32(withBlock.Rows[i].Cells[(int)ePrintReceipt.ProductN].Value) == 0)
-                    {
-                        col[0] = "Menu";
-                        col[1] = (i + 1).ToString();
-                        blnValidTag = showError(fpsPrintReceipt, PrjMsgBoxTitle, cf.GetErrorMessage(col, 48), i, (int)ePrintReceipt.ProductN);
-                        withBlock.CurrentCell = fpsPrintReceipt.Rows[i].Cells[(int)ePrintReceipt.ProductN];
-                        return false;
-                    }
-
-
-                    if (Convert.ToInt32(withBlock.Rows[i].Cells[(int)ePrintReceipt.Qty].Value) == 0)
-                    {
-                        col[0] = "Qty";
-                        col[1] = (i + 1).ToString();
-                        blnValidTag = showError(fpsPrintReceipt, PrjMsgBoxTitle, cf.GetErrorMessage(col, 48), i, (int)ePrintReceipt.Qty);
-                        withBlock.CurrentCell = fpsPrintReceipt.Rows[i].Cells[(int)ePrintReceipt.Qty];
-                        return false;
-                    }
+                    col[0] = "Qty";
+                    col[1] = (i + 1).ToString();
+                    blnValidTag = showError(fpsPrintReceipt, PrjMsgBoxTitle, cf.GetErrorMessage(col, 48), i, (int)ePrintReceipt.Qty);
+                    withBlock.CurrentCell = fpsPrintReceipt.Rows[i].Cells[(int)ePrintReceipt.Qty];
+                    return false;
                 }
             }
 
@@ -745,7 +715,6 @@ namespace SGMOSOL.SCREENS.BedSystem
         private void btnSearch_Click(System.Object sender, System.EventArgs e)
         {
             frmSearchNew form1 = new frmSearchNew("BED_RECEIPT_MST_CHECK_OUT_FIND_V", false, eModType.BedSystem);
-            //frmSearch form1 = new frmSearch("BED_RECEIPT_MST_CHECK_OUT_FIND_V", Convert.ToInt16(eModType.BedSystem));
             long lngSearchId;
             DialogResult sReply;
 
@@ -787,7 +756,6 @@ namespace SGMOSOL.SCREENS.BedSystem
         {
             System.Data.DataTable dr;
             BedCheckInDet PrnRcptDtDet = new BedCheckInDet();
-            long lngCtrMachId;
             int bhaktype = 0;
             mDelColl = new Collection();
             FormClear();
@@ -805,9 +773,7 @@ namespace SGMOSOL.SCREENS.BedSystem
                     dtpCurDate.Value = Convert.ToDateTime(dr.Rows[0]["OutDate"]);
                     txtName.Text = dr.Rows[0]["Name"].ToString();
                     txtPlace.Text = dr.Rows[0]["Place"].ToString();
-
                     txtDays.Text = dr.Rows[0]["Days"].ToString();
-                    // dtpCheckOut.Value = dr.Rows[0]["OutDate"]
                     dtpCheckOutTime.Value = Convert.ToDateTime(dr.Rows[0]["OutTime"]);
                     txtNoOfPerson.Text = dr.Rows[0]["NoOfPersons"].ToString();
                     txtVchNo.Text = (dr.Rows[0]["SerialNo"].ToString());
@@ -823,7 +789,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                     txtPlace.Text = dr.Rows[0]["Place"] + "'";
                     txtTotalAmt.Value = Convert.ToDecimal(dr.Rows[0]["Advance"]) + Convert.ToDecimal(dr.Rows[0]["Rent"]);
                 }
-                //dr.Close();
                 if (bhaktype == (int)eBhaktaType.Bhkta)
                     rdBhakta.Checked = true;
                 else if (bhaktype == (int)eBhaktaType.Gorup)
@@ -833,9 +798,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                 dr = BedCheckOutDALobj.GetDrPrintRcptDetOut(lngSearchId);
                 {
                     var withBlock = fpsPrintReceipt;
-                    withBlock.RowCount = 0;
-                    withBlock.RowCount = 1;
-                    //while (dr.Read)
                     foreach (DataRow drrow in dr.Rows)
                     {
                         withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductN].Value = drrow["ItemTitle"];
@@ -851,7 +813,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                         mDelColl.Add(PrnRcptDtDet);
                         withBlock.RowCount = withBlock.RowCount + 1;
                     }
-                    //dr.Close();
                 }
 
                 FillItemMaster();
@@ -863,8 +824,6 @@ namespace SGMOSOL.SCREENS.BedSystem
             }
             catch (Exception ex)
             {
-                //if (!dr == null)
-                //    dr.Close();
                 MessageBox.Show("Load Transaction failed.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnNew_Click(null, null);
             }
@@ -945,7 +904,7 @@ namespace SGMOSOL.SCREENS.BedSystem
             Collection pColl = new Collection();
             System.Data.DataSet ds;
             setCursor(this, false);
-            strReportName = "BedPrintReceiptCheckOut.rpt";
+            strReportName = "BedPrintReceiptCheckOut.rdlc";
             try
             {
                 {
@@ -970,14 +929,12 @@ namespace SGMOSOL.SCREENS.BedSystem
             {
                 MessageBox.Show("btnPrint_Click : " + ex.ToString(), PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            ds = null/* TODO Change to default(_) if this is not a reference type */;
             setCursor(this, true);
         }
 
         private System.Data.DataSet FillDataInSystem(int srno)
         {
             System.Data.DataTable TempTable1;
-            //OSOL_ADMIN.clsDsCommon mObjDsCommon = new OSOL_ADMIN.clsDsCommon();
             System.Data.DataSet ds = new System.Data.DataSet();
             DataRow MyRow;
             int Qty = 0;
@@ -1001,19 +958,10 @@ namespace SGMOSOL.SCREENS.BedSystem
             TempTable1.Columns.Add("PRINT_TIME", System.Type.GetType("System.String"));
             TempTable1.Columns.Add("BED", System.Type.GetType("System.String"));
             TempTable1.Columns.Add("BED_T", System.Type.GetType("System.String"));
-            // TempTable2.Columns.Add("PRINT_RECEIP&k T_MST_ID", System.Type.GetType("System.Int64"))
-            // 'TempTable2.Columns.Add("PRODUCT_CODE", System.Type.GetType("System.String"))
-            // 'TempTable2.Columns.Add("PRODUCT_TITLE", System.Type.GetType("System.String"))
-            // TempTable2.Columns.Add("QTY", System.Type.GetType("System.Double"))
-
-            // TempTable2.Columns.Add("AMOUNT", System.Type.GetType("System.Double"))
-            // TempTable2.Columns.Add("DET_AMT_WORDS", System.Type.GetType("System.String"))
 
             ds.Tables.Add(TempTable1);
-            // ds.Tables.Add(TempTable2)
 
             TempTable1.Rows.Clear();
-            // TempTable2.Rows.Clear()
 
             try
             {
@@ -1026,7 +974,7 @@ namespace SGMOSOL.SCREENS.BedSystem
                 MyRow["DEPT_SH_NAME"] = PrintReceiptDeptName;
                 MyRow["COUNTER"] = mStrCounterMachineShortName;
                 MyRow["AMOUNT"] = nudRent.Value;
-                MyRow["AMTINWORDS"] = cf.getNumbersInWords(nudRent.Value, eCurrencyType.Rupees);
+                MyRow["AMTINWORDS"] = cf.getNumbersInWords(nudRent.Value.ToString(), eCurrencyType.Rupees);
                 MyRow["NAME"] = txtName.Text + "";
                 MyRow["PLACE"] = txtPlace.Text + "";
                 MyRow["MOBILE"] = txtmobno.Text + "";
@@ -1055,6 +1003,10 @@ namespace SGMOSOL.SCREENS.BedSystem
 
         private void fpsPrintReceipt_Enter(object sender, System.EventArgs e)
         {
+            if (fpsPrintReceipt.CurrentCell == null)
+            {
+                return;
+            }
             var withBlock = fpsPrintReceipt;
             withBlock.Rows[withBlock.CurrentCell.RowIndex].Cells[withBlock.CurrentCell.ColumnIndex].Style.BackColor = Color.White;
 
@@ -1063,12 +1015,16 @@ namespace SGMOSOL.SCREENS.BedSystem
 
         private void fpsPrintReceipt_Leave(object sender, System.EventArgs e)
         {
+            if (fpsPrintReceipt.CurrentCell == null)
+            {
+                return;
+            }
             {
                 var withBlock = fpsPrintReceipt;
                 withBlock.Rows[withBlock.CurrentCell.RowIndex].Cells[withBlock.CurrentCell.ColumnIndex].Style.BackColor = Color.White;
                 if (withBlock.RowCount >= 2)
                 {
-                    if (withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.ProductN].Value.ToString() == "" && Convert.ToInt32(withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.Qty].Value) == 0)
+                    if (withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.ProductN].Value == null && Convert.ToInt32(withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.Qty].Value) == 0)
                         withBlock.Rows.RemoveAt(withBlock.RowCount - 2);
                 }
             }
@@ -1084,17 +1040,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                 withBlock.Columns[(int)ePrintReceipt.Qty].ReadOnly = blnLock;
             }
         }
-
-
-
-
-        // Dim t1 As New ThreadStart(AddressOf CheckVersion)
-        // Dim objThread As New Thread(t1)
-        // Try
-
-        // If Application.ProductVersion < FileVersionInfo.GetVersionInfo(System.Configuration.ConfigurationSettings.AppSettings.Get("ServerFilePath") & "JwlMfg.EXE").FileVersion Then
-        // MsgBox("Upgrading JMG.", MsgBoxStyle.Information, PrjMsgBoxTitle)
-        // objThread.Start()
 
         private bool IsDuplicatePR()
         {
@@ -1124,6 +1069,10 @@ namespace SGMOSOL.SCREENS.BedSystem
 
         private void fpsPrintReceipt_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
+            if (fpsPrintReceipt.CurrentCell == null)
+            {
+                return;
+            }
             int ctr;
             int ctr1 = 0;
             long lngItemId;
@@ -1144,7 +1093,6 @@ namespace SGMOSOL.SCREENS.BedSystem
                             withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Qty].Value = Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Qty].Value) + Convert.ToDouble(withBlock.Rows[ctr1].Cells[(int)ePrintReceipt.Qty].Value);
                             withBlock.Rows[ctr].Cells[(int)ePrintReceipt.TotAdv].Value = Math.Round(Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Advance].Value) * Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Qty].Value), 2);
                             withBlock.Rows[ctr].Cells[(int)ePrintReceipt.TotNidhi].Value = Math.Round(Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Nidhi].Value) * Convert.ToDouble(withBlock.Rows[ctr].Cells[(int)ePrintReceipt.Qty].Value), 2);
-                            // .Cells(ctr, ePrintReceipt.Amount).Text = .Cells(ctr, ePrintReceipt.Price).Value * .Cells(ctr, ePrintReceipt.Qty).Value
                             blnFlag = true;
                             break;
                         }
@@ -1155,17 +1103,19 @@ namespace SGMOSOL.SCREENS.BedSystem
                     withBlock.RowCount = withBlock.RowCount + 1;
                     withBlock.Rows.RemoveAt(ctr1);
                     withBlock.CurrentCell = fpsPrintReceipt.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductN];
-                    CalculateAmt();
                 }
+                CalculateAmt();
             }
         }
 
         private void fpsPrintReceipt_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (fpsPrintReceipt.CurrentCell == null)
+            {
+                return;
+            }
             var withBlock = fpsPrintReceipt;
-            // If fpsPrintReceipt.CurrentCell.ColumnIndex <> ePrintReceipt.MenuM Then
             withBlock.Rows[withBlock.CurrentCell.RowIndex].Cells[withBlock.CurrentCell.ColumnIndex].Style.BackColor = Color.Cyan;
-            // End If
             if (withBlock.RowCount > 2)
             {
                 if (withBlock.Rows[withBlock.RowCount - 2].Cells[(int)ePrintReceipt.ProductN].Value.ToString() == "")
@@ -1180,7 +1130,10 @@ namespace SGMOSOL.SCREENS.BedSystem
 
         private void fpsPrintReceipt_GotFocus(object sender, System.EventArgs e)
         {
-            // fpsPrintReceipt.Cells(fpsPrintReceipt.CurrentCell.RowIndex, fpsPrintReceipt.CurrentCell.ColumnIndex).BackColor = Color.Cyan
+            if (fpsPrintReceipt.CurrentCell == null)
+            {
+                return;
+            }
             if (fpsPrintReceipt.CurrentCell.ColumnIndex == (int)ePrintReceipt.ProductN && mScreenID == eScreenID.PrintReceiptSup)
                 SendKeys.Send("%{DOWN}");
         }
@@ -1209,10 +1162,8 @@ namespace SGMOSOL.SCREENS.BedSystem
         {
             System.Data.DataTable dr;
             BedCheckInDet PrnRcptDtDet = new BedCheckInDet();
-            long lngCtrMachId;
             int bhaktype = 0;
             long mstId;
-            // FormClear()
             try
             {
                 dr = BedCheckOutDALobj.GetDsBedCheckInMstBarcode(0, "", txtCheckInVchNo.Text, Convert.ToInt64(txtCounter.Tag), UserInfo.CompanyID, PrintReceiptLocId, 0, 0, "");
@@ -1226,80 +1177,64 @@ namespace SGMOSOL.SCREENS.BedSystem
                         return;
                     }
 
-
-                    // dtpCheckIn.Value = dr("InDate")
                     txtmobno.Text = dr.Rows[0]["MOB_NO"].ToString();
-                    // dtpCheckInTime.Value = dr.Rows[0]["InTime"]
                     txtCheckInVchNo.Text = (dr.Rows[0]["SerialNo"].ToString());
                     txtCheckInVchNo.Tag = dr.Rows[0]["CheckInMstId"];
-                    // txtVchNo.Tag = lngSearchId
-                    // dtpCheckIn.Tag = dr.Rows[0]["RecordModifiedCount"]
                     txtName.Text = dr.Rows[0]["Name"].ToString();
                     txtPlace.Text = dr.Rows[0]["Place"].ToString();
                     dtpCheckIn.Value = Convert.ToDateTime(dr.Rows[0]["InDate"]);
                     dtpCheckInTime.Value = Convert.ToDateTime(dr.Rows[0]["InTime"]);
                     txtDays.Text = dr.Rows[0]["Days"].ToString();
-                    // dtpCheckOut.Value = dr.Rows[0]["OutDate"]
-                    // dtpCheckOutTime.Value = dr.Rows[0]["OutTime"]
                     txtNoOfPerson.Text = dr.Rows[0]["NoOfPersons"].ToString();
                     mstId = Convert.ToInt64(dr.Rows[0]["CheckInMstId"]);
-
                     nudAdvance.Text = dr.Rows[0]["Advance"].ToString();
                     nudRent.Text = dr.Rows[0]["Rent"].ToString();
                     dtEnteredOn = Convert.ToDateTime(dr.Rows[0]["EnteredOn"]);
                     txtCheckInVchNo.Tag = dr.Rows[0]["CheckInMstId"];
                     bhaktype = Convert.ToInt32(dr.Rows[0]["BHAKT_TYPE"]);
-                    txtTotalAmt.Value = Convert.ToDecimal(dr.Rows[0]["Advance"]) + Convert.ToDecimal(dr.Rows[0]["Rent"]);
                     nudRefund.Value = Convert.ToDecimal(dr.Rows[0]["Advance"]);
+                    txtTotalAmt.Value = Convert.ToDecimal(dr.Rows[0]["Advance"]) + Convert.ToDecimal(dr.Rows[0]["Rent"]);
                     if (bhaktype == (int)eBhaktaType.Bhkta)
                         rdBhakta.Checked = true;
                     else if (bhaktype == (int)eBhaktaType.Gorup)
                         rdGroup.Checked = true;
                     else if (bhaktype == (int)eBhaktaType.Trip)
                         rdTrip.Checked = true;
-                    dr = BedCheckOutDALobj.GetDrPrintRcptDet(mstId, UserInfo.UserId);
+
+                    var withBlock = fpsPrintReceipt;
                     {
-                        var withBlock = fpsPrintReceipt;
-                        withBlock.RowCount = 0;
-                        withBlock.RowCount = 1;
+                        dr = BedCheckOutDALobj.GetDrPrintRcptDet(mstId, UserInfo.UserId);
                         //while (dr.Read)
+                        int i = 0;
                         foreach (DataRow drrow in dr.Rows)
                         {
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductN].Value = drrow["ItemTitle"];
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductC].ReadOnly = true;
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductN].Tag = drrow["ItemId"];
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.ProductC].Value = drrow["ItemCode"];
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.Qty].Value = (drrow["Qty"]);
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.Nidhi].Value = (drrow["RENT"]);
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.Advance].Value = (drrow["ADVANCE"]);
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.TotAdv].Value = (drrow["TOTAL_ADVANCE"]);
-                            withBlock.Rows[withBlock.RowCount - 1].Cells[(int)ePrintReceipt.TotNidhi].Value = (drrow["TOTAL_RENT"]);
+                            withBlock.RowCount = withBlock.RowCount + 1;
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.ProductN].Value = drrow["ItemTitle"];
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.ProductC].ReadOnly = true;
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.ProductN].Tag = drrow["ItemId"];
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.ProductC].Value = drrow["ItemCode"];
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.Qty].Value = (drrow["Qty"]);
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.Nidhi].Value = (drrow["RENT"]);
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.Advance].Value = (drrow["ADVANCE"]);
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.TotAdv].Value = (drrow["TOTAL_ADVANCE"]);
+                            withBlock.Rows[i].Cells[(int)ePrintReceipt.TotNidhi].Value = (drrow["TOTAL_RENT"]);
+                            i++;
                             PrnRcptDtDet.CheckInDetId = Convert.ToInt64(drrow["PrintRcptDetId"]);
                             mDelColl.Add(PrnRcptDtDet);
-                            withBlock.RowCount = withBlock.RowCount + 1;
                         }
-                        //dr.Close();
                     }
-
                     FillItemMaster();
-
-                    // mAction = eAction.ActionUpdate
-                    // blnformChange = False
-                    // dtpCheckIn.Enabled = False
                     fpsPrintReceipt.Focus();
                 }
                 else
                 {
                     MessageBox.Show("Receipt No. not found." + txtCheckInVchNo.Text, PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //dr.Close();
                     txtCheckInVchNo.Text = "";
                     txtCheckInVchNo.Focus();
                 }
             }
             catch (Exception ex)
             {
-                //if (!dr == null)
-                //    dr.Close();
                 MessageBox.Show("Load Transaction failed.", PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnNew_Click(null, null);
             }
@@ -1314,7 +1249,10 @@ namespace SGMOSOL.SCREENS.BedSystem
             blnformChange = true;
         }
 
-
+        private void txtNoOfPerson_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
     }
-
 }

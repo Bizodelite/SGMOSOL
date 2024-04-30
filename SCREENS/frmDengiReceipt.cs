@@ -15,6 +15,9 @@ using Microsoft.VisualBasic;
 using System.Xml.Linq;
 using System.Linq;
 using static SGMOSOL.ADMIN.CommonFunctions;
+using System.Collections;
+using System.Drawing;
+using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 
 namespace SGMOSOL.SCREENS
 {
@@ -33,6 +36,11 @@ namespace SGMOSOL.SCREENS
         private string PrintReceiptDeptName;
         private string PrintReceiptLocName;
         private int PrintReceiptLocId;
+        private ArrayList CtrlArr = new ArrayList();
+        private ArrayList btnArr = new ArrayList();
+        private bool mBlnEdit = false;
+        private eAction mAction;
+        private SessionManager sessionManager;
         public frmDengiReceipt()
         {
             InitializeComponent();
@@ -40,7 +48,15 @@ namespace SGMOSOL.SCREENS
             this.KeyDown -= frmDengiReceipt_KeyDown;
             this.KeyDown += new KeyEventHandler(frmDengiReceipt_KeyDown);
             this.KeyPreview = true;
-            userDengi = new frmUserDengi();
+            userDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            if (userDengi == null)
+            {
+                userDengi = new frmUserDengi();
+            }
+            else
+            {
+
+            }
             this.commonFunctions = new CommonFunctions();
             dt = new DataTable();
             txtname.TextChanged += txtname_TextChanged;
@@ -122,12 +138,13 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                commonFunctions.setControlsonForm(this, CtrlArr, btnArr);
+                commonFunctions.SetUserScreenActions(this, UserInfo.UserId, (int)eScreenID.DengiReceipt, btnArr, null, mBlnEdit);
                 int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
                 int centerY = (ClientSize.Height - flowLayoutPanel1.Height) / 2;
                 flowLayoutPanel1.Location = new System.Drawing.Point(centerX, centerY);
                 userDengi.Show();
                 txtAmount.Focus();
-                txtCounter.Text = UserInfo.Counter_Name;
                 txtUser.Text = UserInfo.UserName;
                 if (isPrint == false)
                 {
@@ -142,6 +159,8 @@ namespace SGMOSOL.SCREENS
                     showPanel();
                     getDengiNo();
                 }
+               // sessionManager = new SessionManager(this);
+               // sessionManager.StartTimer();
             }
             catch (Exception ex)
             {
@@ -155,14 +174,16 @@ namespace SGMOSOL.SCREENS
             dr = commonFunctions.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Dengi));
             if (dr.Rows.Count > 0)
             {
-                txtCounter.Text = dr.Rows[0]["CounterMachineTitle"].ToString();
+                txtCounter.Text = dr.Rows[0]["CounterMachineShortName"].ToString();
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.Counter_Name = txtCounter.Text;
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
                 UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
                 PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
                 PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
                 UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
                 mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName + " /" + UserInfo.version; ;
             }
             //dr.Close();
         }
@@ -438,7 +459,7 @@ namespace SGMOSOL.SCREENS
             txtChqNo.Enabled = true;
             txtDDBankName.Enabled = true;
             txtDDNo.Enabled = true;
-            txtdocDetail.Enabled = true;
+            //  txtdocDetail.Enabled = true;
             txtInvoice.Enabled = true;
             txtmob.Enabled = true;
             txtname.Enabled = true;
@@ -519,6 +540,10 @@ namespace SGMOSOL.SCREENS
             lblPincode.Text = "";
             dtpPrnRcptDt.Enabled = false;
             cboDoctype.SelectedValue = 0;
+            txtdocDetail.Enabled = false;
+            txtdocDetail.Text = "";
+            lblDistrict.Text = "";
+            imgVideo.Image = null;
         }
         private void txtname_TextChanged(object sender, EventArgs e)
         {
@@ -577,7 +602,7 @@ namespace SGMOSOL.SCREENS
                 {
                     lblAmtWords.Text = "Amount in Words : ";
                 }
-                if (int.TryParse(txtAmount.Text, out value) && value >= 500)
+                if (int.TryParse(txtAmount.Text, out value) && value >= 500 && cboDoctype.Text == "Select")
                 {
                     lbldoctype_err.Text = "Please select document type";
                 }
@@ -760,6 +785,7 @@ namespace SGMOSOL.SCREENS
             else
             {
                 txtAddGotra.Visible = false;
+                txtAddGotra.Text = "";
             }
             userDengi.SetGotra(cboGotra.Text);
             if (userDengi.Visible)
@@ -805,7 +831,8 @@ namespace SGMOSOL.SCREENS
                 DialogResult result;
                 dengiReceiptModel = new dengiReceiptModel();
                 loginDAL login = new loginDAL();
-                dengiReceiptModel.dr_Date = DateTime.Parse(dtpPrnRcptDt.Text);
+                // dengiReceiptModel.dr_Date = dtpPrnRcptDt.Value;
+                dengiReceiptModel.dr_Date = commonFunctions.ParseDateTimeInAnyFormat(dtpPrnRcptDt.Text);
                 dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
                 dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;
                 dengiReceiptModel.COUNTRY_NAME = cboCountry.Text;
@@ -929,8 +956,11 @@ namespace SGMOSOL.SCREENS
                             unLockControls();
                             string receptID = status.ToString();
                             frmReportViewer report = new frmReportViewer("PRINT", receptID);
+                            commonFunctions.AppendToFile("");
+                            commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                             report.createReport("Dengi");
-                            //report.Show();
+                            commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                           // report.Show();
                         }
                         if (chkDeclaration.Checked == true)
                         {
@@ -1061,9 +1091,9 @@ namespace SGMOSOL.SCREENS
                     cboPaymentType.SelectedValue = obj.paymentTypeId;
                     cboGotra.SelectedValue = obj.gotraId;
                     dtpPrnRcptDt.Text = obj.dr_Date.ToString();
-                    if (obj.Doc_type != null)
+                    if (obj.Doc_type != null && obj.Doc_type != "")
                         cboDoctype.SelectedValue = obj.Doc_type.ToString();
-                    if (obj.Doc_Detail != null)
+                    if (obj.Doc_Detail != null && obj.Doc_Detail != "")
                         txtdocDetail.Text = obj.Doc_Detail.ToString();
                     if (Convert.ToInt32(obj.gotraId) == 9999 && obj.gotra != null)
                     {
@@ -1134,7 +1164,7 @@ namespace SGMOSOL.SCREENS
         }
         private void frmDengiReceipt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // btnSave.PerformClick();
+            // sessionManager.ResetSession();
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
@@ -1145,8 +1175,11 @@ namespace SGMOSOL.SCREENS
 
 
             frmReportViewer report = new frmReportViewer("PRINT", receptID, "D");
+            commonFunctions.AppendToFile(" ");
+            commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             report.createReport("Dengi");
-            // report.Show();
+            commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+           // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
         {
@@ -1369,6 +1402,14 @@ namespace SGMOSOL.SCREENS
                 frmSearch = new frmSearchDengi();
                 frmSearch.Show();
             }
+            else
+            {
+                frmSearch.BringToFront();
+                if (frmSearch.WindowState == FormWindowState.Minimized)
+                {
+                    frmSearch.WindowState = FormWindowState.Normal;
+                }
+            }
         }
         private void btnScan_Click(object sender, EventArgs e)
         {
@@ -1392,6 +1433,8 @@ namespace SGMOSOL.SCREENS
 
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+                lblScanner.Text = "Scanning !!! Please Wait...";
                 WIA.DeviceManager DeviceManager1 = new WIA.DeviceManager();//= Interaction.CreateObject("WIA.DeviceManager");
                 int i = 0;
                 mydevice = CommonDialogBox.ShowSelectDevice(WIA.WiaDeviceType.ScannerDeviceType, true, false);
@@ -1402,6 +1445,8 @@ namespace SGMOSOL.SCREENS
                     if (Information.IsNothing(Scanner))
                     {
                         Interaction.MsgBox("Could not connect to scanner please check attached Properly.");
+                        Cursor.Current = Cursors.Default;
+                        lblScanner.Text = "";
                         return;
                     }
                     else
@@ -1427,6 +1472,7 @@ namespace SGMOSOL.SCREENS
                             if (File.Exists(F1))
                                 FileSystem.Kill(F1);
                             F.SaveFile(F1);
+                            lblScanner.Text = "Successfully scanned" + F1;
                             txtScan.Text = s;
                         }
                         catch (Exception ex)
@@ -1439,7 +1485,11 @@ namespace SGMOSOL.SCREENS
                         }
                 }
                 else
+                {
                     Interaction.MsgBox("Scanner is not attached checked it");
+                    Cursor.Current = Cursors.Default;
+                    lblScanner.Text = ""; ;
+                }
 
                 imgVideo.ImageLocation = F1;
                 DeviceManager1 = null;
@@ -1505,6 +1555,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+              //  sessionManager.ResetSession();
                 dengiReceiptDAL = new DengiReceiptDAL();
                 DataTable dt = new DataTable();
                 if (e.Control && e.KeyCode == Keys.P)
@@ -1635,6 +1686,93 @@ namespace SGMOSOL.SCREENS
                 txtScan.Text = "";
                 imgVideo.Image = null;
                 imgVideo.BackgroundImage = null;
+                lblScanner.Text = "";
+            }
+        }
+
+        private void frmDengiReceipt_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.OfType<frmUserDengi>().Any())
+            {
+                Application.OpenForms.OfType<frmUserDengi>().First().Close();
+            }
+        }
+
+        private void frmDengiReceipt_MouseClick(object sender, MouseEventArgs e)
+        {
+           // sessionManager.ResetSession();
+        }
+
+        private void chkScanDoc_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboState_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboGotra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboCountry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboDoctype_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboDengiType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboPaymentType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAddGotra_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAddGotra.Text!="")
+            {
+                userDengi.SetGotra(txtAddGotra.Text); 
+            }
+            else
+            {
+                userDengi.SetGotra("");
             }
         }
     }

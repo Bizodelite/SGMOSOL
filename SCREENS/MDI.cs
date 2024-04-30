@@ -23,6 +23,7 @@ namespace SGMOSOL
 {
     public partial class MDI : Form
     {
+        private Form currentlyOpenMenuForm;
         frmUserDengi frmuserDengi;
         frmDengiReceipt frmDengiReceip;
         frmChnagePassword frmChnagePassword;
@@ -56,34 +57,47 @@ namespace SGMOSOL
             WindowState = FormWindowState.Maximized;
             cm = new CommonFunctions();
         }
-
-        private void MDI_Load(object sender, EventArgs e)
+        private Form GetActiveChildForm()
         {
-            // Show the login form
-            frmLogin loginForm = new frmLogin();
-            loginForm.WindowState = FormWindowState.Maximized;
-
-            //Show the MDI form if login is successful
-            if (loginForm.ShowDialog() == DialogResult.OK)
+            if (this.ActiveMdiChild != null)
             {
-                this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
-                // If login is successful, start the MDI parent form
-                sessionManager = new SessionManager();
-                sessionManager.StartTimer();
+                return this.ActiveMdiChild;
             }
             else
             {
-                // If login fails or the login form is closed, exit the application
-                Application.Exit();
+                return null;
             }
-            LockUnlock();
         }
 
-        //InitAppParam();
-        //LoadBedCheckInMaxAmount();
-        //sessionManager = new SessionManager();
-        //sessionManager.StartTimer();
+        private void MDI_Load(object sender, EventArgs e)
+        {
+            InitAppParam();
+            LoadBedCheckInMaxAmount();
+            frmLogin loginForm = new frmLogin();
+            loginForm.WindowState = FormWindowState.Maximized;
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+               // this.Text = cm.getFormTitle() + " / " + Application.ProductVersion;
+                // If login is successful, start the MDI parent form
+                // sessionManager = new SessionManager(GetActiveChildForm());
+                //sessionManager.StartTimer();
+            }
+            else
+            {
+                // Application.Exit();
+                this.Close();
+            }
+            LockUnlock();
 
+        }
+        private void CloseCurrentlyOpenMenuForm()
+        {
+            if (currentlyOpenMenuForm != null && !currentlyOpenMenuForm.IsDisposed)
+            {
+                currentlyOpenMenuForm.Close();
+                currentlyOpenMenuForm = null;
+            }
+        }
         public void InitAppParam()
         {
             //UserInfo.Rounding = "N";
@@ -97,7 +111,7 @@ namespace SGMOSOL
         {
             try
             {
-                UserInfo.BedCheckInMaxAmount = CommonFunctions.getBedCheckInMaxAmount(); ;
+                CommonFunctions.getBedCheckInMaxAmount(); ;
             }
             catch (Exception ex)
             {
@@ -144,15 +158,15 @@ namespace SGMOSOL
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
-            if (frmChnagePassword == null)
-            {
-                frmChnagePassword = new frmChnagePassword(false);
-                frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
-                frmChnagePassword.MdiParent = this;
-                frmChnagePassword.WindowState = FormWindowState.Maximized;
-                frmChnagePassword.Show();
-            }
+            //frmChnagePassword = Application.OpenForms.OfType<frmChnagePassword>().FirstOrDefault();
+            //if (frmChnagePassword == null)
+            //{
+            frmChnagePassword = new frmChnagePassword(false);
+            frmChnagePassword.StartPosition = FormStartPosition.CenterParent;
+            frmChnagePassword.MdiParent = this;
+            frmChnagePassword.WindowState = FormWindowState.Maximized;
+            frmChnagePassword.Show();
+            // }
             frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (frmuserDengi != null)
             {
@@ -162,6 +176,7 @@ namespace SGMOSOL
 
         private void printReceiptToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseCurrentlyOpenMenuForm();
             frmbhojnalayaPrintReceipt = Application.OpenForms.OfType<frmBhojnalayaPrintReceipt>().FirstOrDefault();
             if (frmbhojnalayaPrintReceipt == null)
             {
@@ -170,18 +185,20 @@ namespace SGMOSOL
                 frmbhojnalayaPrintReceipt.MdiParent = this;
                 frmbhojnalayaPrintReceipt.WindowState = FormWindowState.Maximized;
                 frmbhojnalayaPrintReceipt.Show();
+                currentlyOpenMenuForm = frmbhojnalayaPrintReceipt;
             }
-            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
-            if (frmuserDengi == null)
-            {
-                frmuserDengi = new frmUserDengi();
-                frmuserDengi.WindowState = FormWindowState.Minimized;
-                frmuserDengi.Show();
-            }
+            //frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            //if (frmuserDengi == null)
+            //{
+            //    frmuserDengi = new frmUserDengi();
+            //    frmuserDengi.WindowState = FormWindowState.Minimized;
+            //    frmuserDengi.Show();
+            //}
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseCurrentlyOpenMenuForm();
             LoginBAL loginBAL = new LoginBAL();
             loginBAL.updateUser_Login_Details();
             loginBAL.DeleteUser_Login_details();
@@ -227,6 +244,8 @@ namespace SGMOSOL
 
         private void totalDengiReportToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            CloseCurrentlyOpenMenuForm();
+            CloseCurrentlyOpenMenuForm();
             frmDengiReceip = Application.OpenForms.OfType<frmDengiReceipt>().FirstOrDefault();
             if (frmDengiReceip == null)
             {
@@ -235,53 +254,64 @@ namespace SGMOSOL
                 frmDengiReceip.MdiParent = this;
                 frmDengiReceip.WindowState = FormWindowState.Maximized;
                 frmDengiReceip.Show();
+                currentlyOpenMenuForm = frmDengiReceip;
             }
-            frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
-            if (frmuserDengi == null)
-            {
-                // frmuserDengi = new frmUserDengi();
-                // frmuserDengi.WindowState = FormWindowState.Minimized;
-                frmuserDengi.Show();
-            }
-
+            //frmuserDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+            //if (frmuserDengi == null)
+            //{
+            //    frmuserDengi = new frmUserDengi();
+            //    frmuserDengi.WindowState = FormWindowState.Minimized;
+            //    frmuserDengi.Show();
+            //}
         }
 
         private void totalDengiReportToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            CloseCurrentlyOpenMenuForm();
             frmTotalDengiReport frm = new frmTotalDengiReport();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            currentlyOpenMenuForm = frm;
         }
 
         private void requirementToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseCurrentlyOpenMenuForm();
             frmReqToAdmin frm = new frmReqToAdmin();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            currentlyOpenMenuForm = frm;
         }
 
         private void MDI_KeyPress(object sender, KeyPressEventArgs e)
         {
-            sessionManager.ResetSession();
+
+            //sessionManager.ResetSession();
+
         }
 
         private void MDI_KeyDown(object sender, KeyEventArgs e)
         {
-            sessionManager.ResetSession();
+
+            //sessionManager.ResetSession();
+
         }
 
         private void MDI_MouseMove(object sender, MouseEventArgs e)
         {
-            sessionManager.ResetSession();
+           // sessionManager.ResetSession();
+
         }
 
         private void MDI_MouseClick(object sender, MouseEventArgs e)
         {
-            sessionManager.ResetSession();
+
+           // sessionManager.ResetSession();
+
         }
         private void lockerCheckINToolStripMenuItem_Click(object sender, EventArgs e)
         {

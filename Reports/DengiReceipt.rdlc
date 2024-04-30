@@ -277,8 +277,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>AMOUNT</rd:DefaultName>
-            <Top>7.0669cm</Top>
-            <Left>6.95205cm</Left>
+            <Top>7.15157cm</Top>
+            <Left>6.97322cm</Left>
             <Height>0.55766cm</Height>
             <Width>2.5cm</Width>
             <Style>
@@ -309,8 +309,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>AMOUNT</rd:DefaultName>
-            <Top>7.80095cm</Top>
-            <Left>6.95205cm</Left>
+            <Top>7.88562cm</Top>
+            <Left>6.97322cm</Left>
             <Height>0.59294cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>1</ZIndex>
@@ -342,8 +342,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>AMOUNT</rd:DefaultName>
-            <Top>8.35156cm</Top>
-            <Left>6.93088cm</Left>
+            <Top>8.43623cm</Top>
+            <Left>6.95205cm</Left>
             <Height>0.57883cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>2</ZIndex>
@@ -375,8 +375,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>AMOUNT</rd:DefaultName>
-            <Top>9.04329cm</Top>
-            <Left>6.90971cm</Left>
+            <Top>9.10679cm</Top>
+            <Left>6.93088cm</Left>
             <Height>0.55766cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>3</ZIndex>
@@ -409,7 +409,7 @@
             </Paragraphs>
             <rd:DefaultName>AMOUNT</rd:DefaultName>
             <Top>9.71383cm</Top>
-            <Left>6.90971cm</Left>
+            <Left>6.93088cm</Left>
             <Height>0.62117cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>4</ZIndex>
@@ -537,7 +537,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>श्री रा.रा.</Value>
+                    <Value>   श्री रा.रा.</Value>
                     <Style>
                       <FontFamily>Nirmala UI</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -562,6 +562,12 @@
               </Paragraph>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">   </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Label>ADDRESS</Label>
                     <Value>=UCase(Fields!ADDRESS.Value)</Value>
@@ -612,6 +618,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value xml:space="preserve">   </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
                     <Label>Cheque_details</Label>
                     <Value>=Switch(
     Fields!PAYMENT_TYPE_ID.Value = "7",Fields!CHQ_BANK_NAME.Value &amp; " Cheque No: " &amp; Fields!CHQ_NO.Value &amp; " CHQ Date: " &amp; Format(Fields!CHQ_DATE.Value, "dd/MM/yyyy"),
@@ -628,7 +640,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.57794cm</Top>
+            <Top>3.6485cm</Top>
             <Left>0.24694cm</Left>
             <Height>2.07491cm</Height>
             <Width>6.82391cm</Width>
@@ -776,7 +788,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>3.57794cm</Top>
+            <Top>3.6485cm</Top>
             <Left>7.14141cm</Left>
             <Height>2.07491cm</Height>
             <Width>5.1062cm</Width>
@@ -797,6 +809,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value xml:space="preserve">   </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
                     <Label>DECLARATION</Label>
                     <Value>= IIf(Fields!DEC_STATUS.Value = "1", Fields!DECLARATION.Value,NOTHING)</Value>
                     <Style>
@@ -808,9 +826,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>10.7389cm</Top>
-            <Left>0.24694cm</Left>
-            <Height>1.44716cm</Height>
+            <Top>10.8659cm</Top>
+            <Left>0.31044cm</Left>
+            <Height>1.76466cm</Height>
             <Width>11.37942cm</Width>
             <ZIndex>10</ZIndex>
             <Style>
@@ -840,8 +858,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>GOTRA_NAME</rd:DefaultName>
-            <Top>5.72341cm</Top>
-            <Left>6.95205cm</Left>
+            <Top>8.43623cm</Top>
+            <Left>3.62774cm</Left>
             <Height>0.4095cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>11</ZIndex>

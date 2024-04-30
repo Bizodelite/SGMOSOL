@@ -17,7 +17,7 @@ namespace SGMOSOL.DAL
 {
     public class DengiReceiptDAL
     {
-        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString,true);
+        string connectionString = CommonFunctions.Decrypt(ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString, true);
         CommonFunctions commonFunctions = new CommonFunctions();
 
         public DataTable getDengiReceipt(object data)
@@ -81,7 +81,7 @@ namespace SGMOSOL.DAL
                         {
                             da.Fill(dataTable);
                         }
-                    }     
+                    }
                 }
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace SGMOSOL.DAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "select * from DEN_Dengi_Receipt_View where DENGI_RECEIPT_ID =" + receiptID + "";
+                    string query = "select * from DEN_Dengi_Receipt_View where DENGI_RECEIPT_ID =" + receiptID + " and Location_Id=" + UserInfo.Loc_id + " and Department_Id=" + UserInfo.Dept_id + " and CTR_MACH_ID=" + UserInfo.ctrMachID + "";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     adapter.Fill(ds, "DEN_Dengi_Receipt_View");
                     connection.Close();
@@ -223,7 +223,7 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@Dept_Id", UserInfo.Dept_id);
                             command.Parameters.AddWithValue("@Fy_Id", UserInfo.fy_id);
                             command.Parameters.AddWithValue("@Ctr_mac_Id", UserInfo.ctrMachID);
-                           // command.Parameters.AddWithValue("@SERIAL_NO", obj.serailId);
+                            // command.Parameters.AddWithValue("@SERIAL_NO", obj.serailId);
                             command.Parameters.AddWithValue("@Dengi_Id", obj.DengiId);
                             command.Parameters.AddWithValue("@amount", obj.amount);
                             command.Parameters.AddWithValue("@payment_type_Id", obj.paymentTypeId);
@@ -278,7 +278,7 @@ namespace SGMOSOL.DAL
                                 command.Parameters.AddWithValue("@Doc_Type", null);
                             command.Parameters.AddWithValue("@Doc_Detail", obj.Doc_Detail);
                             command.Parameters.AddWithValue("@IsDuplicate", obj.IsDuplicate);
-                            command.Parameters.AddWithValue("@ScanImage",obj.ScanImage);
+                            command.Parameters.AddWithValue("@ScanImage", obj.ScanImage);
                             SqlParameter idParam = new SqlParameter("@Receipt_ID", SqlDbType.Decimal);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);
@@ -288,12 +288,13 @@ namespace SGMOSOL.DAL
                             {
                                 status = Convert.ToInt32(command.Parameters["@Receipt_ID"].Value);
                             }
-                            else {
+                            else
+                            {
                                 status = rowsAffected;
                                 MessageBox.Show("Can not insert this record due to date mismatch!!! Please check date.");
                             }
                         }
-                      //  MessageBox.Show("Dengi Receipt saved Successfully");
+                        //  MessageBox.Show("Dengi Receipt saved Successfully");
                     }
                 }
             }
@@ -311,7 +312,7 @@ namespace SGMOSOL.DAL
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + " and CTR_MACH_ID="+UserInfo.ctrMachID+"";
+                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_RECEIPT_MST_T WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + " and CTR_MACH_ID=" + UserInfo.ctrMachID + "";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         connection.Open();

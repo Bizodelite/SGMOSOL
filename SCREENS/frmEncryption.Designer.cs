@@ -30,14 +30,21 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtEncrypt = new System.Windows.Forms.TextBox();
-            this.btnEncrypt = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.pnlEncrypted = new System.Windows.Forms.Panel();
             this.lblEncrypted = new System.Windows.Forms.Label();
+            this.txtDecrypt = new System.Windows.Forms.TextBox();
+            this.btnDec = new System.Windows.Forms.Button();
+            this.pnlDecrypted = new System.Windows.Forms.Panel();
+            this.lblDecrypted = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btncpydec = new System.Windows.Forms.Button();
+            this.btnEncrypt = new System.Windows.Forms.Button();
             this.pnlEncrypted.SuspendLayout();
+            this.pnlDecrypted.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -55,16 +62,6 @@
             this.txtEncrypt.Name = "txtEncrypt";
             this.txtEncrypt.Size = new System.Drawing.Size(473, 22);
             this.txtEncrypt.TabIndex = 1;
-            // 
-            // btnEncrypt
-            // 
-            this.btnEncrypt.Location = new System.Drawing.Point(675, 72);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnEncrypt.TabIndex = 3;
-            this.btnEncrypt.Text = "Encrypt";
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
             // btnClose
             // 
@@ -122,18 +119,86 @@
             this.lblEncrypted.Size = new System.Drawing.Size(0, 16);
             this.lblEncrypted.TabIndex = 0;
             // 
+            // txtDecrypt
+            // 
+            this.txtDecrypt.Location = new System.Drawing.Point(196, 304);
+            this.txtDecrypt.Name = "txtDecrypt";
+            this.txtDecrypt.Size = new System.Drawing.Size(473, 22);
+            this.txtDecrypt.TabIndex = 10;
+            // 
+            // btnDec
+            // 
+            this.btnDec.Location = new System.Drawing.Point(675, 304);
+            this.btnDec.Name = "btnDec";
+            this.btnDec.Size = new System.Drawing.Size(75, 23);
+            this.btnDec.TabIndex = 11;
+            this.btnDec.Text = "Decrypt";
+            this.btnDec.UseVisualStyleBackColor = true;
+            this.btnDec.Click += new System.EventHandler(this.btnDec_Click);
+            // 
+            // pnlDecrypted
+            // 
+            this.pnlDecrypted.BackColor = System.Drawing.Color.Aquamarine;
+            this.pnlDecrypted.Controls.Add(this.lblDecrypted);
+            this.pnlDecrypted.Controls.Add(this.label3);
+            this.pnlDecrypted.Location = new System.Drawing.Point(196, 352);
+            this.pnlDecrypted.Name = "pnlDecrypted";
+            this.pnlDecrypted.Size = new System.Drawing.Size(473, 86);
+            this.pnlDecrypted.TabIndex = 12;
+            // 
+            // lblDecrypted
+            // 
+            this.lblDecrypted.AutoSize = true;
+            this.lblDecrypted.Location = new System.Drawing.Point(55, 24);
+            this.lblDecrypted.Name = "lblDecrypted";
+            this.lblDecrypted.Size = new System.Drawing.Size(44, 16);
+            this.lblDecrypted.TabIndex = 1;
+            this.lblDecrypted.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 16);
+            this.label3.TabIndex = 0;
+            // 
+            // btncpydec
+            // 
+            this.btncpydec.Location = new System.Drawing.Point(687, 385);
+            this.btncpydec.Name = "btncpydec";
+            this.btncpydec.Size = new System.Drawing.Size(75, 23);
+            this.btncpydec.TabIndex = 13;
+            this.btncpydec.Text = "Copy";
+            this.btncpydec.UseVisualStyleBackColor = true;
+            this.btncpydec.Click += new System.EventHandler(this.btncpydec_Click);
+            // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Location = new System.Drawing.Point(675, 76);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnEncrypt.TabIndex = 14;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            // 
             // frmEncryption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1112, 622);
+            this.Controls.Add(this.btnEncrypt);
+            this.Controls.Add(this.btncpydec);
+            this.Controls.Add(this.pnlDecrypted);
+            this.Controls.Add(this.btnDec);
+            this.Controls.Add(this.txtDecrypt);
             this.Controls.Add(this.pnlEncrypted);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.txtEncrypt);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -142,6 +207,8 @@
             this.Load += new System.EventHandler(this.frmEncryption_Load);
             this.pnlEncrypted.ResumeLayout(false);
             this.pnlEncrypted.PerformLayout();
+            this.pnlDecrypted.ResumeLayout(false);
+            this.pnlDecrypted.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,12 +218,18 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEncrypt;
-        private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel pnlEncrypted;
         private System.Windows.Forms.Label lblEncrypted;
+        private System.Windows.Forms.TextBox txtDecrypt;
+        private System.Windows.Forms.Button btnDec;
+        private System.Windows.Forms.Panel pnlDecrypted;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDecrypted;
+        private System.Windows.Forms.Button btncpydec;
+        private System.Windows.Forms.Button btnEncrypt;
     }
 }

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -19,25 +20,109 @@ namespace SGMOSOL.SCREENS
     {
         BhojnalayPrintReceiptBAL obj = new BhojnalayPrintReceiptBAL();
         private DataTable tempItemTable;
+        CommonFunctions cm = new CommonFunctions();
+        DataTable dt;
+        private string mStrCounterMachineShortName;
+        private int PrintReceiptDeptID;
+        private string PrintReceiptDeptName;
+        private string PrintReceiptLocName;
+        private int PrintReceiptLocId;
+        private List<DataRow> filteredItems;
         public frmReqToAdmin()
         {
             InitializeComponent();
-            this.KeyDown += new KeyEventHandler(frmReqToAdmin_KeyDown);
             this.KeyPreview = true;
             CenterToParent();
         }
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            try
+            {
+                if (keyData == Keys.Enter)
+                {
+                    if (ActiveControl is System.Windows.Forms.Button btnSave)
+                    {
+                        if (btnSave.Name == "btnSave")
+                        {
+                            btnSave.PerformClick();
+                            return true;
+                        }
+                    }
+                    if (ActiveControl is System.Windows.Forms.Button btnNew)
+                    {
+                        if (btnNew.Name == "btnNew")
+                        {
+                            btnNew.PerformClick();
+                            return true;
+                        }
+                    }
+                    if (ActiveControl is System.Windows.Forms.Button btnClose)
+                    {
+                        if (btnClose.Name == "btnClose")
+                        {
+                            btnClose.PerformClick();
+                            return true;
+                        }
+                    }
+                    if (ActiveControl is System.Windows.Forms.Button btnSearch)
+                    {
+                        if (btnSearch.Name == "btnSearch")
+                        {
+                            btnSearch.PerformClick();
+                            return true;
+                        }
+                    }
 
+                    if (ActiveControl is System.Windows.Forms.TextBox txtQuantity)
+                    {
+                        if (txtQuantity.Name == "txtQuantity")
+                        {
+                            //addItemIngrid();
+                            return false;
+                        }
+                    }
+                    SendKeys.Send("{TAB}");
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                cm.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+                return false;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+        private void FillCounter()
+        {
+            cm = new CommonFunctions();
+            System.Data.DataTable dr;
+            dr = cm.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.Bhojnalay));
+            if (dr.Rows.Count > 0)
+            {
+                UserInfo.Counter_Name = dr.Rows[0]["CounterMachineShortName"].ToString();
+                txtCounter.Tag = dr.Rows[0]["CtrMachId"];
+                UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
+                UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
+                PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
+                UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
+                mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                this.Text = PrintReceiptLocName + " /" + PrintReceiptDeptName + " /" + mStrCounterMachineShortName + "/ " + Application.ProductVersion;
+            }
+            //dr.Close();
+        }
         private void frmReqToAdmin_Load(object sender, EventArgs e)
         {
+            dt = new DataTable();
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
             pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
-            txtCounter.Text = UserInfo.Counter_Name;
-            getRequirementber();
-            txtUser.Text = UserInfo.UserName;
+            FillCounter();
             fillItemCode();
+            getRequirementber();
             createItemTable();
-            cboItemCode.Focus();
+            txtCounter.Text = UserInfo.Counter_Name;
+            txtUser.Text = UserInfo.UserName;
         }
         private void ClearRowSelection()
         {
@@ -55,14 +140,32 @@ namespace SGMOSOL.SCREENS
         {
             DataTable dt = new DataTable();
             dt = obj.getItemCode();
-            DataRow newRow = dt.NewRow();
-            newRow["ITEM_CODE"] = "Select";
-            newRow["ITEM_ID"] = 0;
-            dt.Rows.InsertAt(newRow, 0);
             cboItemCode.DataSource = dt;
             cboItemCode.DisplayMember = "ITEM_CODE";
             cboItemCode.ValueMember = "ITEM_ID";
             cboItemCode.SelectedValue = 0;
+            cboItemCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboItemCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            UpdateSuggestions();
+        }
+        private void UpdateSuggestions()
+        {
+            // Clear existing suggestions
+            cboItemCode.AutoCompleteCustomSource.Clear();
+
+            // Extract column data from the DataTable
+            List<string> suggestions = new List<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                suggestions.Add(row["Item_Code"].ToString());
+            }
+
+            // Filter suggestions based on user input
+            string input = cboItemCode.Text;
+            List<string> filteredSuggestions = suggestions.FindAll(s => s.StartsWith(input, StringComparison.OrdinalIgnoreCase));
+
+            // Add filtered suggestions to the auto-complete source
+            cboItemCode.AutoCompleteCustomSource.AddRange(filteredSuggestions.ToArray());
         }
         public void clearControl()
         {
@@ -127,47 +230,92 @@ namespace SGMOSOL.SCREENS
         }
         public void addItemIngrid()
         {
-            if (txtQuantity.Text != "" && cboItemCode.Text != "Select")
+            
+            if (txtItemName.Text != "" && cboItemCode.Text != "")
             {
-                // lblQuantity.Text = "";
-                DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{txtItemName.Text}'");
-                if (duplicateRow.Length > 0)
+                if (txtQuantity.Text != "" && cboItemCode.Text != "Select")
                 {
-                    foreach (DataRow row in duplicateRow)
+                    lblQuantity.Text = "";
+                    DataRow[] duplicateRow = tempItemTable.Select($"[Item Name] = '{txtItemName.Text}'");
+                    if (duplicateRow.Length > 0)
                     {
-                        int currentQuantity = Convert.ToInt32(row["Quantity"]);
-                        //int currentAmount = Convert.ToInt32(row["Amount"]);
-                        // row["Price"] = Convert.ToDecimal(txtPrice.Text);
-                        row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
-                        // row["Amount"] = Convert.ToDecimal(txtAmount.Text) + currentAmount;
+                        foreach (DataRow row in duplicateRow)
+                        {
+                            int currentQuantity = Convert.ToInt32(row["Quantity"]);
+                            int currentAmount = Convert.ToInt32(row["Amount"]);
+                           // row["Price"] = Convert.ToDecimal(txtPrice.Text);
+                            // row["Quantity"] = Convert.ToInt32(txtQuantity.Text) + currentQuantity;
+                            row["Quantity"] = Convert.ToInt32(txtQuantity.Text);
+                            //row["Amount"] = Convert.ToDecimal(txtAmount.Text);
+                            // row["Amount"] = currentAmount;
+                        }
                     }
+                    else
+                    {
+                        DataRow newRow = tempItemTable.NewRow();
+                        newRow["Item Code"] = cboItemCode.Text.ToString();
+                        newRow["Item Name"] = txtItemName.Text.ToString();
+                       // newRow["Price"] = Convert.ToDecimal(txtPrice.Text);
+                        newRow["Quantity"] = Convert.ToInt32(txtQuantity.Text);
+                        //newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
+                        tempItemTable.Rows.Add(newRow);
+                    }
+                    clear();
+                    cboItemCode.Focus();
                 }
-                else
-                {
-                    DataRow newRow = tempItemTable.NewRow();
-                    newRow["Item Code"] = cboItemCode.Text.ToString();
-                    newRow["Item Name"] = txtItemName.Text.ToString();
-                    // newRow["Price"] = Convert.ToDecimal(txtPrice.Text);
-                    newRow["Quantity"] = Convert.ToInt32(txtQuantity.Text);
-                    // newRow["Amount"] = Convert.ToDecimal(txtAmount.Text);
-                    tempItemTable.Rows.Add(newRow);
-                }
-                txtQuantity.Text = "";
-                cboItemCode.Focus();
             }
+            else
+            {
+                MessageBox.Show("Please Select Item");
+            }
+        }
+        private void clear()
+        {
+            cboItemCode.SelectedValue = 0;
+            //  cboItemName.SelectedValue = 0;
+          //  txtAmount.Text = "";
+            //txtPrice.Text = "0";
+            txtQuantity.Text = "";
         }
 
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
+            bool itemFound = false;
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtQuantity.Text == "")
+                if (cboItemCode.Text != "")
                 {
-                    lblQty.Text = "Please Enter Quantity";
+                    if (txtQuantity.Text != "0")
+                    {
+                        addItemIngrid();
+                    }
+                    if (txtQuantity.Text == "0")
+                    {
+                        // Get the item name
+                        string itemName = txtItemName.Text;
+
+                        // Search for the item in the DataGridView
+                        foreach (DataGridViewRow row in dgvItemDetails.Rows)
+                        {
+                            if (row.Cells["Item Name"].Value.ToString() == itemName)
+                            {
+                                // Remove the row from the DataGridView
+                                dgvItemDetails.Rows.Remove(row);
+                                // txtTotalAmount.Text = getTotalAmount();
+                                itemFound = true;
+                                clear();
+                                break;
+                            }
+                        }
+                        if (itemFound == false)
+                        {
+                            MessageBox.Show("Item not found");
+                        }
+                    }
                 }
                 else
                 {
-                    addItemIngrid();
+                    lblItemCode.Text = "Please select an Item";
                 }
             }
         }
@@ -216,8 +364,11 @@ namespace SGMOSOL.SCREENS
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveRequirement();
-        
+            if (lblQuantity.Text == "" && lblItemCode.Text == "")
+            {
+                saveRequirement();
+            }
+
         }
         public void saveRequirement()
         {
@@ -243,7 +394,7 @@ namespace SGMOSOL.SCREENS
                             if (itemName == item)
                             {
                                 bhojnalayModel.PRINT_MST_ID = Status;
-                               // bhojnalayModel.Price = Convert.ToDecimal(row.Cells["Price"].Value);
+                                // bhojnalayModel.Price = Convert.ToDecimal(row.Cells["Price"].Value);
                                 bhojnalayModel.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                                 //bhojnalayModel.Amount = Convert.ToDecimal(row.Cells["Amount"].Value);
                                 int id = obj.InsertRquToAdmin_DET(bhojnalayModel);
@@ -253,6 +404,7 @@ namespace SGMOSOL.SCREENS
                 }
                 MessageBox.Show("Record Saved Successully");
                 txtQuantity.Text = "";
+                clearControl();
             }
         }
 
@@ -263,7 +415,18 @@ namespace SGMOSOL.SCREENS
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
-
+            decimal price = 0;
+            decimal quantity = 0;
+            decimal amount = 0;
+            if (txtQuantity.Text != "")
+            {
+                quantity = Convert.ToDecimal(txtQuantity.Text);
+                amount = price * quantity;
+                if (Convert.ToInt32(txtQuantity.Text) > 99)
+                {
+                    lblQuantity.Text = "Quantity should not greater than 99";
+                }
+            }
         }
 
         private void pnlMaster_Paint(object sender, PaintEventArgs e)
@@ -286,6 +449,39 @@ namespace SGMOSOL.SCREENS
             {
                 btnNew.PerformClick();
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtItemName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '-')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboItemCode_TextChanged(object sender, EventArgs e)
+        {
+            UpdateSuggestions();
         }
     }
 }

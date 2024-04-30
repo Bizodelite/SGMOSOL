@@ -199,26 +199,23 @@ namespace SGMOSOL.DAL
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("your_connection_string"))
-                {
-                    connection.Open();
-                    foreach (BedCheckInDet item in coll)
-                    {
-                        SqlCommand command = new SqlCommand("SP_InsertBedCheckInDet", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@PrintRcptMstId", printRcptMstId);
-                        command.Parameters.AddWithValue("@ProdId", item.ProdId);
-                        command.Parameters.AddWithValue("@Rent", item.Rent);
-                        command.Parameters.AddWithValue("@Qty", item.Qty);
-                        command.Parameters.AddWithValue("@Advance", item.Advance);
-                        command.Parameters.AddWithValue("@TotalRent", item.TotalRent);
-                        command.Parameters.AddWithValue("@TotalAdv", item.TotalAdv);
 
-                        long A = clsConnection.ExecuteNonQuery(command);
-                        if (A > 0)
-                        {
-                            return A;
-                        }
+                foreach (BedCheckInDet item in coll)
+                {
+                    SqlCommand command = new SqlCommand("SP_InsertBedCheckInDet", clsConnection.GetConnection());
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@PrintRcptMstId", printRcptMstId);
+                    command.Parameters.AddWithValue("@ProdId", item.ProdId);
+                    command.Parameters.AddWithValue("@Rent", item.Rent);
+                    command.Parameters.AddWithValue("@Qty", item.Qty);
+                    command.Parameters.AddWithValue("@Advance", item.Advance);
+                    command.Parameters.AddWithValue("@TotalRent", item.TotalRent);
+                    command.Parameters.AddWithValue("@TotalAdv", item.TotalAdv);
+
+                    long A = clsConnection.ExecuteNonQuery(command);
+                    if (A > 0)
+                    {
+                        return A;
                     }
                 }
                 return 0; // Success

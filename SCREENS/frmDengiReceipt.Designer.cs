@@ -83,6 +83,7 @@ namespace SGMOSOL.SCREENS
             this.txtChqBankname = new System.Windows.Forms.TextBox();
             this.Label4 = new System.Windows.Forms.Label();
             this.pnlDetail = new System.Windows.Forms.Panel();
+            this.lblScanner = new System.Windows.Forms.Label();
             this.lblDistrict = new System.Windows.Forms.Label();
             this.lblTaluka = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -94,8 +95,6 @@ namespace SGMOSOL.SCREENS
             this.imgVideo = new System.Windows.Forms.PictureBox();
             this.lblScan = new System.Windows.Forms.Label();
             this.btnScan = new System.Windows.Forms.Button();
-            this.chkScanDoc = new System.Windows.Forms.CheckBox();
-            this.chkDeclaration = new System.Windows.Forms.CheckBox();
             this.txtPincode = new System.Windows.Forms.TextBox();
             this.lblPin = new System.Windows.Forms.Label();
             this.cboCountry = new System.Windows.Forms.ComboBox();
@@ -123,6 +122,8 @@ namespace SGMOSOL.SCREENS
             this.btnNew = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAcknowledge = new System.Windows.Forms.Button();
+            this.chkScanDoc = new System.Windows.Forms.CheckBox();
+            this.chkDeclaration = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlMaster.SuspendLayout();
             this.pnlDDDtl.SuspendLayout();
@@ -142,10 +143,10 @@ namespace SGMOSOL.SCREENS
             this.flowLayoutPanel1.Controls.Add(this.pnlMaster);
             this.flowLayoutPanel1.Controls.Add(this.pnlDetail);
             this.flowLayoutPanel1.Controls.Add(this.pnlBtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 138);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(47, 138);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1465, 660);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1617, 660);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // pnlMaster
@@ -184,21 +185,22 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Location = new System.Drawing.Point(4, 4);
             this.pnlMaster.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMaster.Name = "pnlMaster";
-            this.pnlMaster.Size = new System.Drawing.Size(1443, 246);
+            this.pnlMaster.Size = new System.Drawing.Size(1568, 246);
             this.pnlMaster.TabIndex = 2;
             // 
             // cboDoctype
             // 
             this.cboDoctype.BackColor = System.Drawing.Color.PaleTurquoise;
             this.cboDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDoctype.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboDoctype.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDoctype.FormattingEnabled = true;
-            this.cboDoctype.Location = new System.Drawing.Point(472, 63);
+            this.cboDoctype.Location = new System.Drawing.Point(573, 65);
             this.cboDoctype.Margin = new System.Windows.Forms.Padding(4);
             this.cboDoctype.Name = "cboDoctype";
-            this.cboDoctype.Size = new System.Drawing.Size(195, 33);
+            this.cboDoctype.Size = new System.Drawing.Size(226, 36);
             this.cboDoctype.TabIndex = 2;
             this.cboDoctype.SelectedIndexChanged += new System.EventHandler(this.cboDoctype_SelectedIndexChanged);
+            this.cboDoctype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDoctype_KeyDown);
             // 
             // lblPaymentMode
             // 
@@ -236,11 +238,11 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtPANNo.BackColor = System.Drawing.Color.Azure;
             this.txtPANNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPANNo.Location = new System.Drawing.Point(1055, 60);
+            this.txtPANNo.Location = new System.Drawing.Point(1437, 69);
             this.txtPANNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtPANNo.Name = "txtPANNo";
             this.txtPANNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPANNo.Size = new System.Drawing.Size(216, 30);
+            this.txtPANNo.Size = new System.Drawing.Size(47, 30);
             this.txtPANNo.TabIndex = 0;
             this.txtPANNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPANNo.Visible = false;
@@ -255,10 +257,10 @@ namespace SGMOSOL.SCREENS
             this.pnlDDDtl.Controls.Add(this.txtDDNo);
             this.pnlDDDtl.Controls.Add(this.txtDDBankName);
             this.pnlDDDtl.Controls.Add(this.Label12);
-            this.pnlDDDtl.Location = new System.Drawing.Point(17, 176);
+            this.pnlDDDtl.Location = new System.Drawing.Point(10, 178);
             this.pnlDDDtl.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDDDtl.Name = "pnlDDDtl";
-            this.pnlDDDtl.Size = new System.Drawing.Size(1303, 46);
+            this.pnlDDDtl.Size = new System.Drawing.Size(1457, 46);
             this.pnlDDDtl.TabIndex = 108;
             this.pnlDDDtl.TabStop = true;
             this.pnlDDDtl.Visible = false;
@@ -266,20 +268,21 @@ namespace SGMOSOL.SCREENS
             // dtDDdate
             // 
             this.dtDDdate.CustomFormat = "dd/MM/yyyy";
+            this.dtDDdate.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDDdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDDdate.Location = new System.Drawing.Point(1076, 11);
+            this.dtDDdate.Location = new System.Drawing.Point(1089, 7);
             this.dtDDdate.Name = "dtDDdate";
-            this.dtDDdate.Size = new System.Drawing.Size(200, 30);
+            this.dtDDdate.Size = new System.Drawing.Size(271, 35);
             this.dtDDdate.TabIndex = 84;
             // 
             // Label19
             // 
             this.Label19.AutoSize = true;
-            this.Label19.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label19.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label19.Location = new System.Drawing.Point(8, 14);
             this.Label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label19.Name = "Label19";
-            this.Label19.Size = new System.Drawing.Size(63, 23);
+            this.Label19.Size = new System.Drawing.Size(78, 28);
             this.Label19.TabIndex = 77;
             this.Label19.Text = "Bank ";
             this.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -287,11 +290,11 @@ namespace SGMOSOL.SCREENS
             // Label14
             // 
             this.Label14.AutoSize = true;
-            this.Label14.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label14.Location = new System.Drawing.Point(617, 14);
+            this.Label14.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label14.Location = new System.Drawing.Point(575, 18);
             this.Label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label14.Name = "Label14";
-            this.Label14.Size = new System.Drawing.Size(71, 23);
+            this.Label14.Size = new System.Drawing.Size(85, 28);
             this.Label14.TabIndex = 83;
             this.Label14.Text = "DD No";
             this.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,12 +302,12 @@ namespace SGMOSOL.SCREENS
             // Label13
             // 
             this.Label13.AutoSize = true;
-            this.Label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label13.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label13.ForeColor = System.Drawing.Color.Black;
-            this.Label13.Location = new System.Drawing.Point(977, 16);
+            this.Label13.Location = new System.Drawing.Point(954, 9);
             this.Label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label13.Name = "Label13";
-            this.Label13.Size = new System.Drawing.Size(88, 23);
+            this.Label13.Size = new System.Drawing.Size(108, 28);
             this.Label13.TabIndex = 82;
             this.Label13.Text = "DD Date";
             this.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -312,12 +315,12 @@ namespace SGMOSOL.SCREENS
             // txtDDNo
             // 
             this.txtDDNo.BackColor = System.Drawing.Color.MistyRose;
-            this.txtDDNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDDNo.Location = new System.Drawing.Point(764, 14);
+            this.txtDDNo.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDDNo.Location = new System.Drawing.Point(675, 15);
             this.txtDDNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDDNo.MaxLength = 20;
             this.txtDDNo.Name = "txtDDNo";
-            this.txtDDNo.Size = new System.Drawing.Size(155, 30);
+            this.txtDDNo.Size = new System.Drawing.Size(271, 35);
             this.txtDDNo.TabIndex = 5;
             this.txtDDNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -325,12 +328,12 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtDDBankName.BackColor = System.Drawing.Color.MistyRose;
             this.txtDDBankName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDDBankName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDDBankName.Location = new System.Drawing.Point(123, 12);
+            this.txtDDBankName.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDDBankName.Location = new System.Drawing.Point(94, 12);
             this.txtDDBankName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDDBankName.MaxLength = 30;
             this.txtDDBankName.Name = "txtDDBankName";
-            this.txtDDBankName.Size = new System.Drawing.Size(413, 30);
+            this.txtDDBankName.Size = new System.Drawing.Size(455, 35);
             this.txtDDBankName.TabIndex = 4;
             // 
             // Label12
@@ -359,12 +362,12 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtdocDetail.BackColor = System.Drawing.Color.Azure;
             this.txtdocDetail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtdocDetail.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdocDetail.Location = new System.Drawing.Point(857, 63);
+            this.txtdocDetail.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdocDetail.Location = new System.Drawing.Point(1066, 65);
             this.txtdocDetail.Margin = new System.Windows.Forms.Padding(4);
             this.txtdocDetail.Name = "txtdocDetail";
             this.txtdocDetail.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtdocDetail.Size = new System.Drawing.Size(155, 30);
+            this.txtdocDetail.Size = new System.Drawing.Size(236, 35);
             this.txtdocDetail.TabIndex = 3;
             this.txtdocDetail.TextChanged += new System.EventHandler(this.txtdocDetail_TextChanged);
             this.txtdocDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocDetail_KeyPress);
@@ -372,12 +375,12 @@ namespace SGMOSOL.SCREENS
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label17.Location = new System.Drawing.Point(672, 62);
+            this.label17.Location = new System.Drawing.Point(839, 68);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(169, 23);
+            this.label17.Size = new System.Drawing.Size(207, 28);
             this.label17.TabIndex = 111;
             this.label17.Text = "Document Detail";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -388,10 +391,11 @@ namespace SGMOSOL.SCREENS
             this.pnlswap.Controls.Add(this.Label15);
             this.pnlswap.Controls.Add(this.txtInvoice);
             this.pnlswap.Controls.Add(this.Label16);
+            this.pnlswap.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlswap.Location = new System.Drawing.Point(19, 176);
             this.pnlswap.Margin = new System.Windows.Forms.Padding(4);
             this.pnlswap.Name = "pnlswap";
-            this.pnlswap.Size = new System.Drawing.Size(1360, 43);
+            this.pnlswap.Size = new System.Drawing.Size(1524, 43);
             this.pnlswap.TabIndex = 109;
             this.pnlswap.TabStop = true;
             this.pnlswap.Visible = false;
@@ -407,7 +411,7 @@ namespace SGMOSOL.SCREENS
             this.cobTid.Location = new System.Drawing.Point(844, 10);
             this.cobTid.Margin = new System.Windows.Forms.Padding(4);
             this.cobTid.Name = "cobTid";
-            this.cobTid.Size = new System.Drawing.Size(157, 31);
+            this.cobTid.Size = new System.Drawing.Size(157, 36);
             this.cobTid.TabIndex = 3;
             // 
             // Label15
@@ -470,12 +474,12 @@ namespace SGMOSOL.SCREENS
             // lblPANNo
             // 
             this.lblPANNo.AutoSize = true;
-            this.lblPANNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPANNo.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPANNo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblPANNo.Location = new System.Drawing.Point(301, 66);
+            this.lblPANNo.Location = new System.Drawing.Point(366, 71);
             this.lblPANNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPANNo.Name = "lblPANNo";
-            this.lblPANNo.Size = new System.Drawing.Size(159, 23);
+            this.lblPANNo.Size = new System.Drawing.Size(193, 28);
             this.lblPANNo.TabIndex = 10;
             this.lblPANNo.Text = "Document Type";
             this.lblPANNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -483,13 +487,13 @@ namespace SGMOSOL.SCREENS
             // txtAmount
             // 
             this.txtAmount.BackColor = System.Drawing.Color.Azure;
-            this.txtAmount.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmount.Location = new System.Drawing.Point(125, 63);
+            this.txtAmount.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmount.Location = new System.Drawing.Point(127, 69);
             this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmount.MaxLength = 9;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtAmount.Size = new System.Drawing.Size(157, 30);
+            this.txtAmount.Size = new System.Drawing.Size(214, 35);
             this.txtAmount.TabIndex = 1;
             this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
@@ -499,23 +503,25 @@ namespace SGMOSOL.SCREENS
             this.cboPaymentType.BackColor = System.Drawing.Color.LightCyan;
             this.cboPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPaymentType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboPaymentType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPaymentType.FormattingEnabled = true;
             this.cboPaymentType.Location = new System.Drawing.Point(443, 135);
             this.cboPaymentType.Margin = new System.Windows.Forms.Padding(4);
             this.cboPaymentType.Name = "cboPaymentType";
-            this.cboPaymentType.Size = new System.Drawing.Size(240, 31);
+            this.cboPaymentType.Size = new System.Drawing.Size(240, 36);
             this.cboPaymentType.TabIndex = 5;
             this.cboPaymentType.SelectedIndexChanged += new System.EventHandler(this.cboPaymentType_SelectedIndexChanged);
+            this.cboPaymentType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboPaymentType_KeyDown);
             // 
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.Label1.Location = new System.Drawing.Point(13, 66);
             this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(85, 23);
+            this.Label1.Size = new System.Drawing.Size(104, 28);
             this.Label1.TabIndex = 8;
             this.Label1.Text = "Amount";
             this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -525,36 +531,39 @@ namespace SGMOSOL.SCREENS
             this.cboDengiType.BackColor = System.Drawing.Color.LightCyan;
             this.cboDengiType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDengiType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboDengiType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDengiType.FormattingEnabled = true;
             this.cboDengiType.Location = new System.Drawing.Point(125, 135);
             this.cboDengiType.Margin = new System.Windows.Forms.Padding(4);
             this.cboDengiType.Name = "cboDengiType";
-            this.cboDengiType.Size = new System.Drawing.Size(153, 31);
+            this.cboDengiType.Size = new System.Drawing.Size(153, 36);
             this.cboDengiType.TabIndex = 4;
             this.cboDengiType.SelectedIndexChanged += new System.EventHandler(this.cboDengiType_SelectedIndexChanged);
+            this.cboDengiType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDengiType_KeyDown);
             // 
             // dtpPrnRcptDt
             // 
             this.dtpPrnRcptDt.Checked = false;
             this.dtpPrnRcptDt.CustomFormat = "dd/MM/yyyy";
             this.dtpPrnRcptDt.Enabled = false;
+            this.dtpPrnRcptDt.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrnRcptDt.Location = new System.Drawing.Point(1125, 15);
+            this.dtpPrnRcptDt.Location = new System.Drawing.Point(1251, 17);
             this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
-            this.dtpPrnRcptDt.Size = new System.Drawing.Size(155, 30);
+            this.dtpPrnRcptDt.Size = new System.Drawing.Size(233, 35);
             this.dtpPrnRcptDt.TabIndex = 7;
             this.dtpPrnRcptDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
             // Label9
             // 
             this.Label9.AutoSize = true;
-            this.Label9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label9.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label9.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label9.Location = new System.Drawing.Point(1051, 17);
+            this.Label9.Location = new System.Drawing.Point(1176, 17);
             this.Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label9.Name = "Label9";
-            this.Label9.Size = new System.Drawing.Size(54, 23);
+            this.Label9.Size = new System.Drawing.Size(67, 28);
             this.Label9.TabIndex = 6;
             this.Label9.Text = "Date";
             this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -562,12 +571,12 @@ namespace SGMOSOL.SCREENS
             // Label7
             // 
             this.Label7.AutoSize = true;
-            this.Label7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label7.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label7.ForeColor = System.Drawing.Color.DarkBlue;
             this.Label7.Location = new System.Drawing.Point(323, 138);
             this.Label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label7.Name = "Label7";
-            this.Label7.Size = new System.Drawing.Size(62, 23);
+            this.Label7.Size = new System.Drawing.Size(75, 28);
             this.Label7.TabIndex = 15;
             this.Label7.Text = "Mode";
             this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -575,12 +584,12 @@ namespace SGMOSOL.SCREENS
             // Label6
             // 
             this.Label6.AutoSize = true;
-            this.Label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label6.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label6.ForeColor = System.Drawing.Color.DarkBlue;
             this.Label6.Location = new System.Drawing.Point(13, 138);
             this.Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(56, 23);
+            this.Label6.Size = new System.Drawing.Size(67, 28);
             this.Label6.TabIndex = 13;
             this.Label6.Text = "Type";
             this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -588,12 +597,12 @@ namespace SGMOSOL.SCREENS
             // Label5
             // 
             this.Label5.AutoSize = true;
-            this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label5.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label5.Location = new System.Drawing.Point(301, 17);
+            this.Label5.Location = new System.Drawing.Point(368, 18);
             this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(53, 23);
+            this.Label5.Size = new System.Drawing.Size(65, 28);
             this.Label5.TabIndex = 2;
             this.Label5.Text = "User";
             this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -602,11 +611,12 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtUser.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(427, 14);
+            this.txtUser.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser.Location = new System.Drawing.Point(472, 16);
             this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
-            this.txtUser.Size = new System.Drawing.Size(240, 30);
+            this.txtUser.Size = new System.Drawing.Size(295, 35);
             this.txtUser.TabIndex = 3;
             this.txtUser.TabStop = false;
             // 
@@ -614,11 +624,12 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtdengireceiptNo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtdengireceiptNo.Enabled = false;
-            this.txtdengireceiptNo.Location = new System.Drawing.Point(857, 15);
+            this.txtdengireceiptNo.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdengireceiptNo.Location = new System.Drawing.Point(959, 18);
             this.txtdengireceiptNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtdengireceiptNo.Name = "txtdengireceiptNo";
             this.txtdengireceiptNo.ReadOnly = true;
-            this.txtdengireceiptNo.Size = new System.Drawing.Size(155, 30);
+            this.txtdengireceiptNo.Size = new System.Drawing.Size(195, 35);
             this.txtdengireceiptNo.TabIndex = 5;
             this.txtdengireceiptNo.TabStop = false;
             this.txtdengireceiptNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -627,12 +638,12 @@ namespace SGMOSOL.SCREENS
             // Label11
             // 
             this.Label11.AutoSize = true;
-            this.Label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label11.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label11.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Label11.Location = new System.Drawing.Point(729, 17);
+            this.Label11.Location = new System.Drawing.Point(806, 17);
             this.Label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label11.Name = "Label11";
-            this.Label11.Size = new System.Drawing.Size(109, 23);
+            this.Label11.Size = new System.Drawing.Size(132, 28);
             this.Label11.TabIndex = 4;
             this.Label11.Text = "Denagi No";
             this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -641,17 +652,18 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtCounter.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCounter.Enabled = false;
+            this.txtCounter.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCounter.Location = new System.Drawing.Point(123, 15);
             this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
             this.txtCounter.Name = "txtCounter";
             this.txtCounter.ReadOnly = true;
-            this.txtCounter.Size = new System.Drawing.Size(157, 30);
+            this.txtCounter.Size = new System.Drawing.Size(218, 35);
             this.txtCounter.TabIndex = 1;
             this.txtCounter.TabStop = false;
             // 
             // Label2
             // 
-            this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label2.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.Label2.Location = new System.Drawing.Point(12, 10);
             this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -816,6 +828,7 @@ namespace SGMOSOL.SCREENS
             // pnlDetail
             // 
             this.pnlDetail.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlDetail.Controls.Add(this.lblScanner);
             this.pnlDetail.Controls.Add(this.lblDistrict);
             this.pnlDetail.Controls.Add(this.lblTaluka);
             this.pnlDetail.Controls.Add(this.lblName);
@@ -827,8 +840,6 @@ namespace SGMOSOL.SCREENS
             this.pnlDetail.Controls.Add(this.imgVideo);
             this.pnlDetail.Controls.Add(this.lblScan);
             this.pnlDetail.Controls.Add(this.btnScan);
-            this.pnlDetail.Controls.Add(this.chkScanDoc);
-            this.pnlDetail.Controls.Add(this.chkDeclaration);
             this.pnlDetail.Controls.Add(this.txtPincode);
             this.pnlDetail.Controls.Add(this.lblPin);
             this.pnlDetail.Controls.Add(this.cboCountry);
@@ -852,14 +863,24 @@ namespace SGMOSOL.SCREENS
             this.pnlDetail.Location = new System.Drawing.Point(4, 258);
             this.pnlDetail.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(1443, 276);
+            this.pnlDetail.Size = new System.Drawing.Size(1568, 253);
             this.pnlDetail.TabIndex = 7;
+            // 
+            // lblScanner
+            // 
+            this.lblScanner.AutoSize = true;
+            this.lblScanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanner.ForeColor = System.Drawing.Color.OliveDrab;
+            this.lblScanner.Location = new System.Drawing.Point(1080, 217);
+            this.lblScanner.Name = "lblScanner";
+            this.lblScanner.Size = new System.Drawing.Size(0, 16);
+            this.lblScanner.TabIndex = 168;
             // 
             // lblDistrict
             // 
             this.lblDistrict.AutoSize = true;
             this.lblDistrict.ForeColor = System.Drawing.Color.Red;
-            this.lblDistrict.Location = new System.Drawing.Point(905, 180);
+            this.lblDistrict.Location = new System.Drawing.Point(532, 186);
             this.lblDistrict.Name = "lblDistrict";
             this.lblDistrict.Size = new System.Drawing.Size(0, 16);
             this.lblDistrict.TabIndex = 167;
@@ -868,7 +889,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.lblTaluka.AutoSize = true;
             this.lblTaluka.ForeColor = System.Drawing.Color.Red;
-            this.lblTaluka.Location = new System.Drawing.Point(103, 218);
+            this.lblTaluka.Location = new System.Drawing.Point(982, 189);
             this.lblTaluka.Name = "lblTaluka";
             this.lblTaluka.Size = new System.Drawing.Size(0, 16);
             this.lblTaluka.TabIndex = 166;
@@ -919,7 +940,7 @@ namespace SGMOSOL.SCREENS
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(855, 226);
+            this.btnClear.Location = new System.Drawing.Point(1007, 209);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(65, 32);
@@ -930,19 +951,19 @@ namespace SGMOSOL.SCREENS
             // 
             // imgVideo
             // 
-            this.imgVideo.Location = new System.Drawing.Point(1224, 132);
+            this.imgVideo.Location = new System.Drawing.Point(1273, 149);
             this.imgVideo.Margin = new System.Windows.Forms.Padding(4);
             this.imgVideo.Name = "imgVideo";
-            this.imgVideo.Size = new System.Drawing.Size(173, 140);
+            this.imgVideo.Size = new System.Drawing.Size(169, 129);
             this.imgVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgVideo.TabIndex = 158;
             this.imgVideo.TabStop = false;
             // 
             // lblScan
             // 
-            this.lblScan.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScan.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScan.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblScan.Location = new System.Drawing.Point(12, 233);
+            this.lblScan.Location = new System.Drawing.Point(366, 206);
             this.lblScan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScan.Name = "lblScan";
             this.lblScan.Size = new System.Drawing.Size(83, 26);
@@ -952,61 +973,33 @@ namespace SGMOSOL.SCREENS
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(728, 230);
+            this.btnScan.Location = new System.Drawing.Point(917, 209);
             this.btnScan.Margin = new System.Windows.Forms.Padding(4);
             this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(119, 32);
+            this.btnScan.Size = new System.Drawing.Size(82, 32);
             this.btnScan.TabIndex = 21;
             this.btnScan.Text = "Scanner";
             this.btnScan.UseVisualStyleBackColor = true;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
-            // chkScanDoc
-            // 
-            this.chkScanDoc.AutoSize = true;
-            this.chkScanDoc.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkScanDoc.ForeColor = System.Drawing.Color.DarkBlue;
-            this.chkScanDoc.Location = new System.Drawing.Point(1337, 245);
-            this.chkScanDoc.Margin = new System.Windows.Forms.Padding(5);
-            this.chkScanDoc.Name = "chkScanDoc";
-            this.chkScanDoc.Size = new System.Drawing.Size(180, 27);
-            this.chkScanDoc.TabIndex = 23;
-            this.chkScanDoc.Text = "Scan Document";
-            this.chkScanDoc.UseVisualStyleBackColor = true;
-            this.chkScanDoc.Visible = false;
-            // 
-            // chkDeclaration
-            // 
-            this.chkDeclaration.AutoSize = true;
-            this.chkDeclaration.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDeclaration.ForeColor = System.Drawing.Color.DarkBlue;
-            this.chkDeclaration.Location = new System.Drawing.Point(1003, 234);
-            this.chkDeclaration.Margin = new System.Windows.Forms.Padding(4);
-            this.chkDeclaration.Name = "chkDeclaration";
-            this.chkDeclaration.Size = new System.Drawing.Size(193, 27);
-            this.chkDeclaration.TabIndex = 24;
-            this.chkDeclaration.Text = "Print Declaration";
-            this.chkDeclaration.UseVisualStyleBackColor = true;
-            this.chkDeclaration.Visible = false;
-            // 
             // txtPincode
             // 
             this.txtPincode.BackColor = System.Drawing.Color.Azure;
-            this.txtPincode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtPincode.Location = new System.Drawing.Point(487, 187);
+            this.txtPincode.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPincode.Location = new System.Drawing.Point(123, 204);
             this.txtPincode.Margin = new System.Windows.Forms.Padding(4);
             this.txtPincode.MaxLength = 20;
             this.txtPincode.Name = "txtPincode";
-            this.txtPincode.Size = new System.Drawing.Size(212, 31);
+            this.txtPincode.Size = new System.Drawing.Size(238, 35);
             this.txtPincode.TabIndex = 18;
             this.txtPincode.TextChanged += new System.EventHandler(this.txtPincode_TextChanged);
             this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPincode_KeyPress);
             // 
             // lblPin
             // 
-            this.lblPin.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPin.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPin.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblPin.Location = new System.Drawing.Point(381, 190);
+            this.lblPin.Location = new System.Drawing.Point(9, 202);
             this.lblPin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPin.Name = "lblPin";
             this.lblPin.Size = new System.Drawing.Size(117, 26);
@@ -1018,22 +1011,23 @@ namespace SGMOSOL.SCREENS
             // 
             this.cboCountry.BackColor = System.Drawing.Color.PaleTurquoise;
             this.cboCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboCountry.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCountry.FormattingEnabled = true;
-            this.cboCountry.Location = new System.Drawing.Point(109, 142);
+            this.cboCountry.Location = new System.Drawing.Point(114, 108);
             this.cboCountry.Margin = new System.Windows.Forms.Padding(4);
             this.cboCountry.Name = "cboCountry";
-            this.cboCountry.Size = new System.Drawing.Size(252, 33);
+            this.cboCountry.Size = new System.Drawing.Size(311, 36);
             this.cboCountry.TabIndex = 10;
+            this.cboCountry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCountry_KeyDown);
             // 
             // Label22
             // 
-            this.Label22.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label22.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label22.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Label22.Location = new System.Drawing.Point(9, 145);
+            this.Label22.Location = new System.Drawing.Point(7, 107);
             this.Label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label22.Name = "Label22";
-            this.Label22.Size = new System.Drawing.Size(101, 26);
+            this.Label22.Size = new System.Drawing.Size(123, 26);
             this.Label22.TabIndex = 9;
             this.Label22.Text = "Country";
             this.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1042,33 +1036,35 @@ namespace SGMOSOL.SCREENS
             // 
             this.cboDistrict.BackColor = System.Drawing.Color.PaleTurquoise;
             this.cboDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDistrict.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboDistrict.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDistrict.FormattingEnabled = true;
-            this.cboDistrict.Location = new System.Drawing.Point(909, 142);
+            this.cboDistrict.Location = new System.Drawing.Point(535, 146);
             this.cboDistrict.Margin = new System.Windows.Forms.Padding(4);
             this.cboDistrict.Name = "cboDistrict";
-            this.cboDistrict.Size = new System.Drawing.Size(273, 33);
+            this.cboDistrict.Size = new System.Drawing.Size(337, 36);
             this.cboDistrict.TabIndex = 14;
             this.cboDistrict.SelectedIndexChanged += new System.EventHandler(this.cboDistrict_SelectedIndexChanged);
+            this.cboDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDistrict_KeyDown);
             // 
             // cboState
             // 
             this.cboState.BackColor = System.Drawing.Color.PaleTurquoise;
             this.cboState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboState.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboState.FormattingEnabled = true;
-            this.cboState.Location = new System.Drawing.Point(487, 142);
+            this.cboState.Location = new System.Drawing.Point(114, 152);
             this.cboState.Margin = new System.Windows.Forms.Padding(4);
             this.cboState.Name = "cboState";
-            this.cboState.Size = new System.Drawing.Size(283, 33);
+            this.cboState.Size = new System.Drawing.Size(311, 36);
             this.cboState.TabIndex = 12;
             this.cboState.SelectedIndexChanged += new System.EventHandler(this.cboState_SelectedIndexChanged);
+            this.cboState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboState_KeyDown);
             // 
             // Label20
             // 
-            this.Label20.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label20.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label20.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Label20.Location = new System.Drawing.Point(381, 145);
+            this.Label20.Location = new System.Drawing.Point(9, 147);
             this.Label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label20.Name = "Label20";
             this.Label20.Size = new System.Drawing.Size(83, 26);
@@ -1080,24 +1076,24 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtScan.BackColor = System.Drawing.Color.Azure;
             this.txtScan.Enabled = false;
-            this.txtScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtScan.Location = new System.Drawing.Point(109, 231);
+            this.txtScan.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScan.Location = new System.Drawing.Point(440, 209);
             this.txtScan.Margin = new System.Windows.Forms.Padding(4);
             this.txtScan.MaxLength = 20;
             this.txtScan.Name = "txtScan";
-            this.txtScan.Size = new System.Drawing.Size(591, 31);
+            this.txtScan.Size = new System.Drawing.Size(452, 35);
             this.txtScan.TabIndex = 20;
             // 
             // txtname
             // 
             this.txtname.BackColor = System.Drawing.Color.Azure;
             this.txtname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtname.Location = new System.Drawing.Point(109, 10);
+            this.txtname.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtname.Location = new System.Drawing.Point(117, 10);
             this.txtname.Margin = new System.Windows.Forms.Padding(4);
             this.txtname.MaxLength = 200;
             this.txtname.Name = "txtname";
-            this.txtname.Size = new System.Drawing.Size(440, 31);
+            this.txtname.Size = new System.Drawing.Size(778, 35);
             this.txtname.TabIndex = 6;
             this.txtname.TextChanged += new System.EventHandler(this.txtname_TextChanged);
             // 
@@ -1105,35 +1101,36 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtAddGotra.BackColor = System.Drawing.Color.Azure;
             this.txtAddGotra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAddGotra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtAddGotra.Location = new System.Drawing.Point(899, 10);
+            this.txtAddGotra.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddGotra.Location = new System.Drawing.Point(1215, 10);
             this.txtAddGotra.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddGotra.Name = "txtAddGotra";
-            this.txtAddGotra.Size = new System.Drawing.Size(227, 31);
+            this.txtAddGotra.Size = new System.Drawing.Size(227, 35);
             this.txtAddGotra.TabIndex = 4;
             this.txtAddGotra.Visible = false;
+            this.txtAddGotra.TextChanged += new System.EventHandler(this.txtAddGotra_TextChanged);
             // 
             // txttal
             // 
             this.txttal.BackColor = System.Drawing.Color.Azure;
             this.txttal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txttal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txttal.Location = new System.Drawing.Point(109, 188);
+            this.txttal.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttal.Location = new System.Drawing.Point(985, 147);
             this.txttal.Margin = new System.Windows.Forms.Padding(4);
             this.txttal.MaxLength = 20;
             this.txttal.Name = "txttal";
-            this.txttal.Size = new System.Drawing.Size(252, 31);
+            this.txttal.Size = new System.Drawing.Size(284, 35);
             this.txttal.TabIndex = 16;
             this.txttal.TextChanged += new System.EventHandler(this.txttal_TextChanged);
             // 
             // Label29
             // 
-            this.Label29.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label29.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label29.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Label29.Location = new System.Drawing.Point(11, 190);
+            this.Label29.Location = new System.Drawing.Point(880, 149);
             this.Label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label29.Name = "Label29";
-            this.Label29.Size = new System.Drawing.Size(83, 26);
+            this.Label29.Size = new System.Drawing.Size(100, 26);
             this.Label29.TabIndex = 15;
             this.Label29.Text = "Taluka";
             this.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1141,12 +1138,12 @@ namespace SGMOSOL.SCREENS
             // Label28
             // 
             this.Label28.AutoSize = true;
-            this.Label28.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label28.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label28.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Label28.Location = new System.Drawing.Point(804, 144);
+            this.Label28.Location = new System.Drawing.Point(430, 149);
             this.Label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label28.Name = "Label28";
-            this.Label28.Size = new System.Drawing.Size(80, 23);
+            this.Label28.Size = new System.Drawing.Size(97, 28);
             this.Label28.TabIndex = 13;
             this.Label28.Text = "District";
             this.Label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1154,24 +1151,24 @@ namespace SGMOSOL.SCREENS
             // txtmob
             // 
             this.txtmob.BackColor = System.Drawing.Color.Azure;
-            this.txtmob.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtmob.Location = new System.Drawing.Point(109, 62);
+            this.txtmob.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmob.Location = new System.Drawing.Point(114, 68);
             this.txtmob.Margin = new System.Windows.Forms.Padding(4);
             this.txtmob.MaxLength = 10;
             this.txtmob.Name = "txtmob";
-            this.txtmob.Size = new System.Drawing.Size(252, 31);
+            this.txtmob.Size = new System.Drawing.Size(308, 35);
             this.txtmob.TabIndex = 8;
             this.txtmob.TextChanged += new System.EventHandler(this.txtmob_TextChanged);
             this.txtmob.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmob_KeyPress);
             // 
             // Label27
             // 
-            this.Label27.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label27.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label27.ForeColor = System.Drawing.Color.DarkBlue;
             this.Label27.Location = new System.Drawing.Point(9, 62);
             this.Label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label27.Name = "Label27";
-            this.Label27.Size = new System.Drawing.Size(91, 22);
+            this.Label27.Size = new System.Drawing.Size(102, 22);
             this.Label27.TabIndex = 5;
             this.Label27.Text = "Mobile";
             this.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1180,25 +1177,25 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtaddr.BackColor = System.Drawing.Color.Azure;
             this.txtaddr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtaddr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtaddr.Location = new System.Drawing.Point(487, 62);
+            this.txtaddr.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtaddr.Location = new System.Drawing.Point(549, 63);
             this.txtaddr.Margin = new System.Windows.Forms.Padding(4);
             this.txtaddr.MaxLength = 70;
             this.txtaddr.Multiline = true;
             this.txtaddr.Name = "txtaddr";
             this.txtaddr.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtaddr.Size = new System.Drawing.Size(911, 64);
+            this.txtaddr.Size = new System.Drawing.Size(893, 76);
             this.txtaddr.TabIndex = 9;
             this.txtaddr.TextChanged += new System.EventHandler(this.txtaddr_TextChanged);
             // 
             // Label25
             // 
-            this.Label25.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label25.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label25.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Label25.Location = new System.Drawing.Point(381, 62);
+            this.Label25.Location = new System.Drawing.Point(439, 63);
             this.Label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label25.Name = "Label25";
-            this.Label25.Size = new System.Drawing.Size(103, 27);
+            this.Label25.Size = new System.Drawing.Size(120, 27);
             this.Label25.TabIndex = 7;
             this.Label25.Text = "Address";
             this.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1207,31 +1204,32 @@ namespace SGMOSOL.SCREENS
             // 
             this.cboGotra.BackColor = System.Drawing.Color.PaleTurquoise;
             this.cboGotra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGotra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cboGotra.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboGotra.FormattingEnabled = true;
-            this.cboGotra.Location = new System.Drawing.Point(681, 9);
+            this.cboGotra.Location = new System.Drawing.Point(998, 9);
             this.cboGotra.Margin = new System.Windows.Forms.Padding(4);
             this.cboGotra.Name = "cboGotra";
-            this.cboGotra.Size = new System.Drawing.Size(209, 33);
+            this.cboGotra.Size = new System.Drawing.Size(209, 36);
             this.cboGotra.TabIndex = 7;
             this.cboGotra.SelectedIndexChanged += new System.EventHandler(this.cboGotra_SelectedIndexChanged);
+            this.cboGotra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboGotra_KeyDown);
             // 
             // Label26
             // 
             this.Label26.AutoSize = true;
-            this.Label26.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label26.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label26.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Label26.Location = new System.Drawing.Point(591, 12);
+            this.Label26.Location = new System.Drawing.Point(903, 13);
             this.Label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label26.Name = "Label26";
-            this.Label26.Size = new System.Drawing.Size(63, 23);
+            this.Label26.Size = new System.Drawing.Size(77, 28);
             this.Label26.TabIndex = 2;
             this.Label26.Text = "Gotra";
             this.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Label24
             // 
-            this.Label24.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label24.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label24.ForeColor = System.Drawing.Color.DarkBlue;
             this.Label24.Location = new System.Drawing.Point(9, 10);
             this.Label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1250,18 +1248,20 @@ namespace SGMOSOL.SCREENS
             this.pnlBtn.Controls.Add(this.btnNew);
             this.pnlBtn.Controls.Add(this.btnSave);
             this.pnlBtn.Controls.Add(this.btnAcknowledge);
-            this.pnlBtn.Location = new System.Drawing.Point(4, 542);
+            this.pnlBtn.Controls.Add(this.chkScanDoc);
+            this.pnlBtn.Controls.Add(this.chkDeclaration);
+            this.pnlBtn.Location = new System.Drawing.Point(4, 519);
             this.pnlBtn.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBtn.Name = "pnlBtn";
-            this.pnlBtn.Size = new System.Drawing.Size(1443, 81);
+            this.pnlBtn.Size = new System.Drawing.Size(1568, 63);
             this.pnlBtn.TabIndex = 113;
             // 
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
-            this.btnClose.Location = new System.Drawing.Point(815, 10);
+            this.btnClose.Location = new System.Drawing.Point(844, 10);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(133, 57);
@@ -1272,23 +1272,23 @@ namespace SGMOSOL.SCREENS
             // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::SGMOSOL.ResourceMain.Search;
-            this.btnSearch.Location = new System.Drawing.Point(107, 10);
+            this.btnSearch.Location = new System.Drawing.Point(104, 10);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(115, 57);
+            this.btnSearch.Size = new System.Drawing.Size(127, 57);
             this.btnSearch.TabIndex = 5;
-            this.btnSearch.Text = "&Find /\r\nSearch";
+            this.btnSearch.Text = "Search";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click_1);
             // 
             // btnPrint
             // 
             this.btnPrint.Enabled = false;
-            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
-            this.btnPrint.Location = new System.Drawing.Point(691, 10);
+            this.btnPrint.Location = new System.Drawing.Point(707, 10);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(116, 57);
@@ -1300,9 +1300,9 @@ namespace SGMOSOL.SCREENS
             // btnNew
             // 
             this.btnNew.CausesValidation = false;
-            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Image = global::SGMOSOL.ResourceMain._new;
-            this.btnNew.Location = new System.Drawing.Point(252, 10);
+            this.btnNew.Location = new System.Drawing.Point(250, 10);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(129, 57);
@@ -1313,9 +1313,9 @@ namespace SGMOSOL.SCREENS
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
-            this.btnSave.Location = new System.Drawing.Point(544, 4);
+            this.btnSave.Location = new System.Drawing.Point(550, 10);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 57);
@@ -1326,29 +1326,60 @@ namespace SGMOSOL.SCREENS
             // 
             // btnAcknowledge
             // 
-            this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcknowledge.Image = global::SGMOSOL.ResourceMain.Edit;
-            this.btnAcknowledge.Location = new System.Drawing.Point(405, 5);
+            this.btnAcknowledge.Location = new System.Drawing.Point(392, 10);
             this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(5);
             this.btnAcknowledge.Name = "btnAcknowledge";
-            this.btnAcknowledge.Size = new System.Drawing.Size(124, 57);
+            this.btnAcknowledge.Size = new System.Drawing.Size(149, 57);
             this.btnAcknowledge.TabIndex = 4;
             this.btnAcknowledge.Text = "&Declaration";
             this.btnAcknowledge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAcknowledge.Click += new System.EventHandler(this.btnAcknowledge_Click);
             // 
+            // chkScanDoc
+            // 
+            this.chkScanDoc.AutoSize = true;
+            this.chkScanDoc.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkScanDoc.ForeColor = System.Drawing.Color.DarkBlue;
+            this.chkScanDoc.Location = new System.Drawing.Point(1084, 40);
+            this.chkScanDoc.Margin = new System.Windows.Forms.Padding(5);
+            this.chkScanDoc.Name = "chkScanDoc";
+            this.chkScanDoc.Size = new System.Drawing.Size(180, 27);
+            this.chkScanDoc.TabIndex = 23;
+            this.chkScanDoc.Text = "Scan Document";
+            this.chkScanDoc.UseVisualStyleBackColor = true;
+            this.chkScanDoc.Visible = false;
+            this.chkScanDoc.CheckedChanged += new System.EventHandler(this.chkScanDoc_CheckedChanged);
+            // 
+            // chkDeclaration
+            // 
+            this.chkDeclaration.AutoSize = true;
+            this.chkDeclaration.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDeclaration.ForeColor = System.Drawing.Color.DarkBlue;
+            this.chkDeclaration.Location = new System.Drawing.Point(1084, 10);
+            this.chkDeclaration.Margin = new System.Windows.Forms.Padding(4);
+            this.chkDeclaration.Name = "chkDeclaration";
+            this.chkDeclaration.Size = new System.Drawing.Size(193, 27);
+            this.chkDeclaration.TabIndex = 24;
+            this.chkDeclaration.Text = "Print Declaration";
+            this.chkDeclaration.UseVisualStyleBackColor = true;
+            this.chkDeclaration.Visible = false;
+            // 
             // frmDengiReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 750);
+            this.ClientSize = new System.Drawing.Size(1744, 768);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmDengiReceipt";
             this.Text = "Dengi Receipt";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDengiReceipt_FormClosed);
             this.Load += new System.EventHandler(this.frmDengiReceipt_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDengiReceipt_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmDengiReceipt_KeyPress);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmDengiReceipt_MouseClick);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.pnlMaster.ResumeLayout(false);
             this.pnlMaster.PerformLayout();
@@ -1364,6 +1395,7 @@ namespace SGMOSOL.SCREENS
             this.pnlDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).EndInit();
             this.pnlBtn.ResumeLayout(false);
+            this.pnlBtn.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1465,5 +1497,6 @@ namespace SGMOSOL.SCREENS
         internal System.Windows.Forms.ComboBox cboDoctype;
         internal System.Windows.Forms.DateTimePicker dtChqDt;
         private System.Windows.Forms.DateTimePicker dtDDdate;
+        private System.Windows.Forms.Label lblScanner;
     }
 }

@@ -76,7 +76,7 @@ namespace SGMOSOL.SCREENS
         public void getTotalAmountByPaymentId()
         {
             DataTable dt = new DataTable();
-            dt = obj.GETTOTALAMOUNTBYPAYMENTID(cm.ParseDateTimeInAnyFormat(dtfromDate.Text), cm.ParseDateTimeInAnyFormat(dtToDate.Text));
+            dt = obj.GETTOTALAMOUNTBYPAYMENTID(Convert.ToDateTime(dtfromDate.Text),Convert.ToDateTime(dtToDate.Text));
             ReportParameter[] parameters = new ReportParameter[5];
             parameters[0] = new ReportParameter("COUNTER", txtCounter.Text);
             parameters[1] = new ReportParameter("USERNAME", txtUserName.Text);

@@ -138,6 +138,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                dtpPrnRcptDt.Value = DateTime.Now;
                 commonFunctions.setControlsonForm(this, CtrlArr, btnArr);
                 commonFunctions.SetUserScreenActions(this, UserInfo.UserId, (int)eScreenID.DengiReceipt, btnArr, null, mBlnEdit);
                 int centerX = (ClientSize.Width - flowLayoutPanel1.Width) / 2;
@@ -823,164 +824,174 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
-                int AmountAboove = 0;
-                int AmountBelow = 0;
-                int Amount = 0;
-                string lstEnteredName = null;
-                int lstEnteredAmount = 0;
-                DialogResult result;
-                dengiReceiptModel = new dengiReceiptModel();
-                loginDAL login = new loginDAL();
-                // dengiReceiptModel.dr_Date = dtpPrnRcptDt.Value;
-                dengiReceiptModel.dr_Date = commonFunctions.ParseDateTimeInAnyFormat(dtpPrnRcptDt.Text);
-                dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
-                dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;
-                dengiReceiptModel.COUNTRY_NAME = cboCountry.Text;
-                // dengiReceiptModel.counter = int.Parse(txtCounter.Text);
-                dengiReceiptModel.contact = txtmob.Text;
-                dengiReceiptModel.Name = txtname.Text;
-                dengiReceiptModel.amount = decimal.Parse(txtAmount.Text);
-                Amount = Convert.ToInt32(txtAmount.Text);
-                dengiReceiptModel.chno = txtChqNo.Text;
-                dengiReceiptModel.chqbankname = txtChqBankname.Text;
-                dengiReceiptModel.PinCode = txtPincode.Text;
-                dengiReceiptModel.userId = UserInfo.UserId;
-                dengiReceiptModel.PanNo = txtPANNo.Text;
-                dengiReceiptModel.Taluka = txttal.Text;
-                dengiReceiptModel.gotraId = (int)cboGotra.SelectedValue;
-                if (cboGotra.Text == "OTHER")
+                loginDAL objLogin = new loginDAL();
+                if (!objLogin.CheckDateTime())
                 {
-                    dengiReceiptModel.gotra = txtAddGotra.Text;
+                    MessageBox.Show("Date mismatch");
+                    return;
                 }
                 else
                 {
-                    dengiReceiptModel.gotra = cboGotra.Text.Trim();
-                }
 
-                dengiReceiptModel.stateId = (int)cboState.SelectedValue;
-                dengiReceiptModel.STATE = cboState.Text;
-                if (txtChqNo.Text != "")
-                    dengiReceiptModel.chqdate = DateTime.Parse(dtChqDt.Text);
-                dengiReceiptModel.Address = txtaddr.Text;
-                dengiReceiptModel.ddbankname = txtDDBankName.Text;
-                dengiReceiptModel.ddbankname = txtDDBankName.Text;
-                dengiReceiptModel.ddno = txtDDNo.Text;
-                if (txtDDNo.Text != "")
-                {
-                    dengiReceiptModel.dd_date = DateTime.Parse(dtDDdate.Text);
-                }
-                dengiReceiptModel.paymentTypeId = (int)cboPaymentType.SelectedValue;
-                dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
-                dengiReceiptModel.DistId = (int)cboDistrict.SelectedValue;
-                dengiReceiptModel.DISTRICT = cboDistrict.Text;
-                // dengiReceiptModel.Doc_type = cboDoctype.Text;
-                dengiReceiptModel.Doc_type = cboDoctype.SelectedValue.ToString();
-                dengiReceiptModel.Doc_Detail = txtdocDetail.Text;
-                dengiReceiptModel.netbankname = txtNetBankName.Text;
-                dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
-                dengiReceiptModel.Invoiceno = txtInvoice.Text;
-                if (txtScan.Text != "")
-                {
-                    dengiReceiptModel.ScanImage = txtScan.Text;
-                }
-                if (cboPaymentType.Text == "Swipe")
-                {
-                    dengiReceiptModel.tidId = (int)cobTid.SelectedValue;
-                }
-                else
-                {
-                    dengiReceiptModel.tidId = 0;
-                }
-                dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
-                if (dt.Rows.Count > 0)
-                {
-                    foreach (DataRow row in dt.Rows)
+                    int AmountAboove = 0;
+                    int AmountBelow = 0;
+                    int Amount = 0;
+                    string lstEnteredName = null;
+                    int lstEnteredAmount = 0;
+                    DialogResult result;
+                    dengiReceiptModel = new dengiReceiptModel();
+                    loginDAL login = new loginDAL();
+                    dengiReceiptModel.dr_Date = dtpPrnRcptDt.Value;
+                    // dengiReceiptModel.dr_Date = commonFunctions.ParseDateTimeInAnyFormat(dtpPrnRcptDt.Text);
+                    dengiReceiptModel.serailId = Convert.ToDouble(txtdengireceiptNo.Text);
+                    dengiReceiptModel.countryId = (int)cboCountry.SelectedValue;
+                    dengiReceiptModel.COUNTRY_NAME = cboCountry.Text;
+                    // dengiReceiptModel.counter = int.Parse(txtCounter.Text);
+                    dengiReceiptModel.contact = txtmob.Text;
+                    dengiReceiptModel.Name = txtname.Text;
+                    dengiReceiptModel.amount = decimal.Parse(txtAmount.Text);
+                    Amount = Convert.ToInt32(txtAmount.Text);
+                    dengiReceiptModel.chno = txtChqNo.Text;
+                    dengiReceiptModel.chqbankname = txtChqBankname.Text;
+                    dengiReceiptModel.PinCode = txtPincode.Text;
+                    dengiReceiptModel.userId = UserInfo.UserId;
+                    dengiReceiptModel.PanNo = txtPANNo.Text;
+                    dengiReceiptModel.Taluka = txttal.Text;
+                    dengiReceiptModel.gotraId = (int)cboGotra.SelectedValue;
+                    if (cboGotra.Text == "OTHER")
                     {
-                        lstEnteredName = row["Name"].ToString();
-                        lstEnteredAmount = Convert.ToInt32(row["AMOUNT"]);
+                        dengiReceiptModel.gotra = txtAddGotra.Text;
                     }
-                }
-                if (Convert.ToString(lstEnteredAmount) == txtAmount.Text && lstEnteredName == txtname.Text.Trim())
-                {
-                    InputBox inputbox = new InputBox();
-                    inputbox.MessageText = "Do you want to save Duplicate Record? Please insert Key";
-                    DialogResult result1 = inputbox.ShowDialog();
-                    if (result1 == DialogResult.OK)
+                    else
                     {
-                        dengiReceiptModel.IsDuplicate = Convert.ToInt32(inputbox.keyValue);
+                        dengiReceiptModel.gotra = cboGotra.Text.Trim();
                     }
-                    if (result1 == DialogResult.Cancel)
-                    {
-                        // inputbox.Close();
-                        return;
-                    }
-                }
-                else
-                {
-                    dengiReceiptModel.IsDuplicate = 0;
-                }
 
-                dengiReceiptDAL = new DengiReceiptDAL();
-
-                DataTable dtAmlountltd = new DataTable();
-                dtAmlountltd = dengiReceiptDAL.getAmountLimits(cboDengiType.Text.Trim());
-                if (dtAmlountltd.Rows.Count > 0)
-                {
-                    foreach (DataRow row in dtAmlountltd.Rows)
+                    dengiReceiptModel.stateId = (int)cboState.SelectedValue;
+                    dengiReceiptModel.STATE = cboState.Text;
+                    if (txtChqNo.Text != "")
+                        dengiReceiptModel.chqdate = DateTime.Parse(dtChqDt.Text);
+                    dengiReceiptModel.Address = txtaddr.Text;
+                    dengiReceiptModel.ddbankname = txtDDBankName.Text;
+                    dengiReceiptModel.ddbankname = txtDDBankName.Text;
+                    dengiReceiptModel.ddno = txtDDNo.Text;
+                    if (txtDDNo.Text != "")
                     {
-                        AmountAboove = Convert.ToInt32(row["AMOUNT_ABOVE"]);
-                        AmountBelow = Convert.ToInt32(row["AMOUNT_BELOW"]);
+                        dengiReceiptModel.dd_date = DateTime.Parse(dtDDdate.Text);
                     }
-                }
-                if (Amount <= AmountBelow && Amount >= AmountAboove)
-                {
-                    result = MessageBox.Show("Are you sure to save this record", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
+                    dengiReceiptModel.paymentTypeId = (int)cboPaymentType.SelectedValue;
+                    dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
+                    dengiReceiptModel.DistId = (int)cboDistrict.SelectedValue;
+                    dengiReceiptModel.DISTRICT = cboDistrict.Text;
+                    // dengiReceiptModel.Doc_type = cboDoctype.Text;
+                    dengiReceiptModel.Doc_type = cboDoctype.SelectedValue.ToString();
+                    dengiReceiptModel.Doc_Detail = txtdocDetail.Text;
+                    dengiReceiptModel.netbankname = txtNetBankName.Text;
+                    dengiReceiptModel.netbankrefnumber = txtNetRefNo.Text;
+                    dengiReceiptModel.Invoiceno = txtInvoice.Text;
+                    if (txtScan.Text != "")
                     {
-                        int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
-
-                        if (status >= 0)
+                        dengiReceiptModel.ScanImage = txtScan.Text;
+                    }
+                    if (cboPaymentType.Text == "Swipe")
+                    {
+                        dengiReceiptModel.tidId = (int)cobTid.SelectedValue;
+                    }
+                    else
+                    {
+                        dengiReceiptModel.tidId = 0;
+                    }
+                    dt = dengiReceiptDAL.getLastEnteredRecord(UserInfo.ctrMachID);
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in dt.Rows)
                         {
-                            long chkMissingEntry;
-                            chkMissingEntry = fcheckInsert();
-                            if (chkMissingEntry < 0)
-                            {
-                                return;
-                            }
+                            lstEnteredName = row["Name"].ToString();
+                            lstEnteredAmount = Convert.ToInt32(row["AMOUNT"]);
                         }
-
-                        if (status != 0 && status != -1)
+                    }
+                    if (Convert.ToString(lstEnteredAmount) == txtAmount.Text && lstEnteredName == txtname.Text.Trim())
+                    {
+                        InputBox inputbox = new InputBox();
+                        inputbox.MessageText = "Do you want to save Duplicate Record? Please insert Key";
+                        DialogResult result1 = inputbox.ShowDialog();
+                        if (result1 == DialogResult.OK)
                         {
-                            resetAllFields();
-                            getDengiNo();
-                            unLockControls();
-                            string receptID = status.ToString();
-                            frmReportViewer report = new frmReportViewer("PRINT", receptID);
-                            commonFunctions.AppendToFile("");
-                            commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                            report.createReport("Dengi");
-                            commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                           // report.Show();
+                            dengiReceiptModel.IsDuplicate = Convert.ToInt32(inputbox.keyValue);
                         }
-                        if (chkDeclaration.Checked == true)
+                        if (result1 == DialogResult.Cancel)
                         {
-                            string receptID = status.ToString();
-                            frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
-                            report.createReport("Dengi");
-                            //report.Show(); 
+                            // inputbox.Close();
+                            return;
                         }
                     }
                     else
                     {
-                        resetAllFields();
-                        getDengiNo();
-                        unLockControls();
+                        dengiReceiptModel.IsDuplicate = 0;
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Amount is not acceptable, It should be greater than '" + AmountAboove + " and less than " + AmountBelow + "");
-                    txtAmount.Focus();
+
+                    dengiReceiptDAL = new DengiReceiptDAL();
+
+                    DataTable dtAmlountltd = new DataTable();
+                    dtAmlountltd = dengiReceiptDAL.getAmountLimits(cboDengiType.Text.Trim());
+                    if (dtAmlountltd.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in dtAmlountltd.Rows)
+                        {
+                            AmountAboove = Convert.ToInt32(row["AMOUNT_ABOVE"]);
+                            AmountBelow = Convert.ToInt32(row["AMOUNT_BELOW"]);
+                        }
+                    }
+                    if (Amount <= AmountBelow && Amount >= AmountAboove)
+                    {
+                        result = MessageBox.Show("Are you sure to save this record", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (result == DialogResult.Yes)
+                        {
+                            int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
+
+                            if (status >= 0)
+                            {
+                                long chkMissingEntry;
+                                chkMissingEntry = fcheckInsert();
+                                if (chkMissingEntry < 0)
+                                {
+                                    return;
+                                }
+                            }
+
+                            if (status != 0 && status != -1)
+                            {
+                                resetAllFields();
+                                getDengiNo();
+                                unLockControls();
+                                string receptID = status.ToString();
+                                frmReportViewer report = new frmReportViewer("PRINT", receptID);
+                                commonFunctions.AppendToFile("");
+                                commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                report.createReport("Dengi");
+                                commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                // report.Show();
+                            }
+                            if (chkDeclaration.Checked == true)
+                            {
+                                string receptID = status.ToString();
+                                frmReportViewer report = new frmReportViewer("DECLARATION", receptID);
+                                report.createReport("Dengi");
+                                //report.Show(); 
+                            }
+                        }
+                        else
+                        {
+                            resetAllFields();
+                            getDengiNo();
+                            unLockControls();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Amount is not acceptable, It should be greater than '" + AmountAboove + " and less than " + AmountBelow + "");
+                        txtAmount.Focus();
+                    }
                 }
             }
             catch (Exception ex)

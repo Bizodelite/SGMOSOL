@@ -37,6 +37,7 @@
             this.Label13 = new System.Windows.Forms.Label();
             this.Label14 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvOccRooms)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,11 +139,24 @@
             this.txtUser.TabIndex = 46;
             this.txtUser.TabStop = false;
             // 
+            // btnExport
+            // 
+            this.btnExport.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExport.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.Location = new System.Drawing.Point(556, 52);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(110, 34);
+            this.btnExport.TabIndex = 174;
+            this.btnExport.Text = "&Export Excel";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // frmRoomOccupied
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.cmbBhaktaNiwas);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.gvOccRooms);
@@ -172,5 +186,6 @@
         internal System.Windows.Forms.Label Label13;
         internal System.Windows.Forms.Label Label14;
         internal System.Windows.Forms.TextBox txtUser;
+        internal System.Windows.Forms.Button btnExport;
     }
 }

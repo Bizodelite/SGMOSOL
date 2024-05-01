@@ -75,6 +75,34 @@
             this.roomInTimeOnlineNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomExtendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.availableRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checqueDengiReceiptVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyDengiReceiptVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameBhevastuUserwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dengiBhetvastuUserwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameDailyReceiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userWizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toyTrainUserWiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toyTrainDailyReceiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entryGateUserWiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entryGateDailyReceiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entryGateReceiptDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userwiseOutTimeLockerReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userwiseInTimeLockerReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockerReceiptDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyLockerOutTimeReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyLockerInTimeReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockerInTimeOutTimeReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomReceiptDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyRoomOutTimeReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyRoomInTimeReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomInTimeUserwiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomOutTimeUserwiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomAdvanceVouchersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userwiseBhaktNiwasCashReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dengiUserwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dengiVoucherDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dengiReceiptDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,11 +130,12 @@
             this.lockerToolStripMenuItem,
             this.bedSystemToolStripMenuItem,
             this.logoutToolStripMenuItem,
-            this.bhaktNiwasToolStripMenuItem});
+            this.bhaktNiwasToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1020, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1016, 24);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -432,6 +461,209 @@
             this.availableRoomsToolStripMenuItem.Text = "Available Rooms";
             this.availableRoomsToolStripMenuItem.Click += new System.EventHandler(this.availableRoomsToolStripMenuItem_Click);
             // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checqueDengiReceiptVoucherToolStripMenuItem,
+            this.dailyDengiReceiptVoucherToolStripMenuItem,
+            this.gameBhevastuUserwiseToolStripMenuItem,
+            this.dengiBhetvastuUserwiseToolStripMenuItem,
+            this.gameDailyReceiptToolStripMenuItem,
+            this.userWizeToolStripMenuItem,
+            this.toyTrainUserWiseToolStripMenuItem,
+            this.toyTrainDailyReceiptToolStripMenuItem,
+            this.entryGateUserWiseToolStripMenuItem,
+            this.entryGateDailyReceiptToolStripMenuItem,
+            this.entryGateReceiptDetailsToolStripMenuItem,
+            this.userwiseOutTimeLockerReportToolStripMenuItem,
+            this.userwiseInTimeLockerReportToolStripMenuItem,
+            this.lockerReceiptDetailToolStripMenuItem,
+            this.dailyLockerOutTimeReportToolStripMenuItem,
+            this.dailyLockerInTimeReportToolStripMenuItem,
+            this.lockerInTimeOutTimeReportToolStripMenuItem,
+            this.roomReceiptDetailToolStripMenuItem,
+            this.dailyRoomOutTimeReportToolStripMenuItem,
+            this.dailyRoomInTimeReportToolStripMenuItem,
+            this.roomInTimeUserwiseReportToolStripMenuItem,
+            this.roomOutTimeUserwiseReportToolStripMenuItem,
+            this.roomAdvanceVouchersToolStripMenuItem,
+            this.userwiseBhaktNiwasCashReportToolStripMenuItem,
+            this.dengiUserwiseToolStripMenuItem,
+            this.dengiVoucherDetailsToolStripMenuItem,
+            this.dengiReceiptDetailToolStripMenuItem});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            // 
+            // checqueDengiReceiptVoucherToolStripMenuItem
+            // 
+            this.checqueDengiReceiptVoucherToolStripMenuItem.Name = "checqueDengiReceiptVoucherToolStripMenuItem";
+            this.checqueDengiReceiptVoucherToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.checqueDengiReceiptVoucherToolStripMenuItem.Text = "Cheque Dengi Receipt Voucher";
+            this.checqueDengiReceiptVoucherToolStripMenuItem.Click += new System.EventHandler(this.checqueDengiReceiptVoucherToolStripMenuItem_Click);
+            // 
+            // dailyDengiReceiptVoucherToolStripMenuItem
+            // 
+            this.dailyDengiReceiptVoucherToolStripMenuItem.Name = "dailyDengiReceiptVoucherToolStripMenuItem";
+            this.dailyDengiReceiptVoucherToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dailyDengiReceiptVoucherToolStripMenuItem.Text = "Daily Dengi Receipt Voucher";
+            this.dailyDengiReceiptVoucherToolStripMenuItem.Click += new System.EventHandler(this.dailyDengiReceiptVoucherToolStripMenuItem_Click);
+            // 
+            // gameBhevastuUserwiseToolStripMenuItem
+            // 
+            this.gameBhevastuUserwiseToolStripMenuItem.Name = "gameBhevastuUserwiseToolStripMenuItem";
+            this.gameBhevastuUserwiseToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.gameBhevastuUserwiseToolStripMenuItem.Text = "Game User Wise";
+            this.gameBhevastuUserwiseToolStripMenuItem.Click += new System.EventHandler(this.gameBhevastuUserwiseToolStripMenuItem_Click);
+            // 
+            // dengiBhetvastuUserwiseToolStripMenuItem
+            // 
+            this.dengiBhetvastuUserwiseToolStripMenuItem.Name = "dengiBhetvastuUserwiseToolStripMenuItem";
+            this.dengiBhetvastuUserwiseToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dengiBhetvastuUserwiseToolStripMenuItem.Text = "Dengi Bhetvastu Userwise";
+            this.dengiBhetvastuUserwiseToolStripMenuItem.Click += new System.EventHandler(this.dengiBhetvastuUserwiseToolStripMenuItem_Click);
+            // 
+            // gameDailyReceiptToolStripMenuItem
+            // 
+            this.gameDailyReceiptToolStripMenuItem.Name = "gameDailyReceiptToolStripMenuItem";
+            this.gameDailyReceiptToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.gameDailyReceiptToolStripMenuItem.Text = "Game Daily Receipt";
+            this.gameDailyReceiptToolStripMenuItem.Click += new System.EventHandler(this.gameDailyReceiptToolStripMenuItem_Click);
+            // 
+            // userWizeToolStripMenuItem
+            // 
+            this.userWizeToolStripMenuItem.Name = "userWizeToolStripMenuItem";
+            this.userWizeToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.userWizeToolStripMenuItem.Text = "User Wize";
+            this.userWizeToolStripMenuItem.Click += new System.EventHandler(this.userWizeToolStripMenuItem_Click);
+            // 
+            // toyTrainUserWiseToolStripMenuItem
+            // 
+            this.toyTrainUserWiseToolStripMenuItem.Name = "toyTrainUserWiseToolStripMenuItem";
+            this.toyTrainUserWiseToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.toyTrainUserWiseToolStripMenuItem.Text = "Toy Train User Wise";
+            this.toyTrainUserWiseToolStripMenuItem.Click += new System.EventHandler(this.toyTrainUserWiseToolStripMenuItem_Click);
+            // 
+            // toyTrainDailyReceiptToolStripMenuItem
+            // 
+            this.toyTrainDailyReceiptToolStripMenuItem.Name = "toyTrainDailyReceiptToolStripMenuItem";
+            this.toyTrainDailyReceiptToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.toyTrainDailyReceiptToolStripMenuItem.Text = "Toy Train Daily Receipt";
+            // 
+            // entryGateUserWiseToolStripMenuItem
+            // 
+            this.entryGateUserWiseToolStripMenuItem.Name = "entryGateUserWiseToolStripMenuItem";
+            this.entryGateUserWiseToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.entryGateUserWiseToolStripMenuItem.Text = "Entry Gate User Wise";
+            // 
+            // entryGateDailyReceiptToolStripMenuItem
+            // 
+            this.entryGateDailyReceiptToolStripMenuItem.Name = "entryGateDailyReceiptToolStripMenuItem";
+            this.entryGateDailyReceiptToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.entryGateDailyReceiptToolStripMenuItem.Text = "Entry Gate Daily Receipt";
+            // 
+            // entryGateReceiptDetailsToolStripMenuItem
+            // 
+            this.entryGateReceiptDetailsToolStripMenuItem.Name = "entryGateReceiptDetailsToolStripMenuItem";
+            this.entryGateReceiptDetailsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.entryGateReceiptDetailsToolStripMenuItem.Text = "Entry Gate Receipt Detail";
+            // 
+            // userwiseOutTimeLockerReportToolStripMenuItem
+            // 
+            this.userwiseOutTimeLockerReportToolStripMenuItem.Name = "userwiseOutTimeLockerReportToolStripMenuItem";
+            this.userwiseOutTimeLockerReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.userwiseOutTimeLockerReportToolStripMenuItem.Text = "Userwise Out Time Locker Report";
+            // 
+            // userwiseInTimeLockerReportToolStripMenuItem
+            // 
+            this.userwiseInTimeLockerReportToolStripMenuItem.Name = "userwiseInTimeLockerReportToolStripMenuItem";
+            this.userwiseInTimeLockerReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.userwiseInTimeLockerReportToolStripMenuItem.Text = "Userwise In Time Locker Report";
+            // 
+            // lockerReceiptDetailToolStripMenuItem
+            // 
+            this.lockerReceiptDetailToolStripMenuItem.Name = "lockerReceiptDetailToolStripMenuItem";
+            this.lockerReceiptDetailToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.lockerReceiptDetailToolStripMenuItem.Text = "Locker Receipt Detail";
+            // 
+            // dailyLockerOutTimeReportToolStripMenuItem
+            // 
+            this.dailyLockerOutTimeReportToolStripMenuItem.Name = "dailyLockerOutTimeReportToolStripMenuItem";
+            this.dailyLockerOutTimeReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dailyLockerOutTimeReportToolStripMenuItem.Text = "Daily Locker Out Time Report";
+            // 
+            // dailyLockerInTimeReportToolStripMenuItem
+            // 
+            this.dailyLockerInTimeReportToolStripMenuItem.Name = "dailyLockerInTimeReportToolStripMenuItem";
+            this.dailyLockerInTimeReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dailyLockerInTimeReportToolStripMenuItem.Text = "Daily Locker In Time Report";
+            // 
+            // lockerInTimeOutTimeReportToolStripMenuItem
+            // 
+            this.lockerInTimeOutTimeReportToolStripMenuItem.Name = "lockerInTimeOutTimeReportToolStripMenuItem";
+            this.lockerInTimeOutTimeReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.lockerInTimeOutTimeReportToolStripMenuItem.Text = "Locker In Time Out Time Report";
+            // 
+            // roomReceiptDetailToolStripMenuItem
+            // 
+            this.roomReceiptDetailToolStripMenuItem.Name = "roomReceiptDetailToolStripMenuItem";
+            this.roomReceiptDetailToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.roomReceiptDetailToolStripMenuItem.Text = "Room Receipt Detail";
+            // 
+            // dailyRoomOutTimeReportToolStripMenuItem
+            // 
+            this.dailyRoomOutTimeReportToolStripMenuItem.Name = "dailyRoomOutTimeReportToolStripMenuItem";
+            this.dailyRoomOutTimeReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dailyRoomOutTimeReportToolStripMenuItem.Text = "Daily Room Out Time Report";
+            // 
+            // dailyRoomInTimeReportToolStripMenuItem
+            // 
+            this.dailyRoomInTimeReportToolStripMenuItem.Name = "dailyRoomInTimeReportToolStripMenuItem";
+            this.dailyRoomInTimeReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dailyRoomInTimeReportToolStripMenuItem.Text = "Daily Room In Time Report";
+            // 
+            // roomInTimeUserwiseReportToolStripMenuItem
+            // 
+            this.roomInTimeUserwiseReportToolStripMenuItem.Name = "roomInTimeUserwiseReportToolStripMenuItem";
+            this.roomInTimeUserwiseReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.roomInTimeUserwiseReportToolStripMenuItem.Text = "Room In Time Userwise Report";
+            // 
+            // roomOutTimeUserwiseReportToolStripMenuItem
+            // 
+            this.roomOutTimeUserwiseReportToolStripMenuItem.Name = "roomOutTimeUserwiseReportToolStripMenuItem";
+            this.roomOutTimeUserwiseReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.roomOutTimeUserwiseReportToolStripMenuItem.Text = "Room Out Time Userwise Report";
+            // 
+            // roomAdvanceVouchersToolStripMenuItem
+            // 
+            this.roomAdvanceVouchersToolStripMenuItem.Name = "roomAdvanceVouchersToolStripMenuItem";
+            this.roomAdvanceVouchersToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.roomAdvanceVouchersToolStripMenuItem.Text = "Room Advance Vouchers";
+            // 
+            // userwiseBhaktNiwasCashReportToolStripMenuItem
+            // 
+            this.userwiseBhaktNiwasCashReportToolStripMenuItem.Name = "userwiseBhaktNiwasCashReportToolStripMenuItem";
+            this.userwiseBhaktNiwasCashReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.userwiseBhaktNiwasCashReportToolStripMenuItem.Text = "Userwise Bhakt Niwas Cash Report";
+            // 
+            // dengiUserwiseToolStripMenuItem
+            // 
+            this.dengiUserwiseToolStripMenuItem.Name = "dengiUserwiseToolStripMenuItem";
+            this.dengiUserwiseToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dengiUserwiseToolStripMenuItem.Text = "Dengi Userwise";
+            // 
+            // dengiVoucherDetailsToolStripMenuItem
+            // 
+            this.dengiVoucherDetailsToolStripMenuItem.Name = "dengiVoucherDetailsToolStripMenuItem";
+            this.dengiVoucherDetailsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dengiVoucherDetailsToolStripMenuItem.Text = "Dengi Voucher Details";
+            // 
+            // dengiReceiptDetailToolStripMenuItem
+            // 
+            this.dengiReceiptDetailToolStripMenuItem.Name = "dengiReceiptDetailToolStripMenuItem";
+            this.dengiReceiptDetailToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.dengiReceiptDetailToolStripMenuItem.Text = "Dengi Receipt Detail";
+            // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -490,7 +722,7 @@
             this.pctControls.Location = new System.Drawing.Point(0, 24);
             this.pctControls.Margin = new System.Windows.Forms.Padding(2);
             this.pctControls.Name = "pctControls";
-            this.pctControls.Size = new System.Drawing.Size(1020, 136);
+            this.pctControls.Size = new System.Drawing.Size(1016, 136);
             this.pctControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctControls.TabIndex = 33;
             this.pctControls.TabStop = false;
@@ -499,7 +731,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 587);
+            this.ClientSize = new System.Drawing.Size(1016, 703);
             this.Controls.Add(this.pctControls);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
@@ -578,6 +810,34 @@
         private System.Windows.Forms.ToolStripMenuItem roomInTimeOnlineNewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomExtendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem availableRoomsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checqueDengiReceiptVoucherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyDengiReceiptVoucherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameBhevastuUserwiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dengiBhetvastuUserwiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameDailyReceiptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userWizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toyTrainUserWiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toyTrainDailyReceiptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entryGateUserWiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entryGateDailyReceiptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entryGateReceiptDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userwiseOutTimeLockerReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userwiseInTimeLockerReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockerReceiptDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyLockerOutTimeReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyLockerInTimeReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockerInTimeOutTimeReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomReceiptDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyRoomOutTimeReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyRoomInTimeReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomInTimeUserwiseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomOutTimeUserwiseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomAdvanceVouchersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userwiseBhaktNiwasCashReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dengiUserwiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dengiVoucherDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dengiReceiptDetailToolStripMenuItem;
     }
 }
 

@@ -19,6 +19,7 @@ using System.Web.UI.WebControls.WebParts;
 using SGMOSOL.ADMIN;
 using static SGMOSOL.ADMIN.CommonFunctions;
 using SGMOSOL.DAL.BhaktNiwas;
+using System.Runtime.InteropServices;
 
 namespace SGMOSOL.SCREENS.BhaktNiwas
 {
@@ -109,6 +110,42 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
         {
             // FillRooms()
             FillGridView();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel (.xlsx)|  *.xlsx";
+            sfd.FileName = this.Text + " report.xlsx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+                Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                try
+                {
+                    app.Visible = false;
+                    worksheet = workbook.ActiveSheet;
+                    //worksheet.Name = "gridview";
+                    for (int i = 1; i < gvOccRooms.Columns.Count + 1; i++)
+                    {
+                        worksheet.Cells[1, i] = gvOccRooms.Columns[i - 1].HeaderText;
+                    }
+                    for (int i = 0; i < gvOccRooms.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < gvOccRooms.Columns.Count; j++)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = gvOccRooms.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+                    workbook.SaveAs(sfd.FileName);
+                    app.Quit();
+                }
+                catch (Exception ex)
+                {
+                    app.Quit();
+                }
+            }
         }
     }
 

@@ -61,6 +61,13 @@ namespace SGMOSOL
         frmRoomLocked frmRoomLocked;
         frmRoomCheckinOnline frmRoomCheckinOnline;
         frmRoomList frmRoomList;
+        frmMessReport frmMessReportR1;
+        frmMessReport frmMessReportR2;
+        frmMessReport frmMessReportR3;
+        frmMessReport frmMessReportR4;
+        frmMessReport frmMessReportR5;
+        frmMessReport frmMessReportR6;
+        frmMessReport frmMessReportR7;
 
         public MDI()
         {
@@ -106,6 +113,15 @@ namespace SGMOSOL
             //UserInfo.DengiAlertAmt = 5000;
             //UserInfo.InstrumentDateDays = 30;
             UserInfo.ReportPath = Application.StartupPath.Replace("bin\\Debug","") + "Reports\\";
+
+            bool exists = System.IO.Directory.Exists(Application.StartupPath.Replace("bin\\Debug", "") + "BarocdePath");
+            if (!exists)
+                System.IO.Directory.CreateDirectory(Application.StartupPath.Replace("bin\\Debug", "") + "BarocdePath");
+
+            exists = System.IO.Directory.Exists(Application.StartupPath.Replace("bin\\Debug", "") + "ScanImages");
+            if (!exists)
+                System.IO.Directory.CreateDirectory(Application.StartupPath.Replace("bin\\Debug", "") + "ScanImages");
+
         }
         private void LoadBedCheckInMaxAmount()
         {
@@ -576,6 +592,69 @@ namespace SGMOSOL
             frmRoomList.MdiParent = this;
             frmRoomList.WindowState = FormWindowState.Maximized;
             frmRoomList.Show();
+        }
+
+        private void checqueDengiReceiptVoucherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR1 = new frmMessReport(eScreenID.ChequeDengiReceiptVoucher);
+            frmMessReportR1.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR1.MdiParent = this;
+            frmMessReportR1.WindowState = FormWindowState.Maximized;
+            frmMessReportR1.Show();
+        }
+
+        private void dailyDengiReceiptVoucherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR2 = new frmMessReport(eScreenID.DailyDengi);
+            frmMessReportR2.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR2.MdiParent = this;
+            frmMessReportR2.WindowState = FormWindowState.Maximized;
+            frmMessReportR2.Show();
+        }
+
+        private void gameBhevastuUserwiseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR3 = new frmMessReport(eScreenID.GameUserWise);
+            frmMessReportR3.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR3.MdiParent = this;
+            frmMessReportR3.WindowState = FormWindowState.Maximized;
+            frmMessReportR3.Show();
+        }
+
+        private void dengiBhetvastuUserwiseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR4 = new frmMessReport(eScreenID.DengiBhetvastuUserwise);
+            frmMessReportR4.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR4.MdiParent = this;
+            frmMessReportR4.WindowState = FormWindowState.Maximized;
+            frmMessReportR4.Show();
+        }
+
+        private void gameDailyReceiptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR5 = new frmMessReport(eScreenID.GameDailyReceipt);
+            frmMessReportR5.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR5.MdiParent = this;
+            frmMessReportR5.WindowState = FormWindowState.Maximized;
+            frmMessReportR5.Show();
+        }
+
+        private void userWizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR6 = new frmMessReport(eScreenID.UserWize);
+            frmMessReportR6.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR6.MdiParent = this;
+            frmMessReportR6.WindowState = FormWindowState.Maximized;
+            frmMessReportR6.Show();
+        }
+
+        private void toyTrainUserWiseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMessReportR7 = new frmMessReport(eScreenID.ToyTrainUserWise);
+            frmMessReportR7.StartPosition = FormStartPosition.CenterParent;
+            frmMessReportR7.MdiParent = this;
+            frmMessReportR7.WindowState = FormWindowState.Maximized;
+            frmMessReportR7.Show();
         }
     }
 }

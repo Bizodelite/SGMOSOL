@@ -60,6 +60,7 @@
             this.ColE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fpsLockers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -330,42 +331,62 @@
             // 
             this.ColA.HeaderText = "A";
             this.ColA.Name = "ColA";
+            this.ColA.ReadOnly = true;
             // 
             // ColB
             // 
             this.ColB.HeaderText = "B";
             this.ColB.Name = "ColB";
+            this.ColB.ReadOnly = true;
             // 
             // ColC
             // 
             this.ColC.HeaderText = "C";
             this.ColC.Name = "ColC";
+            this.ColC.ReadOnly = true;
             // 
             // ColD
             // 
             this.ColD.HeaderText = "D";
             this.ColD.Name = "ColD";
+            this.ColD.ReadOnly = true;
             // 
             // ColE
             // 
             this.ColE.HeaderText = "E";
             this.ColE.Name = "ColE";
+            this.ColE.ReadOnly = true;
             // 
             // ColF
             // 
             this.ColF.HeaderText = "F";
             this.ColF.Name = "ColF";
+            this.ColF.ReadOnly = true;
             // 
             // ColG
             // 
             this.ColG.HeaderText = "G";
             this.ColG.Name = "ColG";
+            this.ColG.ReadOnly = true;
+            // 
+            // btnExport
+            // 
+            this.btnExport.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExport.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.Location = new System.Drawing.Point(646, 64);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(110, 34);
+            this.btnExport.TabIndex = 175;
+            this.btnExport.Text = "&Export Excel";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // frmRoomList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 478);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.fpsLockers);
             this.Controls.Add(this.lbl_dam);
             this.Controls.Add(this.Label10);
@@ -434,5 +455,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColF;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColG;
+        internal System.Windows.Forms.Button btnExport;
     }
 }

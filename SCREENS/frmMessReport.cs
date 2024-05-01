@@ -39,7 +39,7 @@ namespace SGMOSOL.DAL.Locker
             InitializeComponent();
             mScreenId = ScreenID;
         }
-        
+
         private void frmMessReport_Load(System.Object sender, System.EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -189,7 +189,7 @@ namespace SGMOSOL.DAL.Locker
         }
         private void FillCounter1()
         {
-             System.Data.DataTable dr = cf.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.BhaktaNiwas));
+            System.Data.DataTable dr = cf.GetDrCounterMachId(UserInfo.UserId, SystemHDDModelNo, SystemHDDSerialNo, SystemMacID, Convert.ToInt16(eModType.BhaktaNiwas));
             if (dr.Rows.Count > 0)
                 LocID = Convert.ToInt64(dr.Rows[0]["LocId"]);
             //dr.Close();
@@ -393,7 +393,7 @@ namespace SGMOSOL.DAL.Locker
             else if (mScreenId == eScreenID.BNDailyRoomCheckOut)
             {
                 clsConnection objCon = new clsConnection();
-                 //System.Data.DataTable dt = objCon.GetRecordDataTable("Select User_First_Name + ' ' + User_Last_Name as UserFName from sec_user_mst_t where User_Id=" + UserInfo.UserId);
+                //System.Data.DataTable dt = objCon.GetRecordDataTable("Select User_First_Name + ' ' + User_Last_Name as UserFName from sec_user_mst_t where User_Id=" + UserInfo.UserId);
                 ds = mClsPrintReceipt.GetDsDailyRoomCheckOut(strFromDate, intCtrMachId, intSublocId, LocID, payTypeid, UserInfo.UserName);
                 strReportName = "crDailyRoomCheckOut.rdlc";
             }
@@ -446,9 +446,23 @@ namespace SGMOSOL.DAL.Locker
             setCursor(this, true);
 
             //sForm = new frmCrystalViewer(UserInfo.ReportPath & strReportName,null , ds, , pColl, mScreenId, False)
+            foreach (System.Data.DataTable dt in ds.Tables)
+            {
+
+                foreach (DataRow Row in dt.Rows)
+                {
+                    if (dt.Columns.Contains("AMOUNT"))
+                    {
+                        if (!dt.Columns.Contains("AmountInWords"))
+                            dt.Columns.Add("AmountInWords");
+                        Row["AmountInWords"] = cf.getNumbersInWords(Convert.ToDecimal(Row["AMOUNT"]), eCurrencyType.Rupees);
+                    }
+                }
+            }
 
             sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, (long)mScreenId, false);
             sForm.Text = this.Text;
+            sForm.BringToFront();
             setCursor(this, true);
             sForm.Show();
         }

@@ -218,6 +218,42 @@ namespace SGMOSOL.SCREENS.BhaktNiwas
             FillRooms();
             FillLabels();
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel (.xlsx)|  *.xlsx";
+            sfd.FileName = this.Text+" report.xlsx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+                Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                try
+                {
+                    app.Visible = false;
+                    worksheet = workbook.ActiveSheet;
+                    //worksheet.Name = "gridview";
+                    for (int i = 1; i < fpsLockers.Columns.Count + 1; i++)
+                    {
+                        worksheet.Cells[1, i] = fpsLockers.Columns[i - 1].HeaderText;
+                    }
+                    for (int i = 0; i < fpsLockers.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < fpsLockers.Columns.Count; j++)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = fpsLockers.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+                    workbook.SaveAs(sfd.FileName);
+                    app.Quit();
+                }
+                catch (Exception ex)
+                {
+                    app.Quit();
+                }
+            }
+        }
     }
 
 }

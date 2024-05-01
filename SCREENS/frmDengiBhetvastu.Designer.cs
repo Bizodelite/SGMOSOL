@@ -29,16 +29,12 @@
         private void InitializeComponent()
         {
             this.pnlMaster = new System.Windows.Forms.Panel();
-            this.txtCounter = new System.Windows.Forms.TextBox();
-            this.Refrence_Amount = new System.Windows.Forms.TextBox();
-            this.lblAlert = new System.Windows.Forms.Label();
-            this.dtpPrnRcptDt = new System.Windows.Forms.DateTimePicker();
-            this.Label9 = new System.Windows.Forms.Label();
-            this.Label5 = new System.Windows.Forms.Label();
-            this.txtUser = new System.Windows.Forms.TextBox();
-            this.txtdengireceiptNo = new System.Windows.Forms.TextBox();
-            this.Label11 = new System.Windows.Forms.Label();
-            this.Label2 = new System.Windows.Forms.Label();
+            this.pnlBtn = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.pnlDetail = new System.Windows.Forms.Panel();
             this.PrasadImgCap = new System.Windows.Forms.Button();
             this.BhaktImgCap = new System.Windows.Forms.Button();
@@ -73,19 +69,23 @@
             this.txtaddr = new System.Windows.Forms.TextBox();
             this.Label25 = new System.Windows.Forms.Label();
             this.Label24 = new System.Windows.Forms.Label();
-            this.pnlBtn = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.txtCounter = new System.Windows.Forms.TextBox();
+            this.Refrence_Amount = new System.Windows.Forms.TextBox();
+            this.lblAlert = new System.Windows.Forms.Label();
+            this.dtpPrnRcptDt = new System.Windows.Forms.DateTimePicker();
+            this.Label9 = new System.Windows.Forms.Label();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtdengireceiptNo = new System.Windows.Forms.TextBox();
+            this.Label11 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
             this.pnlMaster.SuspendLayout();
+            this.pnlBtn.SuspendLayout();
             this.pnlDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Bhakt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxPrasad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).BeginInit();
-            this.pnlBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMaster
@@ -109,126 +109,83 @@
             this.pnlMaster.Size = new System.Drawing.Size(1395, 667);
             this.pnlMaster.TabIndex = 110;
             // 
-            // txtCounter
+            // pnlBtn
             // 
-            this.txtCounter.BackColor = System.Drawing.Color.MistyRose;
-            this.txtCounter.Enabled = false;
-            this.txtCounter.Location = new System.Drawing.Point(143, 18);
-            this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCounter.Name = "txtCounter";
-            this.txtCounter.ReadOnly = true;
-            this.txtCounter.Size = new System.Drawing.Size(139, 30);
-            this.txtCounter.TabIndex = 1;
-            this.txtCounter.TabStop = false;
+            this.pnlBtn.Controls.Add(this.btnSearch);
+            this.pnlBtn.Controls.Add(this.btnNew);
+            this.pnlBtn.Controls.Add(this.btnSave);
+            this.pnlBtn.Controls.Add(this.btnPrint);
+            this.pnlBtn.Controls.Add(this.btnClose);
+            this.pnlBtn.Location = new System.Drawing.Point(43, 525);
+            this.pnlBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlBtn.Name = "pnlBtn";
+            this.pnlBtn.Size = new System.Drawing.Size(1346, 71);
+            this.pnlBtn.TabIndex = 110;
             // 
-            // Refrence_Amount
+            // btnSearch
             // 
-            this.Refrence_Amount.BackColor = System.Drawing.Color.MistyRose;
-            this.Refrence_Amount.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Refrence_Amount.Location = new System.Drawing.Point(1191, 19);
-            this.Refrence_Amount.Margin = new System.Windows.Forms.Padding(4);
-            this.Refrence_Amount.Name = "Refrence_Amount";
-            this.Refrence_Amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Refrence_Amount.Size = new System.Drawing.Size(167, 30);
-            this.Refrence_Amount.TabIndex = 9;
-            this.Refrence_Amount.Visible = false;
+            this.btnSearch.BackgroundImage = global::SGMOSOL.ResourceMain.Search;
+            this.btnSearch.Enabled = false;
+            this.btnSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(423, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(122, 57);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "&Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblAlert
+            // btnNew
             // 
-            this.lblAlert.AutoSize = true;
-            this.lblAlert.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlert.ForeColor = System.Drawing.Color.Red;
-            this.lblAlert.Location = new System.Drawing.Point(1119, 20);
-            this.lblAlert.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAlert.Name = "lblAlert";
-            this.lblAlert.Size = new System.Drawing.Size(62, 29);
-            this.lblAlert.TabIndex = 8;
-            this.lblAlert.Text = "Alert";
+            this.btnNew.BackgroundImage = global::SGMOSOL.ResourceMain.NewAddress;
+            this.btnNew.Enabled = false;
+            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.Location = new System.Drawing.Point(553, 4);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(118, 57);
+            this.btnNew.TabIndex = 3;
+            this.btnNew.Text = "&New";
+            this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dtpPrnRcptDt
+            // btnSave
             // 
-            this.dtpPrnRcptDt.Checked = false;
-            this.dtpPrnRcptDt.CustomFormat = "dd/MM/yyyy";
-            this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrnRcptDt.Location = new System.Drawing.Point(978, 18);
-            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
-            this.dtpPrnRcptDt.Size = new System.Drawing.Size(132, 30);
-            this.dtpPrnRcptDt.TabIndex = 7;
-            this.dtpPrnRcptDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
+            this.btnSave.BackgroundImage = global::SGMOSOL.ResourceMain.Save;
+            this.btnSave.Enabled = false;
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(682, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(111, 57);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "&Save\r\n / Print";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Label9
+            // btnPrint
             // 
-            this.Label9.AutoSize = true;
-            this.Label9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label9.ForeColor = System.Drawing.Color.Black;
-            this.Label9.Location = new System.Drawing.Point(916, 23);
-            this.Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label9.Name = "Label9";
-            this.Label9.Size = new System.Drawing.Size(54, 23);
-            this.Label9.TabIndex = 6;
-            this.Label9.Text = "Date";
-            this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.BackgroundImage = global::SGMOSOL.ResourceMain.Print;
+            this.btnPrint.Enabled = false;
+            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Location = new System.Drawing.Point(801, 4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(112, 57);
+            this.btnPrint.TabIndex = 1;
+            this.btnPrint.Text = "&Print";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Label5
+            // btnClose
             // 
-            this.Label5.AutoSize = true;
-            this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(304, 23);
-            this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(53, 23);
-            this.Label5.TabIndex = 2;
-            this.Label5.Text = "User";
-            this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtUser
-            // 
-            this.txtUser.BackColor = System.Drawing.Color.MistyRose;
-            this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(399, 18);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.ReadOnly = true;
-            this.txtUser.Size = new System.Drawing.Size(157, 30);
-            this.txtUser.TabIndex = 3;
-            this.txtUser.TabStop = false;
-            // 
-            // txtdengireceiptNo
-            // 
-            this.txtdengireceiptNo.BackColor = System.Drawing.Color.MistyRose;
-            this.txtdengireceiptNo.Enabled = false;
-            this.txtdengireceiptNo.Location = new System.Drawing.Point(715, 18);
-            this.txtdengireceiptNo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtdengireceiptNo.Name = "txtdengireceiptNo";
-            this.txtdengireceiptNo.ReadOnly = true;
-            this.txtdengireceiptNo.Size = new System.Drawing.Size(155, 30);
-            this.txtdengireceiptNo.TabIndex = 5;
-            this.txtdengireceiptNo.TabStop = false;
-            this.txtdengireceiptNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // Label11
-            // 
-            this.Label11.AutoSize = true;
-            this.Label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label11.Location = new System.Drawing.Point(584, 23);
-            this.Label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label11.Name = "Label11";
-            this.Label11.Size = new System.Drawing.Size(109, 23);
-            this.Label11.TabIndex = 4;
-            this.Label11.Text = "Denagi No";
-            this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Label2
-            // 
-            this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(27, 15);
-            this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(91, 37);
-            this.Label2.TabIndex = 0;
-            this.Label2.Text = "Counter";
-            this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.BackgroundImage = global::SGMOSOL.ResourceMain.Close;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(921, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(110, 57);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "&Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlDetail
             // 
@@ -520,6 +477,7 @@
             this.cboState.Name = "cboState";
             this.cboState.Size = new System.Drawing.Size(212, 33);
             this.cboState.TabIndex = 7;
+            this.cboState.SelectedIndexChanged += new System.EventHandler(this.cboState_SelectedIndexChanged);
             // 
             // Label20
             // 
@@ -645,83 +603,126 @@
             this.Label24.Text = "Name";
             this.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnlBtn
+            // txtCounter
             // 
-            this.pnlBtn.Controls.Add(this.btnSearch);
-            this.pnlBtn.Controls.Add(this.btnNew);
-            this.pnlBtn.Controls.Add(this.btnSave);
-            this.pnlBtn.Controls.Add(this.btnPrint);
-            this.pnlBtn.Controls.Add(this.btnClose);
-            this.pnlBtn.Location = new System.Drawing.Point(43, 525);
-            this.pnlBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlBtn.Name = "pnlBtn";
-            this.pnlBtn.Size = new System.Drawing.Size(1346, 71);
-            this.pnlBtn.TabIndex = 110;
+            this.txtCounter.BackColor = System.Drawing.Color.MistyRose;
+            this.txtCounter.Enabled = false;
+            this.txtCounter.Location = new System.Drawing.Point(143, 18);
+            this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCounter.Name = "txtCounter";
+            this.txtCounter.ReadOnly = true;
+            this.txtCounter.Size = new System.Drawing.Size(139, 30);
+            this.txtCounter.TabIndex = 1;
+            this.txtCounter.TabStop = false;
             // 
-            // btnSearch
+            // Refrence_Amount
             // 
-            this.btnSearch.BackgroundImage = global::SGMOSOL.ResourceMain.Search;
-            this.btnSearch.Enabled = false;
-            this.btnSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(423, 4);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(122, 57);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "&Search";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Refrence_Amount.BackColor = System.Drawing.Color.MistyRose;
+            this.Refrence_Amount.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Refrence_Amount.Location = new System.Drawing.Point(1191, 19);
+            this.Refrence_Amount.Margin = new System.Windows.Forms.Padding(4);
+            this.Refrence_Amount.Name = "Refrence_Amount";
+            this.Refrence_Amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Refrence_Amount.Size = new System.Drawing.Size(167, 30);
+            this.Refrence_Amount.TabIndex = 9;
+            this.Refrence_Amount.Visible = false;
             // 
-            // btnNew
+            // lblAlert
             // 
-            this.btnNew.BackgroundImage = global::SGMOSOL.ResourceMain.NewAddress;
-            this.btnNew.Enabled = false;
-            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.Location = new System.Drawing.Point(553, 4);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(118, 57);
-            this.btnNew.TabIndex = 3;
-            this.btnNew.Text = "&New";
-            this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblAlert.AutoSize = true;
+            this.lblAlert.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlert.ForeColor = System.Drawing.Color.Red;
+            this.lblAlert.Location = new System.Drawing.Point(1119, 20);
+            this.lblAlert.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAlert.Name = "lblAlert";
+            this.lblAlert.Size = new System.Drawing.Size(62, 29);
+            this.lblAlert.TabIndex = 8;
+            this.lblAlert.Text = "Alert";
             // 
-            // btnSave
+            // dtpPrnRcptDt
             // 
-            this.btnSave.BackgroundImage = global::SGMOSOL.ResourceMain.Save;
-            this.btnSave.Enabled = false;
-            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(682, 0);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(111, 57);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "&Save\r\n / Print";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.dtpPrnRcptDt.Checked = false;
+            this.dtpPrnRcptDt.CustomFormat = "dd/MM/yyyy";
+            this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpPrnRcptDt.Location = new System.Drawing.Point(978, 18);
+            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
+            this.dtpPrnRcptDt.Size = new System.Drawing.Size(132, 30);
+            this.dtpPrnRcptDt.TabIndex = 7;
+            this.dtpPrnRcptDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
-            // btnPrint
+            // Label9
             // 
-            this.btnPrint.BackgroundImage = global::SGMOSOL.ResourceMain.Print;
-            this.btnPrint.Enabled = false;
-            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(801, 4);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(112, 57);
-            this.btnPrint.TabIndex = 1;
-            this.btnPrint.Text = "&Print";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Label9.AutoSize = true;
+            this.Label9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label9.ForeColor = System.Drawing.Color.Black;
+            this.Label9.Location = new System.Drawing.Point(916, 23);
+            this.Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label9.Name = "Label9";
+            this.Label9.Size = new System.Drawing.Size(54, 23);
+            this.Label9.TabIndex = 6;
+            this.Label9.Text = "Date";
+            this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnClose
+            // Label5
             // 
-            this.btnClose.BackgroundImage = global::SGMOSOL.ResourceMain.Close;
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(921, 4);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 57);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "&Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Label5.AutoSize = true;
+            this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label5.Location = new System.Drawing.Point(304, 23);
+            this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(53, 23);
+            this.Label5.TabIndex = 2;
+            this.Label5.Text = "User";
+            this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtUser
+            // 
+            this.txtUser.BackColor = System.Drawing.Color.MistyRose;
+            this.txtUser.Enabled = false;
+            this.txtUser.Location = new System.Drawing.Point(399, 18);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.ReadOnly = true;
+            this.txtUser.Size = new System.Drawing.Size(157, 30);
+            this.txtUser.TabIndex = 3;
+            this.txtUser.TabStop = false;
+            // 
+            // txtdengireceiptNo
+            // 
+            this.txtdengireceiptNo.BackColor = System.Drawing.Color.MistyRose;
+            this.txtdengireceiptNo.Enabled = false;
+            this.txtdengireceiptNo.Location = new System.Drawing.Point(715, 18);
+            this.txtdengireceiptNo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtdengireceiptNo.Name = "txtdengireceiptNo";
+            this.txtdengireceiptNo.ReadOnly = true;
+            this.txtdengireceiptNo.Size = new System.Drawing.Size(155, 30);
+            this.txtdengireceiptNo.TabIndex = 5;
+            this.txtdengireceiptNo.TabStop = false;
+            this.txtdengireceiptNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // Label11
+            // 
+            this.Label11.AutoSize = true;
+            this.Label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label11.Location = new System.Drawing.Point(584, 23);
+            this.Label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label11.Name = "Label11";
+            this.Label11.Size = new System.Drawing.Size(109, 23);
+            this.Label11.TabIndex = 4;
+            this.Label11.Text = "Denagi No";
+            this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Label2
+            // 
+            this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label2.Location = new System.Drawing.Point(27, 15);
+            this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(91, 37);
+            this.Label2.TabIndex = 0;
+            this.Label2.Text = "Counter";
+            this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmDengiBhetvastu
             // 
@@ -735,13 +736,13 @@
             this.Load += new System.EventHandler(this.frmDengiBhetvastu_Load);
             this.pnlMaster.ResumeLayout(false);
             this.pnlMaster.PerformLayout();
+            this.pnlBtn.ResumeLayout(false);
             this.pnlDetail.ResumeLayout(false);
             this.pnlDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Bhakt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxPrasad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).EndInit();
-            this.pnlBtn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

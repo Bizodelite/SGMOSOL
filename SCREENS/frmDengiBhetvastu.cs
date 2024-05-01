@@ -127,5 +127,15 @@ namespace SGMOSOL.SCREENS
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
+
+        private void cboState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboState.SelectedIndex != -1 && cboState.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)cboState.SelectedItem;
+                string selectedValue = selectedRow["StateId"].ToString();
+                fillDistrictbyStateId(Convert.ToInt32(selectedValue));
+            }
+        }
     }
 }

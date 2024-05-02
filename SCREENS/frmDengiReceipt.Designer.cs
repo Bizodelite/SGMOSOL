@@ -553,7 +553,7 @@ namespace SGMOSOL.SCREENS
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
             this.dtpPrnRcptDt.Size = new System.Drawing.Size(233, 35);
             this.dtpPrnRcptDt.TabIndex = 7;
-            this.dtpPrnRcptDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
+            this.dtpPrnRcptDt.Value = new System.DateTime(2024, 5, 1, 0, 0, 0, 0);
             // 
             // Label9
             // 
@@ -1017,7 +1017,7 @@ namespace SGMOSOL.SCREENS
             this.cboCountry.Margin = new System.Windows.Forms.Padding(4);
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(311, 36);
-            this.cboCountry.TabIndex = 10;
+            this.cboCountry.TabIndex = 11;
             this.cboCountry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCountry_KeyDown);
             // 
             // Label22
@@ -1042,7 +1042,7 @@ namespace SGMOSOL.SCREENS
             this.cboDistrict.Margin = new System.Windows.Forms.Padding(4);
             this.cboDistrict.Name = "cboDistrict";
             this.cboDistrict.Size = new System.Drawing.Size(337, 36);
-            this.cboDistrict.TabIndex = 14;
+            this.cboDistrict.TabIndex = 13;
             this.cboDistrict.SelectedIndexChanged += new System.EventHandler(this.cboDistrict_SelectedIndexChanged);
             this.cboDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboDistrict_KeyDown);
             // 
@@ -1106,7 +1106,7 @@ namespace SGMOSOL.SCREENS
             this.txtAddGotra.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddGotra.Name = "txtAddGotra";
             this.txtAddGotra.Size = new System.Drawing.Size(227, 35);
-            this.txtAddGotra.TabIndex = 4;
+            this.txtAddGotra.TabIndex = 8;
             this.txtAddGotra.Visible = false;
             this.txtAddGotra.TextChanged += new System.EventHandler(this.txtAddGotra_TextChanged);
             // 
@@ -1120,7 +1120,7 @@ namespace SGMOSOL.SCREENS
             this.txttal.MaxLength = 20;
             this.txttal.Name = "txttal";
             this.txttal.Size = new System.Drawing.Size(284, 35);
-            this.txttal.TabIndex = 16;
+            this.txttal.TabIndex = 14;
             this.txttal.TextChanged += new System.EventHandler(this.txttal_TextChanged);
             // 
             // Label29
@@ -1157,7 +1157,7 @@ namespace SGMOSOL.SCREENS
             this.txtmob.MaxLength = 10;
             this.txtmob.Name = "txtmob";
             this.txtmob.Size = new System.Drawing.Size(308, 35);
-            this.txtmob.TabIndex = 8;
+            this.txtmob.TabIndex = 9;
             this.txtmob.TextChanged += new System.EventHandler(this.txtmob_TextChanged);
             this.txtmob.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmob_KeyPress);
             // 
@@ -1185,7 +1185,7 @@ namespace SGMOSOL.SCREENS
             this.txtaddr.Name = "txtaddr";
             this.txtaddr.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtaddr.Size = new System.Drawing.Size(893, 76);
-            this.txtaddr.TabIndex = 9;
+            this.txtaddr.TabIndex = 10;
             this.txtaddr.TextChanged += new System.EventHandler(this.txtaddr_TextChanged);
             // 
             // Label25

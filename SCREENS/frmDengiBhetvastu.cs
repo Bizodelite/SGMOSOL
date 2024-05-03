@@ -1,14 +1,18 @@
 ﻿using SGMOSOL.ADMIN;
+using SGMOSOL.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using WIA;
 using static SGMOSOL.ADMIN.CommonFunctions;
 
 namespace SGMOSOL.SCREENS
@@ -16,7 +20,17 @@ namespace SGMOSOL.SCREENS
     public partial class frmDengiBhetvastu : Form
     {
         CommonFunctions commonFunctions = new CommonFunctions();
+        DengiReceiptDAL obj;
         DataTable dt;
+        private const int WM_CAP = 0x400;
+        private const int WM_CAP_DRIVER_CONNECT = WM_CAP + 10;
+        private const int WM_CAP_DRIVER_DISCONNECT = WM_CAP + 11;
+        private const int WM_CAP_EDIT_COPY = WM_CAP + 30;
+
+        // Helper function to send messages
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+
         public frmDengiBhetvastu()
         {
             InitializeComponent();
@@ -37,6 +51,7 @@ namespace SGMOSOL.SCREENS
             fillDistrictbyStateId(Convert.ToInt32(cboState.SelectedValue));
             UserInfo.module = "Dengi-BhetVastu";
             txtUser.Text = UserInfo.UserName;
+            getDengiBhetvastuNumber();
         }
         private void FillCounter()
         {
@@ -48,10 +63,10 @@ namespace SGMOSOL.SCREENS
                 txtCounter.Tag = dr.Rows[0]["CtrMachId"];
                 UserInfo.ctrMachID = Convert.ToInt32(txtCounter.Tag);
                 UserInfo.Dept_id = Convert.ToInt32(dr.Rows[0]["DeptId"]);
-              //  PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
+                //  PrintReceiptDeptName = dr.Rows[0]["DepartmentName"].ToString();
                 //PrintReceiptLocName = dr.Rows[0]["LocName"].ToString();
                 UserInfo.Loc_id = Convert.ToInt32(dr.Rows[0]["LocId"]);
-               // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
+                // mStrCounterMachineShortName = dr.Rows[0]["CounterMachineShortName"].ToString();
             }
         }
         private void FillUnit()
@@ -105,6 +120,21 @@ namespace SGMOSOL.SCREENS
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
         }
+
+        private void getDengiBhetvastuNumber()
+        {
+            try
+            {
+                obj = new DengiReceiptDAL();
+                int dengiID = obj.getDengiBhetvastuNumber();
+                txtdengireceiptNo.Text = dengiID.ToString();
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+        }
+
         private void fillDistrictbyStateId(int stateId)
         {
             try
@@ -135,6 +165,115 @@ namespace SGMOSOL.SCREENS
                 DataRowView selectedRow = (DataRowView)cboState.SelectedItem;
                 string selectedValue = selectedRow["StateId"].ToString();
                 fillDistrictbyStateId(Convert.ToInt32(selectedValue));
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            getDengiBhetvastuNumber();
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+       
+
+        private void txtmob_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string mobileNumber = txtmob.Text.Trim();
+                string pattern = @"^\d{10}$";
+                if (Regex.IsMatch(mobileNumber, pattern))
+                {
+                    lblMobile.Text = "";
+                }
+                else
+                {
+                    lblMobile.Text = "Please enter a valid 10-digit mobile number.";
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+        }
+
+        private void BhaktImgCap_Click(object sender, EventArgs e)
+        {
+            IntPtr hHwnd = this.Handle;
+            int iDevice = 0;
+            string strFileName = null;
+            Helper obj = new Helper();
+
+            // Connect to the capture device
+            if (SendMessage(hHwnd, WM_CAP_DRIVER_CONNECT, new IntPtr(iDevice), IntPtr.Zero) != 0)
+            {
+                // Capture the image
+                SendMessage(hHwnd, WM_CAP_EDIT_COPY, IntPtr.Zero, IntPtr.Zero);
+
+                // Get image from clipboard
+                IDataObject data = Clipboard.GetDataObject();
+                if (data.GetDataPresent(typeof(Bitmap)))
+                {
+                    // Display captured image in PictureBox
+                    System.Drawing.Image bmap = (System.Drawing.Image)data.GetData(typeof(Bitmap));
+                    strFileName = obj.Final_SaveImageCapture(bmap, txtname.Text);
+
+                    PictureBox_Bhakt.Image = System.Drawing.Image.FromFile(strFileName);
+                   
+                    // Disconnect from the capture device
+                    SendMessage(hHwnd, WM_CAP_DRIVER_DISCONNECT, new IntPtr(iDevice), IntPtr.Zero);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to capture image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void ClosePreviewWindow()
+        {
+            IntPtr hHwnd = this.Handle;
+            int iDevice = 0;
+            SendMessage(hHwnd, WM_CAP_DRIVER_DISCONNECT, new IntPtr(iDevice), IntPtr.Zero);
+
+            // 
+            // close window
+            // 
+
+            //DestroyWindow(hHwnd);
+        }
+
+        private void PrasadImgCap_Click(object sender, EventArgs e)
+        {
+            IntPtr hHwnd = this.Handle;
+            int iDevice = 0;
+            string strFileName = null;
+            Helper obj = new Helper();
+
+            // Connect to the capture device
+            if (SendMessage(hHwnd, WM_CAP_DRIVER_CONNECT, new IntPtr(iDevice), IntPtr.Zero) != 0)
+            {
+                // Capture the image
+                SendMessage(hHwnd, WM_CAP_EDIT_COPY, IntPtr.Zero, IntPtr.Zero);
+
+                // Get image from clipboard
+                IDataObject data = Clipboard.GetDataObject();
+                if (data.GetDataPresent(typeof(Bitmap)))
+                {
+                    // Display captured image in PictureBox
+                    System.Drawing.Image bmap = (System.Drawing.Image)data.GetData(typeof(Bitmap));
+                    strFileName = obj.Final_SaveImageCapture(bmap, txtname.Text);
+
+                    PictureBoxPrasad.Image = System.Drawing.Image.FromFile(strFileName);
+
+                    // Disconnect from the capture device
+                    SendMessage(hHwnd, WM_CAP_DRIVER_DISCONNECT, new IntPtr(iDevice), IntPtr.Zero);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to capture image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

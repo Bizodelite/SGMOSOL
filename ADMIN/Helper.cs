@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security;
 using Microsoft.VisualBasic;
+using System.Runtime.InteropServices;
 
 namespace SGMOSOL.ADMIN
 {
@@ -39,20 +40,17 @@ namespace SGMOSOL.ADMIN
 
             // final = "person-Img-" & curdatetime
             final = UNName + curdatetime;
-
-
             finalpath = finalpath + final;
-
-
             // Save Image
             string filename = finalpath;
-
-
             FileStream fstream = new FileStream(filename, FileMode.Create);
             image.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
             // SaveThumbnailImages(image, filename)
             fstream.Close();
+            //return filename;
         }
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
         public static bool isImageExistance(string imageName, string checkImgIn)
         {

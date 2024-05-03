@@ -335,6 +335,38 @@ namespace SGMOSOL.DAL
             }
             return dengiId;
         }
+
+        public int getDengiBhetvastuNumber()
+        {
+            int dengiId = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT MAX(SERIAL_NO) FROM DEN_DENGI_BhetVastu_MST_T_R WHERE DEPT_ID=" + UserInfo.Dept_id + " AND LOC_ID=" + UserInfo.Loc_id + " and FY_ID=" + UserInfo.fy_id + " and CTR_MACH_ID=" + UserInfo.ctrMachID + "";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int maxId))
+                        {
+                            dengiId = maxId + 1;
+                        }
+                        if (result.ToString() == "")
+                        {
+                            dengiId = 1;
+                        }
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+            return dengiId;
+        }
+
         public string ExtractDate(string input)
         {
             int valueIndex = input.IndexOf("Value:");

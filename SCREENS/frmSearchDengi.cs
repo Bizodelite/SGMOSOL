@@ -27,6 +27,7 @@ namespace SGMOSOL.SCREENS
             // frmDengi = new frmDengiReceipt();
             this.MouseClick += frmSearchDengi_MouseClick;
             this.KeyDown += frmSearchDengi_KeyDown;
+           
         }
 
         private void frmSearchDengi_Load(object sender, EventArgs e)
@@ -59,6 +60,14 @@ namespace SGMOSOL.SCREENS
                 {
                     dgvDengiReceipt.DataSource = dataTable;
                     dgvDengiReceipt.Columns["DENGI_RECEIPT_ID"].Visible = false;
+                    dgvDengiReceipt.RowHeadersVisible = true;
+
+                    // Iterate through each row in the DataGridView
+                    for (int i = 0; i < dgvDengiReceipt.Rows.Count; i++)
+                    {
+                        // Set the value of the row header to the sequential ID (starting from 1)
+                        dgvDengiReceipt.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                    }
                 }
                 else dgvDengiReceipt.DataSource = null;
             }

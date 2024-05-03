@@ -156,8 +156,8 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Controls.Add(this.lblPaymentMode);
             this.pnlMaster.Controls.Add(this.lblAmtWords);
             this.pnlMaster.Controls.Add(this.lbldoctype_err);
-            this.pnlMaster.Controls.Add(this.txtPANNo);
             this.pnlMaster.Controls.Add(this.pnlDDDtl);
+            this.pnlMaster.Controls.Add(this.txtPANNo);
             this.pnlMaster.Controls.Add(this.lbldocdetailerr);
             this.pnlMaster.Controls.Add(this.txtdocDetail);
             this.pnlMaster.Controls.Add(this.label17);
@@ -257,7 +257,7 @@ namespace SGMOSOL.SCREENS
             this.pnlDDDtl.Controls.Add(this.txtDDNo);
             this.pnlDDDtl.Controls.Add(this.txtDDBankName);
             this.pnlDDDtl.Controls.Add(this.Label12);
-            this.pnlDDDtl.Location = new System.Drawing.Point(10, 178);
+            this.pnlDDDtl.Location = new System.Drawing.Point(30, 163);
             this.pnlDDDtl.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDDDtl.Name = "pnlDDDtl";
             this.pnlDDDtl.Size = new System.Drawing.Size(1457, 46);
@@ -431,7 +431,7 @@ namespace SGMOSOL.SCREENS
             // 
             this.txtInvoice.BackColor = System.Drawing.Color.Azure;
             this.txtInvoice.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvoice.Location = new System.Drawing.Point(113, 10);
+            this.txtInvoice.Location = new System.Drawing.Point(137, 9);
             this.txtInvoice.Margin = new System.Windows.Forms.Padding(4);
             this.txtInvoice.MaxLength = 30;
             this.txtInvoice.Name = "txtInvoice";
@@ -446,9 +446,9 @@ namespace SGMOSOL.SCREENS
             this.Label16.Location = new System.Drawing.Point(3, 14);
             this.Label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label16.Name = "Label16";
-            this.Label16.Size = new System.Drawing.Size(86, 23);
+            this.Label16.Size = new System.Drawing.Size(114, 23);
             this.Label16.TabIndex = 0;
-            this.Label16.Text = "Tran No";
+            this.Label16.Text = "Invoice No";
             this.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblamount

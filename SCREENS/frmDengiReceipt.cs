@@ -160,8 +160,8 @@ namespace SGMOSOL.SCREENS
                     showPanel();
                     getDengiNo();
                 }
-               // sessionManager = new SessionManager(this);
-               // sessionManager.StartTimer();
+                // sessionManager = new SessionManager(this);
+                // sessionManager.StartTimer();
             }
             catch (Exception ex)
             {
@@ -239,6 +239,27 @@ namespace SGMOSOL.SCREENS
                 cobTid.DataSource = dt;
                 cobTid.DisplayMember = "tidNo";
                 cobTid.ValueMember = "Tid";
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
+        }
+        private void getLastInvoice()
+        {
+            string strInvoice = null;
+            int intTID = 0;
+            try
+            {
+                dt = dengiReceiptDAL.GetLastInvoiceNumber();
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    strInvoice = row["INVOICE_NO"].ToString();
+                    intTID = Convert.ToInt32(row["TID_ID"]);
+                    txtInvoice.Text = strInvoice;
+                    cobTid.SelectedValue= intTID;
+                }
             }
             catch (Exception ex)
             {
@@ -399,6 +420,7 @@ namespace SGMOSOL.SCREENS
             if (cboPaymentType.Text == "Swipe")
             {
                 fillTId();
+                getLastInvoice();
                 pnlChqDtl.Visible = false;
                 pnlDDDtl.Visible = false;
                 pnlNetDtl.Visible = false;
@@ -411,7 +433,6 @@ namespace SGMOSOL.SCREENS
                 pnlNetDtl.Visible = false;
                 pnlswap.Visible = false;
             }
-
         }
 
         private void lockControls()
@@ -448,7 +469,6 @@ namespace SGMOSOL.SCREENS
             btnScan.Enabled = false;
             btnClear.Enabled = false;
             cobTid.Enabled = false;
-
         }
 
         private void unLockControls()
@@ -486,7 +506,7 @@ namespace SGMOSOL.SCREENS
             btnPrint.Enabled = false;
             //btnAcknowledge.Enabled = false;
             btnAcknowledge.Enabled = true;
-
+            cobTid.Enabled = true;
         }
 
         private void showPanel()
@@ -1190,7 +1210,7 @@ namespace SGMOSOL.SCREENS
             commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             report.createReport("Dengi");
             commonFunctions.AppendToFile("Done Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-           // report.Show();
+            // report.Show();
         }
         private void btnAcknowledge_Click(object sender, EventArgs e)
         {
@@ -1566,7 +1586,7 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
-              //  sessionManager.ResetSession();
+                //  sessionManager.ResetSession();
                 dengiReceiptDAL = new DengiReceiptDAL();
                 DataTable dt = new DataTable();
                 if (e.Control && e.KeyCode == Keys.P)
@@ -1711,7 +1731,7 @@ namespace SGMOSOL.SCREENS
 
         private void frmDengiReceipt_MouseClick(object sender, MouseEventArgs e)
         {
-           // sessionManager.ResetSession();
+            // sessionManager.ResetSession();
         }
 
         private void chkScanDoc_CheckedChanged(object sender, EventArgs e)
@@ -1777,9 +1797,9 @@ namespace SGMOSOL.SCREENS
 
         private void txtAddGotra_TextChanged(object sender, EventArgs e)
         {
-            if (txtAddGotra.Text!="")
+            if (txtAddGotra.Text != "")
             {
-                userDengi.SetGotra(txtAddGotra.Text); 
+                userDengi.SetGotra(txtAddGotra.Text);
             }
             else
             {

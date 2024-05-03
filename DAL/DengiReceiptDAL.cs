@@ -127,6 +127,38 @@ namespace SGMOSOL.DAL
             return ds.Tables["TotalAmountByPaymentId"];
         }
 
+        public DataTable GetLastInvoiceNumber()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+               
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SP_GET_LAST_INVOICE_BY_COUNTER", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@LOC_ID", UserInfo.Loc_id);
+                        command.Parameters.AddWithValue("@DEPT_ID", UserInfo.Dept_id);
+                        command.Parameters.AddWithValue("@CTR_MACH_ID", UserInfo.ctrMachID);
+                        command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+
+            }
+            return dt;
+        }
+
+
 
         public DataTable getDengiReceiptDataForReport(string receiptID)
         {

@@ -36,7 +36,7 @@ namespace SGMOSOL.SCREENS
         BhojnalayPrintReceiptDAL bhojnalayDAL;
         CommonFunctions cm = new CommonFunctions();
         string strSerialNumberPrint = null;
-
+        string filePath = null;
         public enum PrinterNames
         {
             DengiDeclaration,
@@ -107,7 +107,7 @@ namespace SGMOSOL.SCREENS
 
                                 //add watermark
                                 cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                string filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
+                               //filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
 
                                 // Add watermark for saving file
                                 using (Bitmap bitmapWithWatermark = new Bitmap(image.Width, image.Height))
@@ -150,7 +150,7 @@ namespace SGMOSOL.SCREENS
                                 cm.AppendToFile("It is  printing content on page " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                 printDoc.Print();
                                 cm.AppendToFile("Successfully done with printing process " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                                
+
 
                             }
                         }
@@ -170,7 +170,7 @@ namespace SGMOSOL.SCREENS
 
         }
 
-        
+
         public void createReport(string form)
         {
 
@@ -207,6 +207,7 @@ namespace SGMOSOL.SCREENS
                             cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
                         }
                         // MessageBox.Show("Printing Dengi Receipt for Serial number " + strSerialNumberPrint);
+                        filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; //
                         printReport(DocumentName, PrinterNames.DengiPrint);
 
                     }
@@ -301,6 +302,13 @@ namespace SGMOSOL.SCREENS
                     addCustomField(dt1);
                     reportViewer2.RefreshReport();
                     DocumentName = "BhojnalayReceipt";
+                    foreach (DataRow row1 in dt1.Rows)
+                    {
+                        strSerialNumberPrint = row1["ITEM_PRINT_RECEIPT_ID"].ToString();
+                    }
+                  
+                    cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
+                    filePath = System.Configuration.ConfigurationManager.AppSettings["MESS_PRINTS"].ToString() + "\\MessReceipt_" + strSerialNumberPrint + ".png"; //
                     printReport(DocumentName, PrinterNames.BhojnalayReceipt);
                 }
 

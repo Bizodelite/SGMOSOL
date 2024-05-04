@@ -372,7 +372,7 @@ namespace SGMOSOL.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "select * from [MESS_ITEM_RECEIPT_DATA_V] where PRINT_RECEIPT_MST_ID='" + receiptID + "'";
+                string query = "select * from [MESS_ITEM_RECEIPT_DATA_V] where PRINT_RECEIPT_MST_ID='" + receiptID + "' AND DEPT_ID="+UserInfo.Dept_id+" AND Location_Id="+UserInfo.Loc_id+" AND CTR_MACH_ID="+UserInfo.ctrMachID+" AND FY_ID="+UserInfo.fy_id+"";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 adapter.Fill(ds, "MESS_ITEM_RECEIPT_DATA_V");
                 connection.Close();

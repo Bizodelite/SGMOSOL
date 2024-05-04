@@ -641,6 +641,27 @@ namespace SGMOSOL.SCREENS
             {
                 lblAdd.Text = "Please Enter Address";
             }
+            if (txtTotalAmount.Text != "")
+            {
+                if (Convert.ToDecimal(txtTotalAmount.Text) > 500)
+                {
+                    if (cboDocName.Text == "Select")
+                    {
+                        lblDocDetail.Text = "Please select document";
+                    }
+                    else
+                    {
+                        lblDocDetail.Text = "";
+                    }
+                }
+                if (cboDocName.Text != "Select" && txtDocumentName.Text == "")
+                {
+                    lblDocDetail.Text = "Please Enter document ID";
+                }
+                else {
+                    lblDocDetail.Text = "";
+                }
+            }
             else
             {
                 lblAdd.Text = "";
@@ -678,13 +699,14 @@ namespace SGMOSOL.SCREENS
             txtQuantity.Text = "";
             txtTaluka.Text = "";
             txtDocumentName.Text = "";
-            cboDocName.Text = "";
+            cboDocName.SelectedValue = 0; ;
             createItemTable();
             lblMobile.Text = "";
             lblAddress.Text = "";
             lblName.Text = "";
             // lblQuantity.Text = "0";
             lblDocDetail.Text = "";
+            txtDocumentName.Enabled = false;
             lblamouwords.Text = "";
             lblTaluka.Text = "";
             txtName.Focus();
@@ -705,6 +727,21 @@ namespace SGMOSOL.SCREENS
             txtTotalAmount.Enabled = false;
             cboDocName.Enabled = false;
             cboItemCode.Enabled = false;
+            // cboItemName.Enabled = false;
+            btnAdd.Enabled = false;
+        }
+        public void UnlockControls()
+        {
+            txtName.Enabled = true;
+            txtAddress.Enabled = true;
+            txtMobile.Enabled = true;
+            txtTaluka.Enabled = true;
+            txtPrice.Enabled = true;
+            txtDocumentName.Enabled = true;
+            txtQuantity.Enabled = true;
+            txtAmount.Enabled = true;
+            cboDocName.Enabled = true;
+            cboItemCode.Enabled = true;
             // cboItemName.Enabled = false;
             btnAdd.Enabled = false;
         }
@@ -770,7 +807,10 @@ namespace SGMOSOL.SCREENS
         private void btnNew_Click(object sender, EventArgs e)
         {
             clearControls();
+            UnlockControls();
             getMasterReceiptNumber();
+            btnSave.Enabled = true;
+            btnPrint.Enabled = false;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

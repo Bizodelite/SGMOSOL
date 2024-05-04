@@ -258,7 +258,10 @@ namespace SGMOSOL.SCREENS
                     strInvoice = row["INVOICE_NO"].ToString();
                     intTID = Convert.ToInt32(row["TID_ID"]);
                     txtInvoice.Text = strInvoice;
-                    cobTid.SelectedValue= intTID;
+                    if (intTID != 0)
+                    {
+                        cobTid.SelectedValue = intTID;
+                    }
                 }
             }
             catch (Exception ex)

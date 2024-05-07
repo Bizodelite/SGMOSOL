@@ -780,3 +780,19 @@ Report content is ready:-2024-05-07 01:36:45
 Report content is ready:-2024-05-07 01:44:13
 saving file in folder 2024-05-07 01:44:15
 Failed Report In Print Function 2024-05-07 01:44:15
+Serial_Number:-47-1
+Report content is ready:-2024-05-07 12:48:30
+saving file in folder 2024-05-07 12:48:33
+Saved file in folder 2024-05-07 12:48:33
+It is  printing content on page 2024-05-07 12:48:33
+It is getting ready to print page (checking page..)  2024-05-07 12:48:37
+It is setting margine 2024-05-07 12:48:37
+Successfully done with printing process 2024-05-07 12:48:37
+Serial_Number:-47-2
+Report content is ready:-2024-05-07 12:48:37
+saving file in folder 2024-05-07 12:48:38
+Saved file in folder 2024-05-07 12:48:38
+It is  printing content on page 2024-05-07 12:48:38
+It is getting ready to print page (checking page..)  2024-05-07 12:48:42
+It is setting margine 2024-05-07 12:48:42
+Successfully done with printing process 2024-05-07 12:48:42

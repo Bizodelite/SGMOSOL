@@ -107,7 +107,7 @@ namespace SGMOSOL.SCREENS
 
                                 //add watermark
                                 cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                               //filePath = System.Configuration.ConfigurationManager.AppSettings["DENGI_PRINTS"].ToString() + "\\DengiReceipt_" + strSerialNumberPrint + ".png"; // Change this to your desired path and file name
+
 
                                 // Add watermark for saving file
                                 using (Bitmap bitmapWithWatermark = new Bitmap(image.Width, image.Height))
@@ -144,6 +144,8 @@ namespace SGMOSOL.SCREENS
                                 printDoc.PrintPage += (s, args) =>
                                 {
                                     cm.AppendToFile("It is getting ready to print page (checking page..)  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                    args.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                    args.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                                     args.Graphics.DrawImage(image, args.MarginBounds);
                                     cm.AppendToFile("It is setting margine " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                                 };

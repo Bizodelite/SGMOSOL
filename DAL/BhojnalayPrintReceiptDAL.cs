@@ -1,6 +1,6 @@
 ﻿using SGMOSOL.ADMIN;
 using SGMOSOL.DataModel;
-using SGMOSOL.DataSet.MessItemDSTableAdapters;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -157,10 +157,10 @@ namespace SGMOSOL.DAL
                             command.Parameters.AddWithValue("@ITEM_NAME", obj.ItemName);
                             command.Parameters.AddWithValue("@NAME", obj.Name);
                             command.Parameters.AddWithValue("@ADDRESS", obj.Address);
-                            command.Parameters.AddWithValue("@MOBILE", obj.Mobile);
-                            command.Parameters.AddWithValue("@TALUKA", obj.Taluka);
-                            command.Parameters.AddWithValue("@DOC_TYPE", obj.DocType);
-                            command.Parameters.AddWithValue("@DOC_DETAIL", obj.DocTypeDetail);
+                            command.Parameters.AddWithValue("@MOBILE", string.IsNullOrEmpty(obj.Mobile) ? DBNull.Value : (object)obj.Mobile);
+                            command.Parameters.AddWithValue("@TALUKA", string.IsNullOrEmpty(obj.Taluka) ? DBNull.Value : (object)obj.Taluka);
+                            command.Parameters.AddWithValue("@DOC_TYPE", string.IsNullOrEmpty(obj.DocType) ? DBNull.Value : (object)obj.DocType);
+                            command.Parameters.AddWithValue("@DOC_DETAIL", string.IsNullOrEmpty(obj.DocTypeDetail) ? DBNull.Value : (object)obj.DocTypeDetail);
                             SqlParameter idParam = new SqlParameter("@SUCCEED", SqlDbType.Int);
                             idParam.Direction = ParameterDirection.Output;
                             command.Parameters.Add(idParam);
@@ -217,6 +217,7 @@ namespace SGMOSOL.DAL
                     }
                 }
             }
+            
             catch (Exception ex)
             {
                 commonFunctions.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
@@ -372,12 +373,13 @@ namespace SGMOSOL.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "select * from [MESS_ITEM_RECEIPT_DATA_V] where PRINT_RECEIPT_MST_ID='" + receiptID + "' AND DEPT_ID="+UserInfo.Dept_id+" AND Location_Id="+UserInfo.Loc_id+" AND CTR_MACH_ID="+UserInfo.ctrMachID+" AND FY_ID="+UserInfo.fy_id+"";
+                string query = "select * from [MESS_ITEM_RECEIPT_DATA_V] where PRINT_RECEIPT_MST_ID='" + receiptID + "' AND DEPT_ID="+UserInfo.Dept_id+" AND LOC_ID="+UserInfo.Loc_id+" AND CTR_MACH_ID="+UserInfo.ctrMachID+" AND FY_ID="+UserInfo.fy_id+"";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                adapter.Fill(ds, "MESS_ITEM_RECEIPT_DATA_V");
+               // ds.Tables["MESS_DATA"].Columns["ITEM_PRINT_RECEIPT_ID"].DataType = typeof(string);
+                adapter.Fill(ds, "MESS_DATA");
                 connection.Close();
             }
-            return ds.Tables["MESS_ITEM_RECEIPT_DATA_V"];
+            return ds.Tables["MESS_DATA"];
         }
         public string getReqNumber()
         {

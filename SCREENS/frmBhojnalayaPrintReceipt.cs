@@ -144,6 +144,7 @@ namespace SGMOSOL.SCREENS
                 getMasterReceiptNumber();
             }
             txtUser.Text = UserInfo.UserName;
+            txtPrice.Text = "0";
 
         }
         public void getMasterReceiptNumber()
@@ -274,6 +275,7 @@ namespace SGMOSOL.SCREENS
 
         public void addItemIngrid()
         {
+            lblAlert.Text = "";
             if (dgvItemDetails.Rows.Count >= 5)
             {
                 MessageBox.Show("Maximum limit of 5 Items reached.", "Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -519,7 +521,6 @@ namespace SGMOSOL.SCREENS
                         if (!row.IsNewRow)
                         {
                             string itemName = row.Cells["Item Name"].Value.ToString();
-
                             if (itemName == item)
                             {
                                 bhojnalayModel.PRINT_MST_ID = Status;
@@ -542,6 +543,8 @@ namespace SGMOSOL.SCREENS
 
                 }
                 clearControls();
+                getMasterReceiptNumber();
+                UnlockControls();
             }
         }
         public void CheckValidDocs()
@@ -605,14 +608,14 @@ namespace SGMOSOL.SCREENS
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtMobile.Text == "")
-            {
-                lblMobile.Text = "Please Enter Number";
-            }
-            else
-            {
-                lblMobile.Text = "";
-            }
+            //if (txtMobile.Text == "")
+            //{
+            //    lblMobile.Text = "Please Enter Number";
+            //}
+            //else
+            //{
+            //    lblMobile.Text = "";
+            //}
             if (txtName.Text == "")
             {
                 lblName.Text = "Please Enter Name";
@@ -621,14 +624,14 @@ namespace SGMOSOL.SCREENS
             {
                 lblName.Text = "";
             }
-            if (txtTaluka.Text == "")
-            {
-                lblTaluka.Text = "Please Enter taluka";
-            }
-            else
-            {
-                lblTaluka.Text = "";
-            }
+            //if (txtTaluka.Text == "")
+            //{
+            //    lblTaluka.Text = "Please Enter taluka";
+            //}
+            //else
+            //{
+            //    lblTaluka.Text = "";
+            //}
             if (cboDocName.Text != "Select" && txtDocumentName.Text == "")
             {
                 lblDocDetail.Text = "Please enter Document details";
@@ -639,7 +642,10 @@ namespace SGMOSOL.SCREENS
             }
             if (txtAddress.Text == "")
             {
-                lblAdd.Text = "Please Enter Address";
+                lblAddress.Text = "Please Enter Address";
+            }
+            else {
+                lblAddress.Text = "";
             }
             if (txtTotalAmount.Text != "")
             {
@@ -666,9 +672,17 @@ namespace SGMOSOL.SCREENS
             {
                 lblAdd.Text = "";
             }
-            if (lblDocDetail.Text == "" && lblName.Text == "" && lblMobile.Text == "" && lblTaluka.Text == "" && lblAdd.Text == "")
+            lblMobile.Text = "";
+            if (lblDocDetail.Text == "" && lblName.Text == ""  && lblAddress.Text == "")
             {
-                insertBhojnalayReceiptMaster();
+                if (dgvItemDetails.Rows.Count > 0)
+                {
+                    insertBhojnalayReceiptMaster();
+                    lblAlert.Text = "";
+                }
+                else {
+                    lblAlert.Text = "Please select at least one item";
+                }
             }
         }
         public string getSelectedItems()
@@ -921,8 +935,14 @@ namespace SGMOSOL.SCREENS
             bool itemFound = false;
             if (e.KeyCode == Keys.Enter)
             {
-
-                if (txtQuantity.Text != "0")
+                if (Convert.ToDecimal(txtAmount.Text) > 500)
+                {
+                    lblamount.Text = "Amount should not greater than 500";
+                }
+                else {
+                    lblamount.Text = "";
+                }
+                if (txtQuantity.Text != "0" && lblamount.Text=="")
                 {
                     addItemIngrid();
                 }
@@ -941,12 +961,13 @@ namespace SGMOSOL.SCREENS
                             txtTotalAmount.Text = getTotalAmount();
                             itemFound = true;
                             clear();
+                            cboItemCode.Focus();
                             break;
                         }
                     }
                     if (itemFound == false)
                     {
-                        MessageBox.Show("Item not found");
+                        MessageBox.Show("Invalid Item !!!");
                     }
                 }
             }

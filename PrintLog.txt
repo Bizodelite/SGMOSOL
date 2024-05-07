@@ -637,3 +637,146 @@ Creating Report:-2024-05-03 13:23:24
 Serial_Number:-826676
 Report content is ready:-2024-05-03 13:23:35
 Done Report:-2024-05-03 13:23:38
+Failed Report while Creating :-Serial No  2024-05-04 17:21:55
+Failed Report while Creating :-Serial No  2024-05-04 17:38:00
+Failed Report while Creating :-Serial No  2024-05-04 18:11:36
+Failed Report while Creating :-Serial No  2024-05-04 18:22:57
+Failed Report while Creating :-Serial No  2024-05-04 18:23:28
+Failed Report while Creating :-Serial No  2024-05-04 19:10:33
+Failed Report while Creating :-Serial No  2024-05-04 19:16:05
+Failed Report while Creating :-Serial No  2024-05-04 19:29:17
+Serial_Number:-36-1
+Report content is ready:-2024-05-06 16:33:53
+saving file in folder 2024-05-06 16:34:09
+Saved file in folder 2024-05-06 16:34:22
+It is  printing content on page 2024-05-06 16:34:25
+It is getting ready to print page (checking page..)  2024-05-06 16:34:32
+It is setting margine 2024-05-06 16:34:32
+Successfully done with printing process 2024-05-06 16:34:33
+Serial_Number:-36-2
+Report content is ready:-2024-05-06 16:34:38
+saving file in folder 2024-05-06 16:34:40
+Saved file in folder 2024-05-06 16:34:40
+It is  printing content on page 2024-05-06 16:34:40
+It is getting ready to print page (checking page..)  2024-05-06 16:34:44
+It is setting margine 2024-05-06 16:34:44
+Successfully done with printing process 2024-05-06 16:34:44
+Serial_Number:-37-1
+Report content is ready:-2024-05-06 16:36:52
+Failed Report while Printing 2024-05-06 16:36:52
+Serial_Number:-37-2
+Report content is ready:-2024-05-06 16:36:52
+Failed Report while Printing 2024-05-06 16:36:52
+Serial_Number:-38-1
+Report content is ready:-2024-05-06 16:38:23
+Serial_Number:-39-1
+Report content is ready:-2024-05-06 16:39:47
+Serial_Number:-40-1
+Report content is ready:-2024-05-06 16:46:33
+Failed Report while Printing 2024-05-06 16:47:12
+Serial_Number:-40-2
+Report content is ready:-2024-05-06 16:47:16
+Failed Report while Printing 2024-05-06 16:47:42
+Serial_Number:-41-1
+Report content is ready:-2024-05-06 16:50:39
+Failed Report while Printing 2024-05-06 16:50:39
+Serial_Number:-41-2
+Report content is ready:-2024-05-06 16:50:43
+Serial_Number:-42-1
+Report content is ready:-2024-05-06 16:53:36
+Failed Report while Printing 2024-05-06 16:53:43
+Serial_Number:-42-2
+Report content is ready:-2024-05-06 16:53:48
+Failed Report while Printing 2024-05-06 17:00:01
+Serial_Number:-43-1
+Report content is ready:-2024-05-06 17:01:36
+saving file in folder 2024-05-06 17:01:46
+Saved file in folder 2024-05-06 17:01:46
+It is  printing content on page 2024-05-06 17:01:46
+It is getting ready to print page (checking page..)  2024-05-06 17:01:50
+It is setting margine 2024-05-06 17:01:50
+Successfully done with printing process 2024-05-06 17:01:51
+Serial_Number:-43-2
+Report content is ready:-2024-05-06 17:01:52
+saving file in folder 2024-05-06 17:01:55
+Saved file in folder 2024-05-06 17:01:55
+It is  printing content on page 2024-05-06 17:01:55
+It is getting ready to print page (checking page..)  2024-05-06 17:02:00
+It is setting margine 2024-05-06 17:02:00
+Successfully done with printing process 2024-05-06 17:02:00
+Serial_Number:-44-1
+Report content is ready:-2024-05-06 17:05:51
+saving file in folder 2024-05-06 17:05:55
+Saved file in folder 2024-05-06 17:05:55
+It is  printing content on page 2024-05-06 17:05:55
+It is getting ready to print page (checking page..)  2024-05-06 17:05:59
+It is setting margine 2024-05-06 17:05:59
+Successfully done with printing process 2024-05-06 17:05:59
+Serial_Number:-44-2
+Report content is ready:-2024-05-06 17:05:59
+saving file in folder 2024-05-06 17:06:00
+Saved file in folder 2024-05-06 17:06:00
+It is  printing content on page 2024-05-06 17:06:00
+It is getting ready to print page (checking page..)  2024-05-06 17:06:04
+It is setting margine 2024-05-06 17:06:04
+Successfully done with printing process 2024-05-06 17:06:04
+Serial_Number:-45-1
+Report content is ready:-2024-05-06 17:09:55
+saving file in folder 2024-05-06 17:09:57
+Saved file in folder 2024-05-06 17:09:57
+It is  printing content on page 2024-05-06 17:09:57
+It is getting ready to print page (checking page..)  2024-05-06 17:10:02
+It is setting margine 2024-05-06 17:10:02
+Successfully done with printing process 2024-05-06 17:10:02
+Serial_Number:-45-2
+Report content is ready:-2024-05-06 17:10:02
+saving file in folder 2024-05-06 17:10:03
+Saved file in folder 2024-05-06 17:10:03
+It is  printing content on page 2024-05-06 17:10:03
+It is getting ready to print page (checking page..)  2024-05-06 17:10:07
+It is setting margine 2024-05-06 17:10:07
+Successfully done with printing process 2024-05-06 17:10:07
+Serial_Number:-46-1
+Report content is ready:-2024-05-06 17:14:32
+saving file in folder 2024-05-06 17:14:35
+Saved file in folder 2024-05-06 17:14:35
+It is  printing content on page 2024-05-06 17:14:35
+It is getting ready to print page (checking page..)  2024-05-06 17:14:39
+It is setting margine 2024-05-06 17:14:39
+Successfully done with printing process 2024-05-06 17:14:39
+Serial_Number:-46-2
+Report content is ready:-2024-05-06 17:14:39
+saving file in folder 2024-05-06 17:14:40
+Saved file in folder 2024-05-06 17:14:40
+It is  printing content on page 2024-05-06 17:14:40
+It is getting ready to print page (checking page..)  2024-05-06 17:14:43
+It is setting margine 2024-05-06 17:14:43
+Successfully done with printing process 2024-05-06 17:14:43
+
+Creating Report:-2024-05-06 17:18:16
+Serial_Number:-826680
+Report content is ready:-2024-05-06 17:18:17
+saving file in folder 2024-05-06 17:18:21
+Saved file in folder 2024-05-06 17:18:21
+It is  printing content on page 2024-05-06 17:18:21
+It is getting ready to print page (checking page..)  2024-05-06 17:18:28
+It is setting margine 2024-05-06 17:18:28
+Successfully done with printing process 2024-05-06 17:18:28
+Done Report:-2024-05-06 17:18:28
+
+Creating Report:-2024-05-06 17:22:43
+Serial_Number:-826681
+Report content is ready:-2024-05-06 17:22:43
+saving file in folder 2024-05-06 17:22:46
+Saved file in folder 2024-05-06 17:22:46
+It is  printing content on page 2024-05-06 17:22:46
+It is getting ready to print page (checking page..)  2024-05-06 17:22:50
+It is setting margine 2024-05-06 17:22:50
+Successfully done with printing process 2024-05-06 17:22:51
+Done Report:-2024-05-06 17:22:51
+Report content is ready:-2024-05-07 00:51:27
+Report content is ready:-2024-05-07 01:33:59
+Report content is ready:-2024-05-07 01:36:45
+Report content is ready:-2024-05-07 01:44:13
+saving file in folder 2024-05-07 01:44:15
+Failed Report In Print Function 2024-05-07 01:44:15

@@ -191,6 +191,7 @@ namespace SGMOSOL.SCREENS
                 pnlPincode.Visible = false;
                 lblDengiHead1.Text = "Dengi";
                 AdjustParentControls();
+                lblDengiHead.Text = "DENGI";
             }
         }
         private void AdjustParentControls()
@@ -204,7 +205,7 @@ namespace SGMOSOL.SCREENS
             pnlName.Location = new Point(14, 323);
             pnlAddress.Location = new Point(14, 390);
             pnlMobile.Location = new Point(15, 465);
-            pnlTaluka.Location = new Point(512, 436);
+            pnlTaluka.Location = new Point(512, 465);
 
             // Set pnlAddress as a child of pnlName
             //pnlAddress.Parent = pnlName;

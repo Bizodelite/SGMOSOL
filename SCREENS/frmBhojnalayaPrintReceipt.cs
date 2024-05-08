@@ -608,14 +608,22 @@ namespace SGMOSOL.SCREENS
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //if (txtMobile.Text == "")
-            //{
-            //    lblMobile.Text = "Please Enter Number";
-            //}
-            //else
-            //{
-            //    lblMobile.Text = "";
-            //}
+            validation();
+            if (lblDocDetail.Text == "" && lblName.Text == "" && lblAddress.Text == "")
+            {
+                if (dgvItemDetails.Rows.Count > 0)
+                {
+                    insertBhojnalayReceiptMaster();
+                    lblAlert.Text = "";
+                }
+                else
+                {
+                    lblAlert.Text = "Please select at least one item";
+                }
+            }
+        }
+        public void validation()
+        {
             if (txtName.Text == "")
             {
                 lblName.Text = "Please Enter Name";
@@ -625,33 +633,9 @@ namespace SGMOSOL.SCREENS
             {
                 lblName.Text = "";
             }
-            //if (txtTaluka.Text == "")
-            //{
-            //    lblTaluka.Text = "Please Enter taluka";
-            //}
-            //else
-            //{
-            //    lblTaluka.Text = "";
-            //}
-            if (cboDocName.Text != "Select" && txtDocumentName.Text == "")
-            {
-                lblDocDetail.Text = "Please enter Document details";
-            }
-            else
-            {
-                lblDocDetail.Text = "";
-            }
-            if (txtAddress.Text == "")
-            {
-                lblAddress.Text = "Please Enter Address";
-                txtAddress.Focus();
-            }
-            else {
-                lblAddress.Text = "";
-            }
             if (txtTotalAmount.Text != "")
             {
-                if (Convert.ToDecimal(txtTotalAmount.Text) > 500)
+                if (Convert.ToDecimal(txtTotalAmount.Text) >= 500)
                 {
                     if (cboDocName.Text == "Select")
                     {
@@ -661,30 +645,25 @@ namespace SGMOSOL.SCREENS
                     {
                         lblDocDetail.Text = "";
                     }
-                }
-                if (cboDocName.Text != "Select" && txtDocumentName.Text == "")
-                {
-                    lblDocDetail.Text = "Please Enter document ID";
+                    if (cboDocName.Text != "Select" && txtDocumentName.Text == "")
+                    {
+                        lblDocDetail.Text = "Please Enter document ID";
+                    }
+                   
                 }
                 else {
                     lblDocDetail.Text = "";
                 }
             }
+            
+            if (txtAddress.Text == "")
+            {
+                lblAddress.Text = "Please Enter Address";
+                txtAddress.Focus();
+            }
             else
             {
-                lblAdd.Text = "";
-            }
-            lblMobile.Text = "";
-            if (lblDocDetail.Text == "" && lblName.Text == ""  && lblAddress.Text == "")
-            {
-                if (dgvItemDetails.Rows.Count > 0)
-                {
-                    insertBhojnalayReceiptMaster();
-                    lblAlert.Text = "";
-                }
-                else {
-                    lblAlert.Text = "Please select at least one item";
-                }
+                lblAddress.Text = "";
             }
         }
         public string getSelectedItems()
@@ -941,10 +920,11 @@ namespace SGMOSOL.SCREENS
                 {
                     lblamount.Text = "Amount should not greater than 500";
                 }
-                else {
+                else
+                {
                     lblamount.Text = "";
                 }
-                if (txtQuantity.Text != "0" && lblamount.Text=="")
+                if (txtQuantity.Text != "0" && lblamount.Text == "")
                 {
                     addItemIngrid();
                 }

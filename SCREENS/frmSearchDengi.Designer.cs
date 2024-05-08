@@ -82,6 +82,7 @@
             // lblAmountInwords
             // 
             this.lblAmountInwords.AutoSize = true;
+            this.lblAmountInwords.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmountInwords.ForeColor = System.Drawing.Color.Red;
             this.lblAmountInwords.Location = new System.Drawing.Point(703, 95);
             this.lblAmountInwords.Name = "lblAmountInwords";
@@ -91,18 +92,20 @@
             // txttotalAMount
             // 
             this.txttotalAMount.Enabled = false;
-            this.txttotalAMount.Location = new System.Drawing.Point(706, 71);
+            this.txttotalAMount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttotalAMount.Location = new System.Drawing.Point(740, 73);
             this.txttotalAMount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txttotalAMount.Name = "txttotalAMount";
-            this.txttotalAMount.Size = new System.Drawing.Size(296, 22);
+            this.txttotalAMount.Size = new System.Drawing.Size(296, 27);
             this.txttotalAMount.TabIndex = 16;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(614, 73);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 16);
+            this.label8.Size = new System.Drawing.Size(108, 20);
             this.label8.TabIndex = 15;
             this.label8.Text = "Total Amount";
             // 

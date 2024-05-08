@@ -62,25 +62,27 @@ namespace SGMOSOL.SCREENS
 
             DataTable ds = CF.GetDsSearchDataNew(mStrTableName, strFromDate, strToDate, strName, mIntCtrMachId, PrintReceiptLocId, UserInfo.UserId);
 
-
-            fpsSearch.DataSource = ds;
-            if (fpsSearch.DataSource != null)
+            if (ds.Rows.Count > 0)
             {
-                //var withBlock = fpsSearch;
-                fpsSearch.Columns[0].Visible = false;
-                fpsSearch.Columns[1].Visible = false;
-                fpsSearch.Columns[2].Visible = false;
-                fpsSearch.Columns[3].Visible = false;
-                fpsSearch.Columns[4].Visible = false;
-                fpsSearch.Columns[5].Visible = false;
-                for (i = 0; i <= fpsSearch.Columns.Count - 1; i++)
-                    // .Columns(i).Width = 100 '--.Columns(i).GetPreferredWidth()
-                    // .Columns(i).AllowAutoFilter = True
-                    fpsSearch.Columns[i].Name = fpsSearch.Columns[i].Name.Replace("_", " ");
-            }
-            if (ds != null && ds.Rows.Count > 0)
-            {
-                CF.LockUnLockGrid(0, fpsSearch.RowCount - 1, 0, fpsSearch.ColumnCount - 1, fpsSearch, true);
+                fpsSearch.DataSource = ds;
+                if (fpsSearch.DataSource != null)
+                {
+                    //var withBlock = fpsSearch;
+                    fpsSearch.Columns[0].Visible = false;
+                    fpsSearch.Columns[1].Visible = false;
+                    fpsSearch.Columns[2].Visible = false;
+                    fpsSearch.Columns[3].Visible = false;
+                    fpsSearch.Columns[4].Visible = false;
+                    fpsSearch.Columns[5].Visible = false;
+                    for (i = 0; i <= fpsSearch.Columns.Count - 1; i++)
+                        // .Columns(i).Width = 100 '--.Columns(i).GetPreferredWidth()
+                        // .Columns(i).AllowAutoFilter = True
+                        fpsSearch.Columns[i].Name = fpsSearch.Columns[i].Name.Replace("_", " ");
+                }
+                if (ds != null && ds.Rows.Count > 0)
+                {
+                    CF.LockUnLockGrid(0, fpsSearch.RowCount - 1, 0, fpsSearch.ColumnCount - 1, fpsSearch, true);
+                }
             }
 
         }
@@ -97,7 +99,7 @@ namespace SGMOSOL.SCREENS
         }
         private void btnOK_Click(System.Object sender, System.EventArgs e)
         {
-                    var withBlock = fpsSearch;
+            var withBlock = fpsSearch;
             if (withBlock.Rows.Count > 0)
             {
                 {

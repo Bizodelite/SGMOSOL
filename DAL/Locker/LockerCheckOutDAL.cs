@@ -518,7 +518,6 @@ namespace SGMOSOL.DAL
             {
                 SqlCommand command = new SqlCommand("SP_GetLockerCheckInMstForOut", clsConnection.GetConnection());
                 command.CommandType = CommandType.StoredProcedure;
-
                 command.Parameters.AddWithValue("@LockerCheckInMstId", lngLockerCheckInMstId == 0 ? (object)DBNull.Value : (object)lngLockerCheckInMstId);
                 command.Parameters.AddWithValue("@Date", string.IsNullOrEmpty(strDate) ? (object)DBNull.Value : DateTime.Parse(strDate));
                 command.Parameters.AddWithValue("@SerialNo", lngSerialNo == 0 ? (object)DBNull.Value : (object)lngSerialNo);

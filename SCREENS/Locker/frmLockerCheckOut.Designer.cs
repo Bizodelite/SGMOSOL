@@ -78,9 +78,10 @@
             // chkYes
             // 
             this.chkYes.AutoSize = true;
-            this.chkYes.Location = new System.Drawing.Point(499, 14);
+            this.chkYes.Location = new System.Drawing.Point(665, 17);
+            this.chkYes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkYes.Name = "chkYes";
-            this.chkYes.Size = new System.Drawing.Size(15, 14);
+            this.chkYes.Size = new System.Drawing.Size(18, 17);
             this.chkYes.TabIndex = 100;
             this.chkYes.UseVisualStyleBackColor = true;
             this.chkYes.Visible = false;
@@ -89,9 +90,10 @@
             // 
             this.lbYes.AutoSize = true;
             this.lbYes.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.lbYes.Location = new System.Drawing.Point(451, 13);
+            this.lbYes.Location = new System.Drawing.Point(601, 16);
+            this.lbYes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbYes.Name = "lbYes";
-            this.lbYes.Size = new System.Drawing.Size(33, 18);
+            this.lbYes.Size = new System.Drawing.Size(39, 23);
             this.lbYes.TabIndex = 99;
             this.lbYes.Text = "Yes";
             this.lbYes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -103,9 +105,10 @@
             this.dtpCurTime.CustomFormat = "hh:mm tt";
             this.dtpCurTime.Enabled = false;
             this.dtpCurTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCurTime.Location = new System.Drawing.Point(495, 49);
+            this.dtpCurTime.Location = new System.Drawing.Point(660, 60);
+            this.dtpCurTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpCurTime.Name = "dtpCurTime";
-            this.dtpCurTime.Size = new System.Drawing.Size(90, 20);
+            this.dtpCurTime.Size = new System.Drawing.Size(119, 22);
             this.dtpCurTime.TabIndex = 98;
             this.dtpCurTime.Value = new System.DateTime(2013, 8, 26, 0, 0, 0, 0);
             // 
@@ -113,9 +116,10 @@
             // 
             this.Label22.AutoSize = true;
             this.Label22.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label22.Location = new System.Drawing.Point(446, 49);
+            this.Label22.Location = new System.Drawing.Point(595, 60);
+            this.Label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label22.Name = "Label22";
-            this.Label22.Size = new System.Drawing.Size(41, 18);
+            this.Label22.Size = new System.Drawing.Size(51, 23);
             this.Label22.TabIndex = 97;
             this.Label22.Text = "Time";
             this.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,9 +130,10 @@
             this.dtpCurDate.CustomFormat = "dd/MM/yyyy";
             this.dtpCurDate.Enabled = false;
             this.dtpCurDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCurDate.Location = new System.Drawing.Point(337, 46);
+            this.dtpCurDate.Location = new System.Drawing.Point(449, 57);
+            this.dtpCurDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpCurDate.Name = "dtpCurDate";
-            this.dtpCurDate.Size = new System.Drawing.Size(103, 20);
+            this.dtpCurDate.Size = new System.Drawing.Size(136, 22);
             this.dtpCurDate.TabIndex = 96;
             this.dtpCurDate.Value = new System.DateTime(2013, 8, 26, 0, 0, 0, 0);
             // 
@@ -136,9 +141,10 @@
             // 
             this.Label1.AutoSize = true;
             this.Label1.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label1.Location = new System.Drawing.Point(288, 49);
+            this.Label1.Location = new System.Drawing.Point(384, 60);
+            this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(39, 18);
+            this.Label1.Size = new System.Drawing.Size(49, 23);
             this.Label1.TabIndex = 95;
             this.Label1.Text = "Date";
             this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,10 +153,11 @@
             // 
             this.txtDays.BackColor = System.Drawing.Color.White;
             this.txtDays.Enabled = false;
-            this.txtDays.Location = new System.Drawing.Point(114, 279);
+            this.txtDays.Location = new System.Drawing.Point(152, 343);
+            this.txtDays.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDays.Name = "txtDays";
             this.txtDays.ReadOnly = true;
-            this.txtDays.Size = new System.Drawing.Size(95, 20);
+            this.txtDays.Size = new System.Drawing.Size(125, 22);
             this.txtDays.TabIndex = 77;
             this.txtDays.TabStop = false;
             this.txtDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -161,19 +168,21 @@
             this.txtCounter.BackColor = System.Drawing.Color.White;
             this.txtCounter.Enabled = false;
             this.txtCounter.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCounter.Location = new System.Drawing.Point(339, 13);
+            this.txtCounter.Location = new System.Drawing.Point(452, 16);
+            this.txtCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCounter.Name = "txtCounter";
             this.txtCounter.ReadOnly = true;
-            this.txtCounter.Size = new System.Drawing.Size(89, 22);
+            this.txtCounter.Size = new System.Drawing.Size(117, 26);
             this.txtCounter.TabIndex = 94;
             this.txtCounter.TabStop = false;
             // 
             // Label20
             // 
             this.Label20.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label20.Location = new System.Drawing.Point(274, 13);
+            this.Label20.Location = new System.Drawing.Point(365, 16);
+            this.Label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label20.Name = "Label20";
-            this.Label20.Size = new System.Drawing.Size(74, 21);
+            this.Label20.Size = new System.Drawing.Size(99, 26);
             this.Label20.TabIndex = 93;
             this.Label20.Text = "Counter";
             this.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -182,9 +191,10 @@
             // 
             this.Label21.AutoSize = true;
             this.Label21.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label21.Location = new System.Drawing.Point(30, 13);
+            this.Label21.Location = new System.Drawing.Point(40, 16);
+            this.Label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label21.Name = "Label21";
-            this.Label21.Size = new System.Drawing.Size(38, 18);
+            this.Label21.Size = new System.Drawing.Size(47, 23);
             this.Label21.TabIndex = 91;
             this.Label21.Text = "User";
             this.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -194,10 +204,11 @@
             this.txtUser.BackColor = System.Drawing.Color.White;
             this.txtUser.Enabled = false;
             this.txtUser.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(118, 14);
+            this.txtUser.Location = new System.Drawing.Point(157, 17);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
-            this.txtUser.Size = new System.Drawing.Size(88, 22);
+            this.txtUser.Size = new System.Drawing.Size(116, 26);
             this.txtUser.TabIndex = 92;
             this.txtUser.TabStop = false;
             // 
@@ -205,9 +216,10 @@
             // 
             this.Label19.AutoSize = true;
             this.Label19.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label19.Location = new System.Drawing.Point(24, 197);
+            this.Label19.Location = new System.Drawing.Point(32, 242);
+            this.Label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label19.Name = "Label19";
-            this.Label19.Size = new System.Drawing.Size(78, 18);
+            this.Label19.Size = new System.Drawing.Size(101, 23);
             this.Label19.TabIndex = 69;
             this.Label19.Text = "Receipt No";
             this.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -216,10 +228,11 @@
             // 
             this.txtVchNo.BackColor = System.Drawing.Color.White;
             this.txtVchNo.Enabled = false;
-            this.txtVchNo.Location = new System.Drawing.Point(115, 193);
+            this.txtVchNo.Location = new System.Drawing.Point(153, 238);
+            this.txtVchNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtVchNo.Name = "txtVchNo";
             this.txtVchNo.ReadOnly = true;
-            this.txtVchNo.Size = new System.Drawing.Size(95, 20);
+            this.txtVchNo.Size = new System.Drawing.Size(125, 22);
             this.txtVchNo.TabIndex = 70;
             this.txtVchNo.TabStop = false;
             this.txtVchNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -229,9 +242,10 @@
             // 
             this.Label18.AutoSize = true;
             this.Label18.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label18.Location = new System.Drawing.Point(24, 132);
+            this.Label18.Location = new System.Drawing.Point(32, 162);
+            this.Label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label18.Name = "Label18";
-            this.Label18.Size = new System.Drawing.Size(123, 18);
+            this.Label18.Size = new System.Drawing.Size(157, 23);
             this.Label18.TabIndex = 67;
             this.Label18.Text = "Check Out Details";
             this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,18 +253,20 @@
             // Label15
             // 
             this.Label15.BackColor = System.Drawing.Color.Black;
-            this.Label15.Location = new System.Drawing.Point(24, 167);
+            this.Label15.Location = new System.Drawing.Point(32, 206);
+            this.Label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label15.Name = "Label15";
-            this.Label15.Size = new System.Drawing.Size(572, 2);
+            this.Label15.Size = new System.Drawing.Size(763, 2);
             this.Label15.TabIndex = 68;
             this.Label15.Text = "Label15";
             // 
             // Label14
             // 
             this.Label14.BackColor = System.Drawing.Color.Black;
-            this.Label14.Location = new System.Drawing.Point(24, 71);
+            this.Label14.Location = new System.Drawing.Point(32, 87);
+            this.Label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label14.Name = "Label14";
-            this.Label14.Size = new System.Drawing.Size(572, 2);
+            this.Label14.Size = new System.Drawing.Size(763, 2);
             this.Label14.TabIndex = 59;
             this.Label14.Text = "Label14";
             // 
@@ -258,9 +274,10 @@
             // 
             this.Label12.AutoSize = true;
             this.Label12.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label12.Location = new System.Drawing.Point(448, 198);
+            this.Label12.Location = new System.Drawing.Point(597, 244);
+            this.Label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label12.Name = "Label12";
-            this.Label12.Size = new System.Drawing.Size(41, 18);
+            this.Label12.Size = new System.Drawing.Size(51, 23);
             this.Label12.TabIndex = 73;
             this.Label12.Text = "Time";
             this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -271,9 +288,10 @@
             this.dtpCheckOutTime.CustomFormat = "hh:mm tt";
             this.dtpCheckOutTime.Enabled = false;
             this.dtpCheckOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCheckOutTime.Location = new System.Drawing.Point(495, 194);
+            this.dtpCheckOutTime.Location = new System.Drawing.Point(660, 239);
+            this.dtpCheckOutTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpCheckOutTime.Name = "dtpCheckOutTime";
-            this.dtpCheckOutTime.Size = new System.Drawing.Size(90, 20);
+            this.dtpCheckOutTime.Size = new System.Drawing.Size(119, 22);
             this.dtpCheckOutTime.TabIndex = 74;
             this.dtpCheckOutTime.Value = new System.DateTime(2013, 8, 24, 0, 0, 0, 0);
             // 
@@ -283,9 +301,10 @@
             this.dtpCheckOut.CustomFormat = "dd/MM/yyyy";
             this.dtpCheckOut.Enabled = false;
             this.dtpCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCheckOut.Location = new System.Drawing.Point(342, 194);
+            this.dtpCheckOut.Location = new System.Drawing.Point(456, 239);
+            this.dtpCheckOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpCheckOut.Name = "dtpCheckOut";
-            this.dtpCheckOut.Size = new System.Drawing.Size(98, 20);
+            this.dtpCheckOut.Size = new System.Drawing.Size(129, 22);
             this.dtpCheckOut.TabIndex = 72;
             this.dtpCheckOut.Value = new System.DateTime(2013, 8, 25, 0, 0, 0, 0);
             // 
@@ -293,9 +312,10 @@
             // 
             this.Label7.AutoSize = true;
             this.Label7.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label7.Location = new System.Drawing.Point(288, 198);
+            this.Label7.Location = new System.Drawing.Point(384, 244);
+            this.Label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label7.Name = "Label7";
-            this.Label7.Size = new System.Drawing.Size(39, 18);
+            this.Label7.Size = new System.Drawing.Size(49, 23);
             this.Label7.TabIndex = 71;
             this.Label7.Text = "Date";
             this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -309,7 +329,8 @@
             0,
             0,
             0});
-            this.nudTotalRent.Location = new System.Drawing.Point(114, 323);
+            this.nudTotalRent.Location = new System.Drawing.Point(152, 398);
+            this.nudTotalRent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nudTotalRent.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -317,7 +338,7 @@
             0});
             this.nudTotalRent.Name = "nudTotalRent";
             this.nudTotalRent.ReadOnly = true;
-            this.nudTotalRent.Size = new System.Drawing.Size(108, 22);
+            this.nudTotalRent.Size = new System.Drawing.Size(144, 26);
             this.nudTotalRent.TabIndex = 80;
             this.nudTotalRent.TabStop = false;
             this.nudTotalRent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -326,9 +347,10 @@
             // 
             this.Label13.AutoSize = true;
             this.Label13.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label13.Location = new System.Drawing.Point(21, 327);
+            this.Label13.Location = new System.Drawing.Point(28, 402);
+            this.Label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label13.Name = "Label13";
-            this.Label13.Size = new System.Drawing.Size(76, 18);
+            this.Label13.Size = new System.Drawing.Size(96, 23);
             this.Label13.TabIndex = 79;
             this.Label13.Text = "Total Rent";
             this.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -336,9 +358,10 @@
             // btnLoad
             // 
             this.btnLoad.Image = global::SGMOSOL.ResourceMain.Data_Fetch_22;
-            this.btnLoad.Location = new System.Drawing.Point(221, 86);
+            this.btnLoad.Location = new System.Drawing.Point(295, 106);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(44, 30);
+            this.btnLoad.Size = new System.Drawing.Size(59, 37);
             this.btnLoad.TabIndex = 60;
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -347,9 +370,10 @@
             // 
             this.Label2.AutoSize = true;
             this.Label2.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label2.Location = new System.Drawing.Point(22, 49);
+            this.Label2.Location = new System.Drawing.Point(29, 60);
+            this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(113, 18);
+            this.Label2.Size = new System.Drawing.Size(145, 23);
             this.Label2.TabIndex = 58;
             this.Label2.Text = "Check In Details";
             this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -358,9 +382,10 @@
             // 
             this.Label17.AutoSize = true;
             this.Label17.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label17.Location = new System.Drawing.Point(288, 94);
+            this.Label17.Location = new System.Drawing.Point(384, 116);
+            this.Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label17.Name = "Label17";
-            this.Label17.Size = new System.Drawing.Size(39, 18);
+            this.Label17.Size = new System.Drawing.Size(49, 23);
             this.Label17.TabIndex = 61;
             this.Label17.Text = "Date";
             this.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -369,9 +394,10 @@
             // 
             this.Label16.AutoSize = true;
             this.Label16.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label16.Location = new System.Drawing.Point(24, 90);
+            this.Label16.Location = new System.Drawing.Point(32, 111);
+            this.Label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label16.Name = "Label16";
-            this.Label16.Size = new System.Drawing.Size(78, 18);
+            this.Label16.Size = new System.Drawing.Size(101, 23);
             this.Label16.TabIndex = 65;
             this.Label16.Text = "Receipt No";
             this.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -386,7 +412,8 @@
             0,
             0,
             0});
-            this.NudRefund.Location = new System.Drawing.Point(115, 367);
+            this.NudRefund.Location = new System.Drawing.Point(153, 452);
+            this.NudRefund.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NudRefund.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -399,7 +426,7 @@
             -2147352576});
             this.NudRefund.Name = "NudRefund";
             this.NudRefund.ReadOnly = true;
-            this.NudRefund.Size = new System.Drawing.Size(108, 22);
+            this.NudRefund.Size = new System.Drawing.Size(144, 26);
             this.NudRefund.TabIndex = 82;
             this.NudRefund.TabStop = false;
             this.NudRefund.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -414,7 +441,8 @@
             0,
             0,
             0});
-            this.nudAdvance.Location = new System.Drawing.Point(114, 234);
+            this.nudAdvance.Location = new System.Drawing.Point(152, 288);
+            this.nudAdvance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nudAdvance.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -422,7 +450,7 @@
             131072});
             this.nudAdvance.Name = "nudAdvance";
             this.nudAdvance.ReadOnly = true;
-            this.nudAdvance.Size = new System.Drawing.Size(108, 22);
+            this.nudAdvance.Size = new System.Drawing.Size(144, 26);
             this.nudAdvance.TabIndex = 76;
             this.nudAdvance.TabStop = false;
             this.nudAdvance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -431,9 +459,10 @@
             // 
             this.Label10.AutoSize = true;
             this.Label10.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label10.Location = new System.Drawing.Point(448, 95);
+            this.Label10.Location = new System.Drawing.Point(597, 117);
+            this.Label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label10.Name = "Label10";
-            this.Label10.Size = new System.Drawing.Size(41, 18);
+            this.Label10.Size = new System.Drawing.Size(51, 23);
             this.Label10.TabIndex = 63;
             this.Label10.Text = "Time";
             this.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -444,9 +473,10 @@
             this.dtpCheckInTime.CustomFormat = "hh:mm tt";
             this.dtpCheckInTime.Enabled = false;
             this.dtpCheckInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCheckInTime.Location = new System.Drawing.Point(495, 90);
+            this.dtpCheckInTime.Location = new System.Drawing.Point(660, 111);
+            this.dtpCheckInTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpCheckInTime.Name = "dtpCheckInTime";
-            this.dtpCheckInTime.Size = new System.Drawing.Size(90, 20);
+            this.dtpCheckInTime.Size = new System.Drawing.Size(119, 22);
             this.dtpCheckInTime.TabIndex = 64;
             this.dtpCheckInTime.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
             // 
@@ -454,9 +484,10 @@
             // 
             this.Label6.AutoSize = true;
             this.Label6.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label6.Location = new System.Drawing.Point(288, 279);
+            this.Label6.Location = new System.Drawing.Point(384, 343);
+            this.Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(57, 18);
+            this.Label6.Size = new System.Drawing.Size(72, 23);
             this.Label6.TabIndex = 83;
             this.Label6.Text = "Lockers";
             this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -468,10 +499,11 @@
             this.chkLockers.Enabled = false;
             this.chkLockers.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.chkLockers.FormattingEnabled = true;
-            this.chkLockers.Location = new System.Drawing.Point(351, 280);
+            this.chkLockers.Location = new System.Drawing.Point(468, 345);
+            this.chkLockers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkLockers.Name = "chkLockers";
             this.chkLockers.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.chkLockers.Size = new System.Drawing.Size(219, 109);
+            this.chkLockers.Size = new System.Drawing.Size(291, 129);
             this.chkLockers.TabIndex = 84;
             this.chkLockers.SelectedIndexChanged += new System.EventHandler(this.chkLockers_SelectedIndexChanged);
             // 
@@ -479,9 +511,10 @@
             // 
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label5.Location = new System.Drawing.Point(21, 238);
+            this.Label5.Location = new System.Drawing.Point(28, 293);
+            this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(64, 18);
+            this.Label5.Size = new System.Drawing.Size(81, 23);
             this.Label5.TabIndex = 75;
             this.Label5.Text = "Advance";
             this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -490,9 +523,10 @@
             // 
             this.Label4.AutoSize = true;
             this.Label4.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label4.Location = new System.Drawing.Point(24, 371);
+            this.Label4.Location = new System.Drawing.Point(32, 457);
+            this.Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(54, 18);
+            this.Label4.Size = new System.Drawing.Size(71, 23);
             this.Label4.TabIndex = 81;
             this.Label4.Text = "Refund";
             this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -501,9 +535,10 @@
             // 
             this.Label3.AutoSize = true;
             this.Label3.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.Label3.Location = new System.Drawing.Point(21, 283);
+            this.Label3.Location = new System.Drawing.Point(28, 348);
+            this.Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(41, 18);
+            this.Label3.Size = new System.Drawing.Size(50, 23);
             this.Label3.TabIndex = 78;
             this.Label3.Text = "Days";
             this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -511,9 +546,10 @@
             // txtCheckInVchNo
             // 
             this.txtCheckInVchNo.BackColor = System.Drawing.Color.White;
-            this.txtCheckInVchNo.Location = new System.Drawing.Point(114, 90);
+            this.txtCheckInVchNo.Location = new System.Drawing.Point(152, 111);
+            this.txtCheckInVchNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCheckInVchNo.Name = "txtCheckInVchNo";
-            this.txtCheckInVchNo.Size = new System.Drawing.Size(83, 20);
+            this.txtCheckInVchNo.Size = new System.Drawing.Size(109, 22);
             this.txtCheckInVchNo.TabIndex = 66;
             this.txtCheckInVchNo.TabStop = false;
             this.txtCheckInVchNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -526,9 +562,10 @@
             this.dtpCheckIn.CustomFormat = "dd/MM/yyyy";
             this.dtpCheckIn.Enabled = false;
             this.dtpCheckIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCheckIn.Location = new System.Drawing.Point(337, 90);
+            this.dtpCheckIn.Location = new System.Drawing.Point(449, 111);
+            this.dtpCheckIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpCheckIn.Name = "dtpCheckIn";
-            this.dtpCheckIn.Size = new System.Drawing.Size(103, 20);
+            this.dtpCheckIn.Size = new System.Drawing.Size(136, 22);
             this.dtpCheckIn.TabIndex = 62;
             this.dtpCheckIn.Value = new System.DateTime(2013, 8, 26, 0, 0, 0, 0);
             // 
@@ -537,9 +574,10 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::SGMOSOL.ResourceMain.Close;
-            this.btnClose.Location = new System.Drawing.Point(506, 427);
+            this.btnClose.Location = new System.Drawing.Point(675, 526);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 46);
+            this.btnClose.Size = new System.Drawing.Size(133, 57);
             this.btnClose.TabIndex = 124;
             this.btnClose.Text = "&Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -550,9 +588,10 @@
             this.btnPrint.Enabled = false;
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::SGMOSOL.ResourceMain.Print;
-            this.btnPrint.Location = new System.Drawing.Point(406, 427);
+            this.btnPrint.Location = new System.Drawing.Point(541, 526);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 46);
+            this.btnPrint.Size = new System.Drawing.Size(133, 57);
             this.btnPrint.TabIndex = 123;
             this.btnPrint.Text = "&Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -562,9 +601,10 @@
             // 
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SGMOSOL.ResourceMain.Save;
-            this.btnSave.Location = new System.Drawing.Point(306, 427);
+            this.btnSave.Location = new System.Drawing.Point(408, 526);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 46);
+            this.btnSave.Size = new System.Drawing.Size(133, 57);
             this.btnSave.TabIndex = 122;
             this.btnSave.Text = "&Save\r\n / Print";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -575,9 +615,10 @@
             this.btnNew.CausesValidation = false;
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Image = global::SGMOSOL.ResourceMain._new;
-            this.btnNew.Location = new System.Drawing.Point(209, 427);
+            this.btnNew.Location = new System.Drawing.Point(279, 526);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(97, 46);
+            this.btnNew.Size = new System.Drawing.Size(129, 57);
             this.btnNew.TabIndex = 121;
             this.btnNew.Text = "&New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -587,9 +628,10 @@
             // 
             this.button5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = global::SGMOSOL.ResourceMain.Search;
-            this.button5.Location = new System.Drawing.Point(12, 427);
+            this.button5.Location = new System.Drawing.Point(16, 526);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(104, 46);
+            this.button5.Size = new System.Drawing.Size(139, 57);
             this.button5.TabIndex = 120;
             this.button5.Text = "&Find /\r\nSearch";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -597,9 +639,9 @@
             // 
             // frmLockerCheckOut
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 480);
+            this.ClientSize = new System.Drawing.Size(835, 591);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnSave);
@@ -642,6 +684,8 @@
             this.Controls.Add(this.Label3);
             this.Controls.Add(this.txtCheckInVchNo);
             this.Controls.Add(this.dtpCheckIn);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmLockerCheckOut";
             this.Text = "Locker Exit Receipt";
             this.Load += new System.EventHandler(this.frmLockerCheckOut_Load);

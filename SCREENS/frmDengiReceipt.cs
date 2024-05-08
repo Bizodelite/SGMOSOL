@@ -51,7 +51,7 @@ namespace SGMOSOL.SCREENS
             userDengi = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (userDengi == null)
             {
-                userDengi = new frmUserDengi();
+                userDengi = new frmUserDengi("Dengi");
             }
             else
             {
@@ -98,6 +98,14 @@ namespace SGMOSOL.SCREENS
                             return true;
                         }
                     }
+                    if (ActiveControl is System.Windows.Forms.Button btnClear)
+                    {
+                        if (btnClear.Name == "btnClear")
+                        {
+                            btnClear.PerformClick();
+                            return true;
+                        }
+                    }
                     if (ActiveControl is System.Windows.Forms.Button btnSearch)
                     {
                         if (btnSearch.Name == "btnSearch")
@@ -119,6 +127,14 @@ namespace SGMOSOL.SCREENS
                         if (btnAcknowledge.Name == "btnAcknowledge")
                         {
                             btnAcknowledge.PerformClick();
+                            return true;
+                        }
+                    }
+                    if (ActiveControl is System.Windows.Forms.Button btnScan)
+                    {
+                        if (btnScan.Name == "btnScan")
+                        {
+                            btnScan.PerformClick();
                             return true;
                         }
                     }
@@ -745,40 +761,16 @@ namespace SGMOSOL.SCREENS
         {
             DataTable dt = new DataTable();
             validationCheck();
+            if (sender != null)
+            {
+                if (checkAmount())
+                {
+                    return;
+                }
+            }
             if (lblAdd.Text == "" && lblMobile.Text == "" && lbldoctype_err.Text == "" && lbldocdetailerr.Text == "" && lblName.Text == "" && lblTaluka.Text == "" && lblDistrict.Text == "")
             {
-                if (txtAmount.Text != "")
-                {
-                    if (Convert.ToInt32(txtAmount.Text) >= 500 && Convert.ToInt32(txtAmount.Text) <= 999)
-                    {
-                        lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F1";
-                    }
-                    else if (Convert.ToInt32(txtAmount.Text) >= 1000 && Convert.ToInt32(txtAmount.Text) <= 4999)
-                    {
-                        lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F2";
-                    }
-                    else if (Convert.ToInt32(txtAmount.Text) >= 5000 && Convert.ToInt32(txtAmount.Text) <= 9999)
-                    {
-                        lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F3";
-                    }
-                    else if (Convert.ToInt32(txtAmount.Text) >= 10000 && Convert.ToInt32(txtAmount.Text) <= 49999)
-                    {
-                        lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F4";
-                    }
-                    else if (Convert.ToInt32(txtAmount.Text) >= 50000 && Convert.ToInt32(txtAmount.Text) <= 99999)
-                    {
-                        lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F5";
-                    }
-                    else if (Convert.ToInt32(txtAmount.Text) >= 100000)
-                    {
-                        lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F6";
-                    }
-                    else
-                    {
-                        SavedData();
-                        btnAcknowledge.Enabled = true;
-                    }
-                }
+                SavedData();
             }
 
             //-- For Focus --//
@@ -798,6 +790,48 @@ namespace SGMOSOL.SCREENS
                 cboDistrict.Focus();
             else if (lblTaluka.Text != "")
                 txttal.Focus();
+        }
+        public bool checkAmount()
+        {
+            bool amountflag = false;
+            if (txtAmount.Text != "")
+            {
+                if (Convert.ToInt32(txtAmount.Text) >= 500 && Convert.ToInt32(txtAmount.Text) <= 999)
+                {
+                    lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F1";
+                    amountflag= true;
+                }
+                else if (Convert.ToInt32(txtAmount.Text) >= 1000 && Convert.ToInt32(txtAmount.Text) <= 4999)
+                {
+                    lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F2";
+                    amountflag = true;
+                }
+                else if (Convert.ToInt32(txtAmount.Text) >= 5000 && Convert.ToInt32(txtAmount.Text) <= 9999)
+                {
+                    lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F3";
+                    amountflag = true;
+                }
+                else if (Convert.ToInt32(txtAmount.Text) >= 10000 && Convert.ToInt32(txtAmount.Text) <= 49999)
+                {
+                    lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F4";
+                    amountflag = true;
+                }
+                else if (Convert.ToInt32(txtAmount.Text) >= 50000 && Convert.ToInt32(txtAmount.Text) <= 99999)
+                {
+                    lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F5";
+                    amountflag = true;
+                }
+                else if (Convert.ToInt32(txtAmount.Text) >= 100000)
+                {
+                    lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F6";
+                    amountflag = true;
+                }
+                else
+                {
+                    btnAcknowledge.Enabled = true;
+                }
+            }
+            return amountflag;
         }
         private void cboGotra_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1646,37 +1680,43 @@ namespace SGMOSOL.SCREENS
                     {
                         lblamount.Text = "";
                         txtAmount.Focus();
-                        SavedData();
+                        //  SavedData();
+                        btnSave_Click(null, null);
                     }
                     if (e.KeyCode == Keys.F2 && Convert.ToInt32(txtAmount.Text) >= 1000 && Convert.ToInt32(txtAmount.Text) <= 4999)
                     {
                         lblamount.Text = "";
                         txtAmount.Focus();
-                        SavedData();
+                        //SavedData();
+                        btnSave_Click(null, null);
                     }
                     if (e.KeyCode == Keys.F3 && Convert.ToInt32(txtAmount.Text) >= 5000 && Convert.ToInt32(txtAmount.Text) <= 9999)
                     {
                         lblamount.Text = "";
                         txtAmount.Focus();
-                        SavedData();
+                        //SavedData();
+                        btnSave_Click(null, null);
                     }
                     if (e.KeyCode == Keys.F4 && Convert.ToInt32(txtAmount.Text) >= 10000 && Convert.ToInt32(txtAmount.Text) <= 49999)
                     {
                         lblamount.Text = "";
                         txtAmount.Focus();
-                        SavedData();
+                        // SavedData();
+                        btnSave_Click(null, null);
                     }
                     if (e.KeyCode == Keys.F5 && Convert.ToInt32(txtAmount.Text) >= 50000 && Convert.ToInt32(txtAmount.Text) <= 99999)
                     {
                         lblamount.Text = "";
                         txtAmount.Focus();
-                        SavedData();
+                        //SavedData();
+                        btnSave_Click(null, null);
                     }
                     if (e.KeyCode == Keys.F6 && Convert.ToInt32(txtAmount.Text) >= 100000)
                     {
                         lblamount.Text = "";
                         txtAmount.Focus();
-                        SavedData();
+                        // SavedData();
+                        btnSave_Click(null, null);
                     }
                 }
                 //if (e.KeyCode == Keys.Enter)

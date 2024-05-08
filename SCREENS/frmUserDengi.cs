@@ -14,8 +14,10 @@ namespace SGMOSOL.SCREENS
     {
         frmDengiReceipt dengiReceipt;
         frmBhojnalayaPrintReceipt bhojnalayaPrintReceipt;
-        public frmUserDengi()
+        string FormType = null;
+        public frmUserDengi(string formType)
         {
+            FormType = formType;
             InitializeComponent();
             Screen[] screens = Screen.AllScreens;
             if (screens.Length <= 1)
@@ -110,7 +112,7 @@ namespace SGMOSOL.SCREENS
 
         public void SetAmtInWord(string strAmtInWord)
         {
-           // lblValue.Text = lblAmount.Text + " : " + strAmtInWord;
+            // lblValue.Text = lblAmount.Text + " : " + strAmtInWord;
             lblAmtWords.Text = strAmtInWord;
         }
 
@@ -180,7 +182,42 @@ namespace SGMOSOL.SCREENS
             lblState1.Text = lblState1.Text + ": ";
             lblTaluka1.Text = lblTaluka1.Text + ": ";
 
+            if (FormType == "Mess")
+            {
+                pnlMode.Visible = false;
+                pnlGotra.Visible = false;
+                pnlState.Visible = false;
+                pnlDistrict.Visible = false;
+                pnlPincode.Visible = false;
+                lblDengiHead1.Text = "Dengi";
+                AdjustParentControls();
+                lblDengiHead.Text = "DENGI";
+            }
+        }
+        private void AdjustParentControls()
+        {
+            string name = pnlName.Location.ToString();
+            string address = pnlAddress.Location.ToString();
+            string gotra = pnlGotra.Location.ToString();
+            string mobile = pnlMobile.Location.ToString();
 
+            // Set pnlName as a child of pnlMode
+            pnlName.Location = new Point(14, 323);
+            pnlAddress.Location = new Point(14, 390);
+            pnlMobile.Location = new Point(15, 465);
+            pnlTaluka.Location = new Point(512, 465);
+
+            // Set pnlAddress as a child of pnlName
+            //pnlAddress.Parent = pnlName;
+
+            //// Set pnlMobile as a child of pnlAddress
+            //pnlMobile.Parent = pnlGotra;
+
+            //// Adjust the location of pnlAddress within pnlName
+            //pnlAddress.Location = new Point(19, pnlName.Height);
+
+            //// Adjust the location of pnlMobile within pnlAddress
+            //pnlMobile.Location = new Point(0, pnlGotra.Height);
         }
 
         private void flowLayoutPanel4_Paint(object sender, PaintEventArgs e)

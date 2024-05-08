@@ -499,6 +499,12 @@
     <Compile Include="SCREENS\frmCrystalViewer.Designer.cs">
       <DependentUpon>frmCrystalViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCREENS\frmUserBhojnalaya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\frmUserBhojnalaya.Designer.cs">
+      <DependentUpon>frmUserBhojnalaya.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCREENS\Locker\frmDamagedLokers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -658,6 +664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmCrystalViewer.resx">
       <DependentUpon>frmCrystalViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\frmUserBhojnalaya.resx">
+      <DependentUpon>frmUserBhojnalaya.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\Locker\frmDamagedLokers.resx">
       <DependentUpon>frmDamagedLokers.cs</DependentUpon>

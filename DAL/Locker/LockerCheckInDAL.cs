@@ -120,7 +120,7 @@ namespace SGMOSOL.DAL
                 }
                 //dr.Close();
 
-                SetError("Inserting Into LOCKER_CHECK_IN_DET_T ");
+                SetError("Inserting Into LOCK_LOCKER_CHECK_IN_DET_T ");
                 lngErrNo = InsertDetail(coll, lngMstId, strUserName, strMacName);
                 if (lngErrNo < 0)
                 {

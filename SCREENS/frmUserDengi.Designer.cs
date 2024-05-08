@@ -62,7 +62,7 @@ namespace SGMOSOL.SCREENS
             this.pnlAmtWord = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDengiHead1 = new System.Windows.Forms.Label();
             this.lblDengiHead = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlDistrict = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDistrict1 = new System.Windows.Forms.Label();
             this.lblDistrict = new System.Windows.Forms.Label();
             this.pnlGotra = new System.Windows.Forms.FlowLayoutPanel();
@@ -88,7 +88,7 @@ namespace SGMOSOL.SCREENS
             this.pnlTaluka.SuspendLayout();
             this.pnlState.SuspendLayout();
             this.pnlAmtWord.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
+            this.pnlDistrict.SuspendLayout();
             this.pnlGotra.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
@@ -422,17 +422,17 @@ namespace SGMOSOL.SCREENS
             this.lblDengiHead.Size = new System.Drawing.Size(0, 36);
             this.lblDengiHead.TabIndex = 3;
             // 
-            // flowLayoutPanel2
+            // pnlDistrict
             // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.Silver;
-            this.flowLayoutPanel2.Controls.Add(this.lblDistrict1);
-            this.flowLayoutPanel2.Controls.Add(this.lblDistrict);
-            this.flowLayoutPanel2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(691, 689);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(641, 50);
-            this.flowLayoutPanel2.TabIndex = 14;
+            this.pnlDistrict.BackColor = System.Drawing.Color.Silver;
+            this.pnlDistrict.Controls.Add(this.lblDistrict1);
+            this.pnlDistrict.Controls.Add(this.lblDistrict);
+            this.pnlDistrict.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlDistrict.Location = new System.Drawing.Point(691, 689);
+            this.pnlDistrict.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlDistrict.Name = "pnlDistrict";
+            this.pnlDistrict.Size = new System.Drawing.Size(641, 50);
+            this.pnlDistrict.TabIndex = 14;
             // 
             // lblDistrict1
             // 
@@ -597,7 +597,7 @@ namespace SGMOSOL.SCREENS
             this.Controls.Add(this.flowLayoutPanel4);
             this.Controls.Add(this.pnlAmtWord);
             this.Controls.Add(this.flowLayoutPanel3);
-            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.pnlDistrict);
             this.Controls.Add(this.pnlState);
             this.Controls.Add(this.pnlTaluka);
             this.Controls.Add(this.pnlDocument);
@@ -631,8 +631,8 @@ namespace SGMOSOL.SCREENS
             this.pnlState.PerformLayout();
             this.pnlAmtWord.ResumeLayout(false);
             this.pnlAmtWord.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            this.pnlDistrict.ResumeLayout(false);
+            this.pnlDistrict.PerformLayout();
             this.pnlGotra.ResumeLayout(false);
             this.pnlGotra.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
@@ -673,7 +673,7 @@ namespace SGMOSOL.SCREENS
         private Label lblState1;
         private Label lblState;
         private FlowLayoutPanel pnlAmtWord;
-        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel pnlDistrict;
         private Label lblDistrict1;
         private Label lblDistrict;
         private Label lblDengiHead1;

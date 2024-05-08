@@ -61,6 +61,7 @@ namespace SGMOSOL.SCREENS
         private string LockerCheckInDeptName;
         private string LockerCheckInLocName;
         private int PrintReceiptLocId;
+        private bool isDuplicate = false;
         public frmLockerCheckIn()
         {
             InitializeComponent();
@@ -71,6 +72,10 @@ namespace SGMOSOL.SCREENS
         {
             try
             {
+                //CenterToParent();
+                int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
+                int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
+                pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
                 FormClear();
                 CF.fncSetDateAndRange(dtpCheckIn);
                 CF.fncSysTime(dtpCheckInTime);
@@ -227,6 +232,7 @@ namespace SGMOSOL.SCREENS
 
         private bool fncSave()
         {
+            string reportType = "Original";
             long lngError = -1;
             LockerCheckInMst LockerCheckInMst;
             Collection coll;
@@ -289,13 +295,17 @@ namespace SGMOSOL.SCREENS
                 col = new string[2];
                 col[0] = "Receipt";
                 col[1] = lngSerialNo.ToString();
-                MessageBox.Show(CF.GetErrorMessage(col, 7), PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Receipt Id " +lngSerialNo+" saved Successfully ");
                 setCursor(this, true);
                 flag = true;
 
                 // If Val(dtpCheckIn.Tag & vbNullString) = 0 Then
                 blnformChange = false;
-                btnPrint_Click(null, null);
+                
+               // .AppendToFile("");
+                //commonFunctions.AppendToFile("Creating Report:-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+              
+                 btnPrint_Click(null, null);
             }
             return flag;
         }
@@ -500,7 +510,7 @@ namespace SGMOSOL.SCREENS
             }
 
             setCursor(this, false);
-            frmSearchNew form1 = new frmSearchNew("LOCK_LOCKER_CHECK_IN_MST_FIND_V",true, eModType.Locker);
+            frmSearchNew form1 = new frmSearchNew("LOCK_LOCKER_CHECK_IN_MST_FIND_V", true, eModType.Locker);
             long lngSearchId;
             form1.mIntCtrMachId = Convert.ToInt32(txtCounter.Tag);
             form1.ShowDialog();
@@ -511,7 +521,7 @@ namespace SGMOSOL.SCREENS
                 return;
             }
             bool blnFormLock = false;
-            if (LoadTransaction(lngSearchId,blnFormLock) == true)
+            if (LoadTransaction(lngSearchId, blnFormLock) == true)
             {
                 blnformChange = false;
                 if (mBlnEdit & !blnFormLock)
@@ -546,7 +556,7 @@ namespace SGMOSOL.SCREENS
             setCursor(this, true);
         }
 
-        private bool LoadTransaction(long lngSearchId,bool blnLockForm)
+        private bool LoadTransaction(long lngSearchId, bool blnLockForm)
         {
             DataTable dr = new DataTable();
             LockerCheckInDet CheckInDet = new LockerCheckInDet();
@@ -588,7 +598,7 @@ namespace SGMOSOL.SCREENS
                 CheckInDet.CheckInMstId = Convert.ToInt64(txtVchNo.Tag);
 
                 //while (dr.Read())
-                foreach (DataRow row in dr.Rows)    
+                foreach (DataRow row in dr.Rows)
                 {
                     ctr++;
                     chkLockers.Items.Add(new clsItemData(row["LockerName"].ToString(), Convert.ToInt32(row["LockerId"]), row["RecordModifiedCount"].ToString()));
@@ -671,16 +681,25 @@ namespace SGMOSOL.SCREENS
         private void btnPrint_Click(System.Object sender, System.EventArgs e)
         {
             // If Val(dtpCheckIn.Tag & vbNullString) = 0 Or blnformChange Then Exit Sub
+
+            if (sender == null)
+            {
+                isDuplicate = false;
+            }
+            else {
+                isDuplicate = true;
+            }
+
             string strReportName;
             Collection pColl = new Collection();
             setCursor(this, false);
             // Dim printDoc As New System.Drawing.Printing.PrintDocument()
 
             // strReportName = "LockerCheckInReceipt.rpt"
-            strReportName = "LockerCheckInReceipt_New.rpt";
+           // strReportName = "LockerCheckInReceipt_New.rpt";
             FillDataInDataset();
 
-            frmReportViewer frm = new frmReportViewer("PRINT", null,null, TempTable1);
+            frmReportViewer frm = new frmReportViewer("PRINT",null, "D", TempTable1);
             frm.createReport("LockerCheckIN");
             setCursor(this, true);
             //Form sForm = new frmCrystalViewer(UserInfo.ReportPath + strReportName, null, ds, null, pColl, eReportID.LockerCheckIn, true);
@@ -738,6 +757,13 @@ namespace SGMOSOL.SCREENS
                 MyRow["AMT_IN_WORDS"] = CF.getNumbersInWords(total_val.ToString(), eCurrencyType.Rupees);
             else
                 MyRow["AMT_IN_WORDS"] = " -- ";
+            if (isDuplicate == true)
+            {
+                MyRow["REPORT_TYPE"] = "D";
+            }
+            else {
+                MyRow["REPORT_TYPE"] = "";
+            }
 
 
             string Roomname = "";
@@ -791,6 +817,7 @@ namespace SGMOSOL.SCREENS
             TempTable1.Columns.Add("AMT_IN_WORDS", System.Type.GetType("System.String"));
 
             TempTable1.Columns.Add("LOCKER_NAME", System.Type.GetType("System.String"));
+            TempTable1.Columns.Add("REPORT_TYPE", System.Type.GetType("System.String"));
             //TempTable2.Columns.Add("CHECK_IN_MST_ID", System.Type.GetType("System.Int64"));
             //TempTable2.Columns.Add("LOCKER_NAME", System.Type.GetType("System.String"));
 
@@ -917,30 +944,20 @@ namespace SGMOSOL.SCREENS
             myObject.Focus();
             return false;
         }
-
-
-
         private void SetError(string str)
         {
             //OSOL_CONNECTION.clsConnection.mErrorResult = OSOL_CONNECTION.clsConnection.mErrorResult + Constants.vbNewLine + str;
         }
-
-
-
-
         private void txtName_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (char.IsLower(e.KeyChar))
                 e.KeyChar = char.ToUpper(e.KeyChar);
         }
-
         private void txtPlace_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (char.IsLower(e.KeyChar))
                 e.KeyChar = char.ToUpper(e.KeyChar);
         }
-
-
         private void txtDays_Enter(System.Object sender, System.EventArgs e)
         {
             blnformChange = true;
@@ -948,9 +965,6 @@ namespace SGMOSOL.SCREENS
             nudRent.Value = (decimal)Math.Round(LockerRentPerday * Convert.ToDouble(txtNoOfLockers.Text == "" ? "0" : txtNoOfLockers.Text) * Convert.ToDouble(txtDays.Text == "" ? "0" : txtDays.Text), 2);
 
         }
-
-
-
 
         // Private Sub chkLockers_PreviewKeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PreviewKeyDownEventArgs) Handles chkLockers.PreviewKeyDown
         // Dim intN As Integer
@@ -1001,6 +1015,9 @@ namespace SGMOSOL.SCREENS
             txtOldReceipt.Text = "";
         }
 
+        private void btnClose_Click_1(object sender, EventArgs e)
+        {
 
+        }
     }
 }

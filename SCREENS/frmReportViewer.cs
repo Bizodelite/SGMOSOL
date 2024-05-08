@@ -85,6 +85,10 @@ namespace SGMOSOL.SCREENS
                 {
                     printerName = System.Configuration.ConfigurationManager.AppSettings["BhojnalayDec"].ToString();
                 }
+                if (PrinterType == PrinterNames.Locker)
+                {
+                    printerName = System.Configuration.ConfigurationManager.AppSettings["LockerReceipt"].ToString();
+                }
                 byte[] renderedBytes = reportViewer2.LocalReport.Render("Image");
 
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream(renderedBytes))
@@ -375,7 +379,7 @@ namespace SGMOSOL.SCREENS
             if (flag == "PRINT")
             {
                 dt = DataTableDT.Copy();// bhojnalayDAL.getMessItemDataForReport(receiptID);
-                reportFileName = "LockerCheckInReceipt_New.rdlc";
+                reportFileName = "LockerCheckInReceipt_New.rdlc";   
                 reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
                 reportViewer2.LocalReport.ReportPath = reportPath;
                 foreach (DataRow row in dt.Rows)
@@ -386,10 +390,14 @@ namespace SGMOSOL.SCREENS
                     reportViewer2.LocalReport.DataSources.Add(reportDataSource);
                     DataTable dt1 = (DataTable)reportDataSource.Value;
                     addCustomField(dt1);
+                    foreach (DataRow row1 in dt1.Rows)
+                    {
+                        strSerialNumberPrint = row1["SERIAL_NO"].ToString();
+                    }
                     reportViewer2.RefreshReport();
                     DocumentName = "LockerCheckInReceipt";
+                    filePath = System.Configuration.ConfigurationManager.AppSettings["LOCKER_PRINTS"].ToString() + "\\LockerPrints" + strSerialNumberPrint + ".png"; //
                     printReport(DocumentName, PrinterNames.Locker);
-
                 }
             }
         }
@@ -422,7 +430,6 @@ namespace SGMOSOL.SCREENS
                     reportViewer2.RefreshReport();
                     DocumentName = "LockerCheckOutReceipt";
                     printReport(DocumentName, PrinterNames.Locker);
-
                 }
             }
         }

@@ -51,7 +51,7 @@ namespace SGMOSOL.SCREENS
             user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (user == null)
             {
-                user = new frmUserDengi();
+                user = new frmUserDengi("Mess");
                 user.Show();
             }
         }
@@ -128,7 +128,7 @@ namespace SGMOSOL.SCREENS
         private void frmBhojnalayaPrintReceipt_Load(object sender, EventArgs e)
         {
             dt = new DataTable();
-            user = new frmUserDengi();
+            user = new frmUserDengi("Mess");
             int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
             int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
             pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
@@ -619,6 +619,7 @@ namespace SGMOSOL.SCREENS
             if (txtName.Text == "")
             {
                 lblName.Text = "Please Enter Name";
+                txtName.Focus();
             }
             else
             {
@@ -643,6 +644,7 @@ namespace SGMOSOL.SCREENS
             if (txtAddress.Text == "")
             {
                 lblAddress.Text = "Please Enter Address";
+                txtAddress.Focus();
             }
             else {
                 lblAddress.Text = "";
@@ -725,6 +727,8 @@ namespace SGMOSOL.SCREENS
             lblTaluka.Text = "";
             txtName.Focus();
             lblAdd.Text = "";
+            lblAddress.Text = "";
+            lblMobile.Text = "";
             txtTotalAmount.Text = "";
             txtPrice.Text = "0";
         }
@@ -808,7 +812,11 @@ namespace SGMOSOL.SCREENS
         {
             CommonFunctions cm = new CommonFunctions();
             if (txtTotalAmount.Text != "")
+            {
                 lblamouwords.Text = cm.words(Convert.ToDouble(txtTotalAmount.Text));
+            }
+            user.SetAmount(txtTotalAmount.Text);
+            user.SetAmtInWord(lblamouwords.Text);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -860,7 +868,6 @@ namespace SGMOSOL.SCREENS
                 dgvItemDetails.Enabled = false;
             }
         }
-
         private void txtMobile_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -868,7 +875,6 @@ namespace SGMOSOL.SCREENS
                 e.Handled = true;
             }
         }
-
         private void txtName_TextChanged(object sender, EventArgs e)
         {
             user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
@@ -881,7 +887,6 @@ namespace SGMOSOL.SCREENS
                 }
             }
         }
-
         private void txtTaluka_TextChanged(object sender, EventArgs e)
         {
             user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
@@ -894,7 +899,6 @@ namespace SGMOSOL.SCREENS
                 }
             }
         }
-
         private void txtDocumentName_TextChanged(object sender, EventArgs e)
         {
             if (cboDocName.Text == "Adhar Card")
@@ -915,7 +919,6 @@ namespace SGMOSOL.SCREENS
                 }
             }
         }
-
         private void txtAddress_TextChanged(object sender, EventArgs e)
         {
             user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
@@ -929,7 +932,6 @@ namespace SGMOSOL.SCREENS
             }
 
         }
-
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
             bool itemFound = false;
@@ -1003,7 +1005,6 @@ namespace SGMOSOL.SCREENS
                 btnSave.PerformClick();
             }
         }
-
         private void cboItemCode_TextChanged(object sender, EventArgs e)
         {
             UpdateSuggestions();

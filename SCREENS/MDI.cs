@@ -314,11 +314,13 @@ namespace SGMOSOL
         }
         private void lockerCheckINToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           // CloseCurrentlyOpenMenuForm();
             frmLockerCheckIn = new frmLockerCheckIn();
             frmLockerCheckIn.StartPosition = FormStartPosition.CenterParent;
             frmLockerCheckIn.MdiParent = this;
             frmLockerCheckIn.WindowState = FormWindowState.Maximized;
             frmLockerCheckIn.Show();
+           // currentlyOpenMenuForm = frmLockerCheckIn;
         }
 
         private void checkOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -490,6 +492,11 @@ namespace SGMOSOL
             {
                 frmuserDengi.Close();
             }
+        }
+
+        private void lockerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

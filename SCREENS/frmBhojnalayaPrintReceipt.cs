@@ -998,6 +998,10 @@ namespace SGMOSOL.SCREENS
             {
                 txtAddress.Focus();
             }
+            if (e.KeyCode == Keys.End)
+            {
+                btnSave.PerformClick();
+            }
         }
 
         private void cboItemCode_TextChanged(object sender, EventArgs e)

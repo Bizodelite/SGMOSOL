@@ -37,9 +37,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>AMOUNT_IN_WORDS</rd:DefaultName>
-        <Top>11.09341cm</Top>
+        <Top>8.98027cm</Top>
+        <Left>0.70062cm</Left>
         <Height>0.45183cm</Height>
-        <Width>11.37942cm</Width>
+        <Width>7.91125cm</Width>
         <Style>
           <Border />
           <PaddingLeft>2pt</PaddingLeft>
@@ -63,8 +64,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>User_Login_Name</rd:DefaultName>
-        <Top>11.6158cm</Top>
-        <Left>8.07509cm</Left>
+        <Top>8.94499cm</Top>
+        <Left>8.9588cm</Left>
         <Height>0.42362cm</Height>
         <Width>3.30433cm</Width>
         <ZIndex>1</ZIndex>
@@ -76,62 +77,25 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Thanks</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>11.65109cm</Top>
-        <Left>1.905cm</Left>
-        <Height>0.42362cm</Height>
-        <Width>1.83854cm</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox6">
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>   श्री रा.रा.</Value>
+                <Value>  श्री रा.रा.</Value>
                 <Style>
                   <FontFamily>Nirmala UI</FontFamily>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value>=Fields!Name.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
@@ -140,34 +104,24 @@
             <TextRuns>
               <TextRun>
                 <Value xml:space="preserve">  </Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value>=Fields!Address.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value xml:space="preserve">  </Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Label>TALUKA</Label>
                 <Value>=UCase(Fields!TALUKA.Value)</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value xml:space="preserve">  </Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
@@ -176,26 +130,22 @@
             <TextRuns>
               <TextRun>
                 <Value xml:space="preserve">   </Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value>=Fields!MOBILE.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>2.48529cm</Top>
-        <Left>0.03528cm</Left>
+        <Top>3.27904cm</Top>
+        <Left>0.0635cm</Left>
         <Height>2.07491cm</Height>
-        <Width>6.78863cm</Width>
-        <ZIndex>3</ZIndex>
+        <Width>7.79405cm</Width>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -224,9 +174,7 @@
               </TextRun>
               <TextRun>
                 <Value>=Fields!COUNTER.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value> / </Value>
@@ -236,9 +184,7 @@
               </TextRun>
               <TextRun>
                 <Value>=Fields!ITEM_PRINT_RECEIPT_ID.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
@@ -260,9 +206,7 @@
               </TextRun>
               <TextRun>
                 <Value>=Fields!DATE.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
@@ -279,7 +223,6 @@
               <TextRun>
                 <Value>=Fields!Time.Value</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -304,9 +247,7 @@
               </TextRun>
               <TextRun>
                 <Value>=Fields!DOC_DETAIL.Value</Value>
-                <Style>
-                  <FontSize>7pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
@@ -314,7 +255,6 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Label>REPORT_TYPE</Label>
                 <Value />
                 <Style>
                   <FontSize>8pt</FontSize>
@@ -338,11 +278,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>2.48529cm</Top>
-        <Left>6.89447cm</Left>
+        <Top>2.96154cm</Top>
+        <Left>8.37614cm</Left>
         <Height>2.07491cm</Height>
-        <Width>5.1062cm</Width>
-        <ZIndex>4</ZIndex>
+        <Width>4.1537cm</Width>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -359,7 +299,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value xml:space="preserve">   </Value>
+                <Value xml:space="preserve">  </Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                 </Style>
@@ -371,15 +311,56 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>9.70269cm</Top>
-        <Left>0.0635cm</Left>
-        <Height>1.76466cm</Height>
-        <Width>11.37942cm</Width>
-        <ZIndex>5</ZIndex>
+        <Top>7.54193cm</Top>
+        <Left>0.38312cm</Left>
+        <Height>1.36778cm</Height>
+        <Width>12.14671cm</Width>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -405,11 +386,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>AMOUNT</rd:DefaultName>
-        <Top>6.84953cm</Top>
-        <Left>7.14587cm</Left>
+        <Top>6.02932cm</Top>
+        <Left>8.94292cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -421,12 +402,12 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>14.56cm</Height>
+    <Height>11.2933cm</Height>
     <Style />
   </Body>
-  <Width>12.00067cm</Width>
+  <Width>12.8cm</Width>
   <Page>
-    <PageHeight>14cm</PageHeight>
+    <PageHeight>12cm</PageHeight>
     <PageWidth>12.98cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>

@@ -40,12 +40,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCounter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.pnlMaster.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMaster
             // 
             this.pnlMaster.BackColor = System.Drawing.Color.Honeydew;
+            this.pnlMaster.Controls.Add(this.label5);
+            this.pnlMaster.Controls.Add(this.dtpDate);
             this.pnlMaster.Controls.Add(this.reportViewer1);
             this.pnlMaster.Controls.Add(this.brnClose);
             this.pnlMaster.Controls.Add(this.btnPrint);
@@ -160,6 +164,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "COUNTER";
             // 
+            // dtpDate
+            // 
+            this.dtpDate.Enabled = false;
+            this.dtpDate.Location = new System.Drawing.Point(753, 37);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpDate.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(689, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 16);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "DATE";
+            // 
             // frmTotalDengiReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -189,5 +210,7 @@
         private System.Windows.Forms.Button brnClose;
         private System.Windows.Forms.Button btnPrint;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.Label label5;
     }
 }

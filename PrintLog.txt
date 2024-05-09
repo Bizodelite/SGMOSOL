@@ -925,3 +925,32 @@ Serial_Number:-49-1
 Report content is ready:-2024-05-08 14:50:00
 Serial_Number:-49-2
 Report content is ready:-2024-05-08 14:50:05
+
+Creating Report:-2024-05-09 10:26:58
+Serial_Number:-826690
+Report content is ready:-2024-05-09 10:26:59
+saving file in folder 2024-05-09 10:27:02
+Saved file in folder 2024-05-09 10:27:02
+It is  printing content on page 2024-05-09 10:27:02
+It is getting ready to print page (checking page..)  2024-05-09 10:27:06
+It is setting margine 2024-05-09 10:27:06
+Successfully done with printing process 2024-05-09 10:27:06
+Done Report:-2024-05-09 10:27:06
+Report content is ready:-2024-05-09 11:09:34
+saving file in folder 2024-05-09 11:09:37
+Saved file in folder 2024-05-09 11:09:37
+It is  printing content on page 2024-05-09 11:09:37
+It is getting ready to print page (checking page..)  2024-05-09 11:09:43
+It is setting margine 2024-05-09 11:09:43
+Successfully done with printing process 2024-05-09 11:09:44
+
+Creating Report:-2024-05-09 12:22:51
+Serial_Number:-826691
+Report content is ready:-2024-05-09 12:22:51
+saving file in folder 2024-05-09 12:22:53
+Saved file in folder 2024-05-09 12:22:53
+It is  printing content on page 2024-05-09 12:22:53
+It is getting ready to print page (checking page..)  2024-05-09 12:22:57
+It is setting margine 2024-05-09 12:22:57
+Successfully done with printing process 2024-05-09 12:22:57
+Done Report:-2024-05-09 12:22:57

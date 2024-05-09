@@ -525,6 +525,7 @@ namespace SGMOSOL.DAL
                 command.Parameters.AddWithValue("@LocId", lngLocId == 0 ? (object)DBNull.Value : (object)lngLocId);
                 command.Parameters.AddWithValue("@DeptId", lngDeptId == 0 ? (object)DBNull.Value : (object)lngDeptId);
                 command.Parameters.AddWithValue("@UserName", string.IsNullOrEmpty(strUserName) ? (object)DBNull.Value : (object)strUserName);
+                command.Parameters.AddWithValue("@FY_ID", UserInfo.fy_id);
 
                 dr = clsConnection.ExecuteReader(command);
             }

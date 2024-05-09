@@ -42,6 +42,9 @@ namespace SGMOSOL.SCREENS
             dtfromDate.CustomFormat = "dd/MM/yyyy";
             dtToDate.Format = DateTimePickerFormat.Custom;
             dtToDate.CustomFormat = "dd/MM/yyyy";
+            dtpDate.Format = DateTimePickerFormat.Custom;
+            dtpDate.CustomFormat = "dd/MM/yyyy";
+
             getTotalAmountByPaymentId();
             this.reportViewer1.RefreshReport();
         }
@@ -75,14 +78,17 @@ namespace SGMOSOL.SCREENS
         }
         public void getTotalAmountByPaymentId()
         {
+           // DateTime currentDate = DateTime.Now;
             DataTable dt = new DataTable();
             dt = obj.GETTOTALAMOUNTBYPAYMENTID(Convert.ToDateTime(dtfromDate.Text),Convert.ToDateTime(dtToDate.Text));
-            ReportParameter[] parameters = new ReportParameter[5];
+            ReportParameter[] parameters = new ReportParameter[6];
             parameters[0] = new ReportParameter("COUNTER", txtCounter.Text);
             parameters[1] = new ReportParameter("USERNAME", txtUserName.Text);
             parameters[2] = new ReportParameter("FROMDATE", dtfromDate.Text);
             parameters[3] = new ReportParameter("TODATE", dtToDate.Text);
-            parameters[4] = new ReportParameter("DATE", System.DateTime.Today.ToString("dd-MM-yyyy"));
+            parameters[4] = new ReportParameter("TIME", DateTime.Now.ToString("hh:mm tt"));
+            parameters[5] = new ReportParameter("DATE", dtpDate.Text);
+           
             reportViewer1.LocalReport.SetParameters(parameters);
             ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dt);
             reportViewer1.LocalReport.DataSources.Clear();

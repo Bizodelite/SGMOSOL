@@ -635,27 +635,39 @@ namespace SGMOSOL.SCREENS
             }
             if (txtTotalAmount.Text != "")
             {
-                if (Convert.ToDecimal(txtTotalAmount.Text) >= 500)
+                if (Convert.ToInt32(txtTotalAmount.Text) >= 500)
                 {
-                    if (cboDocName.Text == "Select")
+                    if (cboDocName.Text != "" && txtDocumentName.Text != "")
                     {
-                        lblDocDetail.Text = "Please select document";
+                        CheckValidDocs();
+                    }
+                    else
+                    {
+                        if (cboDocName.Text == "Select")
+                        {
+                            lblDocDetail.Text = "Please select Document Type";
+                        }
+                        else { lblDocDetail.Text = ""; }
+                        if (lblDocDetail.Text == "")
+                        {
+                            lblDocDetail.Text = "Please enter Document details";
+                        }
+                        else { lblDocDetail.Text = ""; }
+                    }
+                }
+                else
+                {
+                    if (cboDocName.Text == "Select" && txtDocumentName.Text != "")
+                    {
+                        lblDocDetail.Text = "";
                     }
                     else
                     {
                         lblDocDetail.Text = "";
                     }
-                    if (cboDocName.Text != "Select" && txtDocumentName.Text == "")
-                    {
-                        lblDocDetail.Text = "Please Enter document ID";
-                    }
-                   
-                }
-                else {
-                    lblDocDetail.Text = "";
                 }
             }
-            
+
             if (txtAddress.Text == "")
             {
                 lblAddress.Text = "Please Enter Address";

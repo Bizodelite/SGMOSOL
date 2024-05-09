@@ -254,6 +254,14 @@
                     <Value>=Parameters!DATE.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">      </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!TIME.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
@@ -907,6 +915,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="TIME">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -937,6 +949,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>DATE</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>TIME</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

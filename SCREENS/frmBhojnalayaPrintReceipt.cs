@@ -549,7 +549,12 @@ namespace SGMOSOL.SCREENS
                     clearControls();
                     getMasterReceiptNumber();
                     UnlockControls();
-                    frmBhojnalayaPrintReceipt_Load(null, null);
+                    user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
+                    if (user != null)
+                    {
+                        user.clear();
+                       
+                    }
                 }
             }
             else {

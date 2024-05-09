@@ -194,6 +194,19 @@ namespace SGMOSOL.SCREENS
                 lblDengiHead.Text = "DENGI";
             }
         }
+        public void clear()
+        {
+            lblName.Text = "";
+            lblAddress.Text = "";
+            lblAmount.Text = "";
+            lblAmtWords.Text = "";
+            lblDengiHead1.Text = "";
+            lblDistrict.Text = "";
+            lblState.Text = "";
+            lblTaluka.Text = "";
+            lblMobile.Text = "";
+            lblDocDetail.Text = "";
+        }
         private void AdjustParentControls()
         {
             string name = pnlName.Location.ToString();

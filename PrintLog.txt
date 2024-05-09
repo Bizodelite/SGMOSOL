@@ -1041,3 +1041,20 @@ Creating Report:-2024-05-09 15:53:30
 Serial_Number:-826702
 Report content is ready:-2024-05-09 15:53:31
 Done Report:-2024-05-09 15:53:33
+Serial_Number:-53-1
+Report content is ready:-2024-05-09 16:01:53
+saving file in folder 2024-05-09 16:01:56
+Saved file in folder 2024-05-09 16:01:56
+It is  printing content on page 2024-05-09 16:01:56
+It is getting ready to print page (checking page..)  2024-05-09 16:02:01
+It is setting margine 2024-05-09 16:02:01
+Successfully done with printing process 2024-05-09 16:02:01
+Serial_Number:-54-1
+Report content is ready:-2024-05-09 16:07:58
+saving file in folder 2024-05-09 16:08:00
+Saved file in folder 2024-05-09 16:08:00
+It is  printing content on page 2024-05-09 16:08:00
+It is getting ready to print page (checking page..)  2024-05-09 16:08:04
+It is setting margine 2024-05-09 16:08:04
+Successfully done with printing process 2024-05-09 16:08:04
+Report content is ready:-2024-05-09 17:12:50

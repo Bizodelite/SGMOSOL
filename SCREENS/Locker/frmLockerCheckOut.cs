@@ -71,13 +71,13 @@ namespace SGMOSOL.SCREENS
         {
             DataTable dr = new DataTable();
             FormClear();
-            // fncSetDateAndRange(dtpCheckOut)
+          
             cf.fncSysTime(dtpCheckOutTime);
             cf.fncSetDateAndRange(dtpCurDate);
             cf.fncSysTime(dtpCurTime);
-            // fncSetDateAndRange(dtpCheckOut)
+            cf.fncSetDateAndRange(dtpCheckOut);
             cf.fncSysTime(dtpCheckOutTime);
-            // dtpCheckOut.Enabled = bkDateEntry
+            dtpCheckOut.Enabled = bkDateEntry;
             mAction = eAction.ActionInsert;
             cf.subLockForm(false, CtrlArr, false);
             btnPrint.Enabled = btnNew.Enabled;

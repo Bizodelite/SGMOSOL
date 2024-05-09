@@ -24,6 +24,8 @@ namespace SGMOSOL.SCREENS
         private void frmBhojnalaySearch_Load(object sender, EventArgs e)
         {
             ba = new BhojnalayPrintReceiptBAL();
+            dtFromDate.Value = DateTime.Now;
+            dtToDate.Value = DateTime.Now;
             getAllData();
           //  this.reportViewer1.RefreshReport();
         }
@@ -31,8 +33,8 @@ namespace SGMOSOL.SCREENS
         {
             model = new bhojnalayPrintReceiptModel();
             model.Name = txtName.Text;
-            model.receiptFDate = Convert.ToDateTime(dtFromDate.Text);
-            model.ReceiptLDate = Convert.ToDateTime(dtToDate.Text);
+            model.receiptFDate = dtFromDate.Value;
+            model.ReceiptLDate = dtToDate.Value;
             model.receiptFno = txtFirstRecNo.Text;
             model.receiptLNo = txtLastRecNo.Text;
             DataTable dt = new DataTable();

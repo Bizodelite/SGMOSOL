@@ -80,7 +80,7 @@ namespace SGMOSOL.SCREENS
         {
            // DateTime currentDate = DateTime.Now;
             DataTable dt = new DataTable();
-            dt = obj.GETTOTALAMOUNTBYPAYMENTID(Convert.ToDateTime(dtfromDate.Text),Convert.ToDateTime(dtToDate.Text));
+            dt = obj.GETTOTALAMOUNTBYPAYMENTID(dtfromDate.Value,dtToDate.Value);
             ReportParameter[] parameters = new ReportParameter[6];
             parameters[0] = new ReportParameter("COUNTER", txtCounter.Text);
             parameters[1] = new ReportParameter("USERNAME", txtUserName.Text);

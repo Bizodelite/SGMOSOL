@@ -50,8 +50,8 @@ namespace SGMOSOL.SCREENS
                 model.receiptFno = txtFirstRecNo.Text;
                 model.receiptLNo = txtLastRecNo.Text;
                 model.Name = txtName.Text;
-                model.receiptFDate = Convert.ToDateTime(dtFromDate.Text);
-                model.ReceiptLDate = Convert.ToDateTime(dtToDate.Text);
+                model.receiptFDate = dtFromDate.Value; ;
+                model.ReceiptLDate = dtToDate.Value;
                 model.contact = txtMobile.Text;
                 //model.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
                 DataTable dataTable = new DataTable();

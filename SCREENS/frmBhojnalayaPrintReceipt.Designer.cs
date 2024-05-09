@@ -362,6 +362,7 @@
             this.txtDocumentName.Size = new System.Drawing.Size(296, 28);
             this.txtDocumentName.TabIndex = 5;
             this.txtDocumentName.TextChanged += new System.EventHandler(this.txtDocumentName_TextChanged);
+            this.txtDocumentName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentName_KeyPress);
             // 
             // label18
             // 

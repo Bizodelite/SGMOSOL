@@ -135,6 +135,7 @@ namespace SGMOSOL.SCREENS
             SystemModel.Computer_Name.Comp_Name = System.Environment.MachineName;
             bhojnalayprintReceiptBAL = new BhojnalayPrintReceiptBAL();
             commonFunctions = new CommonFunctions();
+            dtpPrnRcptDt.Value = System.DateTime.Now;
             if (isPrint == false)
             {
                 FillCounter();
@@ -495,56 +496,64 @@ namespace SGMOSOL.SCREENS
         }
         private void insertBhojnalayReceiptMaster()
         {
-            int Status = 0;
-            bhojnalayPrintReceiptModel bhojnalayModel = new bhojnalayPrintReceiptModel();
-            bhojnalayModel.ItemName = getSelectedItems().ToString();
-            bhojnalayModel.Name = txtName.Text;
-            bhojnalayModel.Address = txtAddress.Text;
-            bhojnalayModel.Taluka = txtTaluka.Text;
-            bhojnalayModel.PR_Date = Convert.ToDateTime(dtpPrnRcptDt.Text);
-            bhojnalayModel.DocType = cboDocName.SelectedValue.ToString();
-            bhojnalayModel.DocTypeDetail = txtDocumentName.Text;
-            bhojnalayModel.Mobile = txtMobile.Text;
-            bhojnalayModel.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-
-            Status = bhojnalayprintReceiptBAL.InsertBhojnalayReceipt(bhojnalayModel);
-            if (Status > 0)
+            loginDAL obj = new loginDAL();
+            if (obj.CheckDateTime())
             {
-                List<string> itemNameList = new List<string>(bhojnalayModel.ItemName.Split(','));
-                List<int> itemIDs = new List<int>();
-                foreach (var item in itemNameList)
+                int Status = 0;
+                bhojnalayPrintReceiptModel bhojnalayModel = new bhojnalayPrintReceiptModel();
+                bhojnalayModel.ItemName = getSelectedItems().ToString();
+                bhojnalayModel.Name = txtName.Text;
+                bhojnalayModel.Address = txtAddress.Text;
+                bhojnalayModel.Taluka = txtTaluka.Text;
+                bhojnalayModel.PR_Date = dtpPrnRcptDt.Value;
+                bhojnalayModel.DocType = cboDocName.SelectedValue.ToString();
+                bhojnalayModel.DocTypeDetail = txtDocumentName.Text;
+                bhojnalayModel.Mobile = txtMobile.Text;
+                bhojnalayModel.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
+
+                Status = bhojnalayprintReceiptBAL.InsertBhojnalayReceipt(bhojnalayModel);
+                if (Status > 0)
                 {
-                    int ItemID = bhojnalayprintReceiptBAL.getItemIdbyItemName(item.Trim());
-                    bhojnalayModel.ItemId = ItemID;
-                    foreach (DataGridViewRow row in dgvItemDetails.Rows)
+                    List<string> itemNameList = new List<string>(bhojnalayModel.ItemName.Split(','));
+                    List<int> itemIDs = new List<int>();
+                    foreach (var item in itemNameList)
                     {
-                        if (!row.IsNewRow)
+                        int ItemID = bhojnalayprintReceiptBAL.getItemIdbyItemName(item.Trim());
+                        bhojnalayModel.ItemId = ItemID;
+                        foreach (DataGridViewRow row in dgvItemDetails.Rows)
                         {
-                            string itemName = row.Cells["Item Name"].Value.ToString();
-                            if (itemName == item)
+                            if (!row.IsNewRow)
                             {
-                                bhojnalayModel.PRINT_MST_ID = Status;
-                                bhojnalayModel.Price = Convert.ToDecimal(row.Cells["Price"].Value);
-                                bhojnalayModel.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                                bhojnalayModel.Amount = Convert.ToDecimal(row.Cells["Amount"].Value);
-                                int id = bhojnalayprintReceiptBAL.InsertMessItemData(bhojnalayModel);
+                                string itemName = row.Cells["Item Name"].Value.ToString();
+                                if (itemName == item)
+                                {
+                                    bhojnalayModel.PRINT_MST_ID = Status;
+                                    bhojnalayModel.Price = Convert.ToDecimal(row.Cells["Price"].Value);
+                                    bhojnalayModel.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                                    bhojnalayModel.Amount = Convert.ToDecimal(row.Cells["Amount"].Value);
+                                    int id = bhojnalayprintReceiptBAL.InsertMessItemData(bhojnalayModel);
+                                }
                             }
                         }
                     }
-                }
-                MessageBox.Show("Record Saved Successully");
-                //Print code
-                if (Status > 0)
-                {
-                    string Receipt_Id = Status.ToString();
-                    frmReportViewer report = new frmReportViewer("PRINT", Receipt_Id);
-                    report.createReport("Bhojnalaya");
-                    //  report.Show();
+                    MessageBox.Show("Record Saved Successully");
+                    //Print code
+                    if (Status > 0)
+                    {
+                        string Receipt_Id = Status.ToString();
+                        frmReportViewer report = new frmReportViewer("PRINT", Receipt_Id);
+                        report.createReport("Bhojnalaya");
+                        //  report.Show();
 
+                    }
+                    clearControls();
+                    getMasterReceiptNumber();
+                    UnlockControls();
+                    frmBhojnalayaPrintReceipt_Load(null, null);
                 }
-                clearControls();
-                getMasterReceiptNumber();
-                UnlockControls();
+            }
+            else {
+                MessageBox.Show("Date mismatch!!!");
             }
         }
         public void CheckValidDocs()
@@ -635,7 +644,7 @@ namespace SGMOSOL.SCREENS
             }
             if (txtTotalAmount.Text != "")
             {
-                if (Convert.ToInt32(txtTotalAmount.Text) >= 500)
+                if (Convert.ToDecimal(txtTotalAmount.Text) >= 500)
                 {
                     if (cboDocName.Text != "" && txtDocumentName.Text != "")
                     {
@@ -892,14 +901,16 @@ namespace SGMOSOL.SCREENS
         }
         private void txtDocumentName_TextChanged(object sender, EventArgs e)
         {
-            if (cboDocName.Text == "Adhar Card")
-            {
-                txtDocumentName.MaxLength = 12;
-            }
-            if (this.Text != "")
-            {
-                lblDocDetail.Text = "";
-            }
+            //if (cboDocName.Text == "Adhar Card")
+            //{
+            //    txtDocumentName.MaxLength = 12;
+            //}
+            //if (this.Text != "")
+            //{
+            //    lblDocDetail.Text = "";
+            //}
+
+            CheckValidDocs();
             user = Application.OpenForms.OfType<frmUserDengi>().FirstOrDefault();
             if (user != null)
             {
@@ -928,13 +939,16 @@ namespace SGMOSOL.SCREENS
             bool itemFound = false;
             if (e.KeyCode == Keys.Enter)
             {
-                if (Convert.ToDecimal(txtAmount.Text) > 500)
+                if (txtAmount.Text != "")
                 {
-                    lblamount.Text = "Amount should not greater than 500";
-                }
-                else
-                {
-                    lblamount.Text = "";
+                    if (Convert.ToDecimal(txtAmount.Text) > 500)
+                    {
+                        lblamount.Text = "Amount should not greater than 500";
+                    }
+                    else
+                    {
+                        lblamount.Text = "";
+                    }
                 }
                 if (txtQuantity.Text != "0" && lblamount.Text == "")
                 {
@@ -1000,6 +1014,15 @@ namespace SGMOSOL.SCREENS
         private void cboItemCode_TextChanged(object sender, EventArgs e)
         {
             UpdateSuggestions();
+        }
+
+        private void txtDocumentName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cboDocName.Text == "Adhar Card")
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+                txtDocumentName.MaxLength = 12;
+            }
         }
     }
 }

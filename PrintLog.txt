@@ -1058,3 +1058,21 @@ It is getting ready to print page (checking page..)  2024-05-09 16:08:04
 It is setting margine 2024-05-09 16:08:04
 Successfully done with printing process 2024-05-09 16:08:04
 Report content is ready:-2024-05-09 17:12:50
+
+Creating Report:-2024-05-09 17:40:19
+Serial_Number:-826703
+Report content is ready:-2024-05-09 17:40:21
+saving file in folder 2024-05-09 17:40:23
+Saved file in folder 2024-05-09 17:40:23
+It is  printing content on page 2024-05-09 17:40:23
+It is getting ready to print page (checking page..)  2024-05-09 17:40:29
+It is setting margine 2024-05-09 17:40:29
+Successfully done with printing process 2024-05-09 17:40:29
+Done Report:-2024-05-09 17:40:29
+Report content is ready:-2024-05-09 18:04:25
+Report content is ready:-2024-05-09 18:11:16
+Report content is ready:-2024-05-09 18:14:26
+saving file in folder 2024-05-09 18:14:28
+Saved file in folder 2024-05-09 18:14:28
+It is  printing content on page 2024-05-09 18:14:28
+Successfully done with printing process 2024-05-09 18:14:32

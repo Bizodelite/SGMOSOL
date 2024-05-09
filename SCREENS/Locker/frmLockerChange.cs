@@ -287,7 +287,7 @@ namespace SGMOSOL.SCREENS.Locker
                 col = new string[2];
                 col[0] = "Receipt";
                 col[1] = Conversion.Str(lngSerialNo);
-                MessageBox.Show(cf.GetErrorMessage(col, 7), PrjMsgBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Successfully saved");
                 setCursor(this, true);
                 flag = true;
 

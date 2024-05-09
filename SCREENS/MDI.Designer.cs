@@ -165,6 +165,7 @@
             this.lockerAdvanceVoucherToolStripMenuItem});
             this.lockerToolStripMenuItem.Enabled = false;
             this.lockerToolStripMenuItem.Name = "lockerToolStripMenuItem";
+            this.lockerToolStripMenuItem.ShowShortcutKeys = false;
             this.lockerToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.lockerToolStripMenuItem.Text = "Locker";
             this.lockerToolStripMenuItem.Click += new System.EventHandler(this.lockerToolStripMenuItem_Click);
@@ -202,6 +203,7 @@
             this.lockerExtendToolStripMenuItem.Name = "lockerExtendToolStripMenuItem";
             this.lockerExtendToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.lockerExtendToolStripMenuItem.Text = "Locker Extend";
+            this.lockerExtendToolStripMenuItem.Visible = false;
             this.lockerExtendToolStripMenuItem.Click += new System.EventHandler(this.lockerExtendToolStripMenuItem_Click);
             // 
             // lockerChangeToolStripMenuItem

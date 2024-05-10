@@ -24,6 +24,7 @@ using System.Data.Metadata.Edm;
 using static SGMOSOL.BAL.LockerBAL;
 using SGMOSOL.BAL;
 using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace SGMOSOL.SCREENS
 {
@@ -73,9 +74,9 @@ namespace SGMOSOL.SCREENS
             try
             {
                 //CenterToParent();
-                int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
-                int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
-                pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
+                //int centerX = (ClientSize.Width - pnlMaster.Width) / 2;
+               // int centerY = (ClientSize.Height - pnlMaster.Height) / 2;
+               // pnlMaster.Location = new System.Drawing.Point(centerX, centerY);
                 FormClear();
                 CF.fncSetDateAndRange(dtpCheckIn);
                 CF.fncSysTime(dtpCheckInTime);
@@ -1018,6 +1019,32 @@ namespace SGMOSOL.SCREENS
         private void btnClose_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtmobno_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtmobno_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string mobileNumber = txtmobno.Text.Trim();
+                string pattern = @"^\d{10}$";
+                if (Regex.IsMatch(mobileNumber, pattern))
+                {
+                   // lblMobile.Text = "";
+                }
+                else
+                {
+                  //  lblMobile.Text = "Please enter a valid 10-digit mobile number.";
+                }
+            }
+            catch (Exception ex)
+            {
+                CF.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
+            }
         }
     }
 }

@@ -822,7 +822,7 @@ namespace SGMOSOL.SCREENS
                     dtpCheckInTime.Value = Convert.ToDateTime(dr.Rows[0]["InTime"]);
                     // dtpCheckOut.MaxDate = Convert.ToDateTime("12/31/9998 00:00:00")
                     dtpCheckOut.MaxDate = Convert.ToDateTime(dr.Rows[0]["MaxDate"]);
-                    dtpCheckOut.Value = Convert.ToDateTime(dr.Rows[0]["OutDate"]);
+                   // dtpCheckOut.Value = Convert.ToDateTime(dr.Rows[0]["OutDate"]);
                     dtpCheckOutTime.Value = Convert.ToDateTime(dr.Rows[0]["OutTime"]);
                     txtCheckInVchNo.Text = dr.Rows[0]["SerialNo"].ToString();
                     dtpCheckIn.Tag = Convert.ToInt64(dr.Rows[0]["RecordModifiedCount"]);

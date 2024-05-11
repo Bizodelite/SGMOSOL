@@ -541,6 +541,7 @@ namespace SGMOSOL.SCREENS
                     dtpCheckInTime.Enabled = false;
                     chkLockers.Enabled = false;
                     CF.subLockForm(true, CtrlArr, false);
+                    lockControls();
                 }
             }
             else
@@ -556,7 +557,14 @@ namespace SGMOSOL.SCREENS
             btnPrint.Enabled = true;
             setCursor(this, true);
         }
-
+        public void lockControls()
+        {
+            txtName.Enabled = false;
+            txtmobno.Enabled = false;
+            txtPlace.Enabled = false;
+            txtRoomSrch.Enabled = false;
+            
+        }
         private bool LoadTransaction(long lngSearchId, bool blnLockForm)
         {
             DataTable dr = new DataTable();
@@ -1045,6 +1053,11 @@ namespace SGMOSOL.SCREENS
             {
                 CF.InsertErrorLog(ex.Message, UserInfo.module, UserInfo.version);
             }
+        }
+
+        private void nudAdvance_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

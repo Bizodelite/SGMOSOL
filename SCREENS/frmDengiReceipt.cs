@@ -18,6 +18,7 @@ using static SGMOSOL.ADMIN.CommonFunctions;
 using System.Collections;
 using System.Drawing;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
+using SGMOSOL.SCREENS.CENTRALDB;
 
 namespace SGMOSOL.SCREENS
 {
@@ -757,6 +758,10 @@ namespace SGMOSOL.SCREENS
                 lblPaymentMode.Text = "Tid not found, Please change paymenttype.";
             }
         }
+        //public string CreateBarcode()
+        //{ 
+        
+        //}
         private void btnSave_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -1848,6 +1853,12 @@ namespace SGMOSOL.SCREENS
             {
                 userDengi.SetGotra("");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmSearchDB frm=new frmSearchDB();
+            frm.ShowDialog();
         }
     }
 }

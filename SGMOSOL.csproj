@@ -354,6 +354,7 @@
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
     <Compile Include="Custom User Contols\SessionManager.cs" />
     <Compile Include="DAL\BhojnalayPrintReceiptDAL.cs" />
+    <Compile Include="DAL\CENTRALDB\frmSearchDAL.cs" />
     <Compile Include="DAL\DengiReceiptDAL.cs" />
     <Compile Include="DataSet\DataSetReportViewer.cs">
       <DependentUpon>DataSetReportViewer.xsd</DependentUpon>
@@ -387,6 +388,12 @@
     </Compile>
     <Compile Include="SCREENS\Bed System\FrmBedO.Designer.cs">
       <DependentUpon>FrmBedO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCREENS\CENTRALDB\frmSearchDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCREENS\CENTRALDB\frmSearchDB.Designer.cs">
+      <DependentUpon>frmSearchDB.cs</DependentUpon>
     </Compile>
     <Compile Include="SCREENS\frmMessReport.cs">
       <SubType>Form</SubType>
@@ -624,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\Bed System\FrmBedO.resx">
       <DependentUpon>FrmBedO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCREENS\CENTRALDB\frmSearchDB.resx">
+      <DependentUpon>frmSearchDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCREENS\frmMessReport.resx">
       <DependentUpon>frmMessReport.cs</DependentUpon>

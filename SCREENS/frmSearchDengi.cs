@@ -32,14 +32,16 @@ namespace SGMOSOL.SCREENS
 
         private void frmSearchDengi_Load(object sender, EventArgs e)
         {
-            fillDengiType();
-            fillDengiReceipt();
+            dtFromDate.Value= DateTime.Now;
+            dtToDate.Value= DateTime.Now;
             dtFromDate.Format = DateTimePickerFormat.Custom;
             dtFromDate.CustomFormat = "dd/MM/yyyy";
             dtToDate.Format = DateTimePickerFormat.Custom;
             dtToDate.CustomFormat = "dd/MM/yyyy";
-           // sessionManager = new SessionManager(this);
-           // sessionManager.StartTimer();
+            fillDengiType();
+            fillDengiReceipt();
+            // sessionManager = new SessionManager(this);
+            // sessionManager.StartTimer();
         }
         private void fillDengiReceipt()
         {
@@ -50,7 +52,7 @@ namespace SGMOSOL.SCREENS
                 model.receiptFno = txtFirstRecNo.Text;
                 model.receiptLNo = txtLastRecNo.Text;
                 model.Name = txtName.Text;
-                model.receiptFDate = dtFromDate.Value; ;
+                model.receiptFDate = dtFromDate.Value; 
                 model.ReceiptLDate = dtToDate.Value;
                 model.contact = txtMobile.Text;
                 //model.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);

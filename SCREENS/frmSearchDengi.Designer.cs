@@ -76,7 +76,7 @@
             this.panel1.Location = new System.Drawing.Point(12, 21);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1327, 130);
+            this.panel1.Size = new System.Drawing.Size(1327, 144);
             this.panel1.TabIndex = 0;
             // 
             // lblAmountInwords
@@ -84,7 +84,7 @@
             this.lblAmountInwords.AutoSize = true;
             this.lblAmountInwords.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmountInwords.ForeColor = System.Drawing.Color.Red;
-            this.lblAmountInwords.Location = new System.Drawing.Point(703, 95);
+            this.lblAmountInwords.Location = new System.Drawing.Point(746, 116);
             this.lblAmountInwords.Name = "lblAmountInwords";
             this.lblAmountInwords.Size = new System.Drawing.Size(0, 16);
             this.lblAmountInwords.TabIndex = 17;

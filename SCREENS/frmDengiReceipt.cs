@@ -927,14 +927,14 @@ namespace SGMOSOL.SCREENS
                     dengiReceiptModel.stateId = (int)cboState.SelectedValue;
                     dengiReceiptModel.STATE = cboState.Text;
                     if (txtChqNo.Text != "")
-                        dengiReceiptModel.chqdate = DateTime.Parse(dtChqDt.Text);
+                        dengiReceiptModel.chqdate = dtChqDt.Value;
                     dengiReceiptModel.Address = txtaddr.Text;
                     dengiReceiptModel.ddbankname = txtDDBankName.Text;
                     dengiReceiptModel.ddbankname = txtDDBankName.Text;
                     dengiReceiptModel.ddno = txtDDNo.Text;
                     if (txtDDNo.Text != "")
                     {
-                        dengiReceiptModel.dd_date = DateTime.Parse(dtDDdate.Text);
+                        dengiReceiptModel.dd_date = dtDDdate.Value;
                     }
                     dengiReceiptModel.paymentTypeId = (int)cboPaymentType.SelectedValue;
                     dengiReceiptModel.DengiId = Convert.ToInt32(cboDengiType.SelectedValue);
@@ -1301,6 +1301,7 @@ namespace SGMOSOL.SCREENS
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("DR_DATE", typeof(string));
+            dt.Columns.Add("SERIAL_NO", typeof(string));
             dt.Columns.Add("NAME", typeof(string));
             dt.Columns.Add("ADDRESS", typeof(string));
             dt.Columns.Add("CONTACT", typeof(string));
@@ -1310,7 +1311,7 @@ namespace SGMOSOL.SCREENS
             dt.Columns.Add("AMOUNT_IN_WORDS", typeof(string));
             dt.Columns.Add("PINCODE", typeof(string));
             dt.Columns.Add("TYPE", typeof(string));
-            dt.Rows.Add(dtpPrnRcptDt.Text, txtname.Text, txtaddr.Text, txtmob.Text, cboDoctype.Text != "Select" ? cboDoctype.Text : "", txtdocDetail.Text != "" ? txtdocDetail.Text : "", txtAmount.Text, commonFunctions.words(Convert.ToDouble(txtAmount.Text)), txtPincode.Text, cboDengiType.Text);
+            dt.Rows.Add(dtpPrnRcptDt.Text, txtdengireceiptNo.Text, txtname.Text, txtaddr.Text, txtmob.Text, cboDoctype.Text != "Select" ? cboDoctype.Text : "", txtdocDetail.Text != "" ? txtdocDetail.Text : "", txtAmount.Text, commonFunctions.words(Convert.ToDouble(txtAmount.Text)), txtPincode.Text, cboDengiType.Text);
             return dt;
         }
         public void CheckValidDocs()

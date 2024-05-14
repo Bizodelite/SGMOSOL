@@ -108,38 +108,39 @@ namespace SGMOSOL.SCREENS
 
                             if (result == DialogResult.Yes)
                             {
-
-                                //add watermark
-                                cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-
-
-                                // Add watermark for saving file
-                                using (Bitmap bitmapWithWatermark = new Bitmap(image.Width, image.Height))
+                                if (flag == "PRINT")
                                 {
-                                    using (Graphics graphics = Graphics.FromImage(bitmapWithWatermark))
+                                    //add watermark
+                                    cm.AppendToFile("saving file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                                    // Add watermark for saving file
+                                    using (Bitmap bitmapWithWatermark = new Bitmap(image.Width, image.Height))
                                     {
-                                        graphics.DrawImage(image, new Point(0, 0));
-
-                                        using (StringFormat stringFormat = new StringFormat())
-                                        using (Font watermarkFont = new Font("Arial", 100))
-                                        using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
+                                        using (Graphics graphics = Graphics.FromImage(bitmapWithWatermark))
                                         {
-                                            string watermarkText = "SSGMSS"; // Your watermark text
-                                            SizeF textSize = graphics.MeasureString(watermarkText, watermarkFont);
+                                            graphics.DrawImage(image, new Point(0, 0));
 
-                                            // Position the watermark diagonally across the receipt
-                                            float centerX = (bitmapWithWatermark.Width - textSize.Width) / 2;
-                                            float centerY = (bitmapWithWatermark.Height - textSize.Height) / 2;
+                                            using (StringFormat stringFormat = new StringFormat())
+                                            using (Font watermarkFont = new Font("Arial", 100))
+                                            using (SolidBrush watermarkBrush = new SolidBrush(Color.FromArgb(35, Color.Red))) // Adjust opacity and color as needed
+                                            {
+                                                string watermarkText = "SSGMSS"; // Your watermark text
+                                                SizeF textSize = graphics.MeasureString(watermarkText, watermarkFont);
 
-                                            // Apply rotation for diagonal watermark
-                                            Matrix matrix = new Matrix();
-                                            matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
-                                            graphics.Transform = matrix;
-                                            graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
+                                                // Position the watermark diagonally across the receipt
+                                                float centerX = (bitmapWithWatermark.Width - textSize.Width) / 2;
+                                                float centerY = (bitmapWithWatermark.Height - textSize.Height) / 2;
 
-                                            // Save the file with watermark
-                                            bitmapWithWatermark.Save(filePath, ImageFormat.Png);
-                                            cm.AppendToFile("Saved file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                                // Apply rotation for diagonal watermark
+                                                Matrix matrix = new Matrix();
+                                                matrix.RotateAt(-45, new PointF(centerX + textSize.Width / 2, centerY + textSize.Height / 2));
+                                                graphics.Transform = matrix;
+                                                graphics.DrawString(watermarkText, watermarkFont, watermarkBrush, new PointF(centerX, centerY), stringFormat);
+
+                                                // Save the file with watermark
+                                                bitmapWithWatermark.Save(filePath, ImageFormat.Png);
+                                                cm.AppendToFile("Saved file in folder " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                            }
                                         }
                                     }
                                 }
@@ -233,7 +234,7 @@ namespace SGMOSOL.SCREENS
                         {
                             strSerialNumberPrint = row["SERIAL_NO"].ToString();
                         }
-                        MessageBox.Show("Printing Dengi Declaration for Serial number " + strSerialNumberPrint);
+                        //MessageBox.Show("Printing Dengi Declaration for Serial number " + strSerialNumberPrint);
                         printReport(DocumentName, PrinterNames.DengiDeclaration);
                     }
                 }
@@ -312,7 +313,7 @@ namespace SGMOSOL.SCREENS
                     {
                         strSerialNumberPrint = row1["ITEM_PRINT_RECEIPT_ID"].ToString();
                     }
-                  
+
                     cm.AppendToFile("Serial_Number:-" + strSerialNumberPrint);
                     filePath = System.Configuration.ConfigurationManager.AppSettings["MESS_PRINTS"].ToString() + "\\MessReceipt_" + strSerialNumberPrint + ".png"; //
                     printReport(DocumentName, PrinterNames.BhojnalayReceipt);
@@ -353,6 +354,10 @@ namespace SGMOSOL.SCREENS
                 reportDataSource = new ReportDataSource("DataSet1", dt);
                 reportViewer2.LocalReport.DataSources.Add(reportDataSource);
                 DataTable dt1 = (DataTable)reportDataSource.Value;
+                foreach (DataRow row in dt1.Rows)
+                {
+                    strSerialNumberPrint = row["SERIAL_NO"].ToString();
+                }
                 // addCustomField(dt1);
                 reportViewer2.RefreshReport();
                 printReport(DocumentName, PrinterNames.DengiDeclaration);
@@ -379,7 +384,7 @@ namespace SGMOSOL.SCREENS
             if (flag == "PRINT")
             {
                 dt = DataTableDT.Copy();// bhojnalayDAL.getMessItemDataForReport(receiptID);
-                reportFileName = "LockerCheckInReceipt_New.rdlc";   
+                reportFileName = "LockerCheckInReceipt_New.rdlc";
                 reportPath = System.IO.Path.Combine(appDirectory, reportsFolder, reportFileName);
                 reportViewer2.LocalReport.ReportPath = reportPath;
                 foreach (DataRow row in dt.Rows)

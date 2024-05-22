@@ -38,6 +38,7 @@ namespace SGMOSOL.SCREENS
             dtFromDate.CustomFormat = "dd/MM/yyyy";
             dtToDate.Format = DateTimePickerFormat.Custom;
             dtToDate.CustomFormat = "dd/MM/yyyy";
+            //dtFromDate.va
            // sessionManager = new SessionManager(this);
            // sessionManager.StartTimer();
         }

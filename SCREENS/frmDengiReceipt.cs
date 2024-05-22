@@ -19,6 +19,7 @@ using System.Collections;
 using System.Drawing;
 using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 using SGMOSOL.SCREENS.CENTRALDB;
+using SGMOSOL.DAL.CENTRALDB;
 
 namespace SGMOSOL.SCREENS
 {
@@ -26,10 +27,12 @@ namespace SGMOSOL.SCREENS
     {
         private CommonFunctions commonFunctions;
         frmUserDengi userDengi;
+        frmSearchDAL objCB;
         DengiReceiptDAL dengiReceiptDAL;
         frmSearchDengi frmSearch;
         dengiReceiptModel dengiReceiptModel;
         frmReportViewer frmreport;
+        string strBarcode = "NEW";
         DataTable dt;
         public bool isPrint = false;
         private string mStrCounterMachineShortName;
@@ -68,6 +71,7 @@ namespace SGMOSOL.SCREENS
             // btnSave.Click += btnSave_Click;
             cboState.SelectedIndexChanged += cboState_SelectedIndexChanged;
             UserInfo.module = "Dengi";
+
         }
         protected override bool ProcessDialogKey(Keys keyData)
         {
@@ -691,7 +695,15 @@ namespace SGMOSOL.SCREENS
             resetAllFields();
             getDengiNo();
             unLockControls();
+            strBarcode = "NEW";
         }
+
+        //public string getBarcode()
+        //{
+        //    string strBarcode = null;
+        //    objCB.CreateAndInsertBarcode(strBarcode);
+        //    return strBarcode;
+        //}
         public void validationCheck()
         {
             if (txtmob.Text == "")
@@ -760,7 +772,7 @@ namespace SGMOSOL.SCREENS
         }
         //public string CreateBarcode()
         //{ 
-        
+
         //}
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -804,7 +816,7 @@ namespace SGMOSOL.SCREENS
                 if (Convert.ToInt32(txtAmount.Text) >= 500 && Convert.ToInt32(txtAmount.Text) <= 999)
                 {
                     lblamount.Text = "Amount :- " + txtAmount.Text + "Please check carefully . Press F1";
-                    amountflag= true;
+                    amountflag = true;
                 }
                 else if (Convert.ToInt32(txtAmount.Text) >= 1000 && Convert.ToInt32(txtAmount.Text) <= 4999)
                 {
@@ -1009,6 +1021,19 @@ namespace SGMOSOL.SCREENS
                         result = MessageBox.Show("Are you sure to save this record", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (result == DialogResult.Yes)
                         {
+                            if (strBarcode == "NEW")
+                            {
+                                objCB = new frmSearchDAL();
+                                string strTableName = dengiReceiptModel.contact.Substring(0, 3) + "Bhakt";
+                                dengiReceiptModel.TableName = strTableName;
+                                dengiReceiptModel.Prefix = dengiReceiptModel.contact.Substring(0, 3);
+                                string strBARCODE = objCB.CreateAndInsertBarcode(dengiReceiptModel);
+                                dengiReceiptModel.Barcode = strBARCODE;
+                            }
+                            else
+                            {
+                                dengiReceiptModel.Barcode = strBarcode;
+                            }
                             int status = dengiReceiptDAL.InsertDengiReceipt(dengiReceiptModel);
 
                             if (status >= 0)
@@ -1062,6 +1087,7 @@ namespace SGMOSOL.SCREENS
             }
 
         }
+
         private int fcheckInsert()
         {
             int fcheckInsert = 0;
@@ -1734,6 +1760,11 @@ namespace SGMOSOL.SCREENS
                 {
                     btnSave.PerformClick();
                 }
+                if (e.Control && e.KeyCode == Keys.L)
+                {
+                    frmSearchDB frm = new frmSearchDB();
+                    frm.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -1857,8 +1888,42 @@ namespace SGMOSOL.SCREENS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmSearchDB frm=new frmSearchDB();
-            frm.ShowDialog();
+
+        }
+        public void getLoadTransaction(DataTable dt, string Barcode = null)
+        {
+            if (dt == null && Barcode == "NEW")
+            {
+                txtname.Text = "";
+                txtmob.Text = "";
+                cboDoctype.Text = "SELECT";
+                txtdocDetail.Text = "";
+                cboGotra.Text = "";
+                cboDistrict.Text = "SELECT";
+                txttal.Text = "";
+                cboState.Text = "SELECT";
+                txtPincode.Text = "";
+                txtaddr.Text = "";
+                strBarcode = Barcode;
+                txtAmount.Focus();
+
+            }
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                txtname.Text = row["NAME"].ToString();
+                txtmob.Text = row["MOBILENO"].ToString();
+                cboDoctype.Text = "Adhar Card";
+                txtdocDetail.Text = row["ADHARNO"].ToString();
+                cboGotra.Text = row["GOTRA"].ToString();
+                cboDistrict.Text = row["DISTRICT"].ToString();
+                txttal.Text = row["TALUKA"].ToString();
+                cboState.Text = row["STATE"].ToString();
+                txtPincode.Text = row["PINCODE"].ToString();
+                txtaddr.Text = row["ADDRESS"].ToString();
+                strBarcode = Barcode;
+                txtAmount.Focus();
+            }
         }
     }
 }

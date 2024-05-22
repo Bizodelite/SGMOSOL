@@ -1058,3 +1058,128 @@ It is getting ready to print page (checking page..)  2024-05-09 16:08:04
 It is setting margine 2024-05-09 16:08:04
 Successfully done with printing process 2024-05-09 16:08:04
 Report content is ready:-2024-05-09 17:12:50
+Report content is ready:-2024-05-14 10:14:19
+Failed Report while Printing 2024-05-14 10:14:19
+Report content is ready:-2024-05-14 10:14:24
+Failed Report while Printing 2024-05-14 10:14:24
+Report content is ready:-2024-05-14 10:14:32
+Failed Report while Printing 2024-05-14 10:14:32
+Report content is ready:-2024-05-14 10:18:20
+Report content is ready:-2024-05-14 10:28:17
+saving file in folder 2024-05-14 10:29:24
+Failed Report In Print Function 2024-05-14 10:35:04
+Report content is ready:-2024-05-14 10:35:23
+saving file in folder 2024-05-14 10:35:43
+Failed Report In Print Function 2024-05-14 10:36:22
+Report content is ready:-2024-05-14 10:37:17
+saving file in folder 2024-05-14 10:37:31
+Report content is ready:-2024-05-14 10:52:14
+It is  printing content on page 2024-05-14 10:52:17
+It is getting ready to print page (checking page..)  2024-05-14 10:52:27
+It is setting margine 2024-05-14 10:52:27
+Successfully done with printing process 2024-05-14 10:52:27
+
+Creating Report:-2024-05-14 11:01:12
+Serial_Number:-826704
+Report content is ready:-2024-05-14 11:01:14
+Done Report:-2024-05-14 11:01:18
+
+Creating Report:-2024-05-14 11:03:17
+Serial_Number:-826705
+Report content is ready:-2024-05-14 11:03:18
+saving file in folder 2024-05-14 11:03:20
+Saved file in folder 2024-05-14 11:03:20
+It is  printing content on page 2024-05-14 11:03:20
+It is getting ready to print page (checking page..)  2024-05-14 11:03:26
+It is setting margine 2024-05-14 11:03:26
+Successfully done with printing process 2024-05-14 11:03:26
+Done Report:-2024-05-14 11:03:26
+
+Creating Report:-2024-05-14 11:18:09
+Serial_Number:-826706
+Report content is ready:-2024-05-14 11:18:09
+Done Report:-2024-05-14 11:18:12
+
+Creating Report:-2024-05-14 11:19:44
+Serial_Number:-826707
+Report content is ready:-2024-05-14 11:19:45
+saving file in folder 2024-05-14 11:19:47
+Saved file in folder 2024-05-14 11:19:47
+It is  printing content on page 2024-05-14 11:19:47
+Successfully done with printing process 2024-05-14 11:19:50
+Done Report:-2024-05-14 11:19:50
+
+Creating Report:-2024-05-14 11:21:05
+Serial_Number:-826708
+Report content is ready:-2024-05-14 11:21:06
+Done Report:-2024-05-14 11:21:09
+Report content is ready:-2024-05-14 11:23:08
+It is  printing content on page 2024-05-14 11:23:12
+Successfully done with printing process 2024-05-14 11:23:16
+
+Creating Report:-2024-05-14 11:23:24
+Serial_Number:-826709
+Report content is ready:-2024-05-14 11:23:25
+Done Report:-2024-05-14 11:23:27
+Report content is ready:-2024-05-14 11:23:41
+It is  printing content on page 2024-05-14 11:23:43
+It is getting ready to print page (checking page..)  2024-05-14 11:23:48
+It is setting margine 2024-05-14 11:23:48
+Successfully done with printing process 2024-05-14 11:23:49
+
+Creating Report:-2024-05-14 11:28:28
+Serial_Number:-826710
+Report content is ready:-2024-05-14 11:28:29
+saving file in folder 2024-05-14 11:28:31
+Saved file in folder 2024-05-14 11:28:31
+It is  printing content on page 2024-05-14 11:28:31
+It is getting ready to print page (checking page..)  2024-05-14 11:28:36
+It is setting margine 2024-05-14 11:28:36
+Successfully done with printing process 2024-05-14 11:28:36
+Done Report:-2024-05-14 11:28:36
+
+Creating Report:-2024-05-21 11:01:31
+Serial_Number:-826712
+Report content is ready:-2024-05-21 11:01:32
+Done Report:-2024-05-21 11:01:39
+
+Creating Report:-2024-05-21 11:06:08
+Serial_Number:-826713
+Report content is ready:-2024-05-21 11:06:09
+Done Report:-2024-05-21 11:06:12
+
+Creating Report:-2024-05-21 11:12:25
+Serial_Number:-826714
+Report content is ready:-2024-05-21 11:12:27
+Done Report:-2024-05-21 11:13:38
+
+Creating Report:-2024-05-21 11:36:17
+Serial_Number:-826715
+Report content is ready:-2024-05-21 11:36:18
+Done Report:-2024-05-21 11:36:20
+
+Creating Report:-2024-05-21 11:38:30
+Serial_Number:-826716
+Report content is ready:-2024-05-21 11:38:31
+Done Report:-2024-05-21 11:39:05
+
+Creating Report:-2024-05-21 12:07:31
+Serial_Number:-826717
+Report content is ready:-2024-05-21 12:07:32
+Done Report:-2024-05-21 12:08:02
+
+Creating Report:-2024-05-21 12:13:21
+Serial_Number:-826718
+Report content is ready:-2024-05-21 12:13:22
+Done Report:-2024-05-21 12:14:48
+
+Creating Report:-2024-05-21 12:28:03
+Serial_Number:-826719
+Report content is ready:-2024-05-21 12:28:04
+Done Report:-2024-05-21 12:28:07
+
+Creating Report:-2024-05-21 12:32:55
+Serial_Number:-826720
+Report content is ready:-2024-05-21 12:32:56
+Done Report:-2024-05-21 12:33:06
+Report content is ready:-2024-05-21 12:37:54

@@ -36,7 +36,6 @@ namespace SGMOSOL.SCREENS
             this.lblPaymentMode = new System.Windows.Forms.Label();
             this.lblAmtWords = new System.Windows.Forms.Label();
             this.lbldoctype_err = new System.Windows.Forms.Label();
-            this.txtPANNo = new System.Windows.Forms.TextBox();
             this.pnlDDDtl = new System.Windows.Forms.Panel();
             this.dtDDdate = new System.Windows.Forms.DateTimePicker();
             this.Label19 = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@ namespace SGMOSOL.SCREENS
             this.txtDDNo = new System.Windows.Forms.TextBox();
             this.txtDDBankName = new System.Windows.Forms.TextBox();
             this.Label12 = new System.Windows.Forms.Label();
+            this.txtPANNo = new System.Windows.Forms.TextBox();
             this.lbldocdetailerr = new System.Windows.Forms.Label();
             this.txtdocDetail = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -234,20 +234,6 @@ namespace SGMOSOL.SCREENS
             this.lbldoctype_err.Size = new System.Drawing.Size(0, 17);
             this.lbldoctype_err.TabIndex = 113;
             // 
-            // txtPANNo
-            // 
-            this.txtPANNo.BackColor = System.Drawing.Color.Azure;
-            this.txtPANNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPANNo.Location = new System.Drawing.Point(1437, 69);
-            this.txtPANNo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPANNo.Name = "txtPANNo";
-            this.txtPANNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPANNo.Size = new System.Drawing.Size(47, 30);
-            this.txtPANNo.TabIndex = 0;
-            this.txtPANNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPANNo.Visible = false;
-            this.txtPANNo.TextChanged += new System.EventHandler(this.txtPANNo_TextChanged);
-            // 
             // pnlDDDtl
             // 
             this.pnlDDDtl.Controls.Add(this.dtDDdate);
@@ -347,6 +333,20 @@ namespace SGMOSOL.SCREENS
             this.Label12.TabIndex = 78;
             this.Label12.Text = "Bank";
             this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPANNo
+            // 
+            this.txtPANNo.BackColor = System.Drawing.Color.Azure;
+            this.txtPANNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPANNo.Location = new System.Drawing.Point(1437, 69);
+            this.txtPANNo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPANNo.Name = "txtPANNo";
+            this.txtPANNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtPANNo.Size = new System.Drawing.Size(47, 30);
+            this.txtPANNo.TabIndex = 0;
+            this.txtPANNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPANNo.Visible = false;
+            this.txtPANNo.TextChanged += new System.EventHandler(this.txtPANNo_TextChanged);
             // 
             // lbldocdetailerr
             // 
@@ -454,11 +454,11 @@ namespace SGMOSOL.SCREENS
             // lblamount
             // 
             this.lblamount.AutoSize = true;
-            this.lblamount.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.lblamount.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblamount.ForeColor = System.Drawing.Color.Red;
-            this.lblamount.Location = new System.Drawing.Point(124, 47);
+            this.lblamount.Location = new System.Drawing.Point(16, 48);
             this.lblamount.Name = "lblamount";
-            this.lblamount.Size = new System.Drawing.Size(0, 17);
+            this.lblamount.Size = new System.Drawing.Size(0, 20);
             this.lblamount.TabIndex = 106;
             // 
             // lblpan
@@ -763,7 +763,7 @@ namespace SGMOSOL.SCREENS
             this.dtChqDt.Name = "dtChqDt";
             this.dtChqDt.Size = new System.Drawing.Size(159, 30);
             this.dtChqDt.TabIndex = 12;
-            this.dtChqDt.Value = new System.DateTime(2005, 9, 20, 0, 0, 0, 0);
+            this.dtChqDt.Value = new System.DateTime(2024, 5, 22, 11, 23, 37, 0);
             // 
             // Label10
             // 

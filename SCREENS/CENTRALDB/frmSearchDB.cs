@@ -29,10 +29,15 @@ namespace SGMOSOL.SCREENS.CENTRALDB
 
         private void frmSearchDB_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.Text = "Central Form";
             obj = new frmSearchDAL();
             cboSearch.Text = "BARCODE";
             commonFunctions = new CommonFunctions();
             txtSearch.KeyDown += new KeyEventHandler(txtSearch_KeyDown);
+            btnShow.Click += new EventHandler(btnShow_Click);
         }
 
         private void btnShow_Click(object sender, EventArgs e)
@@ -54,11 +59,27 @@ namespace SGMOSOL.SCREENS.CENTRALDB
                     // Set the value of the row header to the sequential ID (starting from 1)
                     dgvDataLoad.Rows[i].HeaderCell.Value = (i + 1).ToString();
                 }
+                if (dgvDataLoad.Rows.Count > 0)
+                {
+                    // Select the first row
+                    dgvDataLoad.CurrentCell = dgvDataLoad.Rows[0].Cells[0];
+                    dgvDataLoad.Rows[0].Selected = true;
+                    var selectedRow = dgvDataLoad.Rows[0];
+                    var dataRowView = selectedRow.DataBoundItem as DataRowView;
+
+                    if (dataRowView != null)
+                    {
+                        selectedRowData = dataRowView.Row.Table.Clone();
+                        selectedRowData.ImportRow(dataRowView.Row);
+                        btnLoad.Focus();
+                    }
+                }
             }
             else
             {
                 lblAlert.Text = "NO RECORD FOUND";
                 dgvDataLoad.DataSource = null;
+                btnClose.Focus();
             }
         }
 

@@ -721,12 +721,12 @@ namespace SGMOSOL.SCREENS
             {
                 if (Convert.ToInt32(txtAmount.Text) >= 500)
                 {
-                    if (cboDoctype.Text != "" && txtdocDetail.Text != "")
-                    {
-                        CheckValidDocs();
-                    }
-                    else
-                    {
+                   // if (cboDoctype.Text != "" && txtdocDetail.Text != "")
+                  //  {
+                       // CheckValidDocs();
+                   // }
+                   // else
+                    //{
                         if (cboDoctype.Text == "Select")
                         {
                             lbldoctype_err.Text = "Please select Document Type";
@@ -737,7 +737,7 @@ namespace SGMOSOL.SCREENS
                             lbldocdetailerr.Text = "Please enter Document details";
                         }
                         else { lbldocdetailerr.Text = ""; }
-                    }
+                    //}
                 }
                 else
                 {
@@ -1278,23 +1278,25 @@ namespace SGMOSOL.SCREENS
         }
         private void txtdocDetail_TextChanged(object sender, EventArgs e)
         {
-            if (cboDoctype.Text == "Adhar Card")
-            {
-                txtdocDetail.MaxLength = 12;
-            }
+            //if (cboDoctype.Text == "Adhar Card")
+            //{
+            //    txtdocDetail.MaxLength = 12;
+            //}
 
             if (cboDoctype.Text != "Select")
             {
-                if (txtdocDetail.Text != "")
-                {
-                    lbldocdetailerr.Text = "";
-                    userDengi.SetDocDetail(txtdocDetail.Text);
-                }
-                else
-                {
-                    lbldocdetailerr.Text = "Please enter Document Details";
-                    userDengi.SetDocDetail("");
-                }
+                CheckValidDocs();
+                userDengi.SetDocDetail(txtdocDetail.Text);
+                //if (txtdocDetail.Text != "")
+                //{
+                //    lbldocdetailerr.Text = "";
+                //    userDengi.SetDocDetail(txtdocDetail.Text);
+                //}
+                //else
+                //{
+                //    lbldocdetailerr.Text = "Please enter Document Details";
+                //    userDengi.SetDocDetail("");
+                //}
             }
         }
         public DataTable createTempTableforDeclaration()
@@ -1365,7 +1367,7 @@ namespace SGMOSOL.SCREENS
             {
                 if (!commonFunctions.IsValidVoterId(txtdocDetail.Text))
                 {
-                    lbldocdetailerr.Text = "Please enter valid Voter ID!";
+                    lbldocdetailerr.Text = "Please enter  Voter ID!";
                 }
                 else
                 {
@@ -1740,7 +1742,10 @@ namespace SGMOSOL.SCREENS
         private void txtdocDetail_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cboDoctype.Text == "Adhar Card")
+            {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+                txtdocDetail.MaxLength = 12;
+            }
         }
 
         private void txtdengireceiptNo_TextChanged(object sender, EventArgs e)

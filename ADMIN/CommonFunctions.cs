@@ -754,8 +754,14 @@ namespace SGMOSOL.ADMIN
         }
         public bool IsValidVoterId(string voterIdNumber)
         {
-            string pattern = @"^[A-Z]{3}\d{7}$";
-            return Regex.IsMatch(voterIdNumber, pattern);
+            // string pattern = @"^[A-Z]{3}\d{7}$";
+            //return Regex.IsMatch(voterIdNumber, pattern);
+            if (voterIdNumber.Length > 4)
+            {
+                return true;
+            }
+            else
+                return false;
         }
         public void InsertErrorLog(string errorMsg, string module, string version)
         {

@@ -98,9 +98,9 @@ namespace SGMOSOL.SCREENS
                                 {
                                     if (Convert.ToDateTime(dtuser.Rows[0]["ResetPasswordDate"]).AddDays(45) < DateTime.Now)
                                     {
-                                        frmChnagePassword frmchnagepassword = new frmChnagePassword();
-                                        frmchnagepassword.ShowDialog();
-                                        lblmessage.Text = "Please Login Again With New Password.";
+                                       // frmChnagePassword frmchnagepassword = new frmChnagePassword();
+                                       // frmchnagepassword.ShowDialog();
+                                        lblmessage.Text = "Please Reset your password and Login Again With New Password.";
                                         return;
                                     }
                                     UserInfo.serverName = cm.getServerName();

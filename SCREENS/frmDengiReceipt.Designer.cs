@@ -184,7 +184,7 @@ namespace SGMOSOL.SCREENS
             this.pnlMaster.Controls.Add(this.pnlChqDtl);
             this.pnlMaster.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlMaster.Location = new System.Drawing.Point(4, 4);
-            this.pnlMaster.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlMaster.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMaster.Name = "pnlMaster";
             this.pnlMaster.Size = new System.Drawing.Size(1568, 246);
             this.pnlMaster.TabIndex = 2;
@@ -196,7 +196,7 @@ namespace SGMOSOL.SCREENS
             this.cboDoctype.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDoctype.FormattingEnabled = true;
             this.cboDoctype.Location = new System.Drawing.Point(573, 65);
-            this.cboDoctype.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboDoctype.Margin = new System.Windows.Forms.Padding(4);
             this.cboDoctype.Name = "cboDoctype";
             this.cboDoctype.Size = new System.Drawing.Size(225, 36);
             this.cboDoctype.TabIndex = 2;
@@ -245,7 +245,7 @@ namespace SGMOSOL.SCREENS
             this.pnlDDDtl.Controls.Add(this.txtDDBankName);
             this.pnlDDDtl.Controls.Add(this.Label12);
             this.pnlDDDtl.Location = new System.Drawing.Point(29, 162);
-            this.pnlDDDtl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlDDDtl.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDDDtl.Name = "pnlDDDtl";
             this.pnlDDDtl.Size = new System.Drawing.Size(1457, 46);
             this.pnlDDDtl.TabIndex = 108;
@@ -305,7 +305,7 @@ namespace SGMOSOL.SCREENS
             this.txtDDNo.BackColor = System.Drawing.Color.MistyRose;
             this.txtDDNo.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDDNo.Location = new System.Drawing.Point(675, 15);
-            this.txtDDNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDDNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDDNo.MaxLength = 20;
             this.txtDDNo.Name = "txtDDNo";
             this.txtDDNo.Size = new System.Drawing.Size(271, 35);
@@ -318,7 +318,7 @@ namespace SGMOSOL.SCREENS
             this.txtDDBankName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDDBankName.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDDBankName.Location = new System.Drawing.Point(93, 12);
-            this.txtDDBankName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDDBankName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDDBankName.MaxLength = 30;
             this.txtDDBankName.Name = "txtDDBankName";
             this.txtDDBankName.Size = new System.Drawing.Size(455, 35);
@@ -336,6 +336,14 @@ namespace SGMOSOL.SCREENS
             this.Label12.Text = "Bank";
             this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtPANNo
+            // 
+            this.txtPANNo.Location = new System.Drawing.Point(0, 0);
+            this.txtPANNo.Name = "txtPANNo";
+            this.txtPANNo.Size = new System.Drawing.Size(100, 30);
+            this.txtPANNo.TabIndex = 116;
+            this.txtPANNo.Visible = false;
+            // 
             // lbldocdetailerr
             // 
             this.lbldocdetailerr.AutoSize = true;
@@ -352,7 +360,7 @@ namespace SGMOSOL.SCREENS
             this.txtdocDetail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtdocDetail.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdocDetail.Location = new System.Drawing.Point(1067, 65);
-            this.txtdocDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtdocDetail.Margin = new System.Windows.Forms.Padding(4);
             this.txtdocDetail.Name = "txtdocDetail";
             this.txtdocDetail.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtdocDetail.Size = new System.Drawing.Size(236, 35);
@@ -381,7 +389,7 @@ namespace SGMOSOL.SCREENS
             this.pnlswap.Controls.Add(this.Label16);
             this.pnlswap.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlswap.Location = new System.Drawing.Point(19, 176);
-            this.pnlswap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlswap.Margin = new System.Windows.Forms.Padding(4);
             this.pnlswap.Name = "pnlswap";
             this.pnlswap.Size = new System.Drawing.Size(1524, 43);
             this.pnlswap.TabIndex = 109;
@@ -397,7 +405,7 @@ namespace SGMOSOL.SCREENS
             "Cash",
             "Swap"});
             this.cobTid.Location = new System.Drawing.Point(844, 10);
-            this.cobTid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cobTid.Margin = new System.Windows.Forms.Padding(4);
             this.cobTid.Name = "cobTid";
             this.cobTid.Size = new System.Drawing.Size(157, 36);
             this.cobTid.TabIndex = 3;
@@ -420,7 +428,7 @@ namespace SGMOSOL.SCREENS
             this.txtInvoice.BackColor = System.Drawing.Color.Azure;
             this.txtInvoice.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoice.Location = new System.Drawing.Point(137, 9);
-            this.txtInvoice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtInvoice.Margin = new System.Windows.Forms.Padding(4);
             this.txtInvoice.MaxLength = 30;
             this.txtInvoice.Name = "txtInvoice";
             this.txtInvoice.Size = new System.Drawing.Size(413, 30);
@@ -477,7 +485,7 @@ namespace SGMOSOL.SCREENS
             this.txtAmount.BackColor = System.Drawing.Color.Azure;
             this.txtAmount.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Location = new System.Drawing.Point(127, 69);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmount.MaxLength = 9;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -494,7 +502,7 @@ namespace SGMOSOL.SCREENS
             this.cboPaymentType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPaymentType.FormattingEnabled = true;
             this.cboPaymentType.Location = new System.Drawing.Point(443, 135);
-            this.cboPaymentType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPaymentType.Margin = new System.Windows.Forms.Padding(4);
             this.cboPaymentType.Name = "cboPaymentType";
             this.cboPaymentType.Size = new System.Drawing.Size(240, 36);
             this.cboPaymentType.TabIndex = 5;
@@ -522,7 +530,7 @@ namespace SGMOSOL.SCREENS
             this.cboDengiType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDengiType.FormattingEnabled = true;
             this.cboDengiType.Location = new System.Drawing.Point(125, 135);
-            this.cboDengiType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboDengiType.Margin = new System.Windows.Forms.Padding(4);
             this.cboDengiType.Name = "cboDengiType";
             this.cboDengiType.Size = new System.Drawing.Size(153, 36);
             this.cboDengiType.TabIndex = 4;
@@ -537,7 +545,7 @@ namespace SGMOSOL.SCREENS
             this.dtpPrnRcptDt.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPrnRcptDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPrnRcptDt.Location = new System.Drawing.Point(1251, 17);
-            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPrnRcptDt.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrnRcptDt.Name = "dtpPrnRcptDt";
             this.dtpPrnRcptDt.Size = new System.Drawing.Size(233, 35);
             this.dtpPrnRcptDt.TabIndex = 7;
@@ -601,7 +609,7 @@ namespace SGMOSOL.SCREENS
             this.txtUser.Enabled = false;
             this.txtUser.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUser.Location = new System.Drawing.Point(472, 16);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
             this.txtUser.Size = new System.Drawing.Size(295, 35);
@@ -614,7 +622,7 @@ namespace SGMOSOL.SCREENS
             this.txtdengireceiptNo.Enabled = false;
             this.txtdengireceiptNo.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdengireceiptNo.Location = new System.Drawing.Point(959, 18);
-            this.txtdengireceiptNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtdengireceiptNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtdengireceiptNo.Name = "txtdengireceiptNo";
             this.txtdengireceiptNo.ReadOnly = true;
             this.txtdengireceiptNo.Size = new System.Drawing.Size(195, 35);
@@ -642,7 +650,7 @@ namespace SGMOSOL.SCREENS
             this.txtCounter.Enabled = false;
             this.txtCounter.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCounter.Location = new System.Drawing.Point(123, 15);
-            this.txtCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCounter.Margin = new System.Windows.Forms.Padding(4);
             this.txtCounter.Name = "txtCounter";
             this.txtCounter.ReadOnly = true;
             this.txtCounter.Size = new System.Drawing.Size(217, 35);
@@ -668,7 +676,7 @@ namespace SGMOSOL.SCREENS
             this.pnlNetDtl.Controls.Add(this.txtNetBankName);
             this.pnlNetDtl.Controls.Add(this.Label18);
             this.pnlNetDtl.Location = new System.Drawing.Point(15, 174);
-            this.pnlNetDtl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNetDtl.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNetDtl.Name = "pnlNetDtl";
             this.pnlNetDtl.Size = new System.Drawing.Size(1364, 50);
             this.pnlNetDtl.TabIndex = 107;
@@ -693,7 +701,7 @@ namespace SGMOSOL.SCREENS
             this.txtNetRefNo.BackColor = System.Drawing.Color.PaleTurquoise;
             this.txtNetRefNo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNetRefNo.Location = new System.Drawing.Point(771, 11);
-            this.txtNetRefNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNetRefNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtNetRefNo.MaxLength = 20;
             this.txtNetRefNo.Name = "txtNetRefNo";
             this.txtNetRefNo.Size = new System.Drawing.Size(155, 30);
@@ -705,7 +713,7 @@ namespace SGMOSOL.SCREENS
             this.txtNetBankName.BackColor = System.Drawing.Color.PaleTurquoise;
             this.txtNetBankName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNetBankName.Location = new System.Drawing.Point(131, 9);
-            this.txtNetBankName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNetBankName.Margin = new System.Windows.Forms.Padding(4);
             this.txtNetBankName.MaxLength = 30;
             this.txtNetBankName.Name = "txtNetBankName";
             this.txtNetBankName.Size = new System.Drawing.Size(413, 30);
@@ -733,7 +741,7 @@ namespace SGMOSOL.SCREENS
             this.pnlChqDtl.Controls.Add(this.txtChqBankname);
             this.pnlChqDtl.Controls.Add(this.Label4);
             this.pnlChqDtl.Location = new System.Drawing.Point(15, 175);
-            this.pnlChqDtl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlChqDtl.Margin = new System.Windows.Forms.Padding(4);
             this.pnlChqDtl.Name = "pnlChqDtl";
             this.pnlChqDtl.Size = new System.Drawing.Size(1364, 46);
             this.pnlChqDtl.TabIndex = 105;
@@ -747,7 +755,7 @@ namespace SGMOSOL.SCREENS
             this.dtChqDt.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtChqDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtChqDt.Location = new System.Drawing.Point(1084, 7);
-            this.dtChqDt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtChqDt.Margin = new System.Windows.Forms.Padding(4);
             this.dtChqDt.Name = "dtChqDt";
             this.dtChqDt.Size = new System.Drawing.Size(159, 30);
             this.dtChqDt.TabIndex = 12;
@@ -771,7 +779,7 @@ namespace SGMOSOL.SCREENS
             this.txtChqNo.BackColor = System.Drawing.Color.MistyRose;
             this.txtChqNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtChqNo.Location = new System.Drawing.Point(772, 10);
-            this.txtChqNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtChqNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtChqNo.MaxLength = 20;
             this.txtChqNo.Name = "txtChqNo";
             this.txtChqNo.Size = new System.Drawing.Size(155, 29);
@@ -795,7 +803,7 @@ namespace SGMOSOL.SCREENS
             this.txtChqBankname.BackColor = System.Drawing.Color.MistyRose;
             this.txtChqBankname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtChqBankname.Location = new System.Drawing.Point(129, 7);
-            this.txtChqBankname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtChqBankname.Margin = new System.Windows.Forms.Padding(4);
             this.txtChqBankname.MaxLength = 30;
             this.txtChqBankname.Name = "txtChqBankname";
             this.txtChqBankname.Size = new System.Drawing.Size(415, 29);
@@ -849,7 +857,7 @@ namespace SGMOSOL.SCREENS
             this.pnlDetail.Controls.Add(this.Label26);
             this.pnlDetail.Controls.Add(this.Label24);
             this.pnlDetail.Location = new System.Drawing.Point(4, 258);
-            this.pnlDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlDetail.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDetail.Name = "pnlDetail";
             this.pnlDetail.Size = new System.Drawing.Size(1568, 254);
             this.pnlDetail.TabIndex = 7;
@@ -929,7 +937,7 @@ namespace SGMOSOL.SCREENS
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(1007, 209);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(65, 32);
             this.btnClear.TabIndex = 22;
@@ -940,7 +948,7 @@ namespace SGMOSOL.SCREENS
             // imgVideo
             // 
             this.imgVideo.Location = new System.Drawing.Point(1273, 149);
-            this.imgVideo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.imgVideo.Margin = new System.Windows.Forms.Padding(4);
             this.imgVideo.Name = "imgVideo";
             this.imgVideo.Size = new System.Drawing.Size(169, 129);
             this.imgVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -962,7 +970,7 @@ namespace SGMOSOL.SCREENS
             // btnScan
             // 
             this.btnScan.Location = new System.Drawing.Point(917, 209);
-            this.btnScan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnScan.Margin = new System.Windows.Forms.Padding(4);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(83, 32);
             this.btnScan.TabIndex = 21;
@@ -975,7 +983,7 @@ namespace SGMOSOL.SCREENS
             this.txtPincode.BackColor = System.Drawing.Color.Azure;
             this.txtPincode.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPincode.Location = new System.Drawing.Point(123, 204);
-            this.txtPincode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPincode.Margin = new System.Windows.Forms.Padding(4);
             this.txtPincode.MaxLength = 20;
             this.txtPincode.Name = "txtPincode";
             this.txtPincode.Size = new System.Drawing.Size(239, 35);
@@ -1002,7 +1010,7 @@ namespace SGMOSOL.SCREENS
             this.cboCountry.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCountry.FormattingEnabled = true;
             this.cboCountry.Location = new System.Drawing.Point(115, 108);
-            this.cboCountry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboCountry.Margin = new System.Windows.Forms.Padding(4);
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(311, 36);
             this.cboCountry.TabIndex = 11;
@@ -1027,7 +1035,7 @@ namespace SGMOSOL.SCREENS
             this.cboDistrict.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDistrict.FormattingEnabled = true;
             this.cboDistrict.Location = new System.Drawing.Point(535, 146);
-            this.cboDistrict.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboDistrict.Margin = new System.Windows.Forms.Padding(4);
             this.cboDistrict.Name = "cboDistrict";
             this.cboDistrict.Size = new System.Drawing.Size(337, 36);
             this.cboDistrict.TabIndex = 13;
@@ -1041,7 +1049,7 @@ namespace SGMOSOL.SCREENS
             this.cboState.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboState.FormattingEnabled = true;
             this.cboState.Location = new System.Drawing.Point(115, 153);
-            this.cboState.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboState.Margin = new System.Windows.Forms.Padding(4);
             this.cboState.Name = "cboState";
             this.cboState.Size = new System.Drawing.Size(311, 36);
             this.cboState.TabIndex = 12;
@@ -1066,7 +1074,7 @@ namespace SGMOSOL.SCREENS
             this.txtScan.Enabled = false;
             this.txtScan.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScan.Location = new System.Drawing.Point(440, 209);
-            this.txtScan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtScan.Margin = new System.Windows.Forms.Padding(4);
             this.txtScan.MaxLength = 20;
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(452, 35);
@@ -1078,7 +1086,7 @@ namespace SGMOSOL.SCREENS
             this.txtname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtname.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtname.Location = new System.Drawing.Point(117, 10);
-            this.txtname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtname.Margin = new System.Windows.Forms.Padding(4);
             this.txtname.MaxLength = 200;
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(777, 35);
@@ -1091,7 +1099,7 @@ namespace SGMOSOL.SCREENS
             this.txtAddGotra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddGotra.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddGotra.Location = new System.Drawing.Point(1215, 10);
-            this.txtAddGotra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAddGotra.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddGotra.Name = "txtAddGotra";
             this.txtAddGotra.Size = new System.Drawing.Size(227, 35);
             this.txtAddGotra.TabIndex = 8;
@@ -1104,7 +1112,7 @@ namespace SGMOSOL.SCREENS
             this.txttal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txttal.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txttal.Location = new System.Drawing.Point(985, 146);
-            this.txttal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txttal.Margin = new System.Windows.Forms.Padding(4);
             this.txttal.MaxLength = 20;
             this.txttal.Name = "txttal";
             this.txttal.Size = new System.Drawing.Size(284, 35);
@@ -1141,7 +1149,7 @@ namespace SGMOSOL.SCREENS
             this.txtmob.BackColor = System.Drawing.Color.Azure;
             this.txtmob.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmob.Location = new System.Drawing.Point(115, 68);
-            this.txtmob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtmob.Margin = new System.Windows.Forms.Padding(4);
             this.txtmob.MaxLength = 10;
             this.txtmob.Name = "txtmob";
             this.txtmob.Size = new System.Drawing.Size(308, 35);
@@ -1167,7 +1175,7 @@ namespace SGMOSOL.SCREENS
             this.txtaddr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtaddr.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtaddr.Location = new System.Drawing.Point(549, 63);
-            this.txtaddr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtaddr.Margin = new System.Windows.Forms.Padding(4);
             this.txtaddr.MaxLength = 70;
             this.txtaddr.Multiline = true;
             this.txtaddr.Name = "txtaddr";
@@ -1195,7 +1203,7 @@ namespace SGMOSOL.SCREENS
             this.cboGotra.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboGotra.FormattingEnabled = true;
             this.cboGotra.Location = new System.Drawing.Point(997, 9);
-            this.cboGotra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboGotra.Margin = new System.Windows.Forms.Padding(4);
             this.cboGotra.Name = "cboGotra";
             this.cboGotra.Size = new System.Drawing.Size(209, 36);
             this.cboGotra.TabIndex = 7;
@@ -1239,7 +1247,7 @@ namespace SGMOSOL.SCREENS
             this.pnlBtn.Controls.Add(this.chkScanDoc);
             this.pnlBtn.Controls.Add(this.chkDeclaration);
             this.pnlBtn.Location = new System.Drawing.Point(4, 520);
-            this.pnlBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBtn.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBtn.Name = "pnlBtn";
             this.pnlBtn.Size = new System.Drawing.Size(1568, 63);
             this.pnlBtn.TabIndex = 113;
@@ -1250,7 +1258,7 @@ namespace SGMOSOL.SCREENS
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.Location = new System.Drawing.Point(917, 10);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(133, 57);
             this.btnClose.TabIndex = 2;
@@ -1263,7 +1271,7 @@ namespace SGMOSOL.SCREENS
             this.btnSearch.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.Location = new System.Drawing.Point(177, 10);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(127, 57);
             this.btnSearch.TabIndex = 5;
@@ -1277,7 +1285,7 @@ namespace SGMOSOL.SCREENS
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
             this.btnPrint.Location = new System.Drawing.Point(780, 10);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(116, 57);
             this.btnPrint.TabIndex = 1;
@@ -1291,7 +1299,7 @@ namespace SGMOSOL.SCREENS
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.Location = new System.Drawing.Point(324, 10);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(129, 57);
             this.btnNew.TabIndex = 3;
@@ -1304,7 +1312,7 @@ namespace SGMOSOL.SCREENS
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.Location = new System.Drawing.Point(623, 10);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 57);
             this.btnSave.TabIndex = 0;
@@ -1317,7 +1325,7 @@ namespace SGMOSOL.SCREENS
             this.btnAcknowledge.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcknowledge.Image = ((System.Drawing.Image)(resources.GetObject("btnAcknowledge.Image")));
             this.btnAcknowledge.Location = new System.Drawing.Point(465, 10);
-            this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnAcknowledge.Margin = new System.Windows.Forms.Padding(5);
             this.btnAcknowledge.Name = "btnAcknowledge";
             this.btnAcknowledge.Size = new System.Drawing.Size(149, 57);
             this.btnAcknowledge.TabIndex = 4;
@@ -1331,7 +1339,7 @@ namespace SGMOSOL.SCREENS
             this.chkScanDoc.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkScanDoc.ForeColor = System.Drawing.Color.DarkBlue;
             this.chkScanDoc.Location = new System.Drawing.Point(1084, 39);
-            this.chkScanDoc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chkScanDoc.Margin = new System.Windows.Forms.Padding(5);
             this.chkScanDoc.Name = "chkScanDoc";
             this.chkScanDoc.Size = new System.Drawing.Size(180, 27);
             this.chkScanDoc.TabIndex = 23;
@@ -1346,7 +1354,7 @@ namespace SGMOSOL.SCREENS
             this.chkDeclaration.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDeclaration.ForeColor = System.Drawing.Color.DarkBlue;
             this.chkDeclaration.Location = new System.Drawing.Point(1084, 10);
-            this.chkDeclaration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkDeclaration.Margin = new System.Windows.Forms.Padding(4);
             this.chkDeclaration.Name = "chkDeclaration";
             this.chkDeclaration.Size = new System.Drawing.Size(193, 27);
             this.chkDeclaration.TabIndex = 24;

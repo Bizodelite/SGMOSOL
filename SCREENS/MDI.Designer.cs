@@ -261,7 +261,6 @@
             this.bedCheckOutToolStripMenuItem,
             this.bedOccupiedToolStripMenuItem,
             this.bedAdvanceVoucherToolStripMenuItem});
-            this.bedSystemToolStripMenuItem.Enabled = false;
             this.bedSystemToolStripMenuItem.Name = "bedSystemToolStripMenuItem";
             this.bedSystemToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             this.bedSystemToolStripMenuItem.Text = "Bed System";

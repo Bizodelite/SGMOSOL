@@ -216,7 +216,7 @@
             this.dtToDate.Name = "dtToDate";
             this.dtToDate.Size = new System.Drawing.Size(200, 22);
             this.dtToDate.TabIndex = 3;
-            this.dtToDate.Value = new System.DateTime(2024, 5, 9, 14, 35, 59, 0);
+            this.dtToDate.Value = new System.DateTime(2024, 5, 22, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -234,7 +234,7 @@
             this.dtFromDate.Name = "dtFromDate";
             this.dtFromDate.Size = new System.Drawing.Size(200, 22);
             this.dtFromDate.TabIndex = 1;
-            this.dtFromDate.Value = new System.DateTime(2024, 5, 9, 14, 35, 45, 0);
+            this.dtFromDate.Value = new System.DateTime(2024, 5, 22, 0, 0, 0, 0);
             // 
             // label1
             // 
